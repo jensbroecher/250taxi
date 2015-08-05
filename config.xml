@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.250taxi.app"
+        versionCode = "1" 
+        version     = "1.0.0" >
+
+    <name>250 Taxi</name>
+
+    <description>
+		Taxi Booking Service
+    </description>
+
+    <author href="https://www.250taxi.com" email="info@250taxi.com">
+        HD Developers
+    </author>
+	
+	<icon src="icon.png" />
+		
+	<preference name="android-minSdkVersion" value="9" /> 
+	<preference name="android-targetSdkVersion" value="19" />
+	
+	<!-- Core plugins -->
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="org.apache.cordova.file-transfer" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.media" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+	
+	<gap:plugin name="com.parse.cordova.core.pushplugin" />
+	<gap:plugin name="de.appplant.cordova.plugin.local-notification" />
+	
+	<access origin="*"/> <!-- allow all pages, use for development -->
+
+</widget>

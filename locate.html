@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+
+<script src="jquery.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="cdv-plugin-parse.js"></script>
+
+<script>
+
+function onDeviceReady() {}
+
+$( document ).ready(function() {
+
+// alert('App loaded');
+	
+$( "#getkptypes" ).load( "http://enunua.com/emarps/database/getkptypes_geocode_app.php", function() {
+//  alert( "KP Types loaded" );
+hideindicator();
+});
+
+parsePlugin.initialize('len2LWLxsk86rc83UuSoeeP3uGIJ9tU89o49cGIt','b6ut6CMfUVZWGKkyxe341gq0xe7eR9OK79ZJak7Z', function() {
+
+    parsePlugin.subscribe('GPS', function() {
+
+        parsePlugin.getInstallationId(function(id) {
+
+        }, function(e) {
+            alert('error');
+        });
+
+    }, function(e) {
+        alert('error');
+    });
+
+}, function(e) {
+    alert('error');
+});
+
+});
+
+function lpush() {
+var facilityname = localStorage.getItem('facilityname');
+	
+window.plugin.notification.local.add({
+    id:         1,
+    message:    ''+facilityname+' has been reported',
+    title:      'Thank you!',
+    autoCancel: true,
+    ongoing:    false
+});
+}
+
+function showindicator() {
+	document.getElementById("loadingindicator").className = "animated fadeIn";
+document.getElementById("loadingindicator").style.display = "block";
+}
+
+function hideindicator() {
+	document.getElementById("loadingindicator").className = "animated fadeOut";
+setTimeout(function(){
+document.getElementById("loadingindicator").style.display = "none";
+}, 1000);
+}
+
+function geoFindMe() {
+
+showindicator();
+	
+  var output = document.getElementById("out");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+	hideindicator();
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+	
+	localStorage.setItem('latitude', latitude);
+	localStorage.setItem('longitude', longitude);
+	
+	hideindicator();
+
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+	
+	// alert(latitude);
+	// alert(longitude);
+
+    var img = new Image();
+    img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&markers=icon:http://enunua.com/geo/clinic.png|" + latitude + "," + longitude + "&zoom=13&size=400x400&sensor=true";
+	img.className = "map";
+
+    output.appendChild(img);
+	
+	document.getElementById('geofindbutton').style.display = "none";
+	document.getElementById('detailsfordbbutton').style.display = "block";
+	document.getElementById('locateagainbutton').style.display = "block";
+	
+	
+  };
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+	hideindicator();
+  };
+
+  output.innerHTML = "<p>Locating…</p>";
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function detailsfordb() {
+	document.getElementById('detailsfordb').style.display = "block";
+	document.getElementById('geofind').style.display = "none";
+}
+function sendtodb() {
+	var $myForm = $('#detailsfordbform')
+	if (!$myForm[0].checkValidity()) {
+    $myForm.find('#sendtodb').click();
+	}
+}
+function ajaxform() {
+	var lat = localStorage.getItem('latitude');
+	var long = localStorage.getItem('longitude');
+	var facilityname = localStorage.getItem('facilityname');
+	var facilityname = document.getElementById('facilityname').value;
+	var partnername = document.getElementById('partnername').value;
+	var county = document.getElementById('county').value;
+	var kptypecheckbox1 = document.getElementById('kptypecheckbox1').checked;
+	var kptypecheckbox2 = document.getElementById('kptypecheckbox2').checked;
+	var kptypecheckbox3 = document.getElementById('kptypecheckbox3').checked;
+	var kptypecheckbox4 = document.getElementById('kptypecheckbox4').checked;
+	var kptypecheckbox5 = document.getElementById('kptypecheckbox5').checked;
+	var kptypecheckbox7 = document.getElementById('kptypecheckbox7').checked;
+	var kptypecheckbox8 = document.getElementById('kptypecheckbox8').checked;
+	alert('Data sent:\n\nFacility Name: '+facilityname+'\nPartner Name: '+partnername+'\nCounty: '+county+'\nLatitude: '+lat+'\nLongitude: '+long+'\n\nPrimary KP Types:\n\nFFW: '+kptypecheckbox1+'\nTruckers: '+kptypecheckbox2+'\nMSM: '+kptypecheckbox3+'\nPWUD: '+kptypecheckbox4+'\nFF: '+kptypecheckbox5+'\nFFX: '+kptypecheckbox7+'\nPWID: '+kptypecheckbox8+'');
+	
+localStorage.setItem('facilityname', facilityname);
+	
+$.get('http://enunua.com/emarps/database/emarps_geodata_app_storedb.php?facilityname='+facilityname+'&partnername='+partnername+'&county='+county+'&lat='+lat+'&long='+long+'&kptypecheckbox1='+kptypecheckbox1+'&kptypecheckbox2='+kptypecheckbox2+'&kptypecheckbox3='+kptypecheckbox3+'&kptypecheckbox4='+kptypecheckbox4+'&kptypecheckbox5='+kptypecheckbox5+'&kptypecheckbox7='+kptypecheckbox7+'&kptypecheckbox8='+kptypecheckbox8+'', function(data) {
+  	lpush();
+	showindicator();
+	setTimeout(function(){
+	document.location.reload();
+}, 3000);
+});
+
+}
+
+
+
+</script>
+
+<div id="loadingindicator">
+<img src="282.gif" width="120">
+</div>
+
+<div id="detailsfordb" style="display:none;" class="animated zoomIn">
+<form id="detailsfordbform" action="javascript:ajaxform();">
+<h1>Clinic Details</h1>
+<input class="textfield" id="facilityname" placeholder="Facility Name" name="facilityname" required type="text"></input>
+<input class="textfield" id="partnername" placeholder="Partner Name" name="partnername" required type="text"></input>
+<input class="textfield" id="county" placeholder="County" name="county" required type="text"></input>
+<h1>Primary KP Types</h1>
+<div id="getkptypes"></div>
+
+<button id="sendtodb" style="margin-top:10px;" onclick="sendtodb();">Report to database</button></form>
+
+<button id="locateagainbutton" onclick="document.location.reload();">Locate again</button>
+<br>
+</div>
+
+<div id="geofind">
+
+<button id="geofindbutton" onclick="geoFindMe()"><img align="absmiddle" src="locatemematerialdesign.png" width="40"> Find my location</button>
+
+<button id="detailsfordbbutton" onclick="detailsfordb();" style="display:none">Report location to database</button>
+
+<div id="out"></div>
+
+</div>
+
+</body>
+</html>
