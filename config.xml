@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.250taxi.app"
+        id          = "com.twofiftytaxi.app"
         versionCode = "1" 
         version     = "1.0.0" >
 
@@ -11,7 +11,7 @@
 		Taxi Booking Service
     </description>
 
-    <author href="https://www.250taxi.com" email="info@250taxi.com">
+    <author href="https://www.twofiftytaxi.com" email="info@250taxi.com">
         HD Developers
     </author>
 	
