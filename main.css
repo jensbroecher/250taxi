@@ -1,35 +1,77 @@
 @charset "utf-8";
-body {
-	font-family: Arial, Helvetica, sans-serif;
+.page1 {
+	font-family: Roboto, sans-serif;
 	font-size: 18px;
 	color: #000;
-	background-color: #E1F2FF;
+	background-color: #000;
+    background-image: url(bg.jpg);
+    background-size: cover;
 	text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+.page2 {
+	font-family: Roboto, sans-serif;
+	font-size: 18px;
+	color: #000;
+	background-color: #FFF;
+    margin: 0px;
+    padding: 0px;
 }
 .map {
-	width: 90%;
-	border: 5px solid #FFF;
-	box-shadow: 0 0 25px 1px rgba(0,0,0,0.3);
+	width: 100%;
 	min-height: 250px;
 	background-image: url(282b.GIF);
 	background-repeat: no-repeat;
 	background-position: center center;	
 	background-size: 60px 60px;
 }
-
+#driverprofiles {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF;
+    width: 100%;
+}
+.driverphoto img {
+    width: 120px;
+}
+.rating img {
+    width: 20px;
+}
+.driverphoto {
+    float: left;
+    margin-right: 10px;
+}
+.driverbox {
+    clear: both;
+    margin-top: 5px;
+    font-size: 80%;
+    line-height: 150%;
+}
+#searchfordrivers {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.bigtext {
+background-color: #FFF;
+line-height: 200%;
+text-align: center;
+}
 button {
-	color: #000;
-	background-color: #FFF;
+	color: #FFF;
+	background-color: #20603D;
 	text-align: center;
 	width: 100%;
 	display: block;
-	border: 2px solid #20603D;
+	border: 0px none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	-webkit-tap-highlight-color: transparent;
 	transition: all 0.5s;
 	line-height: 250%;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -57,7 +99,6 @@ h1 {
 	line-height: 100%;
 	padding-bottom: 5px;
 }
-
 .textfield {
 	border: 1px solid #999;
 	width: 100%;
