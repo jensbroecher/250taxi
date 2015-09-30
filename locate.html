@@ -1,215 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
+  <head>
+    <title>Geolocation</title>
+      
+    <link href="animate.min.css" rel="stylesheet" type="text/css">
+      
+    <script src="jquery.min.js"></script>
+      
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+      
+    <div id="map"></div>
 
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <script>
 
-<link href="main.css" rel="stylesheet" type="text/css">
-<link href="animate.min.css" rel="stylesheet" type="text/css">
 
-<script src="jquery.min.js"></script>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="cdv-plugin-parse.js"></script>
-
-<script>
-
-function onDeviceReady() {}
-
-$( document ).ready(function() {
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 15,
+    disableDefaultUI: true
+  });
     
-geoFindMe();	
-    
-});
+  // var infoWindow = new google.maps.InfoWindow({map: map});
 
-function lpush() {
-var drivername = localStorage.getItem('drivername');
-	
-window.plugin.notification.local.add({
-    id:         1,
-    message:    ''+drivername+' is on the way!',
-    title:      'Taxi booked!',
-    autoCancel: true,
-    ongoing:    false
-});
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      //infoWindow.setPosition(pos);
+      //infoWindow.setContent('Location found.');
+        
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
 }
 
-function showindicator() {
-document.getElementById("loadingindicator").className = "animated fadeIn";
-document.getElementById("loadingindicator").style.display = "block";
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
 }
 
-function hideindicator() {
-	document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 1000);
-}
-
-function geoFindMe() {
-
-showindicator();
-	
-var output = document.getElementById("out");
-
-if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-	hideindicator();
-return;
-}
-
-function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
-	
-	localStorage.setItem('latitude', latitude);
-	localStorage.setItem('longitude', longitude);
-	
-	hideindicator();
-
-    output.innerHTML = '<p style="display:none">Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-	
-	// alert(latitude);
-	// alert(longitude);
-
-    var img = new Image();
-    img.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&markers=icon:http://enunua.com/geo/clinic.png|" + latitude + "," + longitude + "&zoom=16&size=400x400&sensor=true";
-	img.className = "map";
-
-    output.appendChild(img);
-	
-    document.getElementById('searchfordrivers').style.display = "block";
-	
-}
-
-function error() {
-    output.innerHTML = '<div class="bigtext">Unable to retrieve your location</div><button id="locateagainbutton" onclick="document.location.reload();">Try again</button>';
-	hideindicator();
-}
-
-output.innerHTML = '<div class="bigtext">Locating…</div>';
-navigator.geolocation.getCurrentPosition(success, error);
-
-options = {
-  enableHighAccuracy: false,
-  timeout: 5000,
-  maximumAge: 0
-}
-
-navigator.geolocation.watchPosition(success, error, options);
-    
-}
-    
-function finddrivers() {
-document.getElementById('driverprofiles').style.display = "block";
-document.getElementById('geofind').style.display = "none";
-document.getElementById('searchfordrivers').style.display = "none";
-}
-
-</script>
-    
-</head>
-<body class="page2">
-
-<div id="loadingindicator">
-<img src="282.gif" width="120">
-</div>
-
-<div id="geofind">
-
-<div id="out"></div>
-
-</div>
-    
-<div id="searchfordrivers" style="display:none;" class="animated zoomIn">
-
-<button id="showdriversbutton" onclick="finddrivers();">Find a Taxi</button></form>
-
-<button id="locateagainbutton" onclick="document.location.reload();">Locate me again</button>
-
-</div>
-    
-<div id="driverprofiles" class="animated fadeIn">
-
-<div class="driverbox">
-<div class="driverphoto">
-<img src="drivers/driver1.jpg">
-</div>
-<div class="drivername">
-Name: Mark Kamau
-</div>
-<div class="drivervehicle">
-Vehicle: Toyota Corolla
-</div>
-<div class="driverlicenseplate">
-License Plate: KAP 565
-</div>
-<div class="driverdistance">
-Distance: 800 M
-</div>
-<div class="rating">
-<img src="star.png">
-<img src="star.png">
-<img src="star.png">
-<img src="star.png">
-<img src="star.png">
-</div>
-<button>Select</button>
-</div>
-    
-<div class="driverbox">
-<div class="driverphoto">
-<img src="drivers/driver2.jpg">
-</div>
-<div class="drivername">
-Name: Sam Odhiambo
-</div>
-<div class="drivervehicle">
-Vehicle: Mercedes-Benz S550
-</div>
-<div class="driverlicenseplate">
-License Plate: KGP 798
-</div>
-<div class="driverdistance">
-Distance: 2 KM
-</div>
-<div class="rating">
-<img src="star.png">
-<img src="star.png">
-<img src="outline_star.png">
-<img src="outline_star.png">
-<img src="outline_star.png">
-</div>
-<button>Select</button>
-</div>
-    
-<div class="driverbox">
-<div class="driverphoto">
-<img src="drivers/driver3.jpg">
-</div>
-<div class="drivername">
-Name: Alfred Mbugua
-</div>
-<div class="drivervehicle">
-Vehicle: Audi Avant RS 2
-</div>
-<div class="driverlicenseplate">
-License Plate: KAB 527
-</div>
-<div class="driverdistance">
-Distance: 5 KM
-</div>
-<div class="rating">
-<img src="star.png">
-<img src="star.png">
-<img src="star.png">
-<img src="star.png">
-<img src="outline_star.png">
-</div>
-<button>Select</button>
-</div>
-
-</div>
-
-</body>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&signed_in=false&callback=initMap"
+        async defer>
+    </script>
+  </body>
 </html>
