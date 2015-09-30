@@ -1,11 +1,14 @@
 @charset "utf-8";
+html {
+    background-image: url(kigali_blur.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
 .page1 {
 	font-family: Roboto, sans-serif;
 	font-size: 18px;
 	color: #000;
-	background-color: #000;
-    background-image: url(bg.jpg);
-    background-size: cover;
 	text-align: center;
     margin: 0px;
     padding: 0px;
@@ -60,8 +63,8 @@ line-height: 200%;
 text-align: center;
 }
 button {
-	color: #FFF;
-	background-color: #20603D;
+	color: #000;
+	background-color: rgba(255,255,255,0.5);
 	text-align: center;
 	width: 100%;
 	display: block;
@@ -70,10 +73,12 @@ button {
 	-webkit-tap-highlight-color: transparent;
 	transition: all 0.5s;
 	line-height: 250%;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 12px;
+	margin-bottom: 12px;
 	margin-right: auto;
 	margin-left: auto;
+    border-radius: 6px;
+    font-size: 110%;
 }
 #detailsfordb {
 	background-color: #E1F2FF;
