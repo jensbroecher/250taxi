@@ -75,16 +75,11 @@ var marker;
 				displayError,
 				{ enableHighAccuracy: true, timeout: timeoutVal, maximumAge: 0 }
 			);
-            
 		}
 		else {
 			alert("Geolocation is not supported by this browser");
 		}
-		function displayPosition(position) {	
-            
-            document.getElementById("lat").value = position.coords.latitude;
-            document.getElementById("long").value = position.coords.longitude;
-            
+		function displayPosition(position) {			
 			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			var options = {
 				zoom: 16,
@@ -96,7 +91,7 @@ var marker;
 			// Remove the current marker, if there is one
 			if (typeof(marker) != "undefined") marker.setMap(null);
             
-var iconimage = {
+            var iconimage = {
     url: "userpinicon.png", // url
     scaledSize: new google.maps.Size(90, 90), // scaled size
     origin: new google.maps.Point(0,0), // origin
@@ -119,16 +114,13 @@ var iconimage = {
                 
 			var contentString = "<b>Timestamp:</b> " + parseTimestamp(position.timestamp) + "<br/><b>User location:</b> lat " + position.coords.latitude + ", long " + position.coords.longitude + ", accuracy " + position.coords.accuracy;
 			// Remove the current infoWindow, if there is one
-			
-            if (typeof(infoWindow) != "undefined") infoWindow.setMap(null);
+			if (typeof(infoWindow) != "undefined") infoWindow.setMap(null);
 			infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
-            
-			// google.maps.event.addListener(marker, 'click', function() {
-			//	infowindow.open(map,marker);
-			// });
-            
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map,marker);
+			});
 		}
 		function displayError(error) {
 			var errors = { 
