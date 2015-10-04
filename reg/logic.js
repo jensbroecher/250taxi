@@ -259,7 +259,7 @@ function storeindb() {
         url: "http://250taxi.com/db/registration.php",
         data:       "phone="+phone+"&task=reg&email="+email+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&address="+address+"&country="+country+"&city="+city+"&pin="+pin ,
         success: function(html){
-            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an eMail from UB-Dream with your account details. You can now log in with your phone number ('+phone+').');
+            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an eMail from 250 taxi with your account details. You can now log in with your phone number ('+phone+').');
             document.location.href = 'login.html';
         }
     });   
