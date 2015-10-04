@@ -21,16 +21,15 @@ html, body, #map {
 
 #locationfield {
         font-family: Roboto, sans-serif;
-	    font-size: 16px;
+	   font-size: 18px;
         position: absolute;
         background-color: rgba(255,255,255,0.9);
         width: 90%;
         left: 3%;
         padding: 2%;
-        line-height: 27px;
+        line-height: 40px;
         z-index: 100;
         top: 2%;
-        border: 0px solid #000000;
 }
 
 #calltaxiui {
@@ -52,13 +51,13 @@ html, body, #map {
 
 <body>
     
-
-          
-<input style="display:none;" id="lat" name="lat" val="40.713956">
-<input style="display:none;" id="long" name="long" val="74.006653">
-<input id="locationfield" name="address" val="">
+     <div id="locationfield" contenteditable="true">
     
-
+          
+<input id="lat" name="lat" val="40.713956"><br>
+<input id="long" name="long" val="74.006653">
+    
+    </div>
     
     <div id="calltaxiui"></div>
     
@@ -66,8 +65,6 @@ html, body, #map {
 
 
 <script>
-    
-
 
 var marker;
 		var infoWindow;
@@ -86,12 +83,9 @@ var marker;
 		function displayPosition(position) {	
             
             document.getElementById("lat").value = position.coords.latitude;
-            document.getElementById("long").value = position.coords.longitude;     
+            document.getElementById("long").value = position.coords.longitude;
             
-			pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            
-            geocodeLatLng(geocoder, map);
-            
+			var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			var options = {
 				zoom: 16,
                 disableDefaultUI: true,
@@ -121,7 +115,6 @@ var iconimage = {
             google.maps.event.addListener(marker, 'dragend', function (event) {
             document.getElementById("lat").value = event.latLng.lat();
             document.getElementById("long").value = event.latLng.lng();
-            geocodeLatLng(geocoder, map);
             });
                 
 			var contentString = "<b>Timestamp:</b> " + parseTimestamp(position.timestamp) + "<br/><b>User location:</b> lat " + position.coords.latitude + ", long " + position.coords.longitude + ", accuracy " + position.coords.accuracy;
@@ -156,33 +149,6 @@ var iconimage = {
 			var msec = d.getMilliseconds();
 			return day + "." + month + "." + year + " " + hour + ":" + mins + ":" + secs + "," + msec;
 		}
-    
-var geocoder = new google.maps.Geocoder;
-    
-function geocodeLatLng(geocoder, map) {
-    
-  // var input = String(pos);
-    
-  // var latlngStr = input.split(',', 2);
-    
-  // var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-    
-  geocoder.geocode({'location': pos}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        // infowindow.setContent(results[1].formatted_address);
-        // infowindow.open(map, marker);
-        document.getElementById('locationfield').value = results[0].formatted_address;
-      } 
-    else {
-        // window.alert('No results found');
-      }
-    } 
-    else {
-      // window.alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
     
 </script>
 
