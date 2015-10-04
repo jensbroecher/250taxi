@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script type="text/javascript">
+function showindicator() {
+	document.getElementById("loadingindicator").className = "animated fadeIn";
+document.getElementById("loadingindicator").style.display = "block";
+}
+
+function letsgo() {
+	showindicator();
+	setTimeout(function(){
+	document.location.href = 'locate.html';
+	}, 3000);
+}
+</script>
+    
+<style>
+    body {
+    background-image: url(reg/kigali_blur.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    font-family: Roboto, sans-serif;
+	font-size: 18px;
+	color: #000;
+	text-align: center;
+    margin: 0px;
+    padding: 0px;
+    }
+    #loginregister {
+    position: absolute;
+    z-index: 10;
+    width: 80%;
+    margin-left: 10%;
+    top: 10%;
+    }
+    #loginregister img {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+    }
+    #loadingindicator {
+	background-color: #E2E2E2;
+	position: absolute;
+	z-index: 10000000000000000;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	text-align: center;
+	display: none;
+    }
+    #loadingindicator img {
+	margin-top: 100px;
+	width: 160px;
+    }
+</style>
+
+</head>
+
+<div id="loadingindicator" style="display:none">
+<img src="282.gif" width="120">
+</div>
+
+<body>
+
+<div id="loginregister">
+    
+<img class="animated fadeInLeft"
+     style="-webkit-animation-delay: 1.2s;"
+     onclick="letsgo();"
+     src="reg/start_taxi.png">
+
+<img class="animated fadeInLeft"
+     style="-webkit-animation-delay: 1.4s;"
+     onclick="alert('Coming soon...');"
+     src="reg/start_luxury.png">
+    
+<img class="animated fadeInLeft"
+     style="-webkit-animation-delay: 1.6s;"
+     onclick="alert('Coming soon...');"
+     src="reg/start_moto.png">
+    
+</div>
+
+</body>
+</html>
