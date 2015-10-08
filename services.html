@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 
-<link href="animate.min.css" rel="stylesheet" type="text/css">
+<link href="animate.min.css" rel="stylesheet" type="text/css"> 
+<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css" />
+    
+<script src="jquery.min.js"></script>
+<script src="pushmenu/jPushMenu.js"></script>
     
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script type="text/javascript">
 function showindicator() {
-	document.getElementById("loadingindicator").className = "animated fadeIn";
+document.getElementById("loadingindicator").className = "animated fadeIn";
 document.getElementById("loadingindicator").style.display = "block";
 }
 
@@ -19,6 +23,7 @@ function letsgo() {
 	document.location.href = 'locate.html';
 	}, 3000);
 }
+
 </script>
     
 <style>
@@ -39,11 +44,12 @@ function letsgo() {
     z-index: 10;
     width: 60%;
     margin-left: 20%;
-    top: 10%;
+    margin-top: 10%;
     }
     #loginregister img {
-    width: 100%;
-    max-width: 300px;
+    width: 80%;
+    margin-left: 10%;
+    max-width: 250px;
     margin-bottom: 25px;
     }
     #loadingindicator {
@@ -87,6 +93,8 @@ function letsgo() {
      style="-webkit-animation-delay: 1.6s;"
      onclick="alert('Coming soon...');"
      src="reg/start_moto.png">
+    
+
     
 </div>
 

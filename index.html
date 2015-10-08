@@ -24,9 +24,14 @@ function letsgo() {
     
 $(document).ready(function() {
     var rememberuser = localStorage.getItem('rememberuser');
+    
+    // alert(rememberuser);
 
-    if (rememberuser = 'Yes') {
+    if (rememberuser == 'Yes') {
         document.location.href = 'gotostart.html';
+    }
+    else {
+    //    alert('Please log in');
     }
 });
 

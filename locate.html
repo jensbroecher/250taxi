@@ -4,12 +4,14 @@
     <title>250 taxi</title>
       
     <link href="animate.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css" />
       
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&signed_in=false&sensor=true"></script>
       
 <script src="jquery.min.js"></script>
+<script src="pushmenu/jPushMenu.js"></script>
       
 <style>
 
@@ -24,13 +26,29 @@ html, body, #map {
 	    font-size: 16px;
         position: absolute;
         background-color: rgba(255,255,255,0.9);
-        width: 90%;
-        left: 3%;
+        width: 80%;
+        left: 14%;
         padding: 2%;
-        line-height: 27px;
+        line-height: 20px;
         z-index: 100;
         top: 2%;
         border: 0px solid #000000;
+}
+#menubutton {
+        background-image: url(menu.png);
+        background-size: 90% 90%;
+        background-position: center center;
+        position: absolute;
+        padding: 2%;
+        line-height: 20px;
+        width: 6%;
+        z-index: 100;
+        border: 0px solid #000000;     
+        top: 2%;
+        left: 2%;
+    background-color: rgba(255,255,255,0.9);
+            
+
 }
 
 #calltaxiui {
@@ -52,10 +70,21 @@ html, body, #map {
 
 <body>
     
-
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+			<div>Services</div>
+			<div>Account</div>
+			<div>Promotions</div>
+			<div>BECOME A 250TAXI DRIVER</div>
+			<div>250TAXI CORPORATE</div>
+			<div>HISTORY</div>
+            <div>ABOUT</div>
+            <div>HELP</div>
+</nav>
           
 <input style="display:none;" id="lat" name="lat" val="40.713956">
 <input style="display:none;" id="long" name="long" val="74.006653">
+    
+<div id="menubutton" class="toggle-menu menu-left">&nbsp;</div>    
 <input id="locationfield" name="address" val="">
     
 
@@ -183,7 +212,11 @@ function geocodeLatLng(geocoder, map) {
     }
   });
 }
-    
+
+jQuery(document).ready(function($) {
+	$('.toggle-menu').jPushMenu();
+});
+
 </script>
 
 </body>
