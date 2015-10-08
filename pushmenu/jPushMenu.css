@@ -1,5 +1,7 @@
 .cbp-spmenu {
 	background: rgba(0,0,0,0.7);
+    background-image: url(gradient.png);
+    background-size: 100% 100%;
 	position: fixed;
 }
 

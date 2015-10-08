@@ -125,7 +125,8 @@ var marker;
 				zoom: 16,
                 disableDefaultUI: true,
 				center: pos,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
 			};
 			var map = new google.maps.Map(document.getElementById("map"), options);
 			// Remove the current marker, if there is one
