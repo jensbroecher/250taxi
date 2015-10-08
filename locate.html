@@ -62,7 +62,17 @@ html, body, #map {
         bottom: 0px;
         z-index: 100;
 }
-
+    #logoutbutton {
+        font-family: Roboto, sans-serif;
+	    font-size: 16px;
+        border: 1px solid #FFFFFF;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin-left: 30%;
+    }
 </style>
 
 </head>
@@ -70,7 +80,19 @@ html, body, #map {
 
 <body>
     
+<script>
+    function logout() {
+    localStorage.removeItem('rememberuser');
+    document.location.href = 'index.html';
+    }
+</script>
+    
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+    
+<br>
+<span id="logoutbutton" onclick="logout();">Logout</span>
+<br><br>
+    
 			<div>Services</div>
 			<div>Account</div>
 			<div>Promotions</div>
