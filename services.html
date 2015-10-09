@@ -31,6 +31,7 @@ function letsgo() {
     background-image: url(reg/kigali_blur.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-color: black;
     font-family: Roboto, sans-serif;
 	font-size: 18px;
@@ -48,9 +49,9 @@ function letsgo() {
     }
     #loginregister img {
     width: 80%;
-    margin-left: 10%;
+    margin-left: 5%;
     max-width: 250px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     }
     #loadingindicator {
 	background-color: #E2E2E2;
@@ -67,6 +68,14 @@ function letsgo() {
 	margin-top: 100px;
 	width: 160px;
     }
+    #selectserviceheader{
+        background-color: #1493B3;
+        padding:5px;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 90%;
+        color: white;
+    }
 </style>
 
 </head>
@@ -76,33 +85,35 @@ function letsgo() {
 </div>
 
 <body>
+    
+<div id="selectserviceheader">Please choose a service</div>
 
 <div id="loginregister">
     
-<img class="animated fadeInLeft"
+<img class="animated zoomIn"
      style="-webkit-animation-delay: 1.2s;"
      onclick="letsgo();"
      src="reg/start_taxi.png">
-
-<img class="animated fadeInLeft"
+    
+<img class="animated zoomIn"
      style="-webkit-animation-delay: 1.4s;"
      onclick="alert('Coming soon...');"
-     src="reg/start_luxury.png">
-    
-<img class="animated fadeInLeft"
-     style="-webkit-animation-delay: 1.6s;"
-     onclick="alert('Coming soon...');"
      src="reg/start_moto.png">
-    
-<img class="animated fadeInLeft"
+
+<img class="animated zoomIn"
      style="-webkit-animation-delay: 1.6s;"
      onclick="alert('Coming soon...');"
-     src="reg/start_air.png">
+     src="reg/start_luxury2.png">
     
-<img class="animated fadeInLeft"
-     style="-webkit-animation-delay: 1.6s;"
+<img class="animated zoomIn"
+     style="-webkit-animation-delay: 1.8s;"
      onclick="alert('Coming soon...');"
      src="reg/start_courier.png">
+    
+<img class="animated zoomIn"
+     style="-webkit-animation-delay: 2s;"
+     onclick="alert('Coming soon...');"
+     src="reg/start_air.png">
     
 
     

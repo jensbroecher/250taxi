@@ -14,6 +14,8 @@
     <author href="https://www.twofiftytaxi.com" email="info@250taxi.com">
         HD Developers
     </author>
+        
+    <preference name="Orientation" value="portrait" />
 	
 	<icon src="icon.png" />
 		
