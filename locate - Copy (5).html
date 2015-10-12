@@ -15,7 +15,6 @@
       
 <style>
 
-
 html, body, #map {
     margin: 0;
     padding: 0;
@@ -24,50 +23,34 @@ html, body, #map {
 
 #locationfield {
         font-family: Roboto, sans-serif;
-        text-indent: 5px;
 	    font-size: 16px;
         position: absolute;
         background-color: rgba(255,255,255,0.9);
-        width: 84%;
+        width: 80%;
         left: 14%;
-        height: 15%;
+        padding: 2%;
+        line-height: 20px;
         z-index: 100;
-        top: 8px;
-        border: 0px solid #FFFFFF;
-        max-height: 30px;
+        top: 2%;
+        border: 0px solid #000000;
 }
 #menubutton {
-        background-image: url(menu.svg);
-        background-size: auto 80%;
+        background-image: url(menu.png);
+        background-size: 90% 90%;
         background-position: center center;
-        background-repeat: no-repeat;
         position: absolute;
-        height: 15%;
-        width: 10%;
+        padding: 2%;
+        line-height: 20px;
+        width: 6%;
         z-index: 100;
-        max-width: 30px;
-        border: 1px solid #FFFFFF;     
-        top: 8px;
+        border: 0px solid #000000;     
+        top: 2%;
         left: 2%;
-        background-color: rgba(255,255,255,0.9);
-        max-height: 30px;
+    background-color: rgba(255,255,255,0.9);
+            
+
 }
-#locationbutton {
-        background-image: url(crosshairs-gps.svg);
-        background-size: auto 80%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute;
-        height: 15%;
-        width: 10%;
-        z-index: 100;
-        max-width: 30px;
-        border: 1px solid #FFFFFF;     
-        top: 47px;
-        right: 2%;
-        background-color: rgba(255,255,255,0.9);
-        max-height: 30px;
-}
+
 #calltaxiui {
         background-image: url(calltaxi.png);
         background-size: contain;
@@ -79,7 +62,7 @@ html, body, #map {
         bottom: 0px;
         z-index: 100;
 }
-#logoutbutton {
+    #logoutbutton {
         font-family: Roboto, sans-serif;
 	    font-size: 16px;
         border: 1px solid #FFFFFF;
@@ -89,44 +72,13 @@ html, body, #map {
         padding-right: 20px;
         color: white;
         margin-left: 30%;
-}
-#overlay {
-    background-image: url(overlay.png);
-    background-size: 100% 100%;
-    opacity: 0.7;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-}
-#loadingindicator {
-	background-color: #E2E2E2;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-	text-align: center;
-}
-#loadingindicator img {
-	margin-top: 100px;
-	width: 160px;
-}
+    }
 </style>
 
 </head>
 
 
 <body>
-    
-<div id="overlay" onclick="this.style.display = 'none'"></div>
-    
-<div id="loadingindicator">
-<img src="282.gif" width="120">
-</div>
     
 <script>
     function logout() {
@@ -154,10 +106,9 @@ html, body, #map {
 <input style="display:none;" id="lat" name="lat" val="40.713956">
 <input style="display:none;" id="long" name="long" val="74.006653">
     
-<div id="menubutton" class="toggle-menu menu-left"> </div>    
+<div id="menubutton" class="toggle-menu menu-left">&nbsp;</div>    
 <input id="locationfield" name="address" val="">
-
-<div id="locationbutton" onclick="reloadPositionStart();"> </div>    
+    
 
     
     <div id="calltaxiui"></div>
@@ -166,48 +117,15 @@ html, body, #map {
 
 
 <script>
-    
-function showindicator() {
-document.getElementById("loadingindicator").className = "animated fadeIn";
-document.getElementById("loadingindicator").style.display = "block";
-}
-function hideindicator() {
-document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 1000);
-}
-
 
 var marker;
 var infoWindow;
-    
-function reloadPositionStart() {
-    showindicator();
-    setTimeout(function(){
-    reloadPosition();
-    hideindicator();
-    }, 2000);
-}
-    
-function reloadPosition() {
-navigator.geolocation.getCurrentPosition(
-				displayPosition, 
-				displayError, {
-                enableHighAccuracy: true,
-                timeout: timeoutVal,
-                maximumAge: 0
-                }
-			);
-pos;
-// alert('reloaded: '+pos+'');
-}
 
 if (navigator.geolocation) {
     
 			var timeoutVal = 10 * 1000 * 1000;
 
-			navigator.geolocation.getCurrentPosition(
+			navigator.geolocation.watchPosition(
 				displayPosition, 
 				displayError, {
                 enableHighAccuracy: true,
@@ -269,7 +187,7 @@ var iconimage = {
                 
             pos = new google.maps.LatLng(evt.latLng.lat().toFixed(3),evt.latLng.lng().toFixed(3));
                 
-            // alert('Marker dropped: Current Lat: '+evt.latLng.lat().toFixed(3)+' Current Lng: '+evt.latLng.lng().toFixed(3)+' Pos: '+pos+'');
+            alert('Marker dropped: Current Lat: '+evt.latLng.lat().toFixed(3)+' Current Lng: '+evt.latLng.lng().toFixed(3)+' Pos: '+pos+'');
             
             geocodeLatLng(geocoder, map);
                 
@@ -337,11 +255,6 @@ function geocodeLatLng(geocoder, map) {
 
 jQuery(document).ready(function($) {
 	$('.toggle-menu').jPushMenu();
-    
-    document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 2000);
 });
 
 </script>
