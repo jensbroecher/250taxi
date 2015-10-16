@@ -12,6 +12,18 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
+
+$('#username').keyup(function(){
+    this.value = this.value.toLowerCase();
+    this.value = this.value.replace(/ /g, "");
+});
+$('#first_name').keyup(function(){
+    this.value = this.value.replace(/ /g, "");
+});
+$('#last_name').keyup(function(){
+    this.value = this.value.replace(/ /g, "");
+});
+    
 setTimeout(function(){
 document.getElementById("loadingindicator").className = "animated fadeOut";
 }, 1000);

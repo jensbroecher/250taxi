@@ -10,6 +10,12 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
+    
+$('#username').keyup(function(){
+    this.value = this.value.toLowerCase();
+    this.value = this.value.replace(/ /g, "");
+});
+
 var username = localStorage.getItem('username');
 document.getElementById('username').value = username;
 
@@ -115,7 +121,7 @@ Please sign in with your<br>username and PIN.
             
         }
         else if (data == "account_not_found") {
-            alert("Sorry, your account was not found. Please check your username: ("+username+") or contact support.");
+            alert("Sorry, your account was not found. Please check your username or contact support.");
         }
     });
    } 
