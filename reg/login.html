@@ -15,6 +15,16 @@ $('#username').keyup(function(){
     this.value = this.value.toLowerCase();
     this.value = this.value.replace(/ /g, "");
 });
+$(function(){
+    $('#username').keypress(function(e){
+        var txt = String.fromCharCode(e.which);
+        console.log(txt + ' : ' + e.which);
+        if(!txt.match(/[A-Za-z0-9]/))//+#-.
+        {
+            return false;
+        }
+    });
+});
 
 var username = localStorage.getItem('username');
 document.getElementById('username').value = username;

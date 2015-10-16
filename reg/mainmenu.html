@@ -23,6 +23,50 @@ $('#first_name').keyup(function(){
 $('#last_name').keyup(function(){
     this.value = this.value.replace(/ /g, "");
 });
+$('#email').keyup(function(){
+    this.value = this.value.toLowerCase();
+    this.value = this.value.replace(/ /g, "");
+});
+$(function(){
+    $('#username').keypress(function(e){
+        var txt = String.fromCharCode(e.which);
+        console.log(txt + ' : ' + e.which);
+        if(!txt.match(/[A-Za-z0-9]/))//+#-.
+        {
+            return false;
+        }
+    });
+});
+$(function(){
+    $('#first_name').keypress(function(e){
+        var txt = String.fromCharCode(e.which);
+        console.log(txt + ' : ' + e.which);
+        if(!txt.match(/[A-Za-z0-9]/))//+#-.
+        {
+            return false;
+        }
+    });
+});
+$(function(){
+    $('#last_name').keypress(function(e){
+        var txt = String.fromCharCode(e.which);
+        console.log(txt + ' : ' + e.which);
+        if(!txt.match(/[A-Za-z0-9]/))//+#-.
+        {
+            return false;
+        }
+    });
+});
+$(function(){
+    $('#email').keypress(function(e){
+        var txt = String.fromCharCode(e.which);
+        console.log(txt + ' : ' + e.which);
+        if(!txt.match(/[A-Za-z0-9@.]/))//+#-.
+        {
+            return false;
+        }
+    });
+});
     
 setTimeout(function(){
 document.getElementById("loadingindicator").className = "animated fadeOut";
