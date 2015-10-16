@@ -14,8 +14,6 @@
     <author href="https://www.twofiftytaxi.com" email="info@250taxi.com">
         HD Developers
     </author>
-        
-    <preference name="Orientation" value="portrait" />
 	
 	<icon src="icon.png" />
 		
@@ -30,6 +28,8 @@
     <gap:plugin name="cordova-plugin-media" source="npm" />
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
+    <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
