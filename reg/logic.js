@@ -197,6 +197,10 @@ localStorage.setItem('last_name',last_name);
     
 address = document.getElementById('address').value;
     
+username = document.getElementById('username').value;
+localStorage.setItem('username',username);
+console.log(username);
+    
 country = localStorage.getItem('countrychoice');
 
 console.log(country);
@@ -231,35 +235,51 @@ document.getElementById('reg_complete').style.display = 'none';
 
 }
 
-
-
-
-
 function checksmscode() {
     
 smskey = localStorage.getItem('smskey');
 smskeyuser = document.getElementById('smscode').value;
     
 // alert(smskey);
+// alert(smskeyuser);
     
-if (smskey == smskeyuser) {
-    // alert('SMS code correct.');
+if (smskey === smskeyuser) {
+    localStorage.setItem('phoneisvalidated','Yes');
+    console.log('SMS code correct.');
+    alert('SMS code correct. Thank you for validating your number');
     storeindb();
     showindicator();
 }
 else {
     alert('SMS code incorrect, please check your SMS.');
+    localStorage.setItem('phoneisvalidated','No');
+}
+    
+phoneisvalidated = localStorage.getItem('phoneisvalidated');
+console.log(phoneisvalidated);
+
+if (phoneisvalidated == 'Yes') {
+    console.log('Phone is validated.');
+    localStorage.setItem('phoneisvalidatednow','Yes');
+}
+else {
+    console.log('Phone is not validated.');
+    localStorage.setItem('phoneisvalidatednow','No');
 }
 
 }
     
 function storeindb() {
+
+var phoneisvalidatednow = localStorage.getItem('phoneisvalidatednow');
+// alert(phoneisvalidatednow);
+
     $.ajax({
         type: "GET",
         url: "http://250taxi.com/db/registration.php",
-        data:       "phone="+phone+"&task=reg&email="+email+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&address="+address+"&country="+country+"&city="+city+"&pin="+pin ,
+        data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidatednow+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&pin="+pin ,
         success: function(html){
-            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an eMail from 250 taxi with your account details. You can now log in with your phone number ('+phone+').');
+            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 taxi with your account details. You can now log in with your username: ('+username+').');
             document.location.href = 'login.html';
         }
     });   

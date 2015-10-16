@@ -33,7 +33,31 @@ $(document).ready(function() {
     else {
     //    alert('Please log in');
     }
+    
+    var currentTime = new Date().getHours();
+      if (0 <= currentTime&&currentTime < 5) {
+          setnight();
+      }
+      if (5 <= currentTime&&currentTime < 11) {
+
+      }
+      if (11 <= currentTime&&currentTime < 16) {
+
+      }
+      if (16 <= currentTime&&currentTime < 22) {
+
+      }
+      if (22 <= currentTime&&currentTime <= 24) {
+          setnight();
+      }
+    
 });
+    
+function setnight() {
+    document.getElementById('splashimg').src = 'splash_night.jpg';
+    document.getElementById('splashpage').style.backgroundColor = '#130F20';
+    document.getElementById('claim').style.color = '#73CEE9';
+}
 
 </script>
     
@@ -56,6 +80,17 @@ $(document).ready(function() {
     #loginregister img {
     width: 48%;
     }
+    #claim {
+    color: #3198B7;
+    font-size: 27px;
+    font-style: italic;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+    width: 100%;
+    margin-top: 80%;
+    }
 </style>
 
 </head>
@@ -64,14 +99,16 @@ $(document).ready(function() {
 <img src="282.gif" width="120">
 </div>
 
-<body>
+<body id="splashpage">
+    
+<div id="claim" class="animated slideInLeft" style="-webkit-animation-delay: 2s;">We take you there</div>
 
 <div id="loginregister">
-<img class="animated zoomInUp" style="-webkit-animation-delay: 1.5s;" onclick="document.location.href = 'reg/login.html'" src="reg/login.png">
-<img class="animated zoomInUp" style="-webkit-animation-delay: 1.7s;" onclick="document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
+<img class="animated zoomIn" style="-webkit-animation-delay: 1.5s;" onclick="document.location.href = 'reg/login.html'" src="reg/login.png">
+<img class="animated zoomIn" style="-webkit-animation-delay: 1.7s;" onclick="document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
 </div>
     
-<img class="animated fadeIn" style="-webkit-animation-delay: 1s;" src="splash.jpg" width="100%">
+<img id="splashimg" class="animated fadeIn" style="-webkit-animation-delay: 1s;" src="splash_day.jpg" width="100%">
 
 </body>
 </html>

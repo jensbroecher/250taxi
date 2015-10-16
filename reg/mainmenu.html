@@ -464,13 +464,16 @@ rules: {
 
 <div class="fieldgroup">
     
-Please provide a 4-Digit PIN.<br>Never share this PIN with anyone.<br><br>
+<input name="username" id="username" type="text" class="textfield" required placeholder="Username">
     
 <center>
 <input style="width:100px; font-size:17px; text-align:center; margin-right:5px;" type="tel" name="pin" required class="textfield pin" id="pin" placeholder="PIN" 
  maxlength = "4"
  pattern=".{4,}"> 
 </center>
+
+<br>
+Please provide a 4-Digit PIN.<br>Never share this PIN with anyone.<br>
 
 </div>
 
@@ -484,6 +487,10 @@ $("#reg_step_3").validate({
       required: true,
       number: true,
 	  minlength: 4
+    },
+    username: {
+        required: true,
+        remote: "http://250taxi.com/db/check-username.php"
     }
   },
   messages: {
@@ -503,10 +510,10 @@ $("#reg_step_3").validate({
 </div>
     
 <div class="submenu animated fadeIn" id="reg_smsvalidationwindow">
+<div class="reg_heading">Validate your number</div>
     
 <div class="fieldgroup">
 
-<br><br>
 Please validate your phone number by entering the code you recieved via text message (SMS).
 <br><br>
     
@@ -520,7 +527,7 @@ Please validate your phone number by entering the code you recieved via text mes
     
 <button onclick="checksmscode();">Validate</button>
     
-<button onclick="showindicator();storeindb();">Skip</button>
+<button onclick="showindicator();storeindb();">Skip (Validate later)</button>
 
 </div>
     

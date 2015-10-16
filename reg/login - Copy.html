@@ -10,19 +10,13 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-var username = localStorage.getItem('username');
-document.getElementById('username').value = username;
+
 
 first_name = localStorage.getItem('first_name');
 last_name = localStorage.getItem('last_name');
+document.getElementById('first_name').innerHTML = first_name;
+document.getElementById('last_name').innerHTML = last_name;
 
-if (localStorage.getItem('first_name') === null) {
-    console.log('Names not found.')
-}
-else {
-    document.getElementById('first_name').innerHTML = first_name;
-    document.getElementById('last_name').innerHTML = last_name;
-}
 
 setTimeout(function(){
 document.getElementById("loadingindicator").className = "animated fadeOut";
@@ -58,7 +52,7 @@ document.getElementById("mainmenu").className = "nicewindow animated zoomIn";
 
 <div style="clear:both;"></div>
     
-<select style="display:none;" id="countrycode" class="textfield">
+<select id="countrycode" class="textfield">
     <option value="+243">+243 (DRC)</option>
     <option value="+250">+250 (Rwanda)</option>
     <option value="+256">+256 (Uganda)</option>
@@ -67,11 +61,7 @@ document.getElementById("mainmenu").className = "nicewindow animated zoomIn";
     <option value="+49">+49 (Germany)</option>
 </select>
 
-<input style="display:none;" name="phone" id="phone" type="tel" class="textfield" required placeholder="Phone">
-    
-Please sign in with your<br>username and PIN.
-    
-<input name="username" id="username" type="text" class="textfield" required placeholder="Username">
+<input name="phone" id="phone" type="tel" class="textfield" required placeholder="Phone">
 
 <div style="clear:both;"></div>
 
@@ -91,13 +81,11 @@ Please sign in with your<br>username and PIN.
 	var countrycode = document.getElementById('countrycode').value;
        
     var phone = ''+countrycode+''+phone+'';
-       
-    var username = document.getElementById('username').value;
 
 	var loginpin = document.getElementById('loginpin').value;
 	// alert(''+phone+' '+loginpin+'');
        
-    $.get( "http://250taxi.com/db/check-username-login.php?username="+username+"", function( data ) {
+    $.get( "http://250taxi.com/db/check-phone.php?phone="+phone+"", function( data ) {
 
         if (data == "account_found") {
             
@@ -115,7 +103,7 @@ Please sign in with your<br>username and PIN.
             
         }
         else if (data == "account_not_found") {
-            alert("Sorry, your account was not found. Please check your username: ("+username+") or contact support.");
+            alert("Sorry, your account was not found. Please check your phone number ("+phone+") or contact support.");
         }
     });
    } 
@@ -123,7 +111,7 @@ Please sign in with your<br>username and PIN.
 
 <div class="windowbutton" onClick="logincheck();">Login</div>
 
-<div class="windowbutton" onClick="alert('Please contact customer support: info@250taxi.com');">Forgot username or PIN?</div>
+<div class="windowbutton" onClick="alert('Please contact customer support: info@250taxi.com');">Forgot PIN?</div>
 </div>
 
 <div id="loginscreenforgot" style="display:none;">
