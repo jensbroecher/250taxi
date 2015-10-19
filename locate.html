@@ -12,16 +12,14 @@
       
 <script src="jquery.min.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
+<script src="pushmenu/mainmenu.js"></script>
       
 <style>
-
-
 html, body, #map {
     margin: 0;
     padding: 0;
     height: 100%
 }
-
 #locationfield {
         font-family: Roboto, sans-serif;
         text-indent: 5px;
@@ -44,7 +42,7 @@ html, body, #map {
         position: absolute;
         height: 15%;
         width: 10%;
-        z-index: 100;
+        z-index: 102;
         max-width: 30px;
         border: 1px solid #FFFFFF;     
         top: 8px;
@@ -121,12 +119,36 @@ html, body, #map {
     display: block;
     background-color: lightgrey;
 }
+#pages {
+        width: 96%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 102;
+        background-color: black;
+        display: none;
+        padding-top: 50px;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-image: url(reg/kigali_blur.jpg);
+        background-size: 100% 100%;
+}
+#pagestarget {
+
+}
 </style>
 
 </head>
 
 
 <body>
+    
+<div id="pages">
+<div id="pagestarget">
+
+</div>
+</div>
     
 <div id="overlay" onclick="this.style.display = 'none'"></div>
     
@@ -147,15 +169,15 @@ html, body, #map {
 <span id="logoutbutton" onclick="logout();">Logout</span>
 <br><br>
     
-			<div>Services</div>
-			<div>Account</div>
-			<div>Promotions</div>
-            <div>History</div>
+			<div id="mainmenu_services">Services</div>
+			<div id="mainmenu_account">Account</div>
+			<div id="mainmenu_promotions">Promotions</div>
+            <div id="mainmenu_history">History</div>
             <span id="divider"></span>
-			<div>BECOME A 250TAXI DRIVER</div>
-			<div>250TAXI CORPORATE</div>
-            <div>ABOUT</div>
-            <div>HELP</div>
+			<div id="mainmenu_becomedriver">BECOME A 250TAXI DRIVER</div>
+			<div id="mainmenu_corporate">250TAXI CORPORATE</div>
+            <div id="mainmenu_about">ABOUT</div>
+            <div id="mainmenu_help">HELP</div>
 </nav>
           
 <input style="display:none;" id="lat" name="lat" val="40.713956">
