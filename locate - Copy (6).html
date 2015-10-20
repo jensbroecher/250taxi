@@ -30,7 +30,7 @@ html, body, #map {
     padding: 0;
     height: 100%
 }
-#locationfieldholder {
+#locationfield {
         font-family: Roboto, sans-serif;
         text-indent: 5px;
 	    font-size: 16px;
@@ -41,19 +41,8 @@ html, body, #map {
         height: 15%;
         z-index: 100;
         top: 8px;
-        border-left: 1px solid rgba(255,255,255,0.9);
-        border-top: 1px solid rgba(255,255,255,0.9);
-        border-bottom: 1px solid rgba(255,255,255,0.9);
-        border-right: 0px solid rgba(255,255,255,0.9);
+        border: 0px solid #FFFFFF;
         max-height: 30px;
-        display: table;
-        overflow: hidden;
-        text-overflow: ellipsis;
-}
-#locationfield {
-        display: table-cell;
-        vertical-align: middle;
-        white-space: nowrap;
 }
 #menubutton {
         background-image: url(menu.svg);
@@ -65,7 +54,7 @@ html, body, #map {
         width: 10%;
         z-index: 102;
         max-width: 30px;
-        border: 1px solid rgba(255,255,255,0.9);     
+        border: 1px solid #FFFFFF;     
         top: 8px;
         left: 2%;
         background-color: rgba(255,255,255,0.9);
@@ -80,10 +69,9 @@ html, body, #map {
         width: 10%;
         z-index: 100;
         max-width: 30px;
-        border: 1px solid rgba(255,255,255,0.9);     
+        border: 1px solid #FFFFFF;     
         top: 47px;
         right: 2%;
-        margin-right: 0px;
         background-color: rgba(255,255,255,0.9);
         max-height: 30px;
 }
@@ -232,14 +220,14 @@ z-index: 300;
 <script>
 $(document).ready(function() {
 $( "#locationfield" ).click(function() {
-
+    document.getElementById('blurpage').className = "blur";
     $( "#locationfinderdialog").fadeIn( "slow", function() {
     
     });
 });
 
 $( "#locationfinderdialog_x" ).click(function() {
-
+    document.getElementById('blurpage').className = "";
     $( "#locationfinderdialog").fadeOut( "slow", function() {
     
     });
@@ -253,8 +241,10 @@ $( "#locationfinderdialog_x" ).click(function() {
 </svg>
     
 </div>
+    
+<div id="blurpage">
 
-<div id="locationfieldholder"><div id="locationfield"></div></div>
+<input id="locationfield" name="address" val="">
 
 <div id="locationbutton" class="menugps" onclick="reloadPositionStart();"> </div>    
 
@@ -263,7 +253,7 @@ $( "#locationfinderdialog_x" ).click(function() {
     
     <div id="map"></div>
     
-
+</div>
 
 
 <script>
@@ -430,7 +420,7 @@ function geocodeLatLng(geocoder, map) {
       if (results[1]) {
         // infowindow.setContent(results[1].formatted_address);
         // infowindow.open(map, marker);
-        document.getElementById('locationfield').innerHTML = results[0].formatted_address;
+        document.getElementById('locationfield').value = results[0].formatted_address;
       } 
     else {
         // window.alert('No results found');
