@@ -72,7 +72,7 @@ html, body, #map {
         background-repeat: no-repeat;
         background-position: center bottom;
         width: 100%;
-        height: 90px;
+        height: 100px;
         position: absolute;
         bottom: 0px;
         z-index: 100;
@@ -212,11 +212,11 @@ var marker;
 var infoWindow;
     
 function reloadPositionStart() {
-    showindicator();
+    document.getElementById('locationbutton').style.backgroundImage = 'crosshairs-gps_blue.svg';
     setTimeout(function(){
     reloadPosition();
-    hideindicator();
-    }, 2000);
+    document.getElementById('locationbutton').style.backgroundImage = 'crosshairs-gps.svg';
+    }, 6000);
 }
     
 function reloadPosition() {

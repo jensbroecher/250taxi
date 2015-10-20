@@ -29,7 +29,7 @@ $( "#pagestarget" ).load( "http://250taxi.com/appcontent/corporate.php", functio
 });
     
 $( "#mainmenu_about" ).click(function() {
-navigator.app.loadUrl("https://www.facebook.com/250taxi", {openExternal : true});
+window.open('https://www.facebook.com/250taxi', '_system');
 });
     
 });
