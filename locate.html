@@ -154,6 +154,21 @@ html, body, #map {
         background-image: url(crosshairs-gps.svg);
         background-size: 100% 100%;      
 }
+#locationfinderdialog {
+width: 90%;
+top: 5%;
+margin-left: 5%;
+margin-right: 5%;
+background-color: rgba(0,0,0,0.5);
+height: 90%;
+display: none;
+position: absolute;
+z-index: 300;
+}
+.blur {
+   -webkit-filter: blur(3px);
+    pointer-events: none;
+}
 </style>
 
 </head>
@@ -200,7 +215,35 @@ html, body, #map {
 <input style="display:none;" id="lat" name="lat" val="40.713956">
 <input style="display:none;" id="long" name="long" val="74.006653">
     
-<div id="menubutton" class="toggle-menu menu-left"> </div>    
+<div id="menubutton" class="toggle-menu menu-left"> </div>
+    
+<script>
+$(document).ready(function() {
+$( "#locationfield" ).click(function() {
+    document.getElementById('blurpage').className = "blur";
+    $( "#locationfinderdialog").fadeIn( "slow", function() {
+    
+    });
+});
+
+$( "#locationfinderdialog_x" ).click(function() {
+    document.getElementById('blurpage').className = "";
+    $( "#locationfinderdialog").fadeOut( "slow", function() {
+    
+    });
+});
+});
+</script>
+    
+<div id="locationfinderdialog">
+<svg id="locationfinderdialog_x" style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+</svg>
+    
+</div>
+    
+<div id="blurpage">
+
 <input id="locationfield" name="address" val="">
 
 <div id="locationbutton" class="menugps" onclick="reloadPositionStart();"> </div>    
@@ -209,6 +252,8 @@ html, body, #map {
     <div id="calltaxiui"></div>
     
     <div id="map"></div>
+    
+</div>
 
 
 <script>
@@ -229,11 +274,17 @@ var marker;
 var infoWindow;
     
 function reloadPositionStart() {
-    document.getElementById("locationbutton").className = 'menugpsblue';
-    setTimeout(function(){
     reloadPosition();
-    document.getElementById("locationbutton").className = 'menugps';
-    }, 6000);
+    document.getElementById("locationbutton").className = 'menugpsblue';
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 1000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 2000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 3000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 4000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 5000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 6000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 7000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 8000);
+    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 8000);
 }
     
 function reloadPosition() {
