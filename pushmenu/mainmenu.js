@@ -5,13 +5,31 @@ $( "#mainmenu_services" ).click(function() {
 });
     
 $( "#mainmenu_help" ).click(function() {
-    
 $( "#pagestarget" ).load( "http://250taxi.com/appcontent/help.php", function() {
   $( "#pages" ).fadeIn( "slow", function() {
-    // Animation complete
+    
   });
 });
-  
+});
+    
+$( "#mainmenu_becomedriver" ).click(function() {
+$( "#pagestarget" ).load( "http://250taxi.com/appcontent/becomedriver.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    
+  });
+});
+});
+    
+$( "#mainmenu_corporate" ).click(function() {
+$( "#pagestarget" ).load( "http://250taxi.com/appcontent/corporate.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    
+  });
+});
+});
+    
+$( "#mainmenu_about" ).click(function() {
+navigator.app.loadUrl("https://www.facebook.com/250taxi", {openExternal : true});
 });
     
 });
