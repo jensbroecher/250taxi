@@ -294,7 +294,10 @@ Search Address
 <script>
 function codeAddress() {
     
+var city = ', Kigali';
+var country = ', Rwanda';
 var address = document.getElementById('searchbyaddress').value;
+var address = address + city + country;
     
 document.getElementById('inlocationfield').value = address;
     
