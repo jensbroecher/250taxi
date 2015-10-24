@@ -34,6 +34,8 @@
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
         
+    <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" version="1.4.0-dev-5" />
+        
     <allow-navigation href="*" />
     <allow-intent href="*" />
     <access origin="*" />
