@@ -31,9 +31,6 @@ html, body, #map {
     height: 100%
 }
 #locationfieldholder {
-        font-family: Roboto, sans-serif;
-        text-indent: 5px;
-	    font-size: 16px;
         position: absolute;
         background-color: rgba(255,255,255,0.9);
         width: 84%;
@@ -47,13 +44,21 @@ html, body, #map {
         border-right: 0px solid rgba(255,255,255,0.9);
         max-height: 30px;
         display: table;
-        overflow: hidden;
-        text-overflow: ellipsis;
 }
 #locationfield {
-        display: table-cell;
-        vertical-align: middle;
-        white-space: nowrap;
+        position: absolute;
+        background-color: rgba(0,0,0,0.0);
+        width: 100%;
+        height: 100%;
+}
+#inlocationfield {
+        font-family: Roboto, sans-serif;
+	    font-size: 16px; 
+        width: 100%;
+        border: none;
+        height: 100%;
+        text-indent: 5px;
+        background-color: transparent;
 }
 #menubutton {
         background-image: url(menu.svg);
@@ -100,7 +105,7 @@ html, body, #map {
 }
 #logoutbutton {
         font-family: Roboto, sans-serif;
-	    font-size: 16px;
+	    font-size: 14px;
         border: 1px solid #FFFFFF;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -108,6 +113,7 @@ html, body, #map {
         padding-right: 20px;
         color: white;
         margin-left: 30%;
+        text-transform: uppercase;
 }
 #overlay {
     background-image: url(directions.png);
@@ -167,12 +173,12 @@ html, body, #map {
         background-size: 100% 100%;      
 }
 #locationfinderdialog {
-width: 90%;
-top: 5%;
-margin-left: 5%;
-margin-right: 5%;
-background-color: rgba(0,0,0,0.5);
-height: 90%;
+width: 100%;
+top: 0%;
+margin-left: 0%;
+margin-right: 0%;
+background-color: rgba(255,255,255,0.9);
+height: 20%;
 display: none;
 position: absolute;
 z-index: 300;
@@ -180,6 +186,30 @@ z-index: 300;
 .blur {
    -webkit-filter: blur(3px);
     pointer-events: none;
+}
+#gosearchbyaddress {
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        border: 1px solid black;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-align: center;
+        color: black;
+        margin-left: 20%;
+        width: 60%;
+        text-transform: uppercase;
+}
+#searchbyaddress {
+        border: 1px solid black;
+        color: black;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        background-color: white;
+        margin-left: 10%;
+        text-indent: 5px;
+        width: 80%;
+        margin-bottom: 15px;
+        margin-top: 40px;       
 }
 </style>
 
@@ -232,39 +262,100 @@ z-index: 300;
 <script>
 $(document).ready(function() {
 $( "#locationfield" ).click(function() {
-
-    $( "#locationfinderdialog").fadeIn( "slow", function() {
+    $( "#locationfinderdialog").slideDown( "slow", function() {
     
     });
 });
 
 $( "#locationfinderdialog_x" ).click(function() {
+    $( "#locationfinderdialog").slideUp( "slow", function() {
 
-    $( "#locationfinderdialog").fadeOut( "slow", function() {
-    
     });
 });
+
 });
 </script>
     
 <div id="locationfinderdialog">
-<svg id="locationfinderdialog_x" style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
     
+<svg id="locationfinderdialog_x" style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+</svg>
+
+    
+<input placeholder="Address" id="searchbyaddress" value="Bahnhofstr 48, Duisburg">
+
+<div id="gosearchbyaddress" onclick="codeAddress();">
+Search Address
 </div>
 
-<div id="locationfieldholder"><div id="locationfield"></div></div>
+</div>
+    
+<script>
+function codeAddress() {
+    
+  var address = document.getElementById('searchbyaddress').value;
+    
+document.getElementById('inlocationfield').value = address;
+    
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      pos = results[0].geometry.location;
+        
+    var options = {
+				zoom: 16,
+                disableDefaultUI: true,
+				center: pos,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+                styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
+			};
+    
+    var map = new google.maps.Map(document.getElementById("map"), options);
+        
+    // alert(pos);
+        
+    // Remove the current marker, if there is one
+			if (typeof(marker) != "undefined") marker.setMap(null);
+            
+var iconimage = {
+    url: "userpinicon.png", // url
+    scaledSize: new google.maps.Size(90, 90), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(43,90) // anchor
+};
+            
+marker = new google.maps.Marker({
+                draggable: true,
+                // icon: "userpinicon.png",
+                icon: iconimage,
+				position: pos,
+				map: map,
+				title: "User location"
+			});
+        
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+            document.getElementById("lat").value = event.latLng.lat();
+            document.getElementById("long").value = event.latLng.lng();
+            geocodeLatLng(geocoder, map);
+            });
+        
+    } 
+    else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}    
+</script>
+
+<div id="locationfieldholder">
+<div id="locationfield"></div>
+<input type="text" id="inlocationfield">
+</div>
 
 <div id="locationbutton" class="menugps" onclick="reloadPositionStart();"> </div>    
 
-    
     <div id="calltaxiui"></div>
-    
     <div id="map"></div>
-    
-
-
 
 <script>
     
@@ -430,7 +521,7 @@ function geocodeLatLng(geocoder, map) {
       if (results[1]) {
         // infowindow.setContent(results[1].formatted_address);
         // infowindow.open(map, marker);
-        document.getElementById('locationfield').innerHTML = results[0].formatted_address;
+        document.getElementById('inlocationfield').value = results[0].formatted_address;
       } 
     else {
         // window.alert('No results found');
@@ -443,12 +534,13 @@ function geocodeLatLng(geocoder, map) {
 }
 
 jQuery(document).ready(function($) {
-	$('.toggle-menu').jPushMenu();
+$('.toggle-menu').jPushMenu();
     
 document.getElementById("loadingindicator").className = "animated fadeOut";
 setTimeout(function(){
 document.getElementById("loadingindicator").style.display = "none";
 }, 2000);
+    
 });
 
 </script>
