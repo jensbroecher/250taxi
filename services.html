@@ -9,9 +9,26 @@
 <script src="jquery.min.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
     
+<script src="preventreload.js"></script>
+    
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script type="text/javascript">
+
+$(document).ready( function() {
+    function hi(){
+        var status_lat= '';
+        var status_long = '';
+        var status_username = localStorage.getItem('username');
+        var status_activity = 'selecting_service';
+    
+$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_activity="+status_activity+"", function( data ) {
+});       
+}
+setInterval(hi, 15000);
+hi();
+});
+    
 function showindicator() {
 document.getElementById("loadingindicator").className = "animated fadeIn";
 document.getElementById("loadingindicator").style.display = "block";

@@ -126,6 +126,8 @@ Please sign in with your<br>username and PIN.
 
                 if (data == "pin_found") {
                 localStorage.setItem("rememberuser","Yes");
+                localStorage.setItem("username",username);
+                    
                 document.location.href = '../gotostart.html';
                 }
                 else if (data == "pin_not_found") {
@@ -148,9 +150,9 @@ Please sign in with your<br>username and PIN.
 </div>
 
 <div id="loginscreenforgot" style="display:none;">
-<h1>Please enter your eMail</h1>
+<h1>Please enter your E-Mail</h1>
 
-<div class="instructions">You will recieve an eMail with instructions.</div>
+<div class="instructions">You will recieve an E-Mail with instructions.</div>
 
 <input id="loginemailforgot" class="textfield" type="email" placeholder="eMail">
 
