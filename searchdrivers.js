@@ -54,7 +54,7 @@ localStorage.setItem("taxirequest_destination",taxirequest_destination);
     
 var taxirequest_destination_length = taxirequest_destination.length;
     
-if (taxirequest_destination_length > 4) {
+if (taxirequest_destination_length > 2) {
     
 $( "#mydestination" ).fadeOut( "slow", function() {
         $( "#driverlist" ).fadeIn( "slow", function() {
