@@ -322,6 +322,7 @@ var addresslength = address.length;
     
 if (addresslength > 4) {
     $( "#locationfinderdialog").slideUp( "slow", function() {});
+    
 }
 else {
     alert("Please enter a search term!");
@@ -666,11 +667,11 @@ hi();
 </svg>
 </div>
     
-<div class="sdbox" style="margin-top: 40px;">
+<div id="mydestination" class="sdbox" style="margin-top: 40px;">
     
         <div class="sdtitle">My Destination</div>
         
-        <input class="sdinput" placeholder="Destination" id="taxirequest_destination"></input>
+        <input class="sdinput" placeholder="Let's go to..." id="taxirequest_destination"></input>
         
         <div class="waves-effect waves-light sdbutton" onclick="getdrivers();">
             
@@ -683,16 +684,25 @@ hi();
         
 </div>
     
-<div class="sdbox">
+<div id="citynavigator_start" class="sdbox">
     <div class="sdtitle">City Navigator</div>
     
-    <div class="waves-effect waves-light sdbutton" onclick="getdrivers();">
+    <div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
         
 <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
     <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
 </svg> Pick a place
         </div>
     
+</div>
+    
+<div id="driverlist" style="display:none; margin-top: 40px;" class="sdbox">
+    <div class="sdtitle">Drivers in range</div>
+    <div id="driverlist_scanner">
+    
+        
+        
+    </div>
 </div>
     
     
