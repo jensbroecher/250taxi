@@ -1,16 +1,16 @@
 $(document).ready( function() {
     
 $( "#searchdrivers_x" ).click(function() {
-   $( "#searchdrivers" ).fadeOut( "slow", function() {
-       $( "#calltaxiui" ).fadeIn( "slow", function() {
-        });
-    });
     
-$( "#driverlist" ).fadeOut( "slow", function() {
-    $( "#citynavigator_start" ).fadeIn( "slow", function() {});
-    $( "#mydestination" ).fadeIn( "slow", function() {});
-});
-    
+document.getElementById("citynavigator").style.display = "none";
+document.getElementById("searchdrivers").style.display = "none";
+document.getElementById("driverlist").style.display = "none";
+
+document.getElementById("citynavigator_start").style.display = "block";
+document.getElementById("mydestination").style.display = "block";
+
+$( "#calltaxiui" ).fadeIn( "slow", function() {});
+
 });
     
 $( "#calltaxiui" ).click(function() {
@@ -43,8 +43,14 @@ $( "#driverlist_scanner" ).load( "http://250taxi.com/db/partner/taxi_scanner.php
     
 });
 }
-function citynavigator() {
-    alert('City');
+function getdriversskipdestination() {
+    
+document.getElementById("mydestination").style.display = "none";
+document.getElementById("citynavigator_start").style.display = "none";
+    
+  $( "#driverlist" ).fadeIn( "slow", function() {     
+        });   
+    
 }
 function getdrivers() {
 
@@ -56,17 +62,10 @@ var taxirequest_destination_length = taxirequest_destination.length;
     
 if (taxirequest_destination_length > 2) {
     
-$( "#mydestination" ).fadeOut( "slow", function() {
-        $( "#driverlist" ).fadeIn( "slow", function() {
-            
+document.getElementById("mydestination").style.display = "none";
+document.getElementById("citynavigator_start").style.display = "none";
 
-
-
-            
-        });
-    });
-
-$( "#citynavigator_start" ).fadeOut( "slow", function() {});
+$( "#driverlist" ).fadeIn( "slow", function() {});
 
 }
 else {
@@ -75,3 +74,60 @@ else {
 }
    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+function citynavigator() {
+    
+var passenger_lat = document.getElementById("lat").value;
+var passenger_long = document.getElementById("long").value;
+    
+$( "#citynavigatorlist" ).load( "http://250taxi.com/db/partner/city_navigator.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
+    
+    $( ".religious" ).wrapAll( "<div class='drawer Religious'>");
+    $( ".shopping" ).wrapAll( "<div class='drawer Shopping'>");
+    $( ".hotels" ).wrapAll( "<div class='drawer Hotels'>");
+    $( ".restaurants" ).wrapAll( "<div class='drawer Restaurants'>");
+    $( ".police" ).wrapAll( "<div class='drawer Police'>");
+    $( ".banks" ).wrapAll( "<div class='drawer Banks'>");
+    $( ".forex" ).wrapAll( "<div class='drawer Forex'>");
+    $( ".insurance" ).wrapAll( "<div class='drawer Insurance'>");
+    $( ".petrol" ).wrapAll( "<div class='drawer Petrol'>");
+    $( ".schools" ).wrapAll( "<div class='drawer Schools'>");
+    $( ".hospitals" ).wrapAll( "<div class='drawer Hospitals'>");
+    $( ".pharmacies" ).wrapAll( "<div class='drawer Pharmacies'>");
+    $( ".sights" ).wrapAll( "<div class='drawer Sights'>");
+    $( ".government" ).wrapAll( "<div class='drawer Government'>");
+    $( ".clubs" ).wrapAll( "<div class='drawer Clubs'>");
+    
+    $( "#citynavigator_category" ).change(function() {
+    var citynavigator_category = $( "#citynavigator_category option:selected" ).text();
+    // alert (citynavigator_category);
+        
+    $('.drawer').hide();
+    $('.' + citynavigator_category).fadeIn('slow');
+});
+    
+});
+    
+    document.getElementById("citynavigator_start").style.display = "none";
+    document.getElementById("mydestination").style.display = "none";
+    
+    $( "#citynavigator" ).fadeIn( "slow", function() {});
+}
+
+
+
+
+
+
