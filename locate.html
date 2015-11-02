@@ -17,10 +17,12 @@
 
 
 <script>
+document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    // Now safe to use device APIs
-    // set to either landscape
-screen.lockOrientation('portrait');
+    screen.lockOrientation('portrait');
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+    }, false );
 }
 </script>
   
