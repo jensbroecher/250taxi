@@ -4,11 +4,15 @@
 <meta charset="utf-8">
 
 <link href="animate.min.css" rel="stylesheet" type="text/css"> 
-<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css" />
+<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
+
+<link href="waves.css" rel="stylesheet" type="text/css">
     
 <script src="jquery.min.js"></script>
 <script src="cordova.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
+    
+<script src="materialize.js"></script>
     
 <script src="preventreload.js"></script>
     
@@ -64,6 +68,20 @@ body {
     margin: 0px;
     padding: 0px;
 }
+.sdbutton {
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        background-color: black;
+        text-align: center;
+        color: white;
+        margin-left: 10%;
+        width: 80%;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-transform: uppercase;
+        margin-top: 15px;
+        margin-bottom: 15px;
+}
 #loginregister {
     position: absolute;
     z-index: 10;
@@ -74,8 +92,8 @@ body {
 #loginregister img {
     width: 80%;
     margin-left: 5%;
-    max-width: 250px;
-    margin-bottom: 10px;
+    max-width: 240px;
+    margin-bottom: 8px;
 }
 #loadingindicator {
 	background-color: #E2E2E2;
@@ -140,7 +158,12 @@ body {
      onclick="alert('Coming soon...');"
      src="reg/start_air.png">
     
-
+<div class="waves-effect waves-light sdbutton" onclick="alert('Coming soon...');">
+        
+<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
+</svg> Locate a place
+        </div>
     
 </div>
 
