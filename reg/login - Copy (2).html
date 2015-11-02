@@ -10,7 +10,6 @@
 
 <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
 <script type="text/javascript" charset="utf-8" src="logic.js"></script>
-<script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
     
 <script src="../preventreload.js"></script>
 
@@ -39,8 +38,7 @@ first_name = localStorage.getItem('first_name');
 last_name = localStorage.getItem('last_name');
 
 if (localStorage.getItem('first_name') === null) {
-    console.log('Names not found.');
-    document.getElementById('first_name').innerHTML = 'to 250 taxi';
+    console.log('Names not found.')
 }
 else {
     document.getElementById('first_name').innerHTML = first_name;
@@ -59,44 +57,6 @@ document.getElementById("mainmenu").style.display = "block";
 document.getElementById("mainmenu").className = "nicewindow animated zoomIn";
 }, 2500);
 });
-    
-    
-    
-    
-
-function scancode() {
-    
-cordova.plugins.barcodeScanner.scan(
-      function (result) {
-        // alert("We got a barcode\n" +
-        //   "Result: " + result.text + "\n" +
-        //   "Format: " + result.format + "\n" +
-        //   "Cancelled: " + result.cancelled);
-          
-          is_cancelled = result.cancelled;
-          
-        //  alert(is_cancelled);
-          
-          if (is_cancelled == true) {
-              alert("Scanning cancelled. Please try again.")
-          }
-          else if (is_cancelled == false) {
-              
-            //  alert("Test");
-          
-          localStorage.setItem("codefromqr", result.text);
-              
-            alert(result.text);
-
-        }
-          
-      }, 
-      function (error) {
-          alert("Scanning failed: " + error);
-      }
-   );
-
-}
 </script>
 
 </head>
@@ -186,13 +146,7 @@ Please sign in with your<br>username and PIN.
 
 <div class="windowbutton" onClick="logincheck();">Login</div>
 
-<div class="windowbutton" onClick="alert('Please contact customer support: support@250taxi.com or contact us trough our website or facebook.');">Forgot username or PIN?</div>
-    
-<div id="scanqr" class="windowbutton" onclick="scancode();">
-<img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png">
-Hotel / Partner Login
-</div>
-
+<div class="windowbutton" onClick="alert('Please contact customer support: info@250taxi.com');">Forgot username or PIN?</div>
 </div>
 
 <div id="loginscreenforgot" style="display:none;">
