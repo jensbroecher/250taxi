@@ -20,10 +20,12 @@
 
 <script type="text/javascript">
     
+document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    // Now safe to use device APIs
-    // set to either landscape
-screen.lockOrientation('portrait');
+    screen.lockOrientation('portrait');
+    document.addEventListener("backbutton", function (e) {
+        e.preventDefault();
+    }, false );
 }
 
 $(document).ready( function() {
@@ -87,7 +89,7 @@ body {
     z-index: 10;
     width: 60%;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 #loginregister img {
     width: 80%;
@@ -118,6 +120,10 @@ body {
         font-size: 90%;
         color: white;
 }
+#locateplace {
+        background-color: white;
+        display: block;
+}
 </style>
 
 </head>
@@ -127,6 +133,14 @@ body {
 </div>
 
 <body>
+  
+<div id="locateplace">
+<div class="waves-effect waves-light sdbutton" onclick="alert('Coming soon...');">
+<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
+</svg>Locate a place</div>
+</div>
+</div>
     
 <div id="selectserviceheader" class="animated fadeIn" 
      style="-webkit-animation-delay: 1s;">Please choose a service</div>
@@ -157,15 +171,6 @@ body {
      style="-webkit-animation-delay: 2s;"
      onclick="alert('Coming soon...');"
      src="reg/start_air.png">
-    
-<div class="waves-effect waves-light sdbutton" onclick="alert('Coming soon...');">
-        
-<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
-</svg> Locate a place
-        </div>
-    
-</div>
 
 </body>
 </html>

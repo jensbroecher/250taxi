@@ -89,10 +89,14 @@ else {
 
 function citynavigator() {
     
+$( "#citynavigator_category option:selected" ).text();
+    
 var passenger_lat = document.getElementById("lat").value;
 var passenger_long = document.getElementById("long").value;
     
 $( "#citynavigatorlist" ).load( "http://250taxi.com/db/partner/city_navigator.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
+    
+$('#citynavigator_category').find('option:eq(0)').prop('selected', true);
     
     $( ".religious" ).wrapAll( "<div class='drawer Religious'>");
     $( ".shopping" ).wrapAll( "<div class='drawer Shopping'>");
