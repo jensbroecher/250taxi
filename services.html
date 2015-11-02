@@ -84,17 +84,25 @@ body {
     margin-bottom: 15px;
 }
 #loginregister {
-    position: absolute;
-    z-index: 10;
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 5%;
+
 }
 #loginregister img {
-    width: 80%;
-    margin-left: 5%;
-    max-width: 240px;
-    margin-bottom: 8px;
+    width: 50%;
+    margin-left: 7%;
+    max-width: 220px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+#loginregister div {
+    width: 100%;
+    background-color: rgba(255,255,255,0.5);
+    box-shadow: 3px 6px 53px -4px rgba(0,0,0,0.63);
+    margin-bottom: 5px;
+    transition: all 0.3s;
+}
+#loginregister div:hover {
+    background-color: rgba(255,255,255,1);
+    transition: all 0.3s;
 }
 #loadingindicator {
     filter: invert(100%);
@@ -110,20 +118,6 @@ body {
 	display: none;
 }
 #loadingindicator img {
-	margin-top: 100px;
-	width: 160px;
-}
-#selectserviceheader {
-        background-color: #1493B3;
-        padding:5px;
-        text-align: center;
-        font-family: Roboto;
-        font-size: 90%;
-        color: white;
-}
-#locateplace {
-        background-color: white;
-        display: block;
 }
 </style>
 
@@ -134,44 +128,34 @@ body {
 </div>
 
 <body>
-  
-<div id="locateplace">
-<div class="waves-effect waves-light sdbutton" onclick="alert('Coming soon...');">
-<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
-</svg>Locate a place</div>
-</div>
-</div>
-    
-<div id="selectserviceheader" class="animated fadeIn" 
-     style="-webkit-animation-delay: 1s;">Please choose a service</div>
 
 <div id="loginregister">
     
-<img class="animated zoomIn"
-     style="-webkit-animation-delay: 1.2s;"
-     onclick="letsgo();"
-     src="reg/start_taxi.png">
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.2s;" onclick="letsgo();">
+<img src="reg/start_taxi.png">
+</div>
     
-<img class="animated zoomIn"
-     style="-webkit-animation-delay: 1.4s;"
-     onclick="alert('Coming soon...');"
-     src="reg/start_moto.png">
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.4s;" onclick="alert('Coming soon...');">
+<img src="reg/start_moto.png">
+</div>
 
-<img class="animated zoomIn"
-     style="-webkit-animation-delay: 1.6s;"
-     onclick="alert('Coming soon...');"
-     src="reg/start_luxury2.png">
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.6s;" onclick="alert('Coming soon...');">
+<img src="reg/start_luxury2.png">
+</div>
+
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.8s;" onclick="alert('Coming soon...');">
+<img src="reg/start_courier.png">
+</div>
+
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 2s;" onclick="alert('Coming soon...');">
+<img src="reg/start_air.png">
+</div>
+
+<div class="animated fadeInLeft" style="-webkit-animation-delay: 2.2s;"  onclick="alert('Coming soon...');">
+<img src="reg/start_places.png">
+</div>
     
-<img class="animated zoomIn"
-     style="-webkit-animation-delay: 1.8s;"
-     onclick="alert('Coming soon...');"
-     src="reg/start_courier.png">
-    
-<img class="animated zoomIn"
-     style="-webkit-animation-delay: 2s;"
-     onclick="alert('Coming soon...');"
-     src="reg/start_air.png">
+</div>
 
 </body>
 </html>
