@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link href="animate.min.css" rel="stylesheet" type="text/css"> 
 <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
@@ -15,8 +17,6 @@
 <script src="materialize.js"></script>
     
 <script src="preventreload.js"></script>
-    
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <script type="text/javascript">
     
@@ -41,17 +41,9 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
 setInterval(hi, 15000);
 hi();
 });
-    
-function showindicator() {
-document.getElementById("loadingindicator").className = "animated fadeIn";
-document.getElementById("loadingindicator").style.display = "block";
-}
 
 function letsgo() {
-	showindicator();
-	setTimeout(function(){
 	document.location.href = 'locate.html';
-	}, 3000);
 }
 
 </script>
@@ -61,6 +53,7 @@ body {
     background-image: url(reg/kigali_blur.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center bottom;
     background-attachment: fixed;
     background-color: black;
     font-family: Roboto, sans-serif;
@@ -87,9 +80,9 @@ body {
 
 }
 #loginregister img {
-    width: 50%;
-    margin-left: 7%;
-    max-width: 220px;
+    width: 40%;
+    margin-left: 2%;
+    max-width: 200px;
     padding-top: 15px;
     padding-bottom: 10px;
 }
@@ -100,58 +93,35 @@ body {
     margin-bottom: 5px;
     transition: all 0.3s;
 }
-#loginregister div:hover {
-    background-color: rgba(255,255,255,1);
-    transition: all 0.3s;
-}
-#loadingindicator {
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
-	background-color: #E2E2E2;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-	text-align: center;
-	display: none;
-}
-#loadingindicator img {
-}
 </style>
 
 </head>
-
-<div id="loadingindicator" style="display:none">
-<img src="282.gif" width="120">
-</div>
 
 <body>
 
 <div id="loginregister">
     
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.2s;" onclick="letsgo();">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="letsgo();">
 <img src="reg/start_taxi.png">
 </div>
     
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.4s;" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="alert('Coming soon...');">
 <img src="reg/start_moto.png">
 </div>
 
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.6s;" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.6s;" onclick="alert('Coming soon...');">
 <img src="reg/start_luxury2.png">
 </div>
 
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 1.8s;" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.8s;" onclick="alert('Coming soon...');">
 <img src="reg/start_courier.png">
 </div>
 
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 2s;" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 2s;" onclick="alert('Coming soon...');">
 <img src="reg/start_air.png">
 </div>
 
-<div class="animated fadeInLeft" style="-webkit-animation-delay: 2.2s;"  onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 2.2s;"  onclick="alert('Coming soon...');">
 <img src="reg/start_places.png">
 </div>
     
