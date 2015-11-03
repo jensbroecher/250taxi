@@ -233,43 +233,8 @@ html, body, #map {
 
 </head>
 
+
 <body>
-    
-<div id="driveroverlay">
-<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="driveroverlay_back_to_list();">    
-</div>
-    
-<div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#000000" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-</svg>
-    Call Taxi
-</div>
-
-<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-dark">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-</svg>
-    Cancel Request
-</div>
-    
-<div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
-
-    <div class="canceldialogbuttontitle">Please state reason</div>
-    
-    <div class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_late">Driver was late</div>
-
-    <div class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_notrack">Can't track driver</div>
-    
-    <div class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_nocom">Can't reach driver</div>
-    
-    <div onclick="alert('nonsense')" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
-    
-    <div style="padding: 5px; background-color: darkgrey;">
-    <div class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
-    </div>
-
-</div>
     
 <div id="pages">
 <div id="pagestarget">
@@ -277,7 +242,7 @@ html, body, #map {
 </div>
 </div>
     
-<div id="overlay"></div>
+<div id="overlay" onclick="this.style.display = 'none';"></div>
     
 <div id="loadingindicator">
 <img src="282.gif" width="120">
@@ -312,20 +277,6 @@ html, body, #map {
     
 <script>
 $(document).ready(function() {
-    
-var overlay_shown = localStorage.getItem("overlay_shown");
-
-if(overlay_shown == "Yes") {
-    document.getElementById("overlay").style.display = "none";
-}
-    
-$( "#overlay" ).click(function() {
-    localStorage.setItem("overlay_shown","Yes");
-    $( "#overlay").fadeOut( "slow", function() {
-
-    });
-});
-    
 $( "#locationfield" ).click(function() {
     $( "#locationfinderdialog").slideDown( "slow", function() {
         $("#searchbyaddress").focus();
@@ -343,7 +294,7 @@ $( "#locationfinderdialog_x" ).click(function() {
 </script>
     
 <div id="locationfinderdialog">
-    
+
 <div id="locationfinderdialog_x" style="padding:5px;">
 <svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
     <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
@@ -657,8 +608,6 @@ elem.webkitRequestFullScreen();
 
 jQuery(document).ready(function($) {
     
-localStorage.setItem('activity','searching_address');
-    
  $('#searchbyaddress').blur(function() {
         document.getElementById("calltaxiui").style.display = "block";
       })
@@ -676,11 +625,11 @@ document.getElementById("loadingindicator").style.display = "none";
 });
     
 $(document).ready( function() {
-function hi(){
+    function hi(){
         var status_lat= document.getElementById('lat').value;
         var status_long = document.getElementById('long').value;
         var status_username = localStorage.getItem('username');
-        var status_activity = localStorage.getItem('activity');
+        var status_activity = 'searching_address';
     
 $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_activity="+status_activity+"", function( data ) {
 });       
@@ -705,18 +654,24 @@ hi();
     
     
     
-<div id="searchdrivers">    
     
-<div id="mydestination" class="sdbox">
     
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
+    
+    
+    
+    
+    
+    
+    
+<div id="searchdrivers">
+    
+<div id="searchdrivers_x" style="padding:5px;">
+<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+</svg>
 </div>
     
+<div id="mydestination" class="sdbox" style="margin-top: 40px;">
     
         <div class="sdtitle">My Destination</div>
         
@@ -724,7 +679,7 @@ hi();
         
         <div class="waves-effect waves-light sdbutton" onclick="getdrivers();">
             
-<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+        <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
     <path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
 </svg>
             
@@ -737,8 +692,6 @@ hi();
     
 <div id="citynavigator_start" class="sdbox">
     <div class="sdtitle">City Navigator</div>
-    
-
     
     <div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
         
@@ -756,42 +709,14 @@ hi();
     
     
     
-<div id="driverlist" style="display:none;" class="sdbox">
-    
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
-</div>
-    
+<div id="driverlist" style="display:none; margin-top: 40px;" class="sdbox">
     <div class="sdtitle">Drivers in range</div>
     <div id="driverlist_scanner">      
     </div>
 </div>
     
     
-    
-    
-    
-
-    
-
-    
-    
-    
-    
-<div id="citynavigator" style="display:none;" class="sdbox">
-    
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
-</div>
-
+<div id="citynavigator" style="display:none; margin-top: 40px;" class="sdbox">
     <div class="sdtitle">City Navigator</div>
     
 <select id="citynavigator_category">

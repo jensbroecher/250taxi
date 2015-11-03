@@ -1,5 +1,18 @@
 $(document).ready( function() {
     
+$( "#searchdrivers_x" ).click(function() {
+    
+document.getElementById("citynavigator").style.display = "none";
+document.getElementById("searchdrivers").style.display = "none";
+document.getElementById("driverlist").style.display = "none";
+
+document.getElementById("citynavigator_start").style.display = "block";
+document.getElementById("mydestination").style.display = "block";
+
+$( "#calltaxiui" ).fadeIn( "slow", function() {});
+
+});
+    
 $( "#calltaxiui" ).click(function() {
     
   $( "#calltaxiui" ).fadeOut( "slow", function() {
@@ -21,18 +34,6 @@ $( "#driverlist_scanner" ).load( "http://250taxi.com/db/partner/taxi_scanner.php
 });
     
 });
-function searchdrivers_x() {
-    
-document.getElementById("citynavigator").style.display = "none";
-document.getElementById("searchdrivers").style.display = "none";
-document.getElementById("driverlist").style.display = "none";
-
-document.getElementById("citynavigator_start").style.display = "block";
-document.getElementById("mydestination").style.display = "block";
-
-$( "#calltaxiui" ).fadeIn( "slow", function() {});
-
-}
 function getdriverslist() {
     
 var passenger_lat = document.getElementById("lat").value;
@@ -88,8 +89,6 @@ else {
 
 function citynavigator() {
     
-localStorage.setItem('activity','city_navigator');
-    
 $( "#citynavigator_category option:selected" ).text();
     
 var passenger_lat = document.getElementById("lat").value;
@@ -133,49 +132,8 @@ $('#citynavigator_category').find('option:eq(0)').prop('selected', true);
 
 
 
-function driveroverlay_back_to_list() {
-    document.getElementById("driverlist").style.display = "block";
-    document.getElementById("menubutton").style.display = "block";
-    document.getElementById("locationfieldholder").style.display = "block";
-    document.getElementById("locationbutton").style.display = "block";
-    document.getElementById("searchdrivers").style.display = "block";
-    
-    document.getElementById("driveroverlay").style.display = "none";
-    document.getElementById("driveroverlay_journey_start").style.display = "none";
-}
-function pickdriver() {
-    localStorage.setItem('activity','driver_details');
-    
-    document.getElementById("driverlist").style.display = "none";
-    document.getElementById("menubutton").style.display = "none";
-    document.getElementById("locationfieldholder").style.display = "none";
-    document.getElementById("locationbutton").style.display = "none";
-    document.getElementById("searchdrivers").style.display = "none";
-    
-    $( "#driveroverlay" ).fadeIn( "slow", function() {
-        $( "#driveroverlay_journey_start" ).fadeIn( "slow", function() {});
-    });
-}
 
-function pickdriver_request_start () { 
-    document.getElementById("driveroverlay_back_to_list").style.display = "none";
-    document.getElementById("driveroverlay_journey_start").style.pointerEvents = "none";
-    setTimeout(function(){
-    document.getElementById("driveroverlay_journey_start").className = "waves-effect waves-dark animated zoomOut";
-    }, 700);
-    setTimeout(function(){
-        document.getElementById("driveroverlay_journey_start").style.display = "none";
-        document.getElementById("driveroverlay_journey_cancel").style.display = "block";
-        document.getElementById("driveroverlay_journey_cancel").className = "waves-effect waves-dark animated zoomIn"; 
-    }, 2000);
-    
-    var pickdriver_id = localStorage.getItem("pickdriver_id");
-    // alert(pickdriver_id);
-}
-function pickdriver_request_cancel () { 
-     document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";    
-}
-function pickdriver_request_cancel_confirmed () { 
-     alert("Request for driver cancelled!");
-    location.reload();
-}
+
+
+
+

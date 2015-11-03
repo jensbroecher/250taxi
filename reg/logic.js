@@ -279,7 +279,7 @@ var phoneisvalidatednow = localStorage.getItem('phoneisvalidatednow');
         url: "http://250taxi.com/db/registration.php",
         data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidatednow+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&pin="+pin ,
         success: function(html){
-            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 taxi with your account details. You can now log in with your username: ('+username+').');
+            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 TAXI with your account details. You can now log in with your username: ('+username+').');
             document.location.href = 'login.html';
         }
     });   
