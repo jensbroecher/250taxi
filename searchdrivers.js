@@ -146,24 +146,12 @@ localStorage.setItem("destination",places_name);
 localStorage.setItem("destination_type","city_navigator");
 
 document.getElementById("citynavigator").style.display = "none";
-$( "#driverlist" ).fadeIn( "slow", function() {});
+$( "#driverlist" ).fadeIn( "slow", function() {
+
+});
 
 }
 
-
-
-
-
-function driveroverlay_back_to_list() {
-    document.getElementById("driverlist").style.display = "block";
-    document.getElementById("menubutton").style.display = "block";
-    document.getElementById("locationfieldholder").style.display = "block";
-    document.getElementById("locationbutton").style.display = "block";
-    document.getElementById("searchdrivers").style.display = "block";
-    
-    document.getElementById("driveroverlay").style.display = "none";
-    document.getElementById("driveroverlay_journey_start").style.display = "none";
-}
 function pickdriver() {
     localStorage.setItem('activity','driver_details');
     
@@ -174,6 +162,14 @@ function pickdriver() {
     document.getElementById("searchdrivers").style.display = "none";
     
     $( "#driveroverlay" ).fadeIn( "slow", function() {
+        
+        var pickdriver_id = localStorage.getItem("pickdriver_id");
+        
+        
+        $( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {
+journey_start_map();
+});
+        
         $( "#driveroverlay_journey_start" ).fadeIn( "slow", function() {});
     });
 }
