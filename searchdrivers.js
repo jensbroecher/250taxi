@@ -44,6 +44,9 @@ $( "#driverlist_scanner" ).load( "http://250taxi.com/db/partner/taxi_scanner.php
 }
 function getdriversskipdestination() {
     
+localStorage.setItem("destination","Not specified");
+localStorage.setItem("destination_type","user_input");
+    
 document.getElementById("mydestination").style.display = "none";
 document.getElementById("citynavigator_start").style.display = "none";
     
@@ -60,6 +63,9 @@ localStorage.setItem("taxirequest_destination",taxirequest_destination);
 var taxirequest_destination_length = taxirequest_destination.length;
     
 if (taxirequest_destination_length > 2) {
+    
+localStorage.setItem("destination",taxirequest_destination);
+localStorage.setItem("destination_type","user_input");
     
 document.getElementById("mydestination").style.display = "none";
 document.getElementById("citynavigator_start").style.display = "none";
@@ -132,6 +138,21 @@ $('#citynavigator_category').find('option:eq(0)').prop('selected', true);
 }
 
 
+function goplaces() {
+    
+var places_name = localStorage.getItem("places_name");
+    
+localStorage.setItem("destination",places_name);
+localStorage.setItem("destination_type","city_navigator");
+
+document.getElementById("citynavigator").style.display = "none";
+$( "#driverlist" ).fadeIn( "slow", function() {});
+
+}
+
+
+
+
 
 function driveroverlay_back_to_list() {
     document.getElementById("driverlist").style.display = "block";
@@ -170,7 +191,18 @@ function pickdriver_request_start () {
     }, 2000);
     
     var pickdriver_id = localStorage.getItem("pickdriver_id");
+    var username = localStorage.getItem("username");
+    var destination = localStorage.getItem("destination");
+    var destination_type = localStorage.getItem("destination_type");
+    
     // alert(pickdriver_id);
+    
+    
+    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"",  function( data ) {
+        
+    });
+    
+    
 }
 function pickdriver_request_cancel () { 
      document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";    
