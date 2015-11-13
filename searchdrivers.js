@@ -187,6 +187,12 @@ function pickdriver_request_start () {
     }, 2000);
     
     var pickdriver_id = localStorage.getItem("pickdriver_id");
+    
+    if (localStorage.getItem("username") === null) {
+        alert("An error occured. Please log in again.")
+        logout();
+    }
+    
     var username = localStorage.getItem("username");
     var destination = localStorage.getItem("destination");
     var destination_type = localStorage.getItem("destination_type");
