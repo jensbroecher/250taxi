@@ -4,13 +4,17 @@
 <title>250 taxi</title>
       
 <link href="animate.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css"> 
+    
+<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
+    
 <link rel="stylesheet" type="text/css" href="waves.css">
+    
 <link rel="stylesheet" type="text/css" href="searchdrivers.css">
       
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  
 <script src="cordova.js"></script>
+
 
 <script>
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -22,13 +26,10 @@ function onDeviceReady() {
 }
 </script>
   
-
-    
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&signed_in=false&sensor=true"></script>
       
 <script src="jquery.min.js"></script>
 <script src="jquery.validate.min.js"></script>
-<script src="responsivevoice.js"></script>
 <script src="materialize.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
 <script src="pushmenu/mainmenu.js"></script>
@@ -36,20 +37,6 @@ function onDeviceReady() {
 <script src="preventreload.js"></script>
     
 <script src="searchdrivers.js"></script>
-    
-<script>
-    
-$(document).ready(function() {
-
-var input = document.getElementById('taxirequest_destination');
-var options = {
-  componentRestrictions: {country: 'rw'}
-};
-
-autocomplete = new google.maps.places.Autocomplete(input, options);    
-
-});
-</script>
       
 <style>
 html, body, #map {
@@ -298,8 +285,7 @@ html, body, #map {
     <div onclick="localStorage.setItem('cancel_reason','other');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
     
     <div style="padding: 5px; background-color: darkgrey;">
-        
-    <div onclick="$('#driveroverlay_journey_cancel_dialog').fadeOut('slow');" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
+    <div onclick="localStorage.setItem('cancel_reason','none');cancel_reason_close();" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
     </div>
 
 </div>
@@ -314,10 +300,6 @@ html, body, #map {
         var username = localStorage.getItem("username");
         
         var cancel_reason = localStorage.getItem("cancel_reason");
-        
-        if(cancel_reason == "other") {
-            cancel_reason = prompt("Please let the driver know why you cancel", "");
-        }
         
          $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=cancel&username="+username+"&pickdriver_id="+pickdriver_id+"&cancel_reason="+cancel_reason+"",  function( data ) {
         location.reload();
@@ -583,9 +565,6 @@ var marker;
 var infoWindow;
     
 function reloadPositionStart() {
-    
-    responsiveVoice.speak("Locating you, please wait");
-    
     reloadPosition();
     document.getElementById("locationbutton").className = 'menugpsblue';
     setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 1000);
@@ -774,34 +753,14 @@ function hi(){
         var status_lat= document.getElementById('lat').value;
         var status_long = document.getElementById('long').value;
         var status_username = localStorage.getItem('username');
-        var status_userid = localStorage.getItem('userid');
         var status_activity = localStorage.getItem('activity');
     
-$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"", function( data ) {
-    
-    console.log(data);
-    
-    if (data == "declined") {
-        declined();
-    }
-    
+$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_activity="+status_activity+"", function( data ) {
 });       
 }
 setInterval(hi, 15000);
 hi();
 });
-    
-function declined () {
-    
-var pickdriver_id = localStorage.getItem("pickdriver_id");
-var username = localStorage.getItem("username");
-
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=declined&username="+username+"",  function( data ) {
-        alert("Sorry, the driver declined your request. Please choose a different driver.");
-        location.reload();
-    });
-
-}
 
 </script>
     

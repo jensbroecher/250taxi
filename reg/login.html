@@ -151,23 +151,27 @@ Please sign in
 	var loginpin = document.getElementById('loginpin').value;
 	// alert(''+phone+' '+loginpin+'');
        
-    $.get( "http://250taxi.com/db/check-username-login.php?username="+username+"", function( data ) {
+    $.get( "http://250taxi.com/db/check-username-login.php?task=checkusername&username="+username+"", function( data ) {
 
-        if (data == "account_found") {
+if (data == "account_found") {
             
-                $.get( "http://250taxi.com/db/check-pin.php?pin="+loginpin+"", function( data ) {
+        $.get( "http://250taxi.com/db/check-username-login.php?task=getuserid&username="+username+"", function( userid ) {
+            
+                $.get( "http://250taxi.com/db/check-pin.php?pin="+loginpin+"", function( pindata ) {
 
-                if (data == "pin_found") {
+                if (pindata == "pin_found") {
                 localStorage.setItem("rememberuser","Yes");
                 localStorage.setItem("username",username);
+                localStorage.setItem("userid",userid);
                     
                 document.location.href = '../gotostart.html';
                 }
-                else if (data == "pin_not_found") {
+                else if (pindata == "pin_not_found") {
                 alert("Sorry, your PIN was incorrect. Please check your PIN or contact support.");
-                    
-        }
-    });
+                }
+                
+                });
+        });
             
         }
         else if (data == "account_not_found") {
