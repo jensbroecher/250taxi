@@ -10,6 +10,10 @@
 
 <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
 <script type="text/javascript" charset="utf-8" src="logic.js"></script>
+    
+<script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
+<link href="../waves.css" rel="stylesheet" type="text/css">
+    
 <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
     
 <script src="../preventreload.js"></script>
@@ -157,7 +161,7 @@ if (data == "account_found") {
             
         $.get( "http://250taxi.com/db/check-username-login.php?task=getuserid&username="+username+"", function( userid ) {
             
-                $.get( "http://250taxi.com/db/check-pin.php?pin="+loginpin+"", function( pindata ) {
+                $.get( "http://250taxi.com/db/check-pin.php?username="+username+"&pin="+loginpin+"", function( pindata ) {
 
                 if (pindata == "pin_found") {
                 localStorage.setItem("rememberuser","Yes");
@@ -181,14 +185,14 @@ if (data == "account_found") {
    } 
 </script>
 
-<div class="windowbutton" style="float: left; width: 48%;" onClick="logincheck();">Login</div>
-<div class="windowbutton" style="float: right; width: 48%;" onClick="document.location.href = 'mainmenu.html';">Register</div>
+<div class="windowbutton waves-effect waves-dark" style="float: left; width: 48%;" onClick="logincheck();">Login</div>
+<div class="windowbutton waves-effect waves-dark" style="float: right; width: 48%;" onClick="document.location.href = 'mainmenu.html';">Register</div>
     
 <div style="clear: both;"></div>
 
-<div class="windowbutton" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot username or PIN?</div>
+<div class="windowbutton waves-effect waves-dark" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot username or PIN?</div>
     
-<div id="scanqr" class="windowbutton" onclick="scancode();">
+<div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode();">
 <img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png">
 Hotel / Corporate Login
 </div>
