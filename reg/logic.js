@@ -229,6 +229,12 @@ country = 'Burundi';
     
 city = $("#city_burundi option:selected").text();
 }
+else if (country === 'city_other') {
+console.log('Other');
+country = 'Other';
+
+city = document.getElementById('city_other').value;
+}
 
 document.getElementById('reg_smsvalidationwindow').style.display = 'block';
 document.getElementById('reg_complete').style.display = 'none';

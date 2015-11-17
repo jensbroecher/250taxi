@@ -114,9 +114,7 @@ document.getElementById("reg_start").style.display = "block";
     
 <div style="clear:both;"></div>
     
-<select id="countrycode" class="textfield">
-    <option value="+250">+250</option>
-</select>
+<input id="countrycode" class="textfield" required placeholder="+250" value="+250">
     
 <script>
 
@@ -193,6 +191,7 @@ rules: {
 <select name="country" id="country" class="textfield" required>
 <option value="">Country:</option>
 <option value="city_rwanda">Rwanda</option>
+<option value="city_other">Other</option>
 </select>
     
 <script>
@@ -211,6 +210,8 @@ rules: {
         });
     });
 </script>
+    
+<input id="city_other" class="textfield countryselect" placeholder="City" value="" style="display:none;">
 
 <select name="city_drc" id="city_drc" class="textfield countryselect" style="display:none;">
 <option value="">City:</option>
