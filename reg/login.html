@@ -106,7 +106,7 @@ function rot13(str) {
     return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
   });
 }
-function codefromqr_hotel_corporate_login_after_scan() {}
+function codefromqr_hotel_corporate_login_after_scan() {
 var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");   
     var codefromqr_hotel_corporate = window.atob(codefromqr_hotel_corporate);
     var codefromqr_hotel_corporate = rot13(codefromqr_hotel_corporate);
