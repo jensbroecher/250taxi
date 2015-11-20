@@ -68,7 +68,7 @@ document.getElementById("mainmenu").className = "nicewindow animated fadeIn";
     
     
 
-function scancode() {
+function scancode_hotel_corporate() {
     
 cordova.plugins.barcodeScanner.scan(
       function (result) {
@@ -88,9 +88,8 @@ cordova.plugins.barcodeScanner.scan(
               
             //  alert("Test");
           
-          localStorage.setItem("codefromqr", result.text);
-              
-            alert(result.text);
+          localStorage.setItem("codefromqr_hotel_corporate", result.text);
+            codefromqr_hotel_corporate_login_after_scan();
 
         }
           
@@ -101,6 +100,30 @@ cordova.plugins.barcodeScanner.scan(
    );
 
 }
+function rot13(str) {
+  return str.replace(/[a-zA-Z]/g, function(chr) {
+    var start = chr <= 'Z' ? 65 : 97;
+    return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
+  });
+}
+function codefromqr_hotel_corporate_login_after_scan() {}
+var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");   
+    var codefromqr_hotel_corporate = window.atob(codefromqr_hotel_corporate);
+    var codefromqr_hotel_corporate = rot13(codefromqr_hotel_corporate);
+    var codefromqr_hotel_corporate = codefromqr_hotel_corporate.substring(5);
+    localStorage.setItem("codefromqr_hotel_corporate_decode",codefromqr_hotel_corporate);
+    
+$.get( "http://250taxi.com/db/partner/hotel/client_hotel_corporate_login.php?task=guest_name&hotel_card_id="+codefromqr_hotel_corporate+"", function( data ) {
+    localStorage.setItem("rememberuser","Yes");
+    localStorage.setItem("hotelcorporate","Yes");
+    // localStorage.setItem("username",username);
+    // localStorage.setItem("userid",userid);
+    document.location.href = '../locate.html';
+    alert("Welcome to the 250TAXI hotel account. Request for the taxi and watch it approach you in real time within minutes. You will be able to use this card during your travel. Kindly return this card to the Hotel's administration once done with your journey. Enjoy your ride, "+data+"");
+});
+
+}
+
 </script>
 
 </head>
@@ -192,7 +215,7 @@ if (data == "account_found") {
 
 <div class="windowbutton waves-effect waves-dark" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot username or PIN?</div>
     
-<div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode();">
+<div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode_hotel_corporate();">
 <img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png">
 Hotel / Corporate Login
 </div>
