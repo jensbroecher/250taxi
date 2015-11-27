@@ -5,10 +5,6 @@ calltaxigo();
 });
 
 });
-function detailedlocation_complete (){
-$( "#mydetailedlocation" ).fadeOut( "slow", function() { 
-});
-}
 function calltaxigo() {
     
 $( "#mydetailedlocation" ).fadeOut( "slow", function() {
@@ -235,6 +231,29 @@ responsiveVoice.speak("Tell us more info about where you are");
 $( "#mydetailedlocation" ).fadeIn( "slow", function() { 
 });
 }, 5000);
+
+}
+function detailedlocation_complete (){
+    
+var username = localStorage.getItem("username");
+var pickdriver_id = localStorage.getItem("pickdriver_id");
+var detailedlocation = document.getElementById("taxirequest_detailedlocation").value;
+    
+var detailedlocation_length = detailedlocation.length;
+    
+if (detailedlocation_length > 2) {
+
+$.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=detailedlocation&username="+username+"&pickdriver_id="+pickdriver_id+"&detailedlocation="+detailedlocation+"",  function( data ) {
+    
+$( "#mydetailedlocation" ).fadeOut( "slow", function() { 
+
+});
+    
+});
+}
+else {
+    alert('Please describe where you are standing, so the driver can easily locate you.');
+}
 
 }
 function pickdriver_request_cancel () { 

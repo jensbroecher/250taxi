@@ -42,14 +42,13 @@ function onDeviceReady() {
 $(document).ready(function() {
     
 var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+
+map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -1.957236, lng: 30.100284},
-    zoom: 16,
+    zoom: 10,
     disableDefaultUI: true,
     streetViewControl: false
-  });
-}
+});
 
 var input = document.getElementById('taxirequest_destination');
 var options = {
@@ -712,9 +711,9 @@ var iconimage = {
 		}
 		function displayError(error) {
 			var errors = { 
-				1: 'Permission denied',
-				2: 'Position unavailable',
-				3: 'Request timeout'
+				1: 'Permission denied\n\nPlease allow 250TAXI to locate you. You can change this in your browsers settings.',
+				2: 'Position unavailable. 250TAXI was not able to find your current location.',
+				3: 'Request timeout. It took too long to locate you. Please try again.'
 			};
 			alert("Error: " + errors[error.code]);
 		}
