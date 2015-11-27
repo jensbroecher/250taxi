@@ -40,6 +40,16 @@ function onDeviceReady() {
 <script>
     
 $(document).ready(function() {
+    
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -1.957236, lng: 30.100284},
+    zoom: 16,
+    disableDefaultUI: true,
+    streetViewControl: false
+  });
+}
 
 var input = document.getElementById('taxirequest_destination');
 var options = {
@@ -122,7 +132,7 @@ html, body, #map {
 }
 #calltaxiui {
         background-image: url(calltaxi.png);
-        background-size: 100% 100%;
+        background-size: 360px;
         background-repeat: no-repeat;
         background-position: center bottom;
         width: 100%;
@@ -130,6 +140,7 @@ html, body, #map {
         position: absolute;
         bottom: 0px;
         z-index: 100;
+        display: block;
 }
 #logoutbutton {
         font-family: Roboto, sans-serif;
@@ -504,6 +515,7 @@ document.getElementById('inlocationfield').value = address;
     var options = {
 				zoom: 16,
                 disableDefaultUI: true,
+                streetViewControl: false,
 				center: pos,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
@@ -642,6 +654,7 @@ function displayPosition(position) {
 			var options = {
 				zoom: 16,
                 disableDefaultUI: true,
+                streetViewControl: false,
 				center: pos,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
@@ -809,9 +822,23 @@ var username = localStorage.getItem("username");
     
     
     
+<div id="mydetailedlocation">
+<div class="sdbox">
+
+<div class="sdtitle">Tell us more info about where you are</div>
     
+<input class="sdinput" placeholder="I am at..." id="taxirequest_detailedlocation"></input>
+
+<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">
     
+    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+</svg>
     
+    OK</div>
+
+</div>
+</div>
     
     
     
@@ -957,6 +984,7 @@ var locations = [
 var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 13,
       disableDefaultUI: true,
+      streetViewControl: false,
       center: new google.maps.LatLng(latitude, longitude),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
