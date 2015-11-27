@@ -6,6 +6,7 @@
 <link href="animate.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css"> 
 <link rel="stylesheet" type="text/css" href="waves.css">
+<link rel="stylesheet" type="text/css" href="google_spinner.css">
 <link rel="stylesheet" type="text/css" href="searchdrivers.css">
       
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -49,6 +50,10 @@ map = new google.maps.Map(document.getElementById('map'), {
     disableDefaultUI: true,
     streetViewControl: false
 });
+    
+document.getElementById("loading_map_indicator").style.display = "block";
+
+responsiveVoice.speak("Loading map");
 
 var input = document.getElementById('taxirequest_destination');
 var options = {
@@ -252,11 +257,33 @@ html, body, #map {
    -webkit-filter: blur(3px);
     pointer-events: none;
 }
+#loading_map_indicator {
+    position: absolute;
+    z-index: 200;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 25%;
+    bottom: 25%;
+    background-color: rgba(255,255,255,0.7);
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
 </style>
 
 </head>
 
 <body>
+    
+<div id="loading_map_indicator" class="animated fadeInDown" style="-webkit-animation-delay: 1s;">
+
+<div class="loader">
+<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+</svg>
+    
+</div>
+
+</div>
     
 <div id="driveroverlay">
     
@@ -668,6 +695,8 @@ var iconimage = {
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(43,90) // anchor
 };
+    
+document.getElementById("loading_map_indicator").style.display = "none";
             
 			marker = new google.maps.Marker({
                 draggable: true,
