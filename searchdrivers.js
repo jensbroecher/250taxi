@@ -15,7 +15,8 @@ $( "#mydetailedlocation" ).fadeOut( "slow", function() {
 
     $( "#searchdrivers" ).fadeIn( "slow", function() {
 
-responsiveVoice.speak("Please choose your destination");
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Please choose your destination");}
         
 var passenger_lat = document.getElementById("lat").value;
 var passenger_long = document.getElementById("long").value;
@@ -81,7 +82,8 @@ var taxirequest_destination_length = taxirequest_destination.length;
     
 if (taxirequest_destination_length > 2) {
     
-responsiveVoice.speak("Please choose a driver to take you to "+taxirequest_destination+"");
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Please choose a driver to take you to "+taxirequest_destination+"");}
     
 localStorage.setItem("destination",taxirequest_destination);
 localStorage.setItem("destination_type","user_input");
@@ -169,7 +171,9 @@ localStorage.setItem("destination_type","city_navigator");
 document.getElementById("citynavigator").style.display = "none";
 $( "#driverlist" ).fadeIn( "slow", function() {
     var activeuser = localStorage.getItem("activeuser");
-    responsiveVoice.speak("Choose a driver to take you to "+places_name+"");
+    
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Choose a driver to take you to "+places_name+"");}
 });
 
 }
@@ -178,7 +182,8 @@ function pickdriver() {
     
     localStorage.setItem('activity','driver_details');
     
-    responsiveVoice.speak("Press the pick me now button to notify this taxi");
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Press the pick me now button to notify this taxi");}
     
     document.getElementById("driverlist").style.display = "none";
     document.getElementById("menubutton").style.display = "none";
@@ -203,7 +208,8 @@ function pickdriver_request_start () {
     
     localStorage.setItem('activity','driver_selected');
     
-    responsiveVoice.speak("Waiting for the driver to accept");
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to accept");}
     
     document.getElementById("driveroverlay_back_to_list").style.display = "none";
     document.getElementById("driveroverlay_journey_start").style.pointerEvents = "none";
@@ -241,7 +247,11 @@ function pickdriver_request_start () {
 
 setTimeout(function(){    
 $("#taxirequest_detailedlocation").focus();  
-responsiveVoice.speak("Tell us more info about where you are"); 
+    
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Tell us more info about where you are"); }
+    
+    
 $( "#mydetailedlocation" ).fadeIn( "slow", function() { 
 });
 }, 5000);

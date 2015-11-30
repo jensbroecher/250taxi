@@ -8,6 +8,7 @@
 <link href="animate.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css"> 
 <link rel="stylesheet" type="text/css" href="waves.css">
+<link rel="stylesheet" type="text/css" href="on_off_switch.css">
 <link rel="stylesheet" type="text/css" href="journey.css">
 <link rel="stylesheet" type="text/css" href="google_spinner.css">
 <link rel="stylesheet" type="text/css" href="searchdrivers.css">
@@ -59,7 +60,8 @@ document.getElementById("locationfield").style.display = "none";
 document.getElementById("inlocationfield").style.display = "none";
 document.getElementById("loading_map_indicator").style.display = "block";
 
-responsiveVoice.speak("Loading map");
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
 
 var input = document.getElementById('taxirequest_destination');
 var options = {
@@ -284,6 +286,213 @@ html, body, #map {
 
 <body>
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<style>
+#account_overlay {
+    position: absolute;
+    z-index: 100000000000;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    display: none;
+    font-family: sans-serif;
+    color: white;
+}
+.account_option {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+.account_option_info {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.account_option .onoffswitch {
+     margin-left: auto;
+     margin-right: auto;
+}
+#account_overlay_x {
+
+}
+</style>   
+    
+<script>
+function close_account_overlay() {
+$( "#account_overlay" ).fadeOut( "slow", function() {
+});
+}
+$(document).ready(function() {
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {
+    $('#audio_choice_onoffswitch').prop('checked', true);   
+}
+
+        $( "#audio_choice" ).click(function() {
+        var voice_enabled = document.getElementById('audio_choice_onoffswitch').checked;
+    
+        if (voice_enabled == false) {
+            localStorage.setItem("voice_enabled","Off");
+        }
+        if (voice_enabled == true) {
+            localStorage.setItem("voice_enabled","On");
+        }
+        });
+
+});
+</script>
+
+<div id="account_overlay">
+    
+<div id="account_overlay_x" onclick="close_account_overlay();" style="padding:5px;">
+<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+</svg>
+</div>
+    
+<div class="account_option">
+    
+<div class="account_option_info">
+
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+</svg>
+    
+Account details</div>
+    
+<style>
+    .simple_table {
+        width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .simple_table div {
+        float:left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        text-indent: 5px;
+        margin-bottom: 2px;
+        overflow: hidden;
+        white-space: nowrap;
+        background-color: #3C3F41;
+    }
+    .simple_table .simple_table_desc {
+        width: 30%;
+        color: darkgrey;
+    }
+    .simple_table .simple_table_content {
+        width: 70%;
+    }
+    .account_button {
+        border: solid 1px white;
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        text-transform: uppercase;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-left: 30%;
+        width: 36%;
+        max-width: 250px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+    #account_button_after_click {
+        padding: 5px;
+        background-color: lightgrey;
+        color: black;
+        font-size: 90%;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+    
+<div class="simple_table">
+    
+<div class="simple_table_desc">Name</div>
+<div id="account_name" class="simple_table_content">Loading...</div>
+    
+<div class="simple_table_desc">Username</div>
+<div id="account_username" class="simple_table_content">Loading...</div>
+    
+<div class="simple_table_desc">E-Mail</div>
+<div id="account_email" class="simple_table_content">Loading...</div>
+
+<div class="simple_table_desc">Phone</div>
+<div id="account_phone" class="simple_table_content">Loading...</div>
+
+<div class="simple_table_desc">PIN</div>
+<div class="simple_table_content">****</div>
+
+</div>
+    
+<script>
+function change_account() {
+alert('We have sent you instructions to your E-Mail on how to update your account. If you do not recieve it  please contact customer care.');
+
+document.getElementById("account_button").style.display = "none";
+document.getElementById("account_button_after_click").style.display = "block";
+
+}
+</script>
+    
+<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light" on>Change</div>
+    
+<div style="clear:both;"></div>
+
+<div id="account_button_after_click" class="animated fadeIn" style="display:none;">E-Mail sent. Please check your inbox!</div>
+
+</div>
+
+<div style="clear:both;"></div>
+   
+<div class="account_option">
+    
+<div class="account_option_info">
+
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
+</svg>
+    
+Enable Voice Tips?</div>
+
+<div id="audio_choice" class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
+    <label class="onoffswitch-label" for="audio_choice_onoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+    
+</div>
+
+    
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <div id="loading_map_indicator" class="animated fadeInDown" style="-webkit-animation-delay: 1s;">
 
 <div class="loader">
@@ -300,7 +509,7 @@ Loading map...
     
 <div id="driveroverlay">
     
-<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="driveroverlay_back_to_list_x();">
+<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
 
 <div id="driveroverlay_show_details">
     
@@ -438,8 +647,8 @@ Loading map...
 <span id="logoutbutton" onclick="logout();">Logout</span>
 <br><br>
     
+            <div id="mainmenu_account">Account</div>
 			<div id="mainmenu_services">Services</div>
-			<div id="mainmenu_account">Account</div>
 			<div id="mainmenu_promotions">Promotions</div>
             <div id="mainmenu_history">History</div>
             <span id="divider"></span>
@@ -635,8 +844,9 @@ var infoWindow;
     
 function reloadPositionStart() {
     
-    responsiveVoice.speak("Locating you, please wait");
-    
+    var voice_enabled = localStorage.getItem("voice_enabled");
+    if (voice_enabled == "On") {responsiveVoice.speak("Locating you");}
+     
     reloadPosition();
     document.getElementById("locationbutton").className = 'menugpsblue';
     setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 1000);
@@ -973,7 +1183,6 @@ function accepted() {
 </div>
     
     <div class="sdtitle">Drivers in range</div>
-    <div class="sdsubtitle">Please pick one from the list</div>
     
     <div id="driverlist_scanner">
         
@@ -1102,7 +1311,44 @@ var iconimage = {
 }
 </script>
 
+  
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 
 
 </body>

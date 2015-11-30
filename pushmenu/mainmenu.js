@@ -1,5 +1,27 @@
 $(document).ready(function() {
     
+$( "#mainmenu_account" ).click(function() {
+     $( "#account_overlay" ).fadeIn( "slow", function() {
+         
+        var username = localStorage.getItem("username");
+
+        username = btoa(username);
+         
+$.get( "http://250taxi.com/db/account/get_details.php?task=phone&username="+username+"", function( data ) {
+document.getElementById("account_phone").innerHTML = data;
+});
+$.get( "http://250taxi.com/db/account/get_details.php?task=name&username="+username+"", function( data ) {
+document.getElementById("account_name").innerHTML = data;
+});
+$.get( "http://250taxi.com/db/account/get_details.php?task=email&username="+username+"", function( data ) {
+document.getElementById("account_email").innerHTML = data;
+});
+         
+document.getElementById("account_username").innerHTML = localStorage.getItem("username");
+        
+  });
+});
+    
 $( "#mainmenu_services" ).click(function() {
     document.location.href = 'services.html';
 });
