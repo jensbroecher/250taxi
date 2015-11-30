@@ -2,10 +2,13 @@
 <html>
 <head>
 <title>250 taxi</title>
+
+<meta charset="utf-8"> 
       
 <link href="animate.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css"> 
 <link rel="stylesheet" type="text/css" href="waves.css">
+<link rel="stylesheet" type="text/css" href="journey.css">
 <link rel="stylesheet" type="text/css" href="google_spinner.css">
 <link rel="stylesheet" type="text/css" href="searchdrivers.css">
       
@@ -51,6 +54,9 @@ map = new google.maps.Map(document.getElementById('map'), {
     streetViewControl: false
 });
     
+document.getElementById("locationfieldholder").style.display = "none";
+document.getElementById("locationfield").style.display = "none";
+document.getElementById("inlocationfield").style.display = "none";
 document.getElementById("loading_map_indicator").style.display = "block";
 
 responsiveVoice.speak("Loading map");
@@ -547,7 +553,7 @@ document.getElementById('inlocationfield').value = address;
                 styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
 			};
     
-    var map = new google.maps.Map(document.getElementById("map"), options);
+   // var map = new google.maps.Map(document.getElementById("map"), options);
         
     // alert(pos);
         
@@ -696,6 +702,10 @@ var iconimage = {
     anchor: new google.maps.Point(43,90) // anchor
 };
     
+document.getElementById("locationfield").style.display = "block";
+document.getElementById("locationfieldholder").style.display = "block";
+document.getElementById("inlocationfield").style.display = "block";
+    
 document.getElementById("loading_map_indicator").style.display = "none";
             
 			marker = new google.maps.Marker({
@@ -820,12 +830,20 @@ function hi(){
     
 $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"", function( data ) {
     
-    console.log(data);
+    console.log("Status: " + data);
     
-    if (data == "declined") {
-        declined();
+    var activity = localStorage.getItem("activity");
+    
+    if (activity == "driver_selected") {
+        
+        if (data == "declined") {
+            declined();
+        }
+        if (data == "accepted") {
+            accepted();
+        }
+        
     }
-    
 });       
 }
 setInterval(hi, 15000);
@@ -843,10 +861,22 @@ var username = localStorage.getItem("username");
     });
 
 }
+function accepted() {
+    alert("Accepted!");
+}
 
 </script>
+
+
+<div id="journey_status_dialog">
+<div class="sdbox">
+
+<div id="journey_status_dialog_title" class="sdtitle"></div>
     
-    
+<p id="journey_status_dialog_content"></p>
+
+</div>
+</div>
     
     
     
@@ -864,6 +894,8 @@ var username = localStorage.getItem("username");
 </svg>
     
     OK</div>
+    
+<div class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
 
 </div>
 </div>

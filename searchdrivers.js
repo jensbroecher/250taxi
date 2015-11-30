@@ -7,6 +7,8 @@ calltaxigo();
 });
 function calltaxigo() {
     
+localStorage.setItem('activity','destination_screen');
+    
 $( "#mydetailedlocation" ).fadeOut( "slow", function() {
     
   $( "#calltaxiui" ).fadeOut( "slow", function() {
@@ -53,6 +55,8 @@ $( "#driverlist_scanner" ).load( "http://250taxi.com/db/partner/taxi_scanner.php
 }
 function getdriversskipdestination() {
     
+localStorage.setItem('activity','driver_list');
+    
 localStorage.setItem("destination","Not specified");
 localStorage.setItem("destination_type","user_input");
     
@@ -64,6 +68,8 @@ document.getElementById("citynavigator_start").style.display = "none";
     
 }
 function getdrivers() {
+    
+localStorage.setItem('activity','driver_list');
 
 var taxirequest_destination = document.getElementById('taxirequest_destination').value;
 
@@ -153,6 +159,8 @@ $('#citynavigator_category').find('option:eq(0)').prop('selected', true);
 
 function goplaces() {
     
+localStorage.setItem('activity','driver_list');
+    
 var places_name = localStorage.getItem("places_name");
     
 localStorage.setItem("destination",places_name);
@@ -167,6 +175,7 @@ $( "#driverlist" ).fadeIn( "slow", function() {
 }
 
 function pickdriver() {
+    
     localStorage.setItem('activity','driver_details');
     
     responsiveVoice.speak("Press the pick me now button to notify this taxi");
@@ -192,7 +201,7 @@ journey_start_map();
 
 function pickdriver_request_start () {
     
-    
+    localStorage.setItem('activity','driver_selected');
     
     responsiveVoice.speak("Waiting for the driver to accept");
     
@@ -218,10 +227,15 @@ function pickdriver_request_start () {
     var destination = localStorage.getItem("destination");
     var destination_type = localStorage.getItem("destination_type");
     
+    if (destination_type == "city_navigator") {
+    var destination_lat = localStorage.getItem("places_lat");
+    var destination_long = localStorage.getItem("places_long");   
+    }
+    
     // alert(pickdriver_id);
     
     
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"",  function( data ) {
+    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"",  function( data ) {
         
     });
 
@@ -255,6 +269,11 @@ else {
     alert('Please describe where you are standing, so the driver can easily locate you.');
 }
 
+}
+function detailedlocation_complete_skip (){
+$( "#mydetailedlocation" ).fadeOut( "slow", function() { 
+
+});
 }
 function pickdriver_request_cancel () { 
      document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";    
