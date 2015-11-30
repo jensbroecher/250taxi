@@ -74,11 +74,19 @@ autocomplete = new google.maps.places.Autocomplete(input, options);
 </script>
       
 <style>
+html, body {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 html, body, #map {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #;
 }
 #locationfieldholder {
         position: absolute;
@@ -421,7 +429,7 @@ Account details</div>
     }
 </style>
     
-<div class="simple_table">
+<div id="account_simple_table" class="simple_table">
     
 <div class="simple_table_desc">Name</div>
 <div id="account_name" class="simple_table_content">Loading...</div>
