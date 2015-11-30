@@ -45,14 +45,14 @@ function onDeviceReady() {
     
 $(document).ready(function() {
     
-var map;
+// var map;
 
-map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -1.957236, lng: 30.100284},
-    zoom: 10,
-    disableDefaultUI: true,
-    streetViewControl: false
-});
+// map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: -1.957236, lng: 30.100284},
+//     zoom: 10,
+//     disableDefaultUI: true,
+//     streetViewControl: false
+// });
     
 document.getElementById("locationfieldholder").style.display = "none";
 document.getElementById("locationfield").style.display = "none";
@@ -264,13 +264,17 @@ html, body, #map {
     pointer-events: none;
 }
 #loading_map_indicator {
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 300;
+    font-size: 110%;
     position: absolute;
     z-index: 200;
     width: 50%;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     margin-left: 25%;
-    bottom: 25%;
+    bottom: 35%;
     background-color: rgba(255,255,255,0.7);
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
@@ -283,11 +287,14 @@ html, body, #map {
 <div id="loading_map_indicator" class="animated fadeInDown" style="-webkit-animation-delay: 1s;">
 
 <div class="loader">
+    
+<br><br>
 <svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
       <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
 </svg>
-    
 </div>
+    
+Loading map...
 
 </div>
     
@@ -939,9 +946,7 @@ function accepted() {
 <div id="citynavigator_start" class="sdbox">
     <div class="sdtitle">City Navigator</div>
     
-
-    
-    <div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
+<div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
         
 <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
     <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
@@ -968,7 +973,16 @@ function accepted() {
 </div>
     
     <div class="sdtitle">Drivers in range</div>
-    <div id="driverlist_scanner">      
+    <div class="sdsubtitle">Please pick one from the list</div>
+    
+    <div id="driverlist_scanner">
+        
+        <div class="loader">
+<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+</svg>
+</div>
+        
     </div>
 </div>
     
@@ -1012,7 +1026,17 @@ function accepted() {
     <option>Clubs</option>
 </select>
     
-    <div id="citynavigatorlist">      
+    <div id="citynavigatorlist">    
+        
+        <div class="loader">
+            
+            <br><br>
+            
+<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+</svg>
+</div>
+        
     </div>
 </div>
     

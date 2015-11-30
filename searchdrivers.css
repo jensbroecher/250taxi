@@ -55,6 +55,15 @@
         padding-top: 20px;
         padding-bottom: 20px;
 }
+.sdsubtitle {
+        font-family: Roboto, sans-serif;
+        text-align: center;
+        font-weight: 300;
+        color: grey;
+	    font-size: 15px;
+        text-align: center;
+        margin-top: -20px;
+}
 .sdbox {
         font-family: Roboto;
         box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
