@@ -11,6 +11,7 @@ $( "#mainmenu_account" ).click(function() {
         if (hotelcorporate == "Yes") {
             document.getElementById("account_simple_table").style.display = "none";
             document.getElementById("account_button").style.display = "none";
+            document.getElementById("account_details_info").style.display = "none";
         }
          
 $.get( "http://250taxi.com/db/account/get_details.php?task=phone&username="+username+"", function( data ) {

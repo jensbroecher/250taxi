@@ -371,7 +371,7 @@ if (voice_enabled == "On") {
     
 <div class="account_option">
     
-<div class="account_option_info">
+<div id="account_details_info" class="account_option_info">
 
 <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
@@ -777,7 +777,7 @@ document.getElementById('inlocationfield').value = address;
                 styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
 			};
     
-   // var map = new google.maps.Map(document.getElementById("map"), options);
+   var map = new google.maps.Map(document.getElementById("map"), options);
         
     // alert(pos);
         
