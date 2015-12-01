@@ -108,14 +108,17 @@ function rot13(str) {
   });
 }
 function codefromqr_hotel_corporate_login_after_scan() {
+    
 document.getElementById("loadingindicator").className = "animated fadeIn";
-var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");   
+    
+    var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");   
     var codefromqr_hotel_corporate = window.atob(codefromqr_hotel_corporate);
     var codefromqr_hotel_corporate = rot13(codefromqr_hotel_corporate);
     var codefromqr_hotel_corporate = codefromqr_hotel_corporate.substring(5);
     localStorage.setItem("codefromqr_hotel_corporate_decode",codefromqr_hotel_corporate);
     
 $.get( "http://250taxi.com/db/partner/hotel/client_hotel_corporate_login.php?task=guest_name&hotel_card_id="+codefromqr_hotel_corporate+"", function( data ) {
+    localStorage.setItem("cardid",codefromqr_hotel_corporate);
     localStorage.setItem("rememberuser","Yes");
     localStorage.setItem("hotelcorporate","Yes");
     localStorage.setItem("username","hotelcorporate");

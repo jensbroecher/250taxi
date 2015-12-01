@@ -2,6 +2,8 @@ $(document).ready(function() {
     
 $( "#mainmenu_account" ).click(function() {
     
+    var hotelcorporate = localStorage.getItem("hotelcorporate");
+    
     if (hotelcorporate == "Yes") {
             document.getElementById("account_simple_table").style.display = "none";
             document.getElementById("account_button").style.display = "none";
@@ -11,7 +13,6 @@ $( "#mainmenu_account" ).click(function() {
      $( "#account_overlay" ).fadeIn( "slow", function() {
          
         var username = localStorage.getItem("username");
-        var hotelcorporate = localStorage.getItem("hotelcorporate");
 
         username = btoa(username);
          
