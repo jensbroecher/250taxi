@@ -108,6 +108,7 @@ function rot13(str) {
   });
 }
 function codefromqr_hotel_corporate_login_after_scan() {
+document.getElementById("loadingindicator").className = "animated fadeIn";
 var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");   
     var codefromqr_hotel_corporate = window.atob(codefromqr_hotel_corporate);
     var codefromqr_hotel_corporate = rot13(codefromqr_hotel_corporate);
@@ -117,10 +118,10 @@ var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporat
 $.get( "http://250taxi.com/db/partner/hotel/client_hotel_corporate_login.php?task=guest_name&hotel_card_id="+codefromqr_hotel_corporate+"", function( data ) {
     localStorage.setItem("rememberuser","Yes");
     localStorage.setItem("hotelcorporate","Yes");
-    // localStorage.setItem("username",username);
-    // localStorage.setItem("userid",userid);
-    document.location.href = '../locate.html';
+    localStorage.setItem("username","hotelcorporate");
+    localStorage.setItem("userid","3");
     alert("Welcome to the 250TAXI hotel account. Request for the taxi and watch it approach you in real time within minutes. You will be able to use this card during your travel. Kindly return this card to the Hotel's administration once done with your journey. Enjoy your ride, "+data+"!");
+    document.location.href = '../locate.html';
 });
 
 }

@@ -1,18 +1,19 @@
 $(document).ready(function() {
     
 $( "#mainmenu_account" ).click(function() {
+    
+    if (hotelcorporate == "Yes") {
+            document.getElementById("account_simple_table").style.display = "none";
+            document.getElementById("account_button").style.display = "none";
+            document.getElementById("account_details_info").style.display = "none";
+    }
+    
      $( "#account_overlay" ).fadeIn( "slow", function() {
          
         var username = localStorage.getItem("username");
         var hotelcorporate = localStorage.getItem("hotelcorporate");
 
         username = btoa(username);
-         
-        if (hotelcorporate == "Yes") {
-            document.getElementById("account_simple_table").style.display = "none";
-            document.getElementById("account_button").style.display = "none";
-            document.getElementById("account_details_info").style.display = "none";
-        }
          
 $.get( "http://250taxi.com/db/account/get_details.php?task=phone&username="+username+"", function( data ) {
 document.getElementById("account_phone").innerHTML = data;
