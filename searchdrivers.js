@@ -196,7 +196,7 @@ if (voice_enabled == "On") {responsiveVoice.speak("Press the pick me now button 
         var pickdriver_id = localStorage.getItem("pickdriver_id");
         
         
-        $( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {
+$( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {
 journey_start_map();
 });
         
