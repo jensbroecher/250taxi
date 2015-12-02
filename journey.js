@@ -7,6 +7,32 @@ function journey_start_map() {
     
 function journey_update_map() {
     
+var driver_passenger_calculated_distance = document.getElementById('driver_passenger_calculated_distance').innerHTML;
+
+driver_passenger_calculated_distance = parseInt(driver_passenger_calculated_distance);
+
+if (driver_passenger_calculated_distance < 0.3) {
+    
+    var activity = localStorage.getItem('activity');
+    
+    if (activity == 'driver_selected') {
+    localStorage.setItem('activity','driver_has_arrived');
+        
+    var driver_name = localStorage.getItem('driver_name');
+        
+    var voice_enabled = localStorage.getItem("voice_enabled");
+    if (voice_enabled == "On") {responsiveVoice.speak("Your driver "+driver_name+" has arrived!");}
+        
+    document.getElementById('journey_status_dialog').style.display = "block";
+    document.getElementById('journey_status_dialog').className = "animated fadeIn jd_yellow"
+    document.getElementById('journey_status_dialog_window').className = "sdbox animated fadeInUp"
+    document.getElementById('journey_status_dialog_title').innerHTML = "Driver has arrived";
+    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Do you have boarded the taxi?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
+
+    }
+    
+}
+
 latitude = document.getElementById('lat').value;
 longitude = document.getElementById('long').value;
     
@@ -63,4 +89,11 @@ var iconimage = {
         }
       })(marker, i));
     }
+}
+
+function journey_has_boarded() {
+    
+}
+function journey_not_yet_boarded() {
+    document.getElementById('journey_status_dialog').style.display = "none";    
 }

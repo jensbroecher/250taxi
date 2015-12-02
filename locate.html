@@ -42,6 +42,9 @@ function onDeviceReady() {
     
 <script src="searchdrivers.js"></script>
 <script src="journey.js"></script>
+
+<script src="toast.js"></script>
+<link rel="stylesheet" type="text/css" href="toast.css">
     
 <script>
     
@@ -477,7 +480,7 @@ document.getElementById("account_button_after_click").style.display = "block";
     <path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
 </svg>
     
-Enable Voice Tips?</div>
+Voice Guidance</div>
 
 <div id="audio_choice" class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
@@ -836,8 +839,18 @@ geocodeLatLng(geocoder, map);
 <div id="locationfield"></div>
 <input type="text" id="inlocationfield">
 </div>
-
-<div id="locationbutton" class="menugps" onclick="reloadPositionStart();"> </div>    
+    
+<script>
+function audio_update_location() {
+    
+localStorage.setItem('toast','Locating you on map');toast();
+    
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Locating... Please wait");}    
+}
+</script>
+    
+<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"> </div>    
 
     <div id="calltaxiui"></div>
     <div id="map"></div>
@@ -860,9 +873,6 @@ var marker;
 var infoWindow;
     
 function reloadPositionStart() {
-    
-    var voice_enabled = localStorage.getItem("voice_enabled");
-    if (voice_enabled == "On") {responsiveVoice.speak("Locating you");}
      
     reloadPosition();
     document.getElementById("locationbutton").className = 'menugpsblue';
@@ -1068,12 +1078,14 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
     
     var activity = localStorage.getItem("activity");
     
-    if (activity == "driver_selected") {
+    if (activity == "driver_selected" || activity == "driver_has_arrived") {
         
         if (data == "declined") {
             declined();
         }
         if (data == "accepted") {
+            console.log("accepted!");
+            localStorage.setItem('toast','Driver accepted and is on his way to you');toast();
             accepted();
         }
         
@@ -1088,30 +1100,38 @@ function declined () {
     
 var pickdriver_id = localStorage.getItem("pickdriver_id");
 var username = localStorage.getItem("username");
+    
+localStorage.setItem('toast','Sorry, the driver declined your request. Please choose a different driver.');toast();
 
     $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=declined&username="+username+"",  function( data ) {
+        setTimeout(function(){
+        showindicator();
+        }, 5000);
+        setTimeout(function(){
         alert("Sorry, the driver declined your request. Please choose a different driver.");
         location.reload();
+        }, 6000);
     });
 
 }
 function accepted() {
-    alert("Accepted!");
+    
 }
 
 </script>
 
 
 <div id="journey_status_dialog">
-<div class="sdbox">
+    
+<div class="sdbox" id="journey_status_dialog_window">
 
 <div id="journey_status_dialog_title" class="sdtitle"></div>
     
 <p id="journey_status_dialog_content"></p>
 
 </div>
+
 </div>
-    
     
     
 <div id="mydetailedlocation">
@@ -1273,12 +1293,10 @@ function accepted() {
   
     
     
+
     
-    
-    
-    
-    
-    
+
+
     
     
     
