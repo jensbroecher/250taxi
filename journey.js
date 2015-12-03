@@ -2,7 +2,7 @@ function journey_start_map() {
     journey_update_map();
     journey_updater = setInterval(function(){ 
         journey_update_map();
-    }, 10000);
+    }, 15000);
 }
     
 function journey_update_map() {
@@ -15,13 +15,19 @@ if (driver_passenger_calculated_distance < 0.3) {
     
     var activity = localStorage.getItem('activity');
     
-    if (activity == 'driver_selected') {
+    if (activity == 'driver_has_accepted') {
     localStorage.setItem('activity','driver_has_arrived');
+
+    var userid = localStorage.getItem('userid');
         
-    var driver_name = localStorage.getItem('driver_name');
+$.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"",  function( data ) {
+
+});
+        
+    var pickdriver_name = localStorage.getItem("pickdriver_name");
         
     var voice_enabled = localStorage.getItem("voice_enabled");
-    if (voice_enabled == "On") {responsiveVoice.speak("Your driver "+driver_name+" has arrived!");}
+    if (voice_enabled == "On") {responsiveVoice.speak("Your driver "+pickdriver_name+" has arrived!");}
         
     document.getElementById('journey_status_dialog').style.display = "block";
     document.getElementById('journey_status_dialog').className = "animated fadeIn jd_yellow"
@@ -55,7 +61,7 @@ var locations = [
 ];
 
 var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 13,
       disableDefaultUI: true,
       streetViewControl: false,
       center: new google.maps.LatLng(latitude, longitude),

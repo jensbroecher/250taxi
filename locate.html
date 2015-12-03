@@ -582,6 +582,9 @@ Loading map...
     
 <script>
     function cancel_reason_close() {
+        
+        showindicator();
+        
         document.getElementById('driveroverlay_journey_cancel_dialog').style.display = 'none';
         document.getElementById('driveroverlay_journey_cancel_dialog').style.display = 'none';
         document.getElementById('driveroverlay_journey_cancel').style.display = 'none';
@@ -652,7 +655,7 @@ Loading map...
 <div id="loadingindicator">
 <img src="282.gif" width="120">
 </div>
-    
+
 <script>
     function logout() {
     localStorage.removeItem('rememberuser');
@@ -923,7 +926,7 @@ function displayPosition(position) {
             document.getElementById("lat").value = position.coords.latitude;
             document.getElementById("long").value = position.coords.longitude;     
             
-			pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             
             geocodeLatLng(geocoder, map);
             
@@ -1085,6 +1088,7 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
         }
         if (data == "accepted") {
             console.log("accepted!");
+            localStorage.setItem('activity','driver_has_accepted');
             localStorage.setItem('toast','Driver accepted and is on his way to you');toast();
             accepted();
         }
