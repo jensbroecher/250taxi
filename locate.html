@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="waves.css">
 <link rel="stylesheet" type="text/css" href="on_off_switch.css">
 <link rel="stylesheet" type="text/css" href="journey.css">
+<link rel="stylesheet" type="text/css" href="animate.min.css">
 <link rel="stylesheet" type="text/css" href="google_spinner.css">
 <link rel="stylesheet" type="text/css" href="searchdrivers.css">
       
@@ -298,7 +299,21 @@ html, body, #map {
 
 <body>
     
+<div id="chat_overlay">
+   
+<div style="position:absolute;right:0px;" onclick="close_chat();">
+<svg style="width:32px;height:32px;padding:5px;" viewBox="0 0 24 24">
+    <path fill="#916F6F" d="M12,23L8,19H16L12,23M20,3A2,2 0 0,1 22,5V15A2,2 0 0,1 20,17H4A2,2 0 0,1 2,15V5A2,2 0 0,1 4,3H20M18,15V13H12.5L10.5,15H18M6,15H8.5L15.35,8.12C15.55,7.93 15.55,7.61 15.35,7.42L13.59,5.65C13.39,5.45 13.07,5.45 12.88,5.65L6,12.53V15Z" />
+</svg>
+</div>
     
+<div id="chat_load_messages">
+
+</div>
+    
+ <input placeholder="Type a message" id="chat_message_input"></input>
+    
+</div>    
     
     
     
@@ -554,12 +569,32 @@ Loading map...
     Pick me now
 </div>
 
-<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-dark">
+<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
     <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
     <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
 </svg>
     Cancel Request
 </div>
+    
+
+<div id="journey_accepted_panel">
+    
+<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel_small" class="waves-effect waves-light">
+    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+</svg>
+    Cancel
+</div>
+    
+<div onclick="chat();" id="chat_button" class="waves-effect waves-light">
+    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
+</svg>
+    Chat
+</div>
+
+</div>
+    
     
 <div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
 
@@ -1119,7 +1154,9 @@ localStorage.setItem('toast','Sorry, the driver declined your request. Please ch
 
 }
 function accepted() {
-    
+    document.getElementById("driveroverlay_journey_cancel").style.display = "none";
+    document.getElementById("journey_accepted_panel").style.display = "block";
+    document.getElementById("journey_accepted_panel").className = "animated fadeIn";
 }
 
 </script>
@@ -1321,7 +1358,7 @@ function accepted() {
     
     
     
-    
+
     
     
     

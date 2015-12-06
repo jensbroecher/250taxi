@@ -9,9 +9,11 @@
 <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
 
 <link href="waves.css" rel="stylesheet" type="text/css">
+<link href="toast.css" rel="stylesheet" type="text/css">
     
 <script src="jquery.min.js"></script>
 <script src="cordova.js"></script>
+<script src="toast.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
     
 <script src="materialize.js"></script>
@@ -29,6 +31,9 @@ function onDeviceReady() {
 }
 
 $(document).ready( function() {
+    
+    hideindicator();
+    
     function hi(){
         var status_lat= '';
         var status_long = '';
@@ -93,35 +98,72 @@ body {
     margin-bottom: 5px;
     transition: all 0.3s;
 }
+#loginregister div:hover {
+    background-color: rgba(255,255,255,1);
+    transition: all 0.3s;
+}
+#loadingindicator {
+    filter: invert(100%);
+    -webkit-filter: invert(100%);
+	background-color: #E2E2E2;
+	position: absolute;
+	z-index: 10000000000000000;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	text-align: center;
+}
+#loadingindicator img {
+	margin-top: 100px;
+	width: 160px;
+}
 </style>
+    
+<script>
+function showindicator() {
+document.getElementById("loadingindicator").className = "animated fadeIn";
+document.getElementById("loadingindicator").style.display = "block";
+}
+function hideindicator() {
+document.getElementById("loadingindicator").className = "animated fadeOut";
+setTimeout(function(){
+document.getElementById("loadingindicator").style.display = "none";
+}, 1000);
+} 
+</script>
 
 </head>
 
 <body>
+    
+<div id="loadingindicator">
+<img src="282.gif" width="120">
+</div>
 
 <div id="loginregister">
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="letsgo();">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="showindicator();setTimeout(function(){letsgo();}, 2000);">
 <img src="reg/start_taxi.png">
 </div>
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_luxury2.png">
 </div>
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.6s;"  onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.6s; -webkit-filter: grayscale(1);"  onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_places.png">
 </div>
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.8s; -webkit-filter: grayscale(1);" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.8s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_moto.png">
 </div>
 
-<div class="animated fadeIn" style="-webkit-animation-delay: 2s; -webkit-filter: grayscale(1);" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 2s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_courier.png">
 </div>
 
-<div class="animated fadeIn" style="-webkit-animation-delay: 2.2s; -webkit-filter: grayscale(1);" onclick="alert('Coming soon...');">
+<div class="animated fadeIn" style="-webkit-animation-delay: 2.2s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_air.png">
 </div>
 

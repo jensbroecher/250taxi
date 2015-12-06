@@ -98,7 +98,8 @@ var iconimage = {
 }
 
 function journey_has_boarded() {
-    
+    localStorage.setItem('activity','has_boarded');
+    console.log("Start Journey!"); 
 }
 function journey_not_yet_boarded() {
     
@@ -108,5 +109,61 @@ function journey_not_yet_boarded() {
     setTimeout(function(){
     document.getElementById('journey_status_dialog').style.display = "none";  
     }, 3000);
+    
+    setTimeout(function(){
+        show_driver_has_arrived_again();
+    }, 60000);
 
 }
+
+function show_driver_has_arrived_again() {
+
+document.getElementById('journey_status_dialog').style.display = "block";
+document.getElementById('journey_status_dialog').className = "animated fadeIn"
+document.getElementById('journey_status_dialog_window').className = "sdbox animated fadeInUp"
+document.getElementById('journey_status_dialog_title').innerHTML = "Boarded yet?";
+document.getElementById('journey_status_dialog_content').innerHTML = "<div>Do you have boarded the taxi? If you have difficulties finding the taxi, you can chat with the driver or give him a call.</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
+}
+
+function chat() {
+    document.getElementById("chat_overlay").className = "animated fadeInUp"
+    document.getElementById("chat_overlay").style.display = "block";
+}
+function close_chat() {
+    document.getElementById("chat_overlay").className = "animated fadeOutDown"
+    setTimeout(function(){
+    document.getElementById("chat_overlay").style.display = "none";
+    }, 800);
+}
+$( document ).ready(function() {
+    
+driverid = localStorage.getItem("pickdriver_id");
+clientid = localStorage.getItem("userid");   
+
+$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
+
+});
+
+    
+    
+$("#chat_message_input").keyup(function (e) {
+    if (e.keyCode == 13) {
+        var chat_message = document.getElementById("chat_message_input").value;
+        
+driverid = localStorage.getItem("pickdriver_id");
+clientid = localStorage.getItem("userid");
+        
+$.get( "http://250taxi.com/db/journey/chat.php?task=send_message&driverid="+driverid+"&clientid="+clientid+"&message="+chat_message+"&origin=client", function( data ) {
+
+});
+        
+document.getElementById("chat_message_input").value = "";
+        
+$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
+    console.log(data);
+});
+
+    }
+});
+    
+});

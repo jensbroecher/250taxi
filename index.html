@@ -34,6 +34,17 @@ function letsgo() {
 }
     
 $(document).ready(function() {
+    
+$.get( "http://250taxi.com/db/partner/check_app_update.php?check=client",  function( data ) {
+    var currentversion = "1";
+    var serverversion = data;
+    if (currentversion < serverversion) {
+        alert("Your app is outdated. Please install the update.");
+        window.open('http://250taxi.com/getupdate/client.php', '_system');
+    }
+});
+    
+    
     var rememberuser = localStorage.getItem('rememberuser');
     
     // alert(rememberuser);
