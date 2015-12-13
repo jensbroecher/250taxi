@@ -33,7 +33,7 @@ $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&pas
     document.getElementById('journey_status_dialog').className = "animated fadeIn jd_yellow"
     document.getElementById('journey_status_dialog_window').className = "sdbox animated fadeInUp"
     document.getElementById('journey_status_dialog_title').innerHTML = "Driver has arrived";
-    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Do you have boarded the taxi?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
+    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Have you boarded the taxi ?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
 
     }
     
@@ -136,15 +136,6 @@ function close_chat() {
     }, 800);
 }
 $( document ).ready(function() {
-    
-driverid = localStorage.getItem("pickdriver_id");
-clientid = localStorage.getItem("userid");   
-
-$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
-
-});
-
-    
     
 $("#chat_message_input").keyup(function (e) {
     if (e.keyCode == 13) {

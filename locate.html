@@ -34,6 +34,9 @@ function onDeviceReady() {
       
 <script src="jquery.min.js"></script>
 <script src="jquery.validate.min.js"></script>
+    
+<script src="ls_reset.js"></script>
+    
 <script src="responsivevoice.js"></script>
 <script src="materialize.js"></script>
 <script src="pushmenu/jPushMenu.js"></script>
@@ -1104,6 +1107,33 @@ document.getElementById("loadingindicator").style.display = "none";
     
 $(document).ready( function() {
 function hi(){
+    
+    
+// Update chat window
+
+chat_enabled = localStorage.getItem("chat_enabled");
+
+// Check if chat has been started
+
+if (chat_enabled == "Yes") {
+driverid = localStorage.getItem("pickdriver_id");
+clientid = localStorage.getItem("userid");   
+
+$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
+    
+    // Check if there is a new chat message
+    var chat_new_from_client = document.getElementById("chat_new_from_client").innerHTML;
+    // console.log(chat_new_from_client);
+    
+    if (chat_new_from_client == "1") {
+        console.log("New chat message!");
+    }
+    
+});
+}
+    
+// Report location
+    
         var status_lat= document.getElementById('lat').value;
         var status_long = document.getElementById('long').value;
         var status_username = localStorage.getItem('username');
@@ -1113,6 +1143,8 @@ function hi(){
 $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"", function( data ) {
     
     console.log("Status: " + data);
+    
+// check activity and show messages to client
     
     var activity = localStorage.getItem("activity");
     
@@ -1132,6 +1164,9 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
 });       
 }
 setInterval(hi, 15000);
+    
+// Repeat Server ping
+    
 hi();
 });
     
@@ -1154,6 +1189,20 @@ localStorage.setItem('toast','Sorry, the driver declined your request. Please ch
 
 }
 function accepted() {
+    
+// Start updating chat
+localStorage.setItem("chat_enabled","Yes");
+    
+driverid = localStorage.getItem("pickdriver_id");
+clientid = localStorage.getItem("userid");
+
+$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php? task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function() {
+    document.getElementById("chat_load_messages").className = "animated fadeIn";
+    document.getElementById("chat_load_messages").style.display = "block";
+});
+    
+// Show overlay with buttons
+    
     document.getElementById("driveroverlay_journey_cancel").style.display = "none";
     document.getElementById("journey_accepted_panel").style.display = "block";
     document.getElementById("journey_accepted_panel").className = "animated fadeIn";
