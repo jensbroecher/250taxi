@@ -125,6 +125,10 @@ document.getElementById('journey_status_dialog_title').innerHTML = "Boarded yet?
 document.getElementById('journey_status_dialog_content').innerHTML = "<div>Do you have boarded the taxi? If you have difficulties finding the taxi, you can chat with the driver or give him a call.</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
 }
 
+function call() {
+    phonenumber = localStorage.getItem("phonenumber");
+    window.open("tel:"+phonenumber+"","_self");
+}
 function chat() {
     document.getElementById("chat_overlay").className = "animated fadeInUp"
     document.getElementById("chat_overlay").style.display = "block";
