@@ -240,3 +240,77 @@
     width: 24px;
     height: 24px;
 }
+
+#no_driver_in_range {
+    text-align: center;
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#no_driver_in_range_request {
+    max-width: 250px;
+    min-width: 200px;
+    margin-top: 15px;
+    font-family: Roboto, sans-serif;
+	font-size: 14px;
+    background-color: yellow;
+    text-align: center;
+    color: black;
+    width: 40%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
+#instantscreen {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 100000000;
+    display:none;
+    background-image: url(in_bg.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+#instantscreen #time5min{
+    color: #2C94B3;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Orbitron', sans-serif;
+}
+#instantscreen_instructions {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+#instantscreen_logo {
+    margin-top: 15px;
+    width: 150px;
+}
+#instantscreen_customer_care {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    display: none;
+}
+#call_customer_care_button {
+    font-family: Roboto, sans-serif;
+	font-size: 14px;
+    background-color: #148AAE;
+    text-align: center;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    max-width: 350px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}

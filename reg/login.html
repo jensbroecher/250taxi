@@ -11,6 +11,7 @@
 
 <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
 <script type="text/javascript" charset="utf-8" src="logic.js"></script>
+<script type="text/javascript" charset="utf-8" src="../logupdate.js"></script>
     
 <script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
 <link href="../waves.css" rel="stylesheet" type="text/css">
@@ -196,6 +197,8 @@ if (data == "account_found") {
                 localStorage.removeItem("hotelcorporate");
                 localStorage.setItem("username",username);
                 localStorage.setItem("userid",userid);
+                    
+localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> logged in");logupdate();
                     
                 document.location.href = '../gotostart.html';
                 }

@@ -208,6 +208,10 @@ function pickdriver_request_start () {
     
     localStorage.setItem('activity','driver_selected');
     
+var driverid = localStorage.getItem("pickdriver_id");
+var userid = localStorage.getItem('userid');
+localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> is waiting for driver <span class='log_driverid'>"+driverid+"</span> to accept");logupdate();
+    
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to accept");}
     
@@ -288,7 +292,87 @@ $( "#mydetailedlocation" ).fadeOut( "slow", function() {
 function pickdriver_request_cancel () { 
      document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";    
 }
-function pickdriver_request_cancel_confirmed () { 
-     alert("Request for driver cancelled!");
+function pickdriver_request_cancel_confirmed () {
+    
+showindicator();
+    
+var driverid = localStorage.getItem("pickdriver_id");
+var userid = localStorage.getItem('userid');
+
+localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> cancelled journey with <span class='log_driverid'>"+driverid+"</span>");logupdate();
+
+alert("Request for driver cancelled!");
+    
+setTimeout(function(){ 
     location.reload();
+}, 3000);   
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            // alert("ende");
+            // timer = duration;
+            document.getElementById("time5min").style.display = "none";
+            document.getElementById("instantscreen_customer_care").style.display = "block";   
+        }
+    }, 1000);
+}
+function call_customer_care() {
+    window.open("tel:+250727500250","_self");
+}
+
+function start5mintimer() {
+
+localStorage.setItem('activity','customer_care_waiting');
+document.getElementById("instantscreen").style.display = "block";
+    
+jQuery(function ($) {
+    var fiveMinutes = 60 * 0.1,
+        display = $('#time5min');
+    startTimer(fiveMinutes, display);
+});
 }
