@@ -193,7 +193,7 @@ if (/^\s*$/.test(chat_message)) {
             driverid = localStorage.getItem("pickdriver_id");
             clientid = localStorage.getItem("userid");
 
-            $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=driver", function (data) {
+            $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
                 var chataudio = new Audio('sound/bubbley-xrikazen-7430_hifi.mp3');chataudio.play();
             });
 
