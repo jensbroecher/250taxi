@@ -186,7 +186,7 @@ function chat_send_message() {
     
 if (/^\s*$/.test(chat_message)) {
     console.log("Only whitespace. Message blocked.");
-    var chataudio = new Audio('sound/Computer Error-SoundBible.com-399240903.mp3');chataudio.play();
+    var chataudio = new Audio('sound/error.mp3');chataudio.play();
     return;
 }
 
@@ -194,7 +194,7 @@ if (/^\s*$/.test(chat_message)) {
             clientid = localStorage.getItem("userid");
 
             $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
-                var chataudio = new Audio('sound/bubbley-xrikazen-7430_hifi.mp3');chataudio.play();
+                var chataudio = new Audio('sound/bubbley.mp3');chataudio.play();
             });
 
             document.getElementById("chat_message_input").value = "";
