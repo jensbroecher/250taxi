@@ -15,7 +15,7 @@
         HD Developers
     </author>
         
-    <platform name="android">
+    <platform name="android" />
 	
 	<icon src="icon.png" />
 		
