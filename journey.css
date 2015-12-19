@@ -135,7 +135,7 @@
 #chat_message_send_button {
     position: fixed;
     background-color: #1389AE;
-    background-image: url(send.svg);
+    background-image: url(journey/send.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
