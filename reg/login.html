@@ -198,9 +198,18 @@ if (data == "account_found") {
                 localStorage.setItem("username",username);
                 localStorage.setItem("userid",userid);
                     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> logged in");logupdate();
+localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> logged in");logupdate();  
+
+                var randomclientid = Math.floor(Math.random() * 1000000000);
+                localStorage.setItem("randomclientid",randomclientid);
                     
-                document.location.href = '../gotostart.html';
+                console.log(randomclientid);
+                    
+                 $.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "", function (data) {
+                    document.location.href = '../gotostart.html';
+                });
+                    
+                
                 }
                 else if (pindata == "pin_not_found") {
                 alert("Sorry, your PIN was incorrect. Please check your PIN or contact support.");

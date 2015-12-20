@@ -40,6 +40,7 @@ function onDeviceReady() {
 <script src="jquery.validate.min.js"></script>
     
 <script src="ls_reset.js"></script>
+<script src="mli.js"></script>
     
 <script src="responsivevoice.js"></script>
 <script src="materialize.js"></script>
@@ -305,6 +306,8 @@ html, body, #map {
 </head>
 
 <body>
+    
+<div style="display:none;" id="server_com"></div>
     
 <div class="animated fadeIn" id="instantscreen">
     
@@ -1192,19 +1195,26 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
     
     console.log("Status: " + data);
     
-// check activity and show messages to client
+    document.getElementById("server_com").innerHTML = data;
+    
+    // check activity and show messages to client
     
     var activity = localStorage.getItem("activity");
+    var server_check_if_declined = document.getElementById("server_check_if_declined").innerHTML;
+    var server_journey_status = document.getElementById("server_journey_status").innerHTML;
+ 
+    // Prevent multiple logins
+    mlicheck();
     
     if (activity == "driver_selected" || activity == "driver_has_arrived") {
         
-        if (data == "declined") {
+        if (server_check_if_declined == "declined") {
             declined();
         }
-        if (data == "accepted") {
+        if (server_journey_status == "accepted") {
             console.log("accepted!");
             localStorage.setItem('activity','driver_has_accepted');
-            localStorage.setItem('toast','Driver accepted and is on his way to you');toast();
+            localStorage.setItem('toast','Driver accepted and is on his way to you!');toast();
             accepted();
         }
         

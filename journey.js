@@ -166,6 +166,8 @@ $(document).ready(function () {
 
 function chat() {
     
+localStorage.setItem("chat_window_status","open");
+    
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
     
@@ -175,6 +177,9 @@ localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span
     document.getElementById("chat_overlay").style.display = "block";
 }
 function close_chat() {
+    
+localStorage.setItem("chat_window_status","closed");
+    
     document.getElementById("chat_overlay").className = "animated fadeOutDown"
     setTimeout(function(){
     document.getElementById("chat_overlay").style.display = "none";
