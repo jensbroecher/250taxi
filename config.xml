@@ -32,7 +32,7 @@
 
     <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
         
-    <gap:plugin name="cordova-plugin-nativesettings" source="npm" />
+    <gap:plugin name="cordova.plugins.diagnostic" source="npm" />
     <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
 
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />

@@ -91,11 +91,7 @@
         }
 
         function opensettings() {
-            cordova.plugins.settings.openSetting("open", function() {
-                alert("opened location_source settings")
-            }, function() {
-                alert("failed to open location_source settings")
-            });
+            cordova.plugins.diagnostic.switchToLocationSettings();
         }
 
     </script>
