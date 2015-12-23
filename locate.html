@@ -25,10 +25,22 @@
 <script>
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+    dogpscheck();
     screen.lockOrientation('portrait');
     document.addEventListener("backbutton", function (e) {
         e.preventDefault();
     }, false );
+}
+function dogpscheck() {
+            CheckGPS.check(function win() {
+
+                },
+                function fail() {
+                    opensettings();
+                });
+        }
+        function opensettings() {
+                alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
 }
 </script>
   
