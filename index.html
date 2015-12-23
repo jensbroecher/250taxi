@@ -91,10 +91,10 @@
         }
 
         function opensettings() {
-            cordova.plugins.settings.openSetting("location_source", function() {
-                console.log("opened location_source settings")
+            cordova.plugins.settings.openSetting("open", function() {
+                alert("opened location_source settings")
             }, function() {
-                console.log("failed to open location_source settings")
+                alert("failed to open location_source settings")
             });
         }
 
@@ -161,7 +161,9 @@
     <div id="loginregister">
         <img class="animated zoomIn" style="-webkit-animation-delay: 1.5s;" onclick="document.location.href = 'reg/login.html'" src="reg/login.png">
         <img class="animated zoomIn" style="-webkit-animation-delay: 1.7s;" onclick="document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
-        <button onclick="dogpscheck();"></button>
+        <button onclick="dogpscheck();">
+        GPS?
+        </button>
     </div>
 
     <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;">
