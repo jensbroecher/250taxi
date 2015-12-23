@@ -19,6 +19,7 @@
             // Now safe to use device APIs
             // set to either landscape
             screen.lockOrientation('portrait');
+            dogpscheck();
         }
 
         function showindicator() {
@@ -80,19 +81,17 @@
             document.getElementById('claim').style.color = '#73CEE9';
         }
 
-        function dogpscheck() {
+function dogpscheck() {
             CheckGPS.check(function win() {
-                    alert("GPS OK");
+
                 },
                 function fail() {
-                    alert("Open Settings");
                     opensettings();
                 });
         }
-
         function opensettings() {
-            cordova.plugins.diagnostic.switchToLocationSettings();
-        }
+                alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
+}
 
     </script>
 
@@ -157,9 +156,6 @@
     <div id="loginregister">
         <img class="animated zoomIn" style="-webkit-animation-delay: 1.5s;" onclick="document.location.href = 'reg/login.html'" src="reg/login.png">
         <img class="animated zoomIn" style="-webkit-animation-delay: 1.7s;" onclick="document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
-        <button onclick="dogpscheck();">
-        GPS?
-        </button>
     </div>
 
     <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;">
