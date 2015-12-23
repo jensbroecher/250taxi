@@ -20,6 +20,7 @@
             // set to either landscape
             screen.lockOrientation('portrait');
             dogpscheck();
+            dodevicenamecheck();
         }
 
         function showindicator() {
@@ -92,7 +93,11 @@ function dogpscheck() {
         function opensettings() {
                 alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
 }
-
+function dodevicenamecheck() {
+    var devicename = device.name;
+    alert(devicename);
+}
+        
     </script>
 
     <style>

@@ -108,9 +108,10 @@ localStorage.setItem("logupdate","User <span class='log_userid'>"+clientid+"</sp
     
     console.log("Start Journey!"); 
     
-$.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
-    console.log("Journey ID:" + journey_id);
-    // Return journey id
+$.get( "http://250taxi.com/db/journey/journey_mode.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
+    console.log("Journey ID: " + journey_id);
+    localStorage.setItem("journey_id",journey_id);
+    journey_start_fare();
 });
     
     
@@ -207,4 +208,9 @@ if (/^\s*$/.test(chat_message)) {
             $("#chat_load_messages").load("http://250taxi.com/db/journey/chat.php?task=show_messages&driverid=" + driverid + "&clientid=" + clientid + "", function (data) {
                 console.log(data);
             });
+}
+
+function journey_start_fare() {
+    alert("Let's go!");
+    
 }
