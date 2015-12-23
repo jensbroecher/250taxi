@@ -1169,15 +1169,20 @@ clientid = localStorage.getItem("userid");
 $( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
     
     // Check if there is a new chat message
-    var chat_new_from_client = document.getElementById("chat_new_from_client").innerHTML;
+    // var chat_new_from_client = document.getElementById("chat_new_from_client").innerHTML;
     var chat_new_from_driver = document.getElementById("chat_new_from_driver").innerHTML;
     // console.log(chat_new_from_client);
     
     if (chat_new_from_client == "1") {
-        console.log("New chat message from client");
+        // console.log("New chat message from client");
     }
     if (chat_new_from_driver == "1") {
         console.log("New chat message from driver");
+        
+        
+        var chataudio = new Audio('sound/bubbley.mp3');chataudio.play();
+        
+        
     }
     
 });
