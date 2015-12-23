@@ -94,8 +94,11 @@ function dogpscheck() {
                 alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
 }
 function dodevicenamecheck() {
-    var devicename = device.name;
-    alert(devicename);
+    var device_model = device.model;
+    var device_platform = device.platform;
+    var device_version = device.version;
+    var device_uuid = device.uuid;
+    alert(device_model + device_platform + device_version + device_uuid);
 }
         
     </script>
