@@ -98,7 +98,11 @@ function dodevicenamecheck() {
     var device_platform = device.platform;
     var device_version = device.version;
     var device_uuid = device.uuid;
-    alert(device_model + device_platform + device_version + device_uuid);
+    // alert(device_model + device_platform + device_version + device_uuid);
+    localStorage.setItem("device_model",device_model);
+    localStorage.setItem("device_platform",device_platform);
+    localStorage.setItem("device_version",device_version);
+    localStorage.setItem("device_uuid",device_uuid);
 }
         
     </script>
