@@ -1208,9 +1208,24 @@ $( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=sh
         var status_userid = localStorage.getItem('userid');
         var status_activity = localStorage.getItem('activity');
     
-$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"", function( data ) {
+     var battery = navigator.battery || navigator.mozBattery;
+if (battery) {
+    // battery status for firefox 
+        var device_battery = (battery.level * 100);
+    localStorage.setItem('device_battery',device_battery);
+} else if (navigator.getBattery) {
+    //battery status for chrome
+    navigator.getBattery().then(function(battery) {
+        var device_battery = (battery.level * 100);
+        localStorage.setItem('device_battery',device_battery);
+    });
+}
     
-    console.log("Status: " + data);
+var status_battery = localStorage.getItem('device_battery');
+    
+$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+    
+    // console.log("Status: " + data);
     
     document.getElementById("server_com").innerHTML = data;
     
