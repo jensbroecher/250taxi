@@ -211,6 +211,8 @@ if (/^\s*$/.test(chat_message)) {
 }
 
 function journey_start_fare() {
-    alert("Let's go!");
-    
+   // alert("Let's go!");
+    document.getElementById("journey_status_dialog").style.display = "none";
+    document.getElementById("driveroverlay_show_details").style.display = "none";
+    document.getElementById("journey_accepted_panel").style.display = "none";
 }

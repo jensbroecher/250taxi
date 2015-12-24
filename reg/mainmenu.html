@@ -93,6 +93,17 @@ document.getElementById("reg_start").style.display = "block";
 
 <body>
     
+<div id="viewterms" class="animated fadeInLeft">
+
+<span style="padding: 5px; position:absolute; right: 0px;" onclick="document.getElementById('viewterms').style.display = 'none';">
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+</svg>
+</span>
+
+<div id="viewtermsinside"></div>
+</div>
+    
 <div id="offline" class="animated fadeIn">
 <img src="cloud.png">
 <div>You are offline. This app requires an active internet connection.</div>
@@ -134,6 +145,11 @@ else {
 </script>
 
 <input onblur="nocountrycode();" name="phone" id="phone" type="tel" class="textfield" required placeholder="Phone">
+    
+<div style="clear:both;"></div>
+    <br>
+
+<input id="termsaccepted" type="checkbox" name="termsaccepted" value="termsaccepted" required><span id="termsacceptedtext" onclick="viewterms();"> I accept the <u>terms & conditions</u>.</span> 
 
 <div style="clear:both;"></div>
 
@@ -578,6 +594,13 @@ $("#reg_step_3").validate({
 <div class="fieldgroup">
 
 Please validate your phone number by entering the code you recieved via text message (SMS).
+<br><br>
+<select name="operator" id="operator" class="textfield" required>
+<option value="">Mobile Operator:</option>
+<option value="tigo">Tigo</option>
+<option value="mtn">MTN</option>
+<option value="airtel">Airtel</option>
+</select>
 <br><br>
     
 <center>

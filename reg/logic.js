@@ -164,6 +164,8 @@ lat = localStorage.getItem('latitude');
 long = localStorage.getItem('longitude');
 
 pin = document.getElementById('pin').value;
+    
+
 
 phone = document.getElementById('phone').value.replace(/^[0]+/g,"");
 countrycode = document.getElementById('countrycode').value;
@@ -249,10 +251,10 @@ smskeyuser = document.getElementById('smscode').value;
 // alert(smskey);
 // alert(smskeyuser);
     
-if (smskey === smskeyuser) {
+if (smskey == smskeyuser) {
     localStorage.setItem('phoneisvalidated','Yes');
     console.log('SMS code correct.');
-    alert('SMS code correct. Thank you for validating your number');
+    alert('SMS code correct. Thank you for validating your number!');
     storeindb();
     showindicator();
 }
@@ -264,26 +266,20 @@ else {
 phoneisvalidated = localStorage.getItem('phoneisvalidated');
 console.log(phoneisvalidated);
 
-if (phoneisvalidated == 'Yes') {
-    console.log('Phone is validated.');
-    localStorage.setItem('phoneisvalidatednow','Yes');
-}
-else {
-    console.log('Phone is not validated.');
-    localStorage.setItem('phoneisvalidatednow','No');
-}
-
 }
     
 function storeindb() {
+    
+operator = $('#operator option:selected').val();
+// alert(operator);
 
-var phoneisvalidatednow = localStorage.getItem('phoneisvalidatednow');
+var phoneisvalidated = localStorage.getItem('phoneisvalidated');
 // alert(phoneisvalidatednow);
 
     $.ajax({
         type: "GET",
         url: "http://250taxi.com/db/registration.php",
-        data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidatednow+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&pin="+pin ,
+        data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidated+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&operator="+operator+"&pin="+pin ,
         success: function(html){
             alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 TAXI with your account details. You can now log in with your username: ('+username+').');
             document.location.href = 'login.html';
@@ -292,4 +288,7 @@ var phoneisvalidatednow = localStorage.getItem('phoneisvalidatednow');
 }
 
 
-
+function viewterms() {
+    document.getElementById("viewterms").style.display = "block";
+    $( "#viewtermsinside" ).load( "http://250taxi.com/termsandconditions.php" );
+}
