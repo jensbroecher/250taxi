@@ -196,3 +196,43 @@
 .chat_message_client .chat_arrow_left {
     display: none;
 }
+
+
+
+#journey_fare_display {
+    display: none;
+}
+#journey_fare_display_km {
+    font-size: 150%;
+    font-weight: 200;
+    text-align: center;
+    margin-top: 25px;
+}
+#journey_fare_display_fare {
+    font-size: 180%;
+    font-weight: 200;
+    text-align: center;
+}
+#journey_fare_display_destination {
+    font-size: 100%;
+    font-weight: 400;
+    margin-top: 25px;
+    text-align: center;
+}
+#journey_fare_display_fare span, #journey_fare_display_km span {
+    font-weight: 400;
+}
+#journey_route_info {
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    font-size: 80%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#journey_route_info span {
+    font-size: 120% !important;
+}

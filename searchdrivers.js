@@ -27,7 +27,7 @@ var passenger_long = document.getElementById("long").value;
 $( "#driverlist_scanner" ).load( "http://250taxi.com/db/partner/taxi_scanner.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
 
 });
-        setInterval(getdriverslist, 15000);
+        getdriverslist_updater = setInterval(getdriverslist, 15000);
 });
 });
 });
@@ -46,6 +46,8 @@ $( "#calltaxiui" ).fadeIn( "slow", function() {});
 
 }
 function getdriverslist() {
+    
+$( "#taxis_online_info" ).fadeOut( "slow", function() {});
     
 var passenger_lat = document.getElementById("lat").value;
 var passenger_long = document.getElementById("long").value;

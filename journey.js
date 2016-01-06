@@ -13,16 +13,14 @@ driver_passenger_calculated_distance = parseInt(driver_passenger_calculated_dist
 
 if (driver_passenger_calculated_distance < 0.3) {
     
-    var activity = localStorage.getItem('activity');
+var activity = localStorage.getItem('activity');
     
-    if (activity == 'driver_has_accepted') {
+if (activity == 'driver_has_accepted') {
+
     localStorage.setItem('activity','driver_has_arrived');
-
     var userid = localStorage.getItem('userid');
-        
-$.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"",  function( data ) {
-
-});
+    
+    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"",      function( data ) {});
         
     var pickdriver_name = localStorage.getItem("pickdriver_name");
         
@@ -33,7 +31,7 @@ $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&pas
     document.getElementById('journey_status_dialog').className = "animated fadeIn jd_yellow"
     document.getElementById('journey_status_dialog_window').className = "sdbox animated fadeInUp"
     document.getElementById('journey_status_dialog_title').innerHTML = "Driver has arrived";
-    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Have you boarded the taxi ?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
+    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Have you boarded the taxi?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
 
     }
     
@@ -99,21 +97,20 @@ var iconimage = {
 
 function journey_has_boarded() {
 
-    localStorage.setItem('activity','has_boarded');
+localStorage.setItem('activity','has_boarded');
     
-    driverid = localStorage.getItem("pickdriver_id");
-    clientid = localStorage.getItem("userid");
+driverid = localStorage.getItem("pickdriver_id");
+clientid = localStorage.getItem("userid");
     
 localStorage.setItem("logupdate","User <span class='log_userid'>"+clientid+"</span> boarded with driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
     
-    console.log("Start Journey!"); 
+console.log("Start Journey!"); 
     
 $.get( "http://250taxi.com/db/journey/journey_mode.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
     console.log("Journey ID: " + journey_id);
     localStorage.setItem("journey_id",journey_id);
     journey_start_fare();
-});
-    
+}); 
     
 }
 function journey_not_yet_boarded() {
@@ -200,19 +197,41 @@ if (/^\s*$/.test(chat_message)) {
             clientid = localStorage.getItem("userid");
 
             $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
-                var chataudio = new Audio('sound/bubbley.mp3');chataudio.play();
+                
             });
 
             document.getElementById("chat_message_input").value = "";
 
             $("#chat_load_messages").load("http://250taxi.com/db/journey/chat.php?task=show_messages&driverid=" + driverid + "&clientid=" + clientid + "", function (data) {
-                console.log(data);
+               
             });
 }
 
 function journey_start_fare() {
-   // alert("Let's go!");
+   console.log("Let's go!");
     document.getElementById("journey_status_dialog").style.display = "none";
     document.getElementById("driveroverlay_show_details").style.display = "none";
     document.getElementById("journey_accepted_panel").style.display = "none";
+    document.getElementById("journey_fare_display").style.display = "block";
+    
+    document.getElementById("journey_fare_display_destination_target").innerHTML = localStorage.getItem("destination");
+    
+    var journey_fare_check = setInterval(journey_fare_load, 15000);
+    
+    journey_mode_map();
+}
+function journey_fare_load() {
+    
+var journey_id = localStorage.getItem("journey_id");
+var journey_id = "journey_"+journey_id+"";
+var journey_id = window.btoa(journey_id);
+
+$("#journey_fare_load").load("http://250taxi.com/db/journey/get_total_distance.php?journey_id=" + journey_id + "", function (data) {
+
+document.getElementById("journey_fare_display_km_count").innerHTML = localStorage.getItem("journey_total_distance");
+
+document.getElementById("journey_fare_display_fare_count").innerHTML = localStorage.getItem("journey_total_cost");
+
+});
+
 }

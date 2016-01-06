@@ -16,6 +16,22 @@
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
+            
+            // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+  
+  var notificationOpenedCallback = function(jsonData) {
+    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+  };
+
+  window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3",
+                                 {googleProjectNumber: "1006498509511"},
+                                 notificationOpenedCallback);
+  
+  // Show an alert box if a notification comes in when the user is in your app.
+  window.plugins.OneSignal.enableInAppAlertNotification(true);
+}, false);     
+            
             // Now safe to use device APIs
             // set to either landscape
             screen.lockOrientation('portrait');
@@ -157,11 +173,11 @@ function dodevicenamecheck() {
 
 </head>
 
+<body id="splashpage">
+    
 <div id="loadingindicator" style="display:none">
     <img src="282.gif" width="120">
 </div>
-
-<body id="splashpage">
 
     <div id="claim" class="animated slideInLeft" style="-webkit-animation-delay: 2s;">We take you there</div>
 

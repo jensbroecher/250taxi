@@ -184,6 +184,8 @@
                 // alert(''+phone+' '+loginpin+'');
 
                 $.get("http://250taxi.com/db/check-username-login.php?task=checkusername&username=" + username + "", function(data) {
+                    
+                    // alert(data);
 
                     if (data == "account_found") {
 
