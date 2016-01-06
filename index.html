@@ -16,22 +16,6 @@
         document.addEventListener("deviceready", onDeviceReady, false);
 
         function onDeviceReady() {
-            
-            // Enable to debug issues.
-  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-  
-  var notificationOpenedCallback = function(jsonData) {
-    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-  };
-
-  window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3",
-                                 {googleProjectNumber: "1006498509511"},
-                                 notificationOpenedCallback);
-  
-  // Show an alert box if a notification comes in when the user is in your app.
-  window.plugins.OneSignal.enableInAppAlertNotification(true);
-}, false);     
-            
             // Now safe to use device APIs
             // set to either landscape
             screen.lockOrientation('portrait');
@@ -50,6 +34,23 @@
                 document.location.href = 'locate.html';
             }, 3000);
         }
+        
+        document.addEventListener('deviceready', function () {    
+    
+  // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+  
+  var notificationOpenedCallback = function(jsonData) {
+    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+  };
+
+  window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3",
+                                 {googleProjectNumber: "1006498509511"},
+                                 notificationOpenedCallback);
+  
+  // Show an alert box if a notification comes in when the user is in your app.
+  window.plugins.OneSignal.enableInAppAlertNotification(true);
+}, false);
 
         $(document).ready(function() {
 
