@@ -61,8 +61,6 @@ function luxury() {
 
 function letsgo(service) {
     
-    showindicator();
-    
     var userid = localStorage.getItem('userid');
         
     localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> selected  service " + service);logupdate();
@@ -71,7 +69,7 @@ function letsgo(service) {
         if (service == "taxi") {
         document.location.href = 'locate.html';
         }
-    }, 3000);
+    }, 1000);
 	
 }
 
