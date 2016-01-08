@@ -51,6 +51,13 @@ $.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_l
 setInterval(hi, 10000);
 hi();
 });
+    
+function luxury() {
+    
+    var userid = localStorage.getItem("userid");
+    
+    window.open('http://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'', '_blank', 'location=no');
+}
 
 function letsgo(service) {
     
@@ -63,9 +70,6 @@ function letsgo(service) {
     setTimeout(function(){ 
         if (service == "taxi") {
         document.location.href = 'locate.html';
-        }
-        if (service == "luxury") {
-        document.location.href = 'http://250taxi.com/appcontent/luxury/vehicles.php';
         }
     }, 3000);
 	
@@ -167,7 +171,7 @@ document.getElementById("loadingindicator").style.display = "none";
 <img src="reg/start_taxi.png">
 </div>
 
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="showindicator();setTimeout(function(){letsgo('luxury');}, 2000);">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="showindicator();setTimeout(function(){luxury();}, 2000);">
 <img src="reg/start_luxury2.png">
 </div>
 
