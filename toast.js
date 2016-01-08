@@ -17,7 +17,7 @@ toast_circle();
 
 function toast_circle() {
 document.getElementById("toast").style.display = "block";
-document.getElementById("toast").className = "animated fadeInUp";
+document.getElementById("toast").className = "animated zoomIn";
 document.getElementById("toast_inside").innerHTML = localStorage.getItem("toast");
 var toastaudio = new Audio('http://250taxi.com/sounds/hollow_p-dog-7588_hifi.mp3');toastaudio.play();
 toast_end_animation1 = setTimeout(function(){ 
