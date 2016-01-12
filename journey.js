@@ -18,9 +18,11 @@ var activity = localStorage.getItem('activity');
 if (activity == 'driver_has_accepted') {
 
     localStorage.setItem('activity','driver_has_arrived');
-    var userid = localStorage.getItem('userid');
     
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"",      function( data ) {});
+    var userid = localStorage.getItem('userid');
+    var pickdriver_id = localStorage.getItem("pickdriver_id");
+    
+    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"&pickdriver_id="+pickdriver_id+"",      function( data ) {});
         
     var pickdriver_name = localStorage.getItem("pickdriver_name");
         
@@ -197,14 +199,14 @@ if (/^\s*$/.test(chat_message)) {
             clientid = localStorage.getItem("userid");
 
             $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
-                
+               var chataudio = new Audio('sound/Bell_but-xk-105_hifi.mp3');chataudio.play(); 
             });
 
             document.getElementById("chat_message_input").value = "";
 
             $("#chat_load_messages").load("http://250taxi.com/db/journey/chat.php?task=show_messages&driverid=" + driverid + "&clientid=" + clientid + "", function (data) {
-               
-            });
+    
+});
 }
 
 function journey_start_fare() {

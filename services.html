@@ -36,6 +36,14 @@ function onDeviceReady() {
 
 $(document).ready( function() {
     
+var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+if ( app ) {
+    // PhoneGap application
+} else {
+    document.getElementById("luxury_mobile_web").style.display = "block";
+    document.getElementById("luxury_cordova").style.display = "none";
+}  
+    
     hideindicator();
     
     function hi(){
@@ -52,7 +60,13 @@ setInterval(hi, 10000);
 hi();
 });
     
+function gofadeout() {
+    document.getElementById("loginregister").className = "animated fadeOut";
+}
+    
 function luxury() {
+    
+    
     
     var userid = localStorage.getItem("userid");
     
@@ -60,8 +74,20 @@ function luxury() {
     
     window.open('http://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'', '_blank', 'location=no');
 }
+function luxury_web() {
+    
+
+    
+    var userid = localStorage.getItem("userid");
+    
+    localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> selected luxury");logupdate();
+    
+   location.href = 'http://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'';
+}
 
 function letsgo(service) {
+    
+
     
     var userid = localStorage.getItem('userid');
         
@@ -173,13 +199,21 @@ document.getElementById("loadingindicator").style.display = "none";
 
 <div id="loginregister">
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="setTimeout(function(){letsgo('taxi');}, 2000);">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="gofadeout();setTimeout(function(){letsgo('taxi');}, 2000);">
 <img src="reg/start_taxi.png">
 </div>
-
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="setTimeout(function(){luxury();}, 2000);">
+    
+<span id="luxury_mobile_web" style="display:none;">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury_web();}, 2000);">
 <img src="reg/start_luxury2.png">
 </div>
+</span>
+
+<span id="luxury_cordova">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury();}, 2000);">
+<img src="reg/start_luxury2.png">
+</div>
+</span>
 
 <div class="animated fadeIn" style="display:none;-webkit-animation-delay: 1.6s; -webkit-filter: grayscale(1);"  onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_places.png">
