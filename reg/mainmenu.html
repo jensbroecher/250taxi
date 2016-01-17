@@ -125,7 +125,16 @@ document.getElementById("reg_start").style.display = "block";
     
 <div style="clear:both;"></div>
     
-<input id="countrycode" class="textfield" required placeholder="+250" value="+250">
+<select name="operator" id="operator" class="textfield" required>
+<option value="">Mobile Operator:</option>
+<option value="tigo">Tigo</option>
+<option value="mtn">MTN</option>
+<option value="airtel">Airtel</option>
+</select>
+    
+<div style="clear:both;"></div>
+    
+<input onblur="document.getElementById('phone').value = '';" id="countrycode" class="textfield" required placeholder="+250" value="+250">
     
 <script>
 
@@ -143,6 +152,7 @@ else {
 
 }
 </script>
+    
 
 <input onblur="nocountrycode();" name="phone" id="phone" type="tel" class="textfield" required placeholder="Phone">
     
@@ -170,7 +180,22 @@ rules: {
     phone: {
       required: true,
       phone: true,
-      minlength: 7
+      minlength: 7,
+      remote: { 
+        url:"http://250taxi.com/db/check-phone-signup.php", 
+        data: {'phone':function(){
+            var countrycode = $('#countrycode').val();
+            var phone = $('#phone').val();
+            
+            var phone = phone.replace(/^0+/, '');
+            
+            var countrycode = countrycode.replace('+', '');
+            
+            var pandc = ''+countrycode+''+phone+'';
+            return pandc;
+        }},
+        async:false 
+      }
     },
     email: {
       required: true,
@@ -595,13 +620,6 @@ $("#reg_step_3").validate({
 
 Please validate your phone number by entering the code you recieved via text message (SMS).
 <br><br>
-<select name="operator" id="operator" class="textfield" required>
-<option value="">Mobile Operator:</option>
-<option value="tigo">Tigo</option>
-<option value="mtn">MTN</option>
-<option value="airtel">Airtel</option>
-</select>
-<br><br>
     
 <center>
 <input style="width:100px; font-size:17px; text-align:center; margin-right:5px;" type="tel" name="smscode"  class="textfield" id="smscode" placeholder="SMS code" 
@@ -613,7 +631,7 @@ Please validate your phone number by entering the code you recieved via text mes
     
 <button class="waves-effect waves-light" onclick="checksmscode();">Validate</button>
     
-<button class="waves-effect waves-light" onclick="showindicator();storeindb();">Skip (Validate later)</button>
+<button style="background-color: black;" class="waves-effect waves-light" onclick="localStorage.setItem('phoneisvalidated','No');showindicator();storeindb();">Skip (Validate later)</button>
 
 </div>
     

@@ -462,13 +462,15 @@ $( "#pages" ).fadeOut( "slow", function() {
 $(document).ready(function() {
     
 $( "#taxis_online_info" ).click(function() {
-  $( "#taxis_online_info" ).fadeOut( "slow", function() {
-   
-  });
+    calltaxigo();
+    document.getElementById("taxis_online_info").style.display = "none";
 });
     
-$( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php", function() {
-  $( "#taxis_online_info" ).delay(500).fadeIn( "slow", function() {
+var lat = localStorage.getItem("latitude");
+var long =  localStorage.getItem("longitude");
+    
+$( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {
+  $( "#taxis_online_info" ).delay(1500).fadeIn( "slow", function() {
    
   });
 });

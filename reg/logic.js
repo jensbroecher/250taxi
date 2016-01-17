@@ -174,7 +174,7 @@ countrycode = document.getElementById('countrycode').value;
     
 phone =''+countrycode+''+phone+'';
     
-phonesms = phone.slice(1);
+phonesms = phone.replace(/\+/g, '');
     
 // alert(phonesms);
     
@@ -184,10 +184,8 @@ a = a.toString();
 a = a.substring(-2);
 
 localStorage.setItem('smskey',a);
-    
-document.getElementById("smsgateway").src = "http://www.smskaufen.com/sms/gateway/sms.php?id=ubdream&pw=jambo2015!&type=4&text=Welcome%20to%20250%20taxi.%20Your%20activation%20code%20is%20"+a+".&empfaenger=00"+phonesms+"&absender=250%20taxi";
-    
-// alert(phone);
+
+document.getElementById("smsgateway").src = "http://imghttp.fortytwotele.com/api/current/send/message.php?username=ubdream&password=Ubdream2016&to="+phonesms+"&from=250%20Taxi&route=G1&message=Welcome%20to%20250%20taxi.%20Your%20activation%20code%20is%20"+a+"";
 
 email = document.getElementById('email').value;
     
