@@ -5,6 +5,24 @@
 
 <meta charset="utf-8"> 
     
+<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="manifest.json">
+<meta name="msapplication-TileColor" content="#df600a">
+<meta name="msapplication-TileImage" content="mstile-144x144.png">
+<meta name="theme-color" content="#000000">
+    
 <script src="logupdate.js"></script>
       
 <link href="animate.min.css" rel="stylesheet" type="text/css">
@@ -326,23 +344,6 @@ html, body, #map {
     background-color: rgba(255,255,255,0.7);
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
-#taxis_online_info {
-    background-color: rgba(0,0,0,0.4);
-    padding-left: 2%;
-    padding-right: 2%;
-    line-height: 200%;
-    width: 86%;
-    margin-left: 5%;
-    margin-top: 110px;
-    position: absolute;
-    z-index: 100;
-    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
-    color: white;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    display: none;
-    cursor: pointer;
-}
 </style>
 
 </head>
@@ -374,7 +375,7 @@ html, body, #map {
 
 </div>
     
-<div id="taxis_online_info" class="noselect">Loading...</div>
+<div id="taxis_online_info" class="noselect animated fadeIn"></div>
     
 <div id="chat_overlay">
    
@@ -447,6 +448,14 @@ html, body, #map {
 </style>   
     
 <script>
+function taxis_online_info_load () {   
+
+var lat = localStorage.getItem("latitude");
+var long =  localStorage.getItem("longitude");
+    
+$( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {});
+
+}
 function close_account_overlay() {
 $( "#account_overlay" ).fadeOut( "slow", function() {
 });
@@ -461,19 +470,15 @@ $( "#pages" ).fadeOut( "slow", function() {
 }
 $(document).ready(function() {
     
+taxis_online_info_load();
+    
 $( "#taxis_online_info" ).click(function() {
     calltaxigo();
     document.getElementById("taxis_online_info").style.display = "none";
 });
     
-var lat = localStorage.getItem("latitude");
-var long =  localStorage.getItem("longitude");
-    
-$( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {
-  $( "#taxis_online_info" ).delay(1500).fadeIn( "slow", function() {
-   
-  });
-});
+var taxis_online_info = setInterval(taxis_online_info_load, 15000);
+document.getElementById("taxis_online_info").style.display = "block";
     
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {
@@ -491,7 +496,7 @@ if (voice_enabled == "On") {
         }
         });
 
-});
+}); 
 </script>
     
 <div id="wallet_overlay">
@@ -524,11 +529,7 @@ Wallet</div>
     
 </div>
     
-<div id="wallet_topup_button" onclick="wallet_topup();" class="account_button waves-effect waves-light" on>Top up</div>
-    
-<div id="wallet_promo_code_button" onclick="wallet_code();" class="account_button waves-effect waves-light" on>Promo code</div>
-    
-<div id="wallet_transfer_button" onclick="wallet_transfer();" class="account_button waves-effect waves-light" on>Send money</div>
+<div id="wallet_appcontent"></div>
     
 </div>
     

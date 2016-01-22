@@ -42,6 +42,8 @@ var balance_clientid = localStorage.getItem("userid");
     
 $( "#wallet_balance_amount" ).load( "http://250taxi.com/db/balance/get_balance.php?task=get_balance&userid="+balance_clientid+"", function() {
 $( "#wallet_balance_currency" ).load( "http://250taxi.com/db/balance/get_balance.php?task=get_currency&userid="+balance_clientid+"", function() {
+$( "#wallet_appcontent" ).load( "http://250taxi.com/appcontent/wallet/wallet.php?&userid="+balance_clientid+"", function() {
+});
 });
 });
         
