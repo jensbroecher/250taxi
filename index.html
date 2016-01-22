@@ -29,6 +29,7 @@
     <script src="jquery.min.js"></script>
     <script src="cordova.js"></script>
     <script src="preventreload.js"></script>
+    <script src="http://250taxi.com/appcontent/welcome.js"></script>
 
     <script type="text/javascript">
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -71,8 +72,6 @@
 }, false);
 
         $(document).ready(function() {
-            
-            alert("Welcome to the 250 Taxi experience. You will be able to enjoy our service from 1st Feb 2015.");
 
             $.get("http://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
                 var currentversion = "1";
