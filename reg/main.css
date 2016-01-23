@@ -278,6 +278,9 @@ button {
 label.error {
     line-height: 200%;
     font-size: 80%;
+    background-color: red;
+    color: white;
+    padding: 4px;
 }
 .windowbutton:hover {
     box-shadow: 2px 2px 16px -1px rgba(0, 0, 0, 0.63);

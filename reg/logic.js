@@ -236,8 +236,11 @@ country = 'Other';
 city = document.getElementById('city_other').value;
 }
 
-document.getElementById('reg_smsvalidationwindow').style.display = 'block';
-document.getElementById('reg_complete').style.display = 'none';
+// SMS Validation überspringen
+// document.getElementById('reg_smsvalidationwindow').style.display = 'block';
+// document.getElementById('reg_complete').style.display = 'none';
+    
+localStorage.setItem('phoneisvalidated','No');showindicator();storeindb();
 
 }
 
