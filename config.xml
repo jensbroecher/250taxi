@@ -14,6 +14,11 @@
     <author href="https://www.250taxi.com" email="info@250taxi.com">
         JTH
     </author>
+        
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="windows-phone-target-version" value="10.0" />
+        
+    <splash src="icon.png" platform="winphone" />
 	
 	<icon src="icon.png" />
 		
