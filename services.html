@@ -79,7 +79,7 @@ hi();
 });
     
 function gofadeout() {
-    document.getElementById("loginregister").className = "animated fadeOut";
+    // document.getElementById("loginregister").className = "animated fadeOut";
 }
     
 function luxury() {
@@ -217,18 +217,18 @@ document.getElementById("loadingindicator").style.display = "none";
 
 <div id="loginregister">
     
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="gofadeout();setTimeout(function(){letsgo('taxi');}, 2000);">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.2s;" onclick="gofadeout();setTimeout(function(){letsgo('taxi');}, 100);">
 <img src="reg/start_taxi.png">
 </div>
     
 <span id="luxury_mobile_web" style="display:none;">
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury_web();}, 2000);">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury_web();}, 100);">
 <img src="reg/start_luxury2.png">
 </div>
 </span>
 
 <span id="luxury_cordova">
-<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury();}, 2000);">
+<div class="animated fadeIn" style="-webkit-animation-delay: 1.4s;" onclick="gofadeout();setTimeout(function(){luxury();}, 100);">
 <img src="reg/start_luxury2.png">
 </div>
 </span>
