@@ -612,6 +612,7 @@ $("#reg_step_3").validate({
     },
     username: {
         required: true,
+		minlength: 4,
         remote: "http://250taxi.com/db/check-username.php"
     }
   },

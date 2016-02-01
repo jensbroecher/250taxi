@@ -40,6 +40,15 @@
     <script src="../preventreload.js"></script>
 
     <script type="text/javascript">
+		
+		function showindicator() {
+            document.getElementById("loadingindicator").className = "animated fadeIn";
+            document.getElementById("loadingindicator").style.display = "block";
+        }
+		function hideindicator() {
+            document.getElementById("loadingindicator").style.display = "none";
+        }
+		
         $(document).ready(function() {
 
             $('#username').keyup(function() {
@@ -176,6 +185,8 @@
 
         <script>
             function logincheck() {
+				
+				showindicator();
 
                 var username = document.getElementById('username').value;
 
@@ -242,6 +253,9 @@ if (battery) {
                         });
 
                     } else if (data == "account_not_found") {
+						
+						hideindicator();
+						
                         alert("Sorry, your account was not found. Please check your username or contact support.");
                     }
                 });
