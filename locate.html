@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>250 taxi</title>
+<title>250 Taxi</title>
 
 <meta charset="utf-8"> 
     
@@ -453,9 +453,9 @@ html, body, #map {
 <script>
 function taxis_online_info_load () {   
 
-var lat = localStorage.getItem("latitude");
-var long =  localStorage.getItem("longitude");
-    
+var lat = document.getElementById("lat").value;
+var long = document.getElementById("long").value;
+
 $( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {});
 
 }
