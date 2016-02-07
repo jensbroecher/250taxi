@@ -80,7 +80,7 @@ var username = localStorage.getItem("username");
 
 username = btoa(username);
 	
-$( "#pagestarget" ).load( "http://250taxi.com/appcontent/history.php&username="+username+"", function() {
+$( "#pagestarget" ).load( "http://250taxi.com/appcontent/history.php?username="+username+"", function() {
   $( "#pages" ).fadeIn( "slow", function() {
     
   });
