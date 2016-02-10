@@ -88,7 +88,8 @@ function dogpscheck() {
 <script src="toast.js"></script>
     
 <script src="http://250taxi.com/appcontent/client/summary.js"></script>
-    
+<link rel="stylesheet" type="text/css" href="http://250taxi.com/appcontent/client/summary.css">
+
 <link rel="stylesheet" type="text/css" href="toast.css">
 
 <script>
@@ -353,6 +354,8 @@ html, body, #map {
 </head>
 
 <body>
+	
+<div style="display:none;" id="summary"></div>
     
 <div style="display:none;" id="server_com"></div>
     
@@ -1201,7 +1204,7 @@ var iconimage = {
     anchor: new google.maps.Point(43,90) // anchor
 };
 var iconimage1 = {
-    url: "http://250taxi.com/app/journey/journey_marker_driver.png", // url
+    url: "journey_marker_driver.png", // url
     scaledSize: new google.maps.Size(90, 90), // scaled size
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(43,90) // anchor
@@ -1222,19 +1225,8 @@ document.getElementById("loading_map_indicator").style.display = "none";
 			});
 	a();
 			//moveMarker( map, marker, position.coords.latitude,position.coords.longitude);
-var count=0; var markers = {}; var lat; var lng; var loc; var flightPath=[];
-		function animateCircle(line) {
-    var count = 0;
-    window.setInterval(function() {
-      count = (count + 1) % 200;
-
-      var icons = line.get('icons');
-      icons[0].offset = (count / 2) + '%';
-      line.set('icons', icons);
-  }, 200);
-
-}
-
+var count=0; var markers = []; var lat; var lng; var loc; var flightPath=[];
+		
 function a(){
 			
 $.get( "http://250taxi.com/db/journey/online.php",  function( data ) {
@@ -1242,614 +1234,44 @@ if(data !="[]"){
 var array = JSON.parse(data);
 										 										 
 var latprev=lat; var lngprev=lng; var flightPlanCoordinates;
-var counter=0;
 
-/*************************** */
-array.forEach(function(entry) {
-    
-	var l=entry;
-	var loc=l.split(",");
-		lat=loc[0];
-		lng=loc[1];
-		status=loc[2];
-		taxi_id=loc[3];
-		var previous_lat;
-		var previous_lng;
-		if( typeof markers[taxi_id] !== 'undefined'){
-		 previous_lat = markers[taxi_id].getPosition().lat();
-		 previous_lng = markers[taxi_id].getPosition().lng();
-		}
-		var position = [previous_lat, previous_lng];
-		var numDeltas = 100;
-		var delay = 30; //milliseconds
-		var inc = 0;
-		var deltaLat;
-		var deltaLng;
-		
-
-		function transition2(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker2();
-		}
-		function moveMarker2(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[2];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker2, delay);
-			}
-		}
-
-		function transition18(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker18();
-		}
-		
-		function moveMarker18(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[18];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker18, delay);
-			}
-		}
-		
-		function transition36(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker36();
-		}
-		function moveMarker36(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[36];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker36, delay);
-			}
-		}
-		function transition37(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker37();
-		}
-		function moveMarker37(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[37];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker37, delay);
-			}
-		}
-		function transition38(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker38();
-		}
-		function moveMarker38(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[38];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker38, delay);
-			}
-		}
-		function transition39(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker39();
-		}
-		function moveMarker39(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[39];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker39, delay);
-			}
-		}
-		
-		function transition40(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker40();
-		}
-		function moveMarker40(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[40];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker40, delay);
-			}
-		}
-		function transition41(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker41();
-		}
-		function moveMarker41(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[41];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker41, delay);
-			}
-		}
-		function transition42(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker42();
-		}
-		function moveMarker42(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[42];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker42, delay);
-			}
-		}
-		function transition43(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker43();
-		}
-		function moveMarker43(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[43];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker43, delay);
-			}
-		}
-		function transition44(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker44();
-		}
-		function moveMarker44(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[44];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker44, delay);
-			}
-		}
-		function transition45(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker45();
-		}
-		function moveMarker45(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[45];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker45, delay);
-			}
-		}
-		function transition46(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker46();
-		}
-		function moveMarker46(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[46];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker46, delay);
-			}
-		}
-		function transition70(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker70();
-		}
-		function moveMarker70(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[70];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker70, delay);
-			}
-		}
-		function transition76(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker76();
-		}
-		function moveMarker76(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[76];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker76, delay);
-			}
-		}
-		function transition78(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker78();
-		}
-		function moveMarker78(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[78];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker78, delay);
-			}
-		}function transition79(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker79();
-		}
-		function moveMarker79(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[79];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker79, delay);
-			}
-		}
-		function transition80(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker80();
-		}
-		function moveMarker80(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[80];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker80, delay);
-			}
-		}
-		/*
-var moveMarkerArr=[];
-for (var i = 0; i < 80; i++) {
-moveMarkerArr[moveMarkerArr.length] = (function(val) { return function(){ position[0] += deltaLat;position[1] += deltaLng;var latlng = new google.maps.LatLng(position[0], position[1]);var key=taxi_id;var q=markers[key];if(typeof q !== 'undefined'){q.setPosition(latlng);}if(inc!=numDeltas){inc++;setTimeout(moveMarkerArr[i], delay);} }})(i);
-}
-
-var transitionArr=[];
-for (var i = 0; i < 80; i++) {
-transitionArr[transitionArr.length] = (function(val) { return function(result){ inc = 0;deltaLat = (result[0] - position[0])/numDeltas; deltaLng = (result[1] - position[1])/numDeltas;moveMarkerArr[i]();}})(i);
-}
-*/
-
-
-//transitionArr[1]();
-		function transition(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker();
-		}
-		
-		function moveMarker(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[key];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker, delay);
-			}
-		}
-	
-		if( typeof markers[taxi_id] === 'undefined' && status=="online") {
-				var pos = new google.maps.LatLng(lat, lng);
-				markers[taxi_id] = new google.maps.Marker({
-				position: pos,
-				map: map,
-				draggable: true,
-				icon: iconimage1,
-				title: "Taxi"+taxi_id,
-				id: taxi_id
-				});	
-		}
-		else if( typeof markers[taxi_id] !== 'undefined' && status=="offline"){
-			markers[taxi_id].setMap(null);
-			delete markers[taxi_id]; 
-		}
-		else if( typeof markers[taxi_id] !== 'undefined' && status=="online"){
-			//markers[taxi_id].setPosition( new google.maps.LatLng( lat, lng ) );
-			var result = [lat, lng];
-			taxi_marker=markers[taxi_id];
-			//transitionArr[taxi_id](result);
-			if(taxi_id==2){
-			transition2(result);
-			}
-			if(taxi_id==18){
-			transition18(result);
-			}if(taxi_id==36){
-			transition36(result);
-			}if(taxi_id==37){
-			transition37(result);
-			}if(taxi_id==38){
-			transition38(result);
-			}if(taxi_id==39){
-			transition39(result);
-			}if(taxi_id==40){
-			transition40(result);
-			}if(taxi_id==41){
-			transition41(result);
-			}if(taxi_id==42){
-			transition42(result);
-			}if(taxi_id==43){
-			transition43(result);
-			}if(taxi_id==44){
-			transition44(result);
-			}if(taxi_id==45){
-			transition45(result);
-			}if(taxi_id==46){
-			transition46(result);
-			}if(taxi_id==47){
-			transition47(result);
-			}if(taxi_id==48){
-			transition48(result);
-			}if(taxi_id==70){
-			transition70(result);
-			}if(taxi_id==76){
-			transition76(result);
-			}if(taxi_id==78){
-			transition78(result);
-			}if(taxi_id==79){
-			transition79(result);
-			}if(taxi_id==80){
-			transition80(result);
-			}
-		}
-		
-	
-});
-	
-
-
-
-/*********************************/
-/*
 for (var i = 0; i < array.length; i++) {
 	
 	if( typeof flightPath[i] !== 'undefined' ) {
 		flightPath[i].setMap(null);
 	}
-	var j=0;
+	count++;
 	var l=array[i];
 	var loc=l.split(",");
 		lat=loc[0];
 		lng=loc[1];
-		status=loc[2];
-		taxi_id=loc[3];
-			if(status=="online"){
-			count++;		}
+					
     var pos = new google.maps.LatLng(lat, lng);
-	//alert(count);
-	if(typeof markers[n] !== 'undefined'){
-		if(status=="online"){
-		//alert(2);
-		//alert(count);
-	var previous_lat = markers[n].getPosition().lat();
-	var previous_lng = markers[n].getPosition().lng();
-
-	//markers[i].setPosition( new google.maps.LatLng( lat, lng ) );
-	var position = [previous_lat, previous_lng];
-    var numDeltas = 100;
-    var delay = 10; //milliseconds
-    var inc = 0;
-    var deltaLat;
-    var deltaLng;
-    function transition(result){
-        inc = 0;
-        deltaLat = (result[0] - position[0])/numDeltas;
-        deltaLng = (result[1] - position[1])/numDeltas;
-        moveMarker();
-    }
-    
-    function moveMarker(){
-        position[0] += deltaLat;
-        position[1] += deltaLng;
-        var latlng = new google.maps.LatLng(position[0], position[1]);
-        markers[n].setPosition(latlng);
-        if(inc!=numDeltas){
-            inc++;
-            setTimeout(moveMarker, delay);
-        }
-    }
-	//google.maps.event.addListener(map, 'click', function(me) {
-            var result = [lat, lng];
-           // transition(result);
-       // });
-	/*	
-	var lineSymbol = {
-    path: google.maps.SymbolPath.CIRCLE,
-    scale: 8,
-    strokeColor: '#393'
-  };
-
-	var stavanger=new google.maps.LatLng(lat,lng);
-	var amsterdam=new google.maps.LatLng(pos.lat(),pos.lng());
-	//console.log(pos.lat()); 
-	var myTrip;
-
-	myTrip=[{lat: stavanger.lat(), lng: stavanger.lng()},
-    {lat: previous_lat, lng:previous_lng}];
+	if(count>array.length){
+	markers[i].setPosition( new google.maps.LatLng( lat, lng ) );
 	
-	  flightPath[i]=new google.maps.Polyline({
-	  path:myTrip,
-	  strokeColor:"#FFFFFF",
-	  strokeOpacity:1,
-	  strokeWeight:2,
-	  icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }]
-
-	  });
-
-  animateCircle(flightPath[i]);
-
-	flightPath[i].setMap(map); 
-	*//*
-	}
-	else{
-		//markers[n].setMap(null);
-	}
 
 } else{
- if(status=="online" ){ var n=counter++; 
- //alert(1);
-    markers[n] = new google.maps.Marker({
+    markers[i] = new google.maps.Marker({
         position: pos,
         map: map,
-		draggable: true,
+		draggable: false,
         icon: iconimage1,
 		title: "Taxi"+i,
         id: i
     });	
 }
-}
 
     google.maps.event.addListener(markers[i], 'click', function () {
         //alert(markers[this.id].description)
     });
-	 
 	
-}*/
+}
 	} 
 				});				
 			
 			}
-			   setInterval(a,5000); 
+			   setInterval(a,6000); 
 			
 
             google.maps.event.addListener(marker, 'dragend', function (event) {
