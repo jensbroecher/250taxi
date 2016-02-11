@@ -710,10 +710,10 @@ Loading map...
     
 <div id="journey_fare_display">
 
-<div id="journey_fare_display_km">
+<div id="journey_fare_display_km" style="display:none;">
 Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
 </div>
-<div id="journey_fare_display_fare">
+<div id="journey_fare_display_fare" style="display:none;">
 Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
 </div>
 <div id="journey_fare_display_destination">
@@ -2036,8 +2036,8 @@ if (battery) {
 }
     
 var status_battery = localStorage.getItem('device_battery');
-    
-$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+
+$.get( "http://250taxi.com/db/status_user.php?v=7&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
     
     // console.log("Status: " + data);
     
