@@ -213,6 +213,12 @@
     font-weight: 200;
     text-align: center;
 }
+#journey_fare_notice {
+	margin-top: 20px;
+    font-size: 160%;
+    font-weight: 200;
+    text-align: center;
+}
 #journey_fare_display_destination {
     font-size: 100%;
     font-weight: 400;

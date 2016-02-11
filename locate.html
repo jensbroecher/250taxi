@@ -709,6 +709,8 @@ Loading map...
 <div id="driveroverlay_show_details"></div>
     
 <div id="journey_fare_display">
+	
+<div id="journey_fare_notice">MINIMUM FARE 1500</div>
 
 <div id="journey_fare_display_km" style="display:none;">
 Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
@@ -1903,7 +1905,7 @@ for (var i = 0; i < array.length; i++) {
 };
 		function displayError(error) {
 			var errors = { 
-				1: 'Permission denied\n\nPlease allow 250TAXI to locate you. You can change this in your browsers settings.',
+				1: 'Permission denied\n\nPlease allow 250 Taxi to locate you. On the iPhone, go to "Settings->General->Reset->Reset Location Warnings" and tap "Reset Warnings".',
 				2: 'Position unavailable. 250TAXI was not able to find your current location.',
 				3: 'Request timeout. It took too long to locate you. Please try again.'
 			};
