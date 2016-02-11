@@ -71,6 +71,8 @@ function dogpscheck() {
 
 <script src="jquery.min.js"></script>
 <script src="jquery.validate.min.js"></script>
+	
+<script src="startmap.js"></script>
     
 <script src="ls_reset.js"></script>
 <script src="mli.js"></script>
@@ -171,9 +173,6 @@ html, body, #map {
         background-color: rgba(0,0,0,0.0);
         width: 100%;
         height: 100%;
-		background-image: url(magnify.svg);
-		background-size: contain;
-		background-repeat: no-repeat;
 }
 #inlocationfield {
         font-family: Roboto, sans-serif;
@@ -183,7 +182,6 @@ html, body, #map {
         height: 100%;
         text-indent: 5px;
         background-color: transparent;
-		text-indent: 28px;
 }
 #menubutton {
         background-image: url(menu.svg);
@@ -305,7 +303,7 @@ html, body, #map {
         top: 0%;
         margin-left: 0%;
         margin-right: 0%;
-        background-color: rgba(44, 148, 179, 0.8);
+        background-color: lightgray;
         height: 160px;
         display: none;
         position: absolute;
@@ -963,7 +961,7 @@ $( "#locationfinderdialog_x" ).click(function() {
 <input style="display:none" id="lat" name="lat" val="40.713956">
 <input style="display:none" id="long" name="long" val="74.006653">
 
-<input placeholder="Street / Landmark" id="searchbyaddress" value="">
+<input placeholder="Address / Landmark" id="searchbyaddress" value="">
 
 <div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
 
@@ -994,7 +992,7 @@ else {
     
 var city = ', Kigali';
 var country = ', Rwanda';
-var address = address + city + country;
+// var address = address + city + country;
     
 document.getElementById('inlocationfield').value = address;
     
@@ -1953,26 +1951,6 @@ var elem = document.getElementById('pages');
 elem.webkitRequestFullScreen();
 }
 
-jQuery(document).ready(function($) {
-    
-localStorage.setItem('activity','searching_address');
-    
- $('#searchbyaddress').blur(function() {
-        document.getElementById("calltaxiui").style.display = "block";
-      })
-      .focus(function() {
-        document.getElementById("calltaxiui").style.display = "none";
-      });
-
-$('.toggle-menu').jPushMenu();
-    
-document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 2000);
-    
-});
-
 $(document).ready( function() {
 function hi(){
     
@@ -2037,7 +2015,7 @@ if (battery) {
     
 var status_battery = localStorage.getItem('device_battery');
     
-$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+$.get( "http://250taxi.com/db/status_user.php?vcode=6&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
     
     // console.log("Status: " + data);
     
