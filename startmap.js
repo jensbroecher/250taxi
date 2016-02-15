@@ -502,7 +502,7 @@ if (battery) {
     
 var status_battery = localStorage.getItem('device_battery');
     
-$.get( "http://250taxi.com/db/status_user.php?status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+$.get( "http://250taxi.com/db/status_user.php?ver=8&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
     
     // console.log("Status: " + data);
     

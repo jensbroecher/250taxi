@@ -61,7 +61,7 @@ $( "#welcome_notice" ).load( "http://250taxi.com/appcontent/welcome.php", functi
 });
 
             $.get("http://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
-                var currentversion = "7";
+                var currentversion = "8";
                 var serverversion = data;
                 if (currentversion < serverversion) {
                     alert("Your app is outdated. Please install the update to ensure smooth operation.");
