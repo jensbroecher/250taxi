@@ -177,9 +177,7 @@ body, html {
     transition: all 0.3s;
 }
 #loadingindicator {
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
-	background-color: #E2E2E2;
+	background-color: black;
 	position: absolute;
 	z-index: 10000000000000000;
 	height: 100%;
@@ -245,7 +243,7 @@ document.getElementById("loadingindicator").style.display = "none";
 <img src="reg/start_courier.png">
 </div>
 
-<div class="animated fadeIn" style="-webkit-animation-delay: 2s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
+<div style="display:none;" class="animated fadeIn" style="-webkit-animation-delay: 2s; -webkit-filter: grayscale(1);" onclick="localStorage.setItem('toast','Coming soon...');toast();">
 <img src="reg/start_air.png">
 </div>
 

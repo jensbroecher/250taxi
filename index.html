@@ -23,7 +23,7 @@
             screen.lockOrientation('portrait');
             dogpscheck();
             dodevicenamecheck();
-        }
+			}
 
         function showindicator() {
             document.getElementById("loadingindicator").className = "animated fadeIn";
@@ -144,14 +144,31 @@ function dodevicenamecheck() {
 		}
         
         #loginregister {
-			margin-top: 100px;
+			position: absolute;
+			bottom: 20%;
             width: 80%;
             margin-left: 10%;
         }
         
-        #loginregister img {
+        #loginregister div {
             width: 48%;
+			display: block;
+			font-family: Roboto;
+			font-style: normal;
+			font-size: 16px;
+			font-weight: 400;
+			float: left;
+			border: solid 1px white;
+			padding-top: 8px;
+			padding-bottom: 7px;
+			margin: 2px;
+			transition: all 0.5s;
         }
+		#loginregister div:hover {
+            background-color: rgba(255, 255, 255, 0.22);
+			transition: all 0.5s;
+        }
+        
         
         #claim {
             font-size: 25px;
@@ -177,9 +194,7 @@ function dodevicenamecheck() {
             text-shadow: 0 0 5px #000000;
         }
 	#loadingindicator {
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
-    background-color: #E2E2E2;
+    background-color: black;
     position: absolute;
     z-index: 10000000000000000;
     height: 100%;
@@ -196,24 +211,28 @@ function dodevicenamecheck() {
 		
 		
 	video { 
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+	position: fixed;
+    width: 100%;
+    height: 100%;
+	left: 0px;
     z-index: -100;
-    transform: translateX(-50%) translateY(-50%);
+	object-fit: fill;
 	}
+	#video_placeholder {
+		height: 50%;
+	}
+		#welcome_notice {
+			position: absolute;
+			bottom: 30%;
+		}
 	</style>
 
 </head>
 
 <body>
 	
-<video autoplay id="bgvid" loop>
-<source src="kigali.mp4" type="video/mp4">
+<video autoplay id="bgvid">
+<source src="WELCOM%20SCREEN.mp4" type="video/mp4">
 </video>
     
 <div id="loadingindicator" style="display:none">
@@ -224,15 +243,16 @@ function dodevicenamecheck() {
 		
 		<br>
 		
-		<img style="width: 70%; max-width: 400px;" src="splash_logo.png"><br>
 		
-		<div>We take you there</div>
 		
 		<div id="welcome_notice"></div>
 		
 		<div id="loginregister">
-        	<img class="animated zoomIn" style="-webkit-animation-delay: 1.5s;" onclick="showindicator();document.location.href = 'reg/login.html'" src="reg/login.png">
-        	<img class="animated zoomIn" style="-webkit-animation-delay: 1.7s;" onclick="showindicator();document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
+			
+			<div onclick="showindicator();document.location.href = 'reg/login.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.5s;">Login</div>
+			
+			<div onclick="showindicator();document.location.href = 'reg/mainmenu.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.7s;">Register</div>
+		
     	</div>
 		
 	</div>

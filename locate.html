@@ -60,13 +60,13 @@ function dogpscheck() {
                 });
         }
         function opensettings() {
-                alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
+                alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
 }
 </script>
   
 
   <!--  
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&libraries=places"></script>   
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&libraries=places&callback=initMap"></script>   
   --><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
 
 <script src="jquery.min.js"></script>
@@ -83,16 +83,16 @@ function dogpscheck() {
 <script src="preventreload.js"></script>
     
 <script src="searchdrivers.js"></script>
-<script src="journey.js"></script>
+<script src="journey1.js"></script>
 
 <script src="toast.js"></script>
     
 <script src="http://250taxi.com/appcontent/client/summary.js"></script>
     
 <link rel="stylesheet" type="text/css" href="toast.css">
-
+<script src="startmap.js"></script>
 <script>
-    
+  /*  
 $(document).ready(function() {
     
 var map;
@@ -113,16 +113,13 @@ var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
 
 var input = document.getElementById('taxirequest_destination');
-var input2 = document.getElementById('searchbyaddress');
-
 var options = {
   componentRestrictions: {country: 'rw'}
 };
 
 autocomplete = new google.maps.places.Autocomplete(input, options);    
-autocomplete = new google.maps.places.Autocomplete(input2, options);    
 
-});
+});*/
 </script>
       
 <style>
@@ -171,19 +168,19 @@ html, body, #map {
         background-color: rgba(0,0,0,0.0);
         width: 100%;
         height: 100%;
-		background-image: url(magnify.svg);
-		background-size: contain;
-		background-repeat: no-repeat;
+		  background-image: url(magnify.svg);
+		  background-size: contain;
+		  background-repeat: no-repeat;
 }
 #inlocationfield {
-        font-family: Roboto, sans-serif;
-	    font-size: 16px; 
+       font-family: Roboto, sans-serif;
+     font-size: 16px; 
         width: 100%;
         border: none;
         height: 100%;
         text-indent: 5px;
         background-color: transparent;
-		text-indent: 28px;
+  text-indent: 28px;
 }
 #menubutton {
         background-image: url(menu.svg);
@@ -253,9 +250,7 @@ html, body, #map {
 	top: 0px;
 }
 #loadingindicator {
-    filter: invert(100%);
-    -webkit-filter: invert(100%);
-	background-color: #E2E2E2;
+	background-color: black;
 	position: absolute;
 	z-index: 10000000000000000;
 	height: 100%;
@@ -355,6 +350,7 @@ html, body, #map {
     background-color: rgba(255,255,255,0.7);
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
+
 </style>
 
 </head>
@@ -459,55 +455,7 @@ html, body, #map {
 </style>   
     
 <script>
-function taxis_online_info_load () {   
 
-var lat = document.getElementById("lat").value;
-var long = document.getElementById("long").value;
-    
-$( "#taxis_online_info" ).load( "http://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {});
-
-}
-function close_account_overlay() {
-$( "#account_overlay" ).fadeOut( "slow", function() {
-});
-}
-function close_wallet_overlay() {
-$( "#wallet_overlay" ).fadeOut( "slow", function() {
-});
-}
-function close_help_overlay() {
-$( "#pages" ).fadeOut( "slow", function() {
-});
-}
-$(document).ready(function() {
-    
-taxis_online_info_load();
-    
-$( "#taxis_online_info" ).click(function() {
-    calltaxigo();
-    document.getElementById("taxis_online_info").style.display = "none";
-});
-    
-var taxis_online_info = setInterval(taxis_online_info_load, 15000);
-document.getElementById("taxis_online_info").style.display = "block";
-    
-var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {
-    $('#audio_choice_onoffswitch').prop('checked', true);   
-}
-
-        $( "#audio_choice" ).click(function() {
-        var voice_enabled = document.getElementById('audio_choice_onoffswitch').checked;
-    
-        if (voice_enabled == false) {
-            localStorage.setItem("voice_enabled","Off");
-        }
-        if (voice_enabled == true) {
-            localStorage.setItem("voice_enabled","On");
-        }
-        });
-
-}); 
 </script>
     
 <div id="wallet_overlay">
@@ -709,9 +657,7 @@ Loading map...
 <div id="driveroverlay_show_details"></div>
     
 <div id="journey_fare_display">
-	
 <div id="journey_fare_notice">MINIMUM FARE 1500</div>
-
 <div id="journey_fare_display_km" style="display:none;">
 Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
 </div>
@@ -729,21 +675,7 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 </div>
     
 <script>
-    function driveroverlay_back_to_list_x() {
-        
-    // When you want to cancel it:
-        clearInterval(journey_updater);
-        journey_updater = 0;
-        
-    document.getElementById("driverlist").style.display = "block";
-    document.getElementById("menubutton").style.display = "block";
-    document.getElementById("locationfieldholder").style.display = "block";
-    document.getElementById("locationbutton").style.display = "block";
-    document.getElementById("searchdrivers").style.display = "block";
-    
-    document.getElementById("driveroverlay").style.display = "none";
-    document.getElementById("driveroverlay_journey_start").style.display = "none";
-    }
+   
 </script>
     
 <div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
@@ -806,28 +738,7 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 </div>
     
 <script>
-    function cancel_reason_close() {
-        
-        showindicator();
-        
-        document.getElementById('driveroverlay_journey_cancel_dialog').style.display = 'none';
-        document.getElementById('driveroverlay_journey_cancel_dialog').style.display = 'none';
-        document.getElementById('driveroverlay_journey_cancel').style.display = 'none';
-        
-        var pickdriver_id = localStorage.getItem("pickdriver_id");
-        var username = localStorage.getItem("username");
-        
-        var cancel_reason = localStorage.getItem("cancel_reason");
-        
-        if(cancel_reason == "other") {
-            cancel_reason = prompt("Please let the driver know why you cancel", "");
-        }
-        
-         $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=cancel&username="+username+"&pickdriver_id="+pickdriver_id+"&cancel_reason="+cancel_reason+"",  function( data ) {
-        location.reload();
-    });
-        
-    }
+
 </script>
     
 <style>
@@ -882,21 +793,7 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 </div>
 
 <script>
-    function logout() {
-        
-    showindicator();
-        
-var userid = localStorage.getItem('userid');     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> logged out");logupdate();
 
-    localStorage.removeItem('rememberuser');
-    localStorage.removeItem('username');
-        
-    setTimeout(function(){
-        document.location.href = 'index.html';    
-    }, 3000);
-
-    }
 </script>
     
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
@@ -919,38 +816,6 @@ localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span
 <div id="menubutton" class="toggle-menu menu-left"> </div>
     
 <script>
-$(document).ready(function() {
-    
-if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-    console.log("We detected you are using an iPhone");
-}
-    
-var overlay_shown = localStorage.getItem("overlay_shown");
-
-if(overlay_shown == "Yes") {
-    document.getElementById("overlay").style.display = "none";
-}
-    
-$( "#overlay" ).click(function() {
-    localStorage.setItem("overlay_shown","Yes");
-    $( "#overlay").fadeOut( "slow", function() {
-
-    });
-});
-    
-$( "#locationfield" ).click(function() {
-    $( "#locationfinderdialog").slideDown( "slow", function() {
-        $("#searchbyaddress").focus();
-    });
-});
-
-$( "#locationfinderdialog_x" ).click(function() {
-    $( "#locationfinderdialog").slideUp( "slow", function() {
-
-    });
-});
-
-});
 
 </script>
     
@@ -965,7 +830,7 @@ $( "#locationfinderdialog_x" ).click(function() {
 <input style="display:none" id="lat" name="lat" val="40.713956">
 <input style="display:none" id="long" name="long" val="74.006653">
 
-<input placeholder="Street / Landmark" id="searchbyaddress" value="">
+<input placeholder="Landmark / Street" id="searchbyaddress" value="">
 
 <div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
 
@@ -979,102 +844,7 @@ $( "#locationfinderdialog_x" ).click(function() {
 </div>
     
 <script>
-function codeAddress() {
-    
-var address = document.getElementById('searchbyaddress').value;
-    
-var addresslength = address.length;
-    
-if (addresslength > 2) {
-    $( "#locationfinderdialog").slideUp( "slow", function() {});
-    
-}
-else {
-    alert("Please enter a search term!");
-    return;
-}
-    
-var city = ', Kigali';
-var country = ', Rwanda';
-var address = address + city + country;
-    
-document.getElementById('inlocationfield').value = address;
-    
-  geocoder.geocode( { 'address': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      pos = results[0].geometry.location;
-    
-      pos2box = String(pos);
-    
-      pos2box = pos2box.split(',',2);
-        
-    // alert(pos2box[0]);
-    // alert(pos2box[1]);
-    
-    // var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        
-    var search_lat = pos2box[0];        
-    var search_lat = search_lat.slice( 1 );     
-    var search_long = pos2box[1];  
-    var search_long = search_long.slice( 1 );  
-    var search_long = search_long.substring(0, search_long.length - 1);
-        
-        document.getElementById("lat").value = search_lat;
-        document.getElementById("long").value = search_long;
-        
-    var options = {
-				zoom: 16,
-                disableDefaultUI: true,
-                streetViewControl: false,
-				center: pos,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
-			};
-    
-   var map = new google.maps.Map(document.getElementById("map"), options);
-        
-    // alert(pos);
-        
-    // Remove the current marker, if there is one
-			if (typeof(marker) != "undefined") marker.setMap(null);
-            
-var iconimage = {
-    url: "userpinicon.png", // url
-    scaledSize: new google.maps.Size(90, 90), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(43,90) // anchor
-};
-       
-marker2 = new google.maps.Marker({
-                draggable: true,
-                icon: iconimage,
-				position: pos,
-				map: map,
-				title: "User location"
-			});
-        
-google.maps.event.addListener(marker2, 'dragend', function (event) {
-            document.getElementById("lat").value = event.latLng.lat();
-            document.getElementById("long").value = event.latLng.lng();
-});
-        
 
-google.maps.event.addListener(marker2, 'dragend', function(evt){
-
-pos = new google.maps.LatLng(evt.latLng.lat().toFixed(3),evt.latLng.lng().toFixed(3));
-                
-geocodeLatLng(geocoder, map);
-    
-});
-        
-        
-        
-    } 
-    else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}    
 </script>
 
 <div id="locationfieldholder">
@@ -1083,13 +853,7 @@ geocodeLatLng(geocoder, map);
 </div>
     
 <script>
-function audio_update_location() {
-    
-localStorage.setItem('toast','Locating you on map');toast();
-    
-var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Locating... Please wait");}    
-}
+
 </script>
     
 <div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"> </div>    
@@ -1099,1028 +863,6 @@ if (voice_enabled == "On") {responsiveVoice.speak("Locating... Please wait");}
 
 <script>
     
-function showindicator() {
-document.getElementById("loadingindicator").className = "animated fadeIn";
-document.getElementById("loadingindicator").style.display = "block";
-}
-function hideindicator() {
-document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 1000);
-}
-
-
-var marker;
-var infoWindow;
-    
-function reloadPositionStart() {
-     
-    reloadPosition();
-    document.getElementById("locationbutton").className = 'menugpsblue';
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 1000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 2000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 3000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 4000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 5000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 6000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 7000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugpsblue';}, 8000);
-    setTimeout(function(){document.getElementById("locationbutton").className = 'menugps';}, 8000);
-}
-    
-function reloadPosition() {
-navigator.geolocation.getCurrentPosition(
-				displayPosition, 
-				displayError, {
-                enableHighAccuracy: true,
-                timeout: timeoutVal,
-                maximumAge: 0
-                }
-			);
-pos;
-// alert('reloaded: '+pos+'');
-}
-
-if (navigator.geolocation) {
-    
-			var timeoutVal = 10 * 1000 * 1000;
-
-			navigator.geolocation.getCurrentPosition(
-				displayPosition, 
-				displayError, {
-                enableHighAccuracy: true,
-                timeout: timeoutVal,
-                maximumAge: 0
-                }
-			);
-            
-}
-else {
-alert("Geolocation is not supported");
-}
-		/*function calculateAndDisplayRoute(directionsService, directionsDisplay) {
- 
-  directionsService.route({
-     origin: "Chicago, IL",
-  destination: "Los Angeles, CA",
-
-    // Note that Javascript allows us to access the constant
-    // using square brackets and a string value as its
-    // "property."
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
-}*/
- var directionsDisplay = new google.maps.DirectionsRenderer;
-  var directionsService = new google.maps.DirectionsService;
-
-function displayPosition(position) {	
-
-            document.getElementById("lat").value = position.coords.latitude;
-            document.getElementById("long").value = position.coords.longitude;     
-            
-            pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            
-            geocodeLatLng(geocoder, map);
-            
-			var options = {
-				zoom: 16,
-                disableDefaultUI: true,
-                streetViewControl: false,
-				center: pos,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
-			};
-			var map = new google.maps.Map(document.getElementById("map"), options);
-			// Remove the current marker, if there is one
-			if (typeof(marker) != "undefined") marker.setMap(null);
-			  p1=pos.lat(); 
-       p2=pos.lng();
-            
-var iconimage = {
-    url: "userpinicon.png", // url
-    scaledSize: new google.maps.Size(90, 90), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(43,90) // anchor
-};
-var iconimage1 = {
-    url: "http://250taxi.com/app/journey/journey_marker_driver.png", // url
-    scaledSize: new google.maps.Size(90, 90), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(43,90) // anchor
-};
-document.getElementById("locationfield").style.display = "block";
-document.getElementById("locationfieldholder").style.display = "block";
-document.getElementById("inlocationfield").style.display = "block";
-    
-document.getElementById("loading_map_indicator").style.display = "none";
-            
-			marker = new google.maps.Marker({
-                draggable: true,
-                // icon: "userpinicon.png",
-                icon: iconimage,
-				position: pos,
-				map: map,
-				title: "User location"
-			});
-	a();
-			//moveMarker( map, marker, position.coords.latitude,position.coords.longitude);
-var count=0; var markers = {}; var lat; var lng; var loc; var flightPath=[];
-		function animateCircle(line) {
-    var count = 0;
-    window.setInterval(function() {
-      count = (count + 1) % 200;
-
-      var icons = line.get('icons');
-      icons[0].offset = (count / 2) + '%';
-      line.set('icons', icons);
-  }, 200);
-
-}
-
-function a(){
-			
-$.get( "http://250taxi.com/db/journey/online.php",  function( data ) {
-if(data !="[]"){ 
-var array = JSON.parse(data);
-										 										 
-var latprev=lat; var lngprev=lng; var flightPlanCoordinates;
-var counter=0;
-
-/*************************** */
-array.forEach(function(entry) {
-    
-	var l=entry;
-	var loc=l.split(",");
-		lat=loc[0];
-		lng=loc[1];
-		status=loc[2];
-		taxi_id=loc[3];
-		var previous_lat;
-		var previous_lng;
-		if( typeof markers[taxi_id] !== 'undefined'){
-		 previous_lat = markers[taxi_id].getPosition().lat();
-		 previous_lng = markers[taxi_id].getPosition().lng();
-		}
-		var position = [previous_lat, previous_lng];
-		var numDeltas = 100;
-		var delay = 30; //milliseconds
-		var inc = 0;
-		var deltaLat;
-		var deltaLng;
-		
-
-		function transition2(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker2();
-		}
-		function moveMarker2(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[2];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker2, delay);
-			}
-		}
-
-		function transition18(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker18();
-		}
-		
-		function moveMarker18(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[18];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker18, delay);
-			}
-		}
-		
-		function transition36(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker36();
-		}
-		function moveMarker36(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[36];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker36, delay);
-			}
-		}
-		function transition37(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker37();
-		}
-		function moveMarker37(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[37];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker37, delay);
-			}
-		}
-		function transition38(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker38();
-		}
-		function moveMarker38(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[38];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker38, delay);
-			}
-		}
-		function transition39(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker39();
-		}
-		function moveMarker39(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[39];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker39, delay);
-			}
-		}
-		
-		function transition40(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker40();
-		}
-		function moveMarker40(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[40];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker40, delay);
-			}
-		}
-		function transition41(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker41();
-		}
-		function moveMarker41(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[41];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker41, delay);
-			}
-		}
-		function transition42(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker42();
-		}
-		function moveMarker42(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[42];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker42, delay);
-			}
-		}
-		function transition43(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker43();
-		}
-		function moveMarker43(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[43];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker43, delay);
-			}
-		}
-		function transition44(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker44();
-		}
-		function moveMarker44(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[44];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker44, delay);
-			}
-		}
-		function transition45(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker45();
-		}
-		function moveMarker45(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[45];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker45, delay);
-			}
-		}
-		function transition46(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker46();
-		}
-		function moveMarker46(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[46];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker46, delay);
-			}
-		}
-		function transition70(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker70();
-		}
-		function moveMarker70(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[70];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker70, delay);
-			}
-		}
-		function transition76(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker76();
-		}
-		function moveMarker76(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[76];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker76, delay);
-			}
-		}
-		function transition78(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker78();
-		}
-		function moveMarker78(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[78];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker78, delay);
-			}
-		}function transition79(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker79();
-		}
-		function moveMarker79(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[79];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker79, delay);
-			}
-		}
-		function transition80(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker80();
-		}
-		function moveMarker80(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[80];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker80, delay);
-			}
-		}
-		/*
-var moveMarkerArr=[];
-for (var i = 0; i < 80; i++) {
-moveMarkerArr[moveMarkerArr.length] = (function(val) { return function(){ position[0] += deltaLat;position[1] += deltaLng;var latlng = new google.maps.LatLng(position[0], position[1]);var key=taxi_id;var q=markers[key];if(typeof q !== 'undefined'){q.setPosition(latlng);}if(inc!=numDeltas){inc++;setTimeout(moveMarkerArr[i], delay);} }})(i);
-}
-
-var transitionArr=[];
-for (var i = 0; i < 80; i++) {
-transitionArr[transitionArr.length] = (function(val) { return function(result){ inc = 0;deltaLat = (result[0] - position[0])/numDeltas; deltaLng = (result[1] - position[1])/numDeltas;moveMarkerArr[i]();}})(i);
-}
-*/
-
-
-//transitionArr[1]();
-		function transition(result){
-			inc = 0;
-			deltaLat = (result[0] - position[0])/numDeltas;
-			deltaLng = (result[1] - position[1])/numDeltas;
-			moveMarker();
-		}
-		
-		function moveMarker(){
-			position[0] += deltaLat;
-			position[1] += deltaLng;
-			var latlng = new google.maps.LatLng(position[0], position[1]);
-			var key=taxi_id;
-			var q=markers[key];
-			if(typeof q !== 'undefined'){
-			q.setPosition(latlng);
-			}
-			if(inc!=numDeltas){
-				inc++;
-				setTimeout(moveMarker, delay);
-			}
-		}
-	
-		if( typeof markers[taxi_id] === 'undefined' && status=="online") {
-				var pos = new google.maps.LatLng(lat, lng);
-				markers[taxi_id] = new google.maps.Marker({
-				position: pos,
-				map: map,
-				draggable: true,
-				icon: iconimage1,
-				title: "Taxi"+taxi_id,
-				id: taxi_id
-				});	
-		}
-		else if( typeof markers[taxi_id] !== 'undefined' && status=="offline"){
-			markers[taxi_id].setMap(null);
-			delete markers[taxi_id]; 
-		}
-		else if( typeof markers[taxi_id] !== 'undefined' && status=="online"){
-			//markers[taxi_id].setPosition( new google.maps.LatLng( lat, lng ) );
-			var result = [lat, lng];
-			taxi_marker=markers[taxi_id];
-			//transitionArr[taxi_id](result);
-			if(taxi_id==2){
-			transition2(result);
-			}
-			if(taxi_id==18){
-			transition18(result);
-			}if(taxi_id==36){
-			transition36(result);
-			}if(taxi_id==37){
-			transition37(result);
-			}if(taxi_id==38){
-			transition38(result);
-			}if(taxi_id==39){
-			transition39(result);
-			}if(taxi_id==40){
-			transition40(result);
-			}if(taxi_id==41){
-			transition41(result);
-			}if(taxi_id==42){
-			transition42(result);
-			}if(taxi_id==43){
-			transition43(result);
-			}if(taxi_id==44){
-			transition44(result);
-			}if(taxi_id==45){
-			transition45(result);
-			}if(taxi_id==46){
-			transition46(result);
-			}if(taxi_id==47){
-			transition47(result);
-			}if(taxi_id==48){
-			transition48(result);
-			}if(taxi_id==70){
-			transition70(result);
-			}if(taxi_id==76){
-			transition76(result);
-			}if(taxi_id==78){
-			transition78(result);
-			}if(taxi_id==79){
-			transition79(result);
-			}if(taxi_id==80){
-			transition80(result);
-			}
-		}
-		
-	
-});
-	
-
-
-
-/*********************************/
-/*
-for (var i = 0; i < array.length; i++) {
-	
-	if( typeof flightPath[i] !== 'undefined' ) {
-		flightPath[i].setMap(null);
-	}
-	var j=0;
-	var l=array[i];
-	var loc=l.split(",");
-		lat=loc[0];
-		lng=loc[1];
-		status=loc[2];
-		taxi_id=loc[3];
-			if(status=="online"){
-			count++;		}
-    var pos = new google.maps.LatLng(lat, lng);
-	//alert(count);
-	if(typeof markers[n] !== 'undefined'){
-		if(status=="online"){
-		//alert(2);
-		//alert(count);
-	var previous_lat = markers[n].getPosition().lat();
-	var previous_lng = markers[n].getPosition().lng();
-
-	//markers[i].setPosition( new google.maps.LatLng( lat, lng ) );
-	var position = [previous_lat, previous_lng];
-    var numDeltas = 100;
-    var delay = 10; //milliseconds
-    var inc = 0;
-    var deltaLat;
-    var deltaLng;
-    function transition(result){
-        inc = 0;
-        deltaLat = (result[0] - position[0])/numDeltas;
-        deltaLng = (result[1] - position[1])/numDeltas;
-        moveMarker();
-    }
-    
-    function moveMarker(){
-        position[0] += deltaLat;
-        position[1] += deltaLng;
-        var latlng = new google.maps.LatLng(position[0], position[1]);
-        markers[n].setPosition(latlng);
-        if(inc!=numDeltas){
-            inc++;
-            setTimeout(moveMarker, delay);
-        }
-    }
-	//google.maps.event.addListener(map, 'click', function(me) {
-            var result = [lat, lng];
-           // transition(result);
-       // });
-	/*	
-	var lineSymbol = {
-    path: google.maps.SymbolPath.CIRCLE,
-    scale: 8,
-    strokeColor: '#393'
-  };
-
-	var stavanger=new google.maps.LatLng(lat,lng);
-	var amsterdam=new google.maps.LatLng(pos.lat(),pos.lng());
-	//console.log(pos.lat()); 
-	var myTrip;
-
-	myTrip=[{lat: stavanger.lat(), lng: stavanger.lng()},
-    {lat: previous_lat, lng:previous_lng}];
-	
-	  flightPath[i]=new google.maps.Polyline({
-	  path:myTrip,
-	  strokeColor:"#FFFFFF",
-	  strokeOpacity:1,
-	  strokeWeight:2,
-	  icons: [{
-      icon: lineSymbol,
-      offset: '100%'
-    }]
-
-	  });
-
-  animateCircle(flightPath[i]);
-
-	flightPath[i].setMap(map); 
-	*//*
-	}
-	else{
-		//markers[n].setMap(null);
-	}
-
-} else{
- if(status=="online" ){ var n=counter++; 
- //alert(1);
-    markers[n] = new google.maps.Marker({
-        position: pos,
-        map: map,
-		draggable: true,
-        icon: iconimage1,
-		title: "Taxi"+i,
-        id: i
-    });	
-}
-}
-
-    google.maps.event.addListener(markers[i], 'click', function () {
-        //alert(markers[this.id].description)
-    });
-	 
-	
-}*/
-	} 
-				});				
-			
-			}
-			   setInterval(a,5000); 
-			
-
-            google.maps.event.addListener(marker, 'dragend', function (event) {
-            document.getElementById("lat").value = event.latLng.lat();
-            document.getElementById("long").value = event.latLng.lng();
-            geocodeLatLng(geocoder, map);
-            });
-
-            // get coordinates from marker?
-            google.maps.event.addListener(marker, 'dragend', function(evt){
-            // document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' +         evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
-                
-            pos = new google.maps.LatLng(evt.latLng.lat().toFixed(3),evt.latLng.lng().toFixed(3));
-                
-            // alert('Marker dropped: Current Lat: '+evt.latLng.lat().toFixed(3)+' Current Lng: '+evt.latLng.lng().toFixed(3)+' Pos: '+pos+'');
-            
-            geocodeLatLng(geocoder, map);
-                
-            });
-                
-			var contentString = "<b>Timestamp:</b> " + parseTimestamp(position.timestamp) + "<br/><b>User location:</b> lat " + position.coords.latitude + ", long " + position.coords.longitude + ", accuracy " + position.coords.accuracy;
-			// Remove the current infoWindow, if there is one
-			
-            if (typeof(infoWindow) != "undefined") infoWindow.setMap(null);
-			infowindow = new google.maps.InfoWindow({
-				content: contentString
-			});
-            
-			// google.maps.event.addListener(marker, 'click', function() {
-			//	infowindow.open(map,marker);
-			// });
-            
-		}
-		function moveMarker( map, marker,lat,lng ) {
-    
-    //delayed so you can see it move
-    setTimeout( function(){ 
-    
-        marker.setPosition( new google.maps.LatLng( lat-0.10, lng-0.10 ) );
-        map.panTo( new google.maps.LatLng(lat-0.10, lng-0.10) );
-        
-    }, 500 );
-
-};
-		function displayError(error) {
-			var errors = { 
-				1: 'Permission denied\n\nPlease allow 250 Taxi to locate you. On the iPhone, go to "Settings->General->Reset->Reset Location Warnings" and tap "Reset Warnings".',
-				2: 'Position unavailable. 250TAXI was not able to find your current location.',
-				3: 'Request timeout. It took too long to locate you. Please try again.'
-			};
-			alert("Error: " + errors[error.code]);
-		}
-		function parseTimestamp(timestamp) {
-			var d = new Date(timestamp);
-			var day = d.getDate();
-			var month = d.getMonth() + 1;
-			var year = d.getFullYear();
-			var hour = d.getHours();
-			var mins = d.getMinutes();
-			var secs = d.getSeconds();
-			var msec = d.getMilliseconds();
-			return day + "." + month + "." + year + " " + hour + ":" + mins + ":" + secs + "," + msec;
-		}
-    
-var geocoder = new google.maps.Geocoder;
-    
-function geocodeLatLng(geocoder, map) {
-    
-  // var input = String(pos);
-    
-  // var latlngStr = input.split(',', 2);
-    
-  // var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-    
-  geocoder.geocode({'location': pos}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        // infowindow.setContent(results[1].formatted_address);
-        // infowindow.open(map, marker);
-        document.getElementById('inlocationfield').value = results[0].formatted_address;
-      } 
-    else {
-        // window.alert('No results found');
-      }
-    } 
-    else {
-      // window.alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
-
-function gofullscreen() {
-var elem = document.getElementById('pages');
-elem.webkitRequestFullScreen();
-}
-
-jQuery(document).ready(function($) {
-    
-localStorage.setItem('activity','searching_address');
-    
- $('#searchbyaddress').blur(function() {
-        document.getElementById("calltaxiui").style.display = "block";
-      })
-      .focus(function() {
-        document.getElementById("calltaxiui").style.display = "none";
-      });
-
-$('.toggle-menu').jPushMenu();
-    
-document.getElementById("loadingindicator").className = "animated fadeOut";
-setTimeout(function(){
-document.getElementById("loadingindicator").style.display = "none";
-}, 2000);
-    
-});
-
-$(document).ready( function() {
-function hi(){
-    
-    
-// Update chat window
-
-chat_enabled = localStorage.getItem("chat_enabled");
-
-// Check if chat has been started
-
-if (chat_enabled == "Yes") {
-driverid = localStorage.getItem("pickdriver_id");
-clientid = localStorage.getItem("userid");   
-
-$( "#chat_load_messages" ).load( "http://250taxi.com/db/journey/chat.php?task=show_messages&driverid="+driverid+"&clientid="+clientid+"", function( data ) {
-    
-    // Check if there is a new chat message
-    // var chat_new_from_client = document.getElementById("chat_new_from_client").innerHTML;
-    var chat_new_from_driver = document.getElementById("chat_new_from_driver").innerHTML;
-    // console.log(chat_new_from_client);
-    
-    if (chat_new_from_client == "1") {
-        // console.log("New chat message from client");
-    }
-    if (chat_new_from_driver == "1") {
-        console.log("New chat message from driver");
-        
-            chat();
-
-            
-            $.get( "http://250taxi.com/db/journey/chat.php?task=clear_driver&driverid=" + driverid + "&clientid=" + clientid + "",  function( data ) {
-             var chataudio = new Audio('sound/Bell_but-xk-106_hifi.mp3');chataudio.play();   
-            });
-
-        
-        
-    }
-    
-});
-}
-    
-// Report location
-    
-        var status_lat= document.getElementById('lat').value;
-        var status_long = document.getElementById('long').value;
-        var status_username = localStorage.getItem('username');
-        var status_userid = localStorage.getItem('userid');
-        var status_activity = localStorage.getItem('activity');
-    
-     var battery = navigator.battery || navigator.mozBattery;
-if (battery) {
-    // battery status for firefox 
-        var device_battery = (battery.level * 100);
-    localStorage.setItem('device_battery',device_battery);
-} else if (navigator.getBattery) {
-    //battery status for chrome
-    navigator.getBattery().then(function(battery) {
-        var device_battery = (battery.level * 100);
-        localStorage.setItem('device_battery',device_battery);
-    });
-}
-    
-var status_battery = localStorage.getItem('device_battery');
-
-$.get( "http://250taxi.com/db/status_user.php?v=7&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
-    
-    // console.log("Status: " + data);
-    
-    document.getElementById("server_com").innerHTML = data;
-    
-    // check activity and show messages to client
-    
-    var activity = localStorage.getItem("activity");
-    var server_check_if_declined = document.getElementById("server_check_if_declined").innerHTML;
-    var server_journey_status = document.getElementById("server_journey_status").innerHTML;
- 
-    // Prevent multiple logins
-    mlicheck();
-    
-    if (activity == "driver_selected" || activity == "driver_has_arrived") {
-        
-        if (server_check_if_declined == "declined") {
-            declined();
-        }
-        if (server_journey_status == "accepted") {
-            console.log("accepted!");
-            localStorage.setItem("activity","driver_has_accepted");
-            localStorage.setItem("toast","Driver accepted and is on his way to you!");toast();
-            accepted();
-        }
-        
-    }
-    
-    if (activity == "has_boarded") {
-
-        if (server_journey_status == "summary") {
-            console.log("Summary");
-            localStorage.setItem("activity","summary");
-            localStorage.setItem("toast","Journey has ended");toast();
-            summary();
-        }
-        
-    }  
-    
-});       
-}
-setInterval(hi, 6000);
-    
-// Repeat Server ping
-    
-hi();
-});
-    
-function declined () {
-    
-var pickdriver_id = localStorage.getItem("pickdriver_id");
-var username = localStorage.getItem("username");
-    
-localStorage.setItem('toast','Sorry, the driver declined your request. Please choose a different driver.');toast();
-
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=declined&username="+username+"",  function( data ) {
-        setTimeout(function(){
-        showindicator();
-        }, 5000);
-        setTimeout(function(){
-        alert("Sorry, the driver declined your request. Please choose a different driver.");
-        location.reload();
-        }, 6000);
-    });
-
-}
-function accepted() {
-    
-// Start updating chat
-localStorage.setItem("chat_enabled","Yes");
-    
-driverid = localStorage.getItem("pickdriver_id");
-clientid = localStorage.getItem("userid");
-    
-localStorage.setItem("logupdate","Driver <span class='log_driverid'>"+driverid+"</span> acccepted request of user <span class='log_userid'>"+clientid+"</span>");logupdate();
-    
-// Show overlay with buttons 
-    document.getElementById("driveroverlay_journey_cancel").style.display = "none";
-    document.getElementById("journey_accepted_panel").style.display = "block";
-    document.getElementById("journey_accepted_panel").className = "animated fadeIn";
-}
 
 </script>
 
@@ -2153,7 +895,7 @@ localStorage.setItem("logupdate","Driver <span class='log_driverid'>"+driverid+"
     
     OK</div>
     
-<div class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
+<div style="display:none;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
 
 </div>
 </div>
@@ -2289,40 +1031,9 @@ localStorage.setItem("logupdate","Driver <span class='log_driverid'>"+driverid+"
         
     </div>
 </div>
-    
-    
-    
-
-
-  
-    
-    
-
-    
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-<script src="journey_map.js"></script>
-<div style="display:none;" id="journey_fare_load"></div>
+ 
+<script src="journey_map1.js"></script>
+<div style="display:block;" id="journey_fare_load"></div>
     
     
     

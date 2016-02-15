@@ -1,18 +1,19 @@
    $(document).ready(function() {
+
 var map;
 
-// map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: -1.957236, lng: 30.100284},
-//     zoom: 10,
-//     disableDefaultUI: true,
-//     streetViewControl: false
-// });
+ map = new google.maps.Map(document.getElementById('map'), {
+     center: {lat: -1.957236, lng: 30.100284},
+     zoom: 10,
+     disableDefaultUI: true,
+     streetViewControl: false
+ });
     
 document.getElementById("locationfieldholder").style.display = "none";
 document.getElementById("locationfield").style.display = "none";
 document.getElementById("inlocationfield").style.display = "none";
 document.getElementById("loading_map_indicator").style.display = "block";
-
+/*
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
 
@@ -21,9 +22,19 @@ var options = {
   componentRestrictions: {country: 'rw'}
 };
 
+var autocomplete = new google.maps.places.Autocomplete(input, options);   */
+var input = document.getElementById('taxirequest_destination');
+var input2 = document.getElementById('searchbyaddress');
+
+var options = {
+  componentRestrictions: {}
+};
+
 autocomplete = new google.maps.places.Autocomplete(input, options);    
+autocomplete = new google.maps.places.Autocomplete(input2, options); 
 
 });
+   
 
 function showindicator() {
 document.getElementById("loadingindicator").className = "animated fadeIn";
@@ -64,6 +75,8 @@ function reloadPositionStart() {
 function reloadPosition() {
 navigator.geolocation.getCurrentPosition(
 				displayPosition, 
+				
+				
 				displayError, {
                 enableHighAccuracy: true,
                 timeout: timeoutVal,
@@ -75,7 +88,7 @@ pos;
 }
 
 if (navigator.geolocation) {
-    
+  
 			var timeoutVal = 10 * 1000 * 1000;
 
 			navigator.geolocation.getCurrentPosition(
@@ -113,7 +126,6 @@ alert("Geolocation is not supported");
   var directionsService = new google.maps.DirectionsService;
 
 function displayPosition(position) {	
-
             document.getElementById("lat").value = position.coords.latitude;
             document.getElementById("long").value = position.coords.longitude;     
             
@@ -131,7 +143,7 @@ function displayPosition(position) {
 			};
 			var map = new google.maps.Map(document.getElementById("map"), options);
 			// Remove the current marker, if there is one
-			if (typeof(marker) != "undefined") marker.setMap(null);
+			//if (typeof(marker) != "undefined") marker.setMap(null);
 			  p1=pos.lat(); 
        p2=pos.lng();
             
@@ -175,15 +187,14 @@ var count=0; var markers = {}; var lat; var lng; var loc; var flightPath=[];
   }, 200);
 
 }
+
+		
 		var numDeltas = 100;
-		var delay = 30; 
+		var delay = 10; 
 		function moveMarker1(taxi_id,position,deltalat,deltalng,inc){
-			//alert(position);
 			if(typeof position !== 'undefined'){
 			deltaLat=deltalat;deltaLng=deltalng;
-			//alert(position);
 			position=position;
-			//console.log(position);
 			position[0] += deltaLat;
 			position[1] += deltaLng;
 			var latlng = new google.maps.LatLng(position[0], position[1]);
@@ -195,11 +206,23 @@ var count=0; var markers = {}; var lat; var lng; var loc; var flightPath=[];
 			if(inc!=numDeltas){
 				inc++;
 				setTimeout( function() { moveMarker1(taxi_id,position,deltalat,deltalng,inc); }, 10 );
-				//setInterval(e, 10);
 			}
 			}
 		}
-
+		
+		function calculateAndDisplayRoute(directionsService, directionsDisplay,taxi_id) {
+			directionsService.route({
+			origin: markers[taxi_id].getPosition(),  // 
+			destination: marker.getPosition(),  // 
+			travelMode: google.maps.TravelMode.DRIVING
+		  }, function(response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+			  directionsDisplay.setDirections(response);
+			} else {
+			  window.alert('Directions request failed due to ' + status);
+			}
+		  });
+			}
 function a(){
 			
 $.get( "http://250taxi.com/db/journey/online.php",  function( data ) {
@@ -230,8 +253,7 @@ array.forEach(function(entry) {
 		var inc = 0;
 		var deltaLat;
 		var deltaLng;
-		
-		/*
+
 		function transition(result){
 			inc = 0;
 			deltaLat = (result[0] - position[0])/numDeltas;
@@ -240,6 +262,8 @@ array.forEach(function(entry) {
 		}
 		
 		function moveMarker(){
+			//alert(position);
+			console.log(position);
 			position[0] += deltaLat;
 			position[1] += deltaLng;
 			var latlng = new google.maps.LatLng(position[0], position[1]);
@@ -252,14 +276,14 @@ array.forEach(function(entry) {
 				inc++;
 				setTimeout(moveMarker, delay);
 			}
-		}*/
+		}
 	
 		if( typeof markers[taxi_id] === 'undefined' && status=="online") {
 				var pos = new google.maps.LatLng(lat, lng);
 				markers[taxi_id] = new google.maps.Marker({
 				position: pos,
 				map: map,
-				draggable: true,
+				draggable: false,
 				icon: iconimage1,
 				title: "Taxi"+taxi_id,
 				id: taxi_id
@@ -279,6 +303,15 @@ array.forEach(function(entry) {
 			deltaLng = (result[1] - position[1])/numDeltas;
 			moveMarker1(taxi_id,position,deltaLat,deltaLng,inc);
 			
+		/*	//code for display directions 
+	var directionsDisplay = new google.maps.DirectionsRenderer;
+	var directionsService = new google.maps.DirectionsService; 
+	directionsDisplay.setMap(map);
+	directionsDisplay.setOptions( { suppressMarkers: true ,preserveViewport: true} );
+	calculateAndDisplayRoute(directionsService, directionsDisplay,taxi_id);
+	*/
+
+			
 		}
 		
 	
@@ -288,7 +321,7 @@ array.forEach(function(entry) {
 				});				
 			
 			}
-			   setInterval(a,5000); 
+			   setInterval(a,10000); 
 			
 
             google.maps.event.addListener(marker, 'dragend', function (event) {
@@ -704,7 +737,7 @@ else {
     
 var city = ', Kigali';
 var country = ', Rwanda';
-var address = address + city + country;
+var address = address;
     
 document.getElementById('inlocationfield').value = address;
     
@@ -729,7 +762,9 @@ document.getElementById('inlocationfield').value = address;
         
         document.getElementById("lat").value = search_lat;
         document.getElementById("long").value = search_long;
-        
+        position={coords:{latitude:search_lat,longitude:search_long}};
+		displayPosition(position);
+		/*
     var options = {
 				zoom: 16,
                 disableDefaultUI: true,
@@ -775,11 +810,11 @@ geocodeLatLng(geocoder, map);
     
 });
         
+        */
         
-        
-    } 
+    } /*
     else {
       alert('Geocode was not successful for the following reason: ' + status);
-    }
+    }*/
   });
 }    
