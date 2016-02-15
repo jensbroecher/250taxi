@@ -368,7 +368,7 @@ array.forEach(function(entry) {
 };
 		function displayError(error) {
 			var errors = { 
-				1: 'Permission denied\n\nPlease allow 250TAXI to locate you. You can change this in your browsers settings.',
+				1: 'Permission denied\n\nPlease allow 250 Taxi to locate you. You can change this in your browsers settings.',
 				2: 'Position unavailable. 250TAXI was not able to find your current location.',
 				3: 'Request timeout. It took too long to locate you. Please try again.'
 			};
