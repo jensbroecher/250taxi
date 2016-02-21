@@ -33,11 +33,28 @@
     
 <script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
 <link href="../waves.css" rel="stylesheet" type="text/css">
+	
+<style>
+@media only screen and (max-device-width: 480px) {
+	input {
+		width: 90% !important;
+		padding-top: 2px !important;
+		padding-bottom: 2px !important;
+	}
+	#termsacceptedtext {
+		display: block;
+		float: right;
+		margin-top: -20px;
+	}
+}
+</style>
     
 <script src="../preventreload.js"></script>
 
 <script type="text/javascript">
 $( document ).ready(function() {
+	
+localStorage.clear();
 
 $('#username').keyup(function(){
     this.value = this.value.toLowerCase();
@@ -555,7 +572,7 @@ rules: {
 
 </select>
     
-<input name="address" id="address" type="text" class="textfield" required placeholder="Address / District" style="display:none;">
+<input name="address" id="address" type="text" class="textfield" required placeholder="Place of residence" style="display:none;">
 
 </div>
 

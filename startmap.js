@@ -27,7 +27,7 @@ var input = document.getElementById('taxirequest_destination');
 var input2 = document.getElementById('searchbyaddress');
 
 var options = {
-  componentRestrictions: {country: 'rw'}
+ componentRestrictions: {country: 'rw'}
 };
 
 autocomplete = new google.maps.places.Autocomplete(input, options);    
@@ -223,6 +223,23 @@ var count=0; var markers = {}; var lat; var lng; var loc; var flightPath=[];
 			}
 		  });
 			}
+										var infobubble = new InfoBubble({
+												  map: map,
+												  position: new google.maps.LatLng(-32.0, 149.0),
+												  shadowStyle: 1,
+												  padding: 5,
+												  color: '#ffffff',
+												  backgroundColor: '#3f9eb9',
+												  borderRadius: 5,
+												  arrowSize: 10,
+												  borderWidth: 1,
+												  borderColor: '#3f9eb9',
+												  disableAutoPan: true,
+												  hideCloseButton: false,
+												  arrowPosition: 30,
+												  backgroundClassName: 'transparent',
+												  arrowStyle: 2
+												});
 function a(){
 			
 $.get( "http://250taxi.com/db/journey/online.php",  function( data ) {
@@ -241,6 +258,9 @@ array.forEach(function(entry) {
 		lng=loc[1];
 		status=loc[2];
 		taxi_id=loc[3];
+		accuracy=loc[4];
+		driverName=loc[5];
+		driverSurname=loc[6];
 		var previous_lat;
 		var previous_lng;
 		if( typeof markers[taxi_id] !== 'undefined'){
@@ -301,19 +321,26 @@ array.forEach(function(entry) {
 			inc = 0;
 			deltaLat = (result[0] - position[0])/numDeltas;
 			deltaLng = (result[1] - position[1])/numDeltas;
+			if(accuracy<50){
 			moveMarker1(taxi_id,position,deltaLat,deltaLng,inc);
-			
-		/*	//code for display directions 
-	var directionsDisplay = new google.maps.DirectionsRenderer;
-	var directionsService = new google.maps.DirectionsService; 
-	directionsDisplay.setMap(map);
-	directionsDisplay.setOptions( { suppressMarkers: true ,preserveViewport: true} );
-	calculateAndDisplayRoute(directionsService, directionsDisplay,taxi_id);
-	*/
+			}
 
 			
 		}
-		
+
+		/**********************/
+			if( typeof markers[taxi_id] !== 'undefined'){
+			var arg;
+			var contentString = '<div style="color:white;">&nbsp;<b>'+driverName+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="http://www.250taxi.com/driverpics/'+taxi_id+'.jpg" onError="this.src = \'http://www.250taxi.com/app/no-user-image.gif\'"></div>';
+			var currentmarker=markers[taxi_id];
+			google.maps.event.addListener(currentmarker, 'click', (function(currentmarker, arg) {
+               return function() {				   
+						infobubble.setContent(contentString);
+						infobubble.open(map, currentmarker);
+                }
+            })(currentmarker, arg)); 
+		   }
+		/**********************/
 	
 });
 	
@@ -321,7 +348,7 @@ array.forEach(function(entry) {
 				});				
 			
 			}
-			   setInterval(a,10000); 
+			   setInterval(a,6000); 
 			
 
             google.maps.event.addListener(marker, 'dragend', function (event) {
@@ -344,6 +371,7 @@ array.forEach(function(entry) {
                 
 			var contentString = "<b>Timestamp:</b> " + parseTimestamp(position.timestamp) + "<br/><b>User location:</b> lat " + position.coords.latitude + ", long " + position.coords.longitude + ", accuracy " + position.coords.accuracy;
 			// Remove the current infoWindow, if there is one
+			//console.log(position.coords.accuracy);
 			
             if (typeof(infoWindow) != "undefined") infoWindow.setMap(null);
 			infowindow = new google.maps.InfoWindow({
@@ -502,7 +530,7 @@ if (battery) {
     
 var status_battery = localStorage.getItem('device_battery');
     
-$.get( "http://250taxi.com/db/status_user.php?ver=9&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+$.get( "http://250taxi.com/db/status_user.php?ver=8&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
     
     // console.log("Status: " + data);
     

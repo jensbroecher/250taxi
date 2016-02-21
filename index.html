@@ -2,10 +2,27 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
 
-<meta charset="utf-8">
-
-<link href="animate.min.css" rel="stylesheet" type="text/css">
+    <link href="animate.min.css" rel="stylesheet" type="text/css">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="manifest.json">
+<meta name="msapplication-TileColor" content="#df600a">
+<meta name="msapplication-TileImage" content="mstile-144x144.png">
+<meta name="theme-color" content="#000000">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -23,7 +40,7 @@
             screen.lockOrientation('portrait');
             dogpscheck();
             dodevicenamecheck();
-			}
+        }
 
         function showindicator() {
             document.getElementById("loadingindicator").className = "animated fadeIn";
@@ -55,16 +72,13 @@
 }, false);
 
         $(document).ready(function() {
-			
-$( "#welcome_notice" ).load( "http://250taxi.com/appcontent/welcome.php", function() {
-
-});
 
             $.get("http://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
-                var currentversion = "9";
+                var currentversion = "1";
                 var serverversion = data;
                 if (currentversion < serverversion) {
-                    alert("Your app is outdated. Please install the update to ensure smooth operation.");
+                    alert("Your app is outdated. Please install the update.");
+                    window.open('http://250taxi.com/getupdate/client.php', '_system');
                 }
             });
 
@@ -134,6 +148,9 @@ function dodevicenamecheck() {
         display: none; 
         }
 		body {
+			background-image: url(splash_day.jpg);
+			background-size: cover;
+			background-repeat: no-repeat;
             font-family: Roboto, sans-serif;
             font-size: 18px;
             color: #000;
@@ -144,43 +161,25 @@ function dodevicenamecheck() {
 		}
         
         #loginregister {
-			position: absolute;
-			bottom: 20%;
+			margin-top: 100px;
             width: 80%;
             margin-left: 10%;
         }
         
-        #loginregister div {
-            width: 47%;
-			display: block;
-			font-family: Roboto;
-			font-style: normal;
-			font-size: 16px;
-			font-weight: 400;
-			float: left;
-			border: solid 1px white;
-			background-color: rgba(255, 255, 255, 0.2);
-			padding-top: 8px;
-			padding-bottom: 7px;
-			margin: 2px;
-			transition: all 0.5s;
+        #loginregister img {
+            width: 48%;
         }
-		#loginregister div:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-			transition: all 0.5s;
-        }
-        
         
         #claim {
+            color: #3198B7;
             font-size: 25px;
             font-style: italic;
-            font-weight: 700;
+            font-weight: 400;
             position: absolute;
             text-align: center;
             z-index: 100;
             width: 100%;
 			height: 100%;
-			color:#FFFFFF;
         }
         
         #copyright {
@@ -209,32 +208,11 @@ function dodevicenamecheck() {
     margin-top: 100px;
     width: 160px;
 	}
-		
-		
-	video { 
-	position: fixed;
-    width: 100%;
-    height: 100%;
-	left: 0px;
-    z-index: -100;
-	object-fit: fill;
-	}
-	#video_placeholder {
-		height: 50%;
-	}
-		#welcome_notice {
-			position: absolute;
-			bottom: 30%;
-		}
 	</style>
 
 </head>
 
 <body>
-	
-<video autoplay id="bgvid">
-<source src="WELCOM%20SCREEN.mp4" type="video/mp4">
-</video>
     
 <div id="loadingindicator" style="display:none">
     <img src="282.gif" width="120">
@@ -242,18 +220,15 @@ function dodevicenamecheck() {
 
     <div id="claim" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
 		
-		<br>
+		<br><br><br><br>
 		
+		<img style="width: 70%; max-width: 400px;" src="splash_logo.png"><br>
 		
-		
-		<div id="welcome_notice"></div>
+		<div>We take you there</div>
 		
 		<div id="loginregister">
-			
-			<div onclick="showindicator();document.location.href = 'reg/login.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.5s;">Login</div>
-			
-			<div onclick="showindicator();document.location.href = 'reg/mainmenu.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.7s;">Register</div>
-		
+        	<img class="animated zoomIn" style="-webkit-animation-delay: 1.5s;" onclick="showindicator();document.location.href = 'reg/login.html'" src="reg/login.png">
+        	<img class="animated zoomIn" style="-webkit-animation-delay: 1.7s;" onclick="showindicator();document.location.href = 'reg/mainmenu.html'" src="reg/register.png">
     	</div>
 		
 	</div>

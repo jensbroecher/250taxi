@@ -39,6 +39,23 @@ var map = new google.maps.Map(document.getElementById('map'), {
 			}
 			}
 		}
+		var infobubble2 = new InfoBubble({
+												  map: map,
+												  position: new google.maps.LatLng(-32.0, 149.0),
+												  shadowStyle: 1,
+												  padding: 5,
+												  color: '#ffffff',
+												  backgroundColor: '#3f9eb9',
+												  borderRadius: 5,
+												  arrowSize: 10,
+												  borderWidth: 1,
+												  borderColor: '#3f9eb9',
+												  disableAutoPan: true,
+												  hideCloseButton: false,
+												  arrowPosition: 30,
+												  backgroundClassName: 'transparent',
+												  arrowStyle: 2
+												});
 	function c(){
 var driver_passenger_calculated_distance = document.getElementById('driver_passenger_calculated_distance').innerHTML;
 
@@ -82,13 +99,15 @@ $( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_com
     
 pickdriver_currentgpslat = document.getElementById('pickdriver_currentgpslat').innerHTML;
 pickdriver_currentgpslong = document.getElementById('pickdriver_currentgpslong').innerHTML;
+pickdriver_accuracy = document.getElementById('pickdriver_accuracy').innerHTML;
+pickdriver_name = document.getElementById('pickdriver_name').innerHTML;
     
 console.log("pickdriver_currentgpslat:"+pickdriver_currentgpslat+"\npickdriver_currentgpslong:"+pickdriver_currentgpslong+"\nlatitude:"+latitude+"\nlongitude:"+longitude+"");
     
 var locations = [
     
-['Me', latitude, longitude, 'userpinicon.png'],
-['Driver', pickdriver_currentgpslat, pickdriver_currentgpslong, 'journey/journey_marker_driver.png'],
+['Me', latitude, longitude, 'userpinicon.png','10'],
+['Driver', pickdriver_currentgpslat, pickdriver_currentgpslong, 'journey/journey_marker_driver.png',pickdriver_accuracy],
 
 ];
 //if(typeof map1 === 'undefined'){
@@ -128,7 +147,7 @@ else{
     for (i = 0; i < locations.length; i++) {
 
         var name=locations[i][0];
-		var lat=locations[i][1];var lng=locations[i][2];
+		var lat=locations[i][1];var lng=locations[i][2]; var driver_accuracy=locations[i][4];
 		var previous_lat;var previous_lng;
 var iconimage = {
     url: locations[i][3],
@@ -160,15 +179,29 @@ if( typeof marker[name] !== 'undefined'){
 		   inc = 0;
 			deltaLat = (result1[0] - position[0])/numDeltas;
 			deltaLng = (result1[1] - position[1])/numDeltas;
+			if(driver_accuracy<50){
 			moveMarker2(name,position,deltaLat,deltaLng,inc);
+			}
 	   }
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	   
+	   if( typeof marker['Driver'] !== 'undefined'){
+			var arg;
+			var contentString = '<div style="color:white;">&nbsp;<b>'+pickdriver_name+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="http://www.250taxi.com/driverpics/'+pickdriver_id+'.jpg" onError="this.src = \'http://www.250taxi.com/app/no-user-image.gif\'"></div>';
+			var currentmarker=marker['Driver'];
+			google.maps.event.addListener(currentmarker, 'click', (function(currentmarker, arg) {
+               return function() {				   
+						infobubble2.setContent(contentString);
+						infobubble2.open(map, currentmarker);
+                }
+            })(currentmarker, arg)); 
+		   }
+      /*google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
           infowindow.setContent(locations[i][0]);
           infowindow.open(map, marker);
         }
-      })(marker, i));
+      })(marker, i)); */
 	
     }
 	}
