@@ -35,6 +35,14 @@
     window.addEventListener('popstate', function(event) {
     history.pushState(null, null, 'gotostart.html');
     });
+	
+	$( document ).ready(function() {
+    navigator.geolocation.getCurrentPosition(gpson);
+	});
+	
+	function gpson() {
+		console.log("Got GPS");
+	}
 </script>
 
 <style type="text/css">
