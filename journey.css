@@ -73,7 +73,7 @@
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
 .jd_yellow {
-    background-color: #FFDA00 !important;
+    background-color: rgba(255, 218, 0, 0.67) !important;
 }
 .jd_button {
         font-family: Roboto, sans-serif;
