@@ -67,11 +67,13 @@ var googledistancexml = data;
 
 function getgooglefareestimate() {
 	
+$.get( "http://250taxi.com/db/partner/get_fare_setting.php", function( fare_setting ) {
+	
 gestimatedistance = localStorage.getItem("gestimatedistance");
 	
 // alert("gestimatedistance: " +gestimatedistance);
 	
-gcostestimate = gestimatedistance * 500 + 1000;
+gcostestimate = gestimatedistance * fare_setting + 1000;
 
 // total = Math.ceil(total);
 gcostestimate = Math.ceil(gcostestimate/100)*100;
@@ -83,5 +85,7 @@ if (gcostestimate < 1500) {
 }
 	
 document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" RWF";
+	
+});
 	
 }

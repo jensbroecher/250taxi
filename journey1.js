@@ -219,7 +219,7 @@ var driver_passenger_calculated_distance = document.getElementById('driver_passe
 
 driver_passenger_calculated_distance = parseInt(driver_passenger_calculated_distance);
 
-if (driver_passenger_calculated_distance < 0.3) {
+if (driver_passenger_calculated_distance < 0.1) {
     
 var activity = localStorage.getItem('activity');
     
