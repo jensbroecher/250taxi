@@ -33,22 +33,7 @@
     
 <script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
 <link href="../waves.css" rel="stylesheet" type="text/css">
-	
-<style>
-@media only screen and (max-device-width: 480px) {
-	input {
-		width: 90% !important;
-		padding-top: 2px !important;
-		padding-bottom: 2px !important;
-	}
-	#termsacceptedtext {
-		display: block;
-		float: right;
-		margin-top: -20px;
-	}
-}
-</style>
-    
+ 
 <script src="../preventreload.js"></script>
 
 <script type="text/javascript">
@@ -672,6 +657,31 @@ Please validate your phone number by entering the code you recieved via text mes
 </div>
     
 <iframe style="display:none; border: 2px solid #000;" id="smsgateway" name="smsgateway" src=""></iframe>
+	
+<script>
+	
+$( document ).ready(function() {
+    checkapp();
+});
+    
+    var isMobile = {
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+        
+function checkapp() {
+    if( isMobile.iOS() ) go_ios();
+}
+        
+function go_ios() {
+    document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"ios.css\" />");
+}
+    
+</script>
 
 </body>
 </html>

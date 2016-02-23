@@ -71,6 +71,8 @@ document.getElementById("citynavigator_start").style.display = "none";
     
 }
 function getdrivers() {
+	
+document.getElementById("getfareestimate").style.display = "none";
     
 localStorage.setItem('activity','driver_list');
 
@@ -78,6 +80,7 @@ var taxirequest_destination = document.getElementById('taxirequest_destination')
 
 var taxirequest_destination = taxirequest_destination.split(', Kigali')[0]+'';
 
+localStorage.setItem("destination",taxirequest_destination);
 localStorage.setItem("taxirequest_destination",taxirequest_destination);
     
 var taxirequest_destination_length = taxirequest_destination.length;
@@ -196,6 +199,8 @@ if (voice_enabled == "On") {responsiveVoice.speak("Press the pick me now button 
     $( "#driveroverlay" ).fadeIn( "slow", function() {
         
         var pickdriver_id = localStorage.getItem("pickdriver_id");
+		
+		
         
         
 $( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {

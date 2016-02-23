@@ -17,6 +17,15 @@
         z-index: 1000;
         display: none;
 }
+#getfareestimate {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 1100;
+        display: none;
+}
 #driverlist_scanner {
     height: 350px;
     overflow: scroll;
@@ -314,3 +323,104 @@
     text-transform: uppercase;
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#getfareestimate_price {
+	text-align: center;
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+#getfareestimate_pickup, #getfareestimate_destination, #getfareestimate_distance {
+	text-align: left;
+	font-size: 16px;
+}
+#getfareestimate_pickup_holder, #getfareestimate_destination_holder, #getfareestimate_distance_holder {
+	font-size: 16px;
+	padding-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#driveroverlay_show_details {
+        text-align: left;
+        position: absolute;
+        top: 13px;
+        width: 90%;
+		padding-left: 10%;
+    }
+    #driveroverlay_back_to_list {
+        position: absolute;
+        z-index: 100000;
+    }
+    #driver_details_license_plate {
+        background-color: white;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border: 2px solid black;
+        display: inline;
+        border-radius: 4px;
+    }
+    #driver_details_type {
+        padding-bottom: 13px;
+    }
+    #driver_details_distance {
+        padding-bottom: 5px;
+    }
+    #driver_details_phone {
+        margin-bottom: 5px;
+    }
+    #driver_details_phone_link {
+        color: black;
+        text-decoration: none;
+    }
+    #driver_details_name {
+        margin-bottom: 5px;
+    }
+	#driver_details_portrait {
+		width: 80px;
+		float: right;
+		margin-right: 10%;
+	}

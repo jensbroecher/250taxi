@@ -137,9 +137,9 @@ var places_lat = localStorage.getItem('places_lat');
 var places_lng = localStorage.getItem('places_long');
 
 var journey_map_origin_latlng = new google.maps.LatLng(route_lat,route_lng);
-var journey_map_places_latlng = new google.maps.LatLng(places_lat,places_lng);
+//var journey_map_places_latlng = new google.maps.LatLng(places_lat,places_lng);
 
- //var journey_map_places_latlng = localStorage.getItem('destination');
+ var journey_map_places_latlng = localStorage.getItem('destination');
 // var journey_map_destination = journey_map_destination +' Kigali';
  //console.log(journey_map_origin_latlng+","+journey_map_places_latlng);
 // alert('Calculating route to: '+journey_map_destination+'');

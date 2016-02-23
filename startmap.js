@@ -86,16 +86,17 @@ navigator.geolocation.getCurrentPosition(
 pos;
 // alert('reloaded: '+pos+'');
 }
-
+var timeoutVal = 10 * 1000 * 1000;
+window.onload = function WindowLoad(event) {
 if (navigator.geolocation) {
   
-			var timeoutVal = 10 * 1000 * 1000;
+			
 
 			navigator.geolocation.getCurrentPosition(
 				displayPosition, 
 				displayError, {
                 enableHighAccuracy: true,
-                timeout: timeoutVal,
+               timeout: timeoutVal,
                 maximumAge: 0
                 }
 			);
@@ -103,6 +104,7 @@ if (navigator.geolocation) {
 }
 else {
 alert("Geolocation is not supported");
+}
 }
 		/*function calculateAndDisplayRoute(directionsService, directionsDisplay) {
  
@@ -141,6 +143,8 @@ function displayPosition(position) {
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
                 styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
 			};
+			var x = document.getElementById("map");
+			x.innerHTML = "";
 			var map = new google.maps.Map(document.getElementById("map"), options);
 			// Remove the current marker, if there is one
 			//if (typeof(marker) != "undefined") marker.setMap(null);
