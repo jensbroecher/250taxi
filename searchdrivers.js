@@ -217,6 +217,7 @@ function pickdriver_request_start () {
     
 var driverid = localStorage.getItem("pickdriver_id");
 var userid = localStorage.getItem('userid');
+
 localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> is waiting for driver <span class='log_driverid'>"+driverid+"</span> to accept");logupdate();
     
 var voice_enabled = localStorage.getItem("voice_enabled");
@@ -251,8 +252,9 @@ if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to acc
     
     // alert(pickdriver_id);
     
+	var pickup = localStorage.getItem("pickup");
     
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"",  function( data ) {
+    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"&pickup="+pickup+"",  function( data ) {
         
     });
 

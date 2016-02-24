@@ -86,13 +86,26 @@ console.log('reloaded: '+pos+'');
 
 document.addEventListener("deviceready", onDeviceReady, false);
 	
-function onDeviceReady() {
+var app_or_web = localStorage.getItem("app_or_web");
+
+if (app_or_web == "app") {
+	function onDeviceReady() {
 				navigator.geolocation.getCurrentPosition(
 				displayPosition, 
 				displayError, {
-                enableHighAccuracy: true,
+                enableHighAccuracy: false,
                 maximumAge: 0
-                }
+                }		
+			);
+	}
+}
+if (app_or_web == "web") {
+				navigator.geolocation.getCurrentPosition(
+				displayPosition, 
+				displayError, {
+                enableHighAccuracy: false,
+                maximumAge: 0
+                }		
 			);
 }
 
@@ -406,6 +419,10 @@ function geocodeLatLng(geocoder, map) {
         // infowindow.setContent(results[1].formatted_address);
         // infowindow.open(map, marker);
         document.getElementById('inlocationfield').value = results[0].formatted_address;
+		  
+		pickup = results[0].formatted_address;  
+		localStorage.setItem("pickup",pickup);
+		console.log("Pickup:" + pickup);
       } 
     else {
         // window.alert('No results found');
@@ -505,8 +522,10 @@ if (battery) {
 }
     
 var status_battery = localStorage.getItem('device_battery');
+	
+var pickup = localStorage.getItem("pickup");
     
-$.get( "http://250taxi.com/db/status_user.php?ver=11&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"", function( data ) {
+$.get( "http://250taxi.com/db/status_user.php?ver=11&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
     
     // console.log("Status: " + data);
     
@@ -744,6 +763,8 @@ var country = ', Rwanda';
 var address = address;
     
 document.getElementById('inlocationfield').value = address;
+	
+localStorage.setItem("pickup",address);
     
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {

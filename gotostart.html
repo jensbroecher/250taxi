@@ -37,6 +37,8 @@
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
+localStorage.setItem("app_or_web","app");
+	
 function onDeviceReady() {
 // alert("navigator.geolocation started");
 		
@@ -67,7 +69,7 @@ function onError(error) {
           'message: ' + error.message + '\n');
 }
 
-var options = { enableHighAccuracy: true };
+var options = { enableHighAccuracy: false };
 navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 }
@@ -100,7 +102,7 @@ video {
 
 <body>
 	
-<div style="position:absolute;"><button onclick="location.reload();">Reload</button></div>
+<div style="position:absolute; display:none;"><button onclick="location.reload();">Reload</button></div>
 
 <video autoplay id="bgvid">
 <source src="WELCOM%20BLACK.mp4" type="video/mp4">
