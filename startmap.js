@@ -75,57 +75,29 @@ function reloadPositionStart() {
 function reloadPosition() {
 navigator.geolocation.getCurrentPosition(
 				displayPosition, 
-				
-				
 				displayError, {
                 enableHighAccuracy: true,
-                timeout: timeoutVal,
                 maximumAge: 0
                 }
 			);
 pos;
-// alert('reloaded: '+pos+'');
+console.log('reloaded: '+pos+'');
 }
-var timeoutVal = 10 * 1000 * 1000;
-window.onload = function WindowLoad(event) {
-if (navigator.geolocation) {
-  
-			
 
-			navigator.geolocation.getCurrentPosition(
+document.addEventListener("deviceready", onDeviceReady, false);
+	
+function onDeviceReady() {
+				navigator.geolocation.getCurrentPosition(
 				displayPosition, 
 				displayError, {
                 enableHighAccuracy: true,
-               timeout: timeoutVal,
                 maximumAge: 0
                 }
 			);
-            
 }
-else {
-alert("Geolocation is not supported");
-}
-}
-		/*function calculateAndDisplayRoute(directionsService, directionsDisplay) {
- 
-  directionsService.route({
-     origin: "Chicago, IL",
-  destination: "Los Angeles, CA",
 
-    // Note that Javascript allows us to access the constant
-    // using square brackets and a string value as its
-    // "property."
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      window.alert('Directions request failed due to ' + status);
-    }
-  });
-}*/
- var directionsDisplay = new google.maps.DirectionsRenderer;
-  var directionsService = new google.maps.DirectionsService;
+var directionsDisplay = new google.maps.DirectionsRenderer;
+var directionsService = new google.maps.DirectionsService;
 
 function displayPosition(position) {	
             document.getElementById("lat").value = position.coords.latitude;
