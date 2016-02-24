@@ -17,6 +17,7 @@ function get_fare_estimate() {
 	
 	if (taxirequest_destination_length < 6) {
 		alert("Please enter a destination!");
+		hideindicator();
 		return;
 	}
 	if (taxirequest_destination_length > 6) {
