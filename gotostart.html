@@ -69,7 +69,7 @@ function onError(error) {
           'message: ' + error.message + '\n');
 }
 
-var options = { enableHighAccuracy: false };
+var options = { enableHighAccuracy: true };
 navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 }

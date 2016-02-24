@@ -93,7 +93,7 @@ if (app_or_web == "app") {
 				navigator.geolocation.getCurrentPosition(
 				displayPosition, 
 				displayError, {
-                enableHighAccuracy: false,
+                enableHighAccuracy: true,
                 maximumAge: 0
                 }		
 			);
