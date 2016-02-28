@@ -122,6 +122,7 @@ $('#customercarebuttonside').draggable({
 */
 	
 var dragCheck = false;
+	
 $('#customercarebuttonside').draggable({
       revert: false,
 	  axis: "y",
@@ -158,10 +159,13 @@ $('#customercarebuttonside') .bind('mouseup', function(){
 $("#expanded_customer_care_close").on('click', handleClick);
 	
 function customercarebuttonside_animate() {
+	
+	$('#expanded_customer_care_close').on('click', handleClick);
+	
 	document.getElementById("customercarebuttonside").style.width = "150px";
 	document.getElementById("customercarebuttonside").style.marginLeft = "-100px";
 	document.getElementById("customercarebuttonside").className = "addtrans";
-	document.getElementById("customercarebuttonside").style.backgroundImage = "none";
+	document.getElementById("customercarebuttonside").style.backgroundPosition = "150px center";
 	
 	document.getElementById("expanded_customer_care").style.display = "block";
 	
@@ -171,7 +175,7 @@ function handleClick() {
   	document.getElementById("customercarebuttonside").style.width = "50px";
 	document.getElementById("customercarebuttonside").style.marginLeft = "0px";
 	document.getElementById("expanded_customer_care").style.display = "none";
-	document.getElementById("customercarebuttonside").style.backgroundImage = "url(headset.png)";
+	document.getElementById("customercarebuttonside").style.backgroundPosition = "center center";
 };
 
 function customercare() {
@@ -341,9 +345,16 @@ html, body, #map {
 		background-size: 80% 80%;
 		background-position: center center;
 }
-	.addtrans {
+.addtrans {
 		transition: all 0.5s;
-	}
+}
+#expanded_customer_care_close {
+		margin-top: 13px;
+		margin-left: 2px;
+		width: 24px;
+		height: 24px;
+		display: block;
+}
 #calltaxiui {
         background-image: url(calltaxi.png);
         background-size: 360px;
