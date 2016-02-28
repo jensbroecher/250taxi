@@ -32,8 +32,12 @@
 <script type = "text/javascript" >
     history.pushState(null, null, 'gotostart.html');
     window.addEventListener('popstate', function(event) {
-    history.pushState(null, null, 'gotostart.html');
+    	history.pushState(null, null, 'gotostart.html');
     });
+	
+	setTimeout(function(){ 
+		location.href = "locate.html";
+	}, 3000);
 	
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
@@ -55,11 +59,6 @@ var onSuccess = function(position) {
           'Heading: '           + position.coords.heading           + '\n' +
           'Speed: '             + position.coords.speed             + '\n' +
           'Timestamp: '         + position.timestamp                + '\n');
-
-setTimeout(function(){ 
-		location.href = "locate.html";
-}, 3000);
-
 };
 
 // onError Callback receives a PositionError object

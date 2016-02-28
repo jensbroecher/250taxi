@@ -1,13 +1,25 @@
-   $(document).ready(function() {
+setTimeout(function(){
+	if (document.body.classList.contains('lmp_visible')) {
+    	reloadPositionStart();
+	}
+}, 6000);
+
+$(document).ready(function() {
+	
+document.getElementById("loading_map_indicator").className = "lmp_visible";
 
 var map;
 
- map = new google.maps.Map(document.getElementById('map'), {
+map = new google.maps.Map(document.getElementById('map'), {
      center: {lat: -1.957236, lng: 30.100284},
      zoom: 10,
      disableDefaultUI: true,
      streetViewControl: false
- });
+});
+	
+var voice_enabled = localStorage.getItem("voice_enabled");
+if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
+
     
 document.getElementById("locationfieldholder").style.display = "none";
 document.getElementById("locationfield").style.display = "none";
@@ -23,6 +35,7 @@ var options = {
 };
 
 var autocomplete = new google.maps.places.Autocomplete(input, options);   */
+	
 var input = document.getElementById('taxirequest_destination');
 var input2 = document.getElementById('searchbyaddress');
 
@@ -51,7 +64,7 @@ function audio_update_location() {
 localStorage.setItem('toast','Locating you on map');toast();
     
 var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Locating... Please wait");}    
+if (voice_enabled == "On") {responsiveVoice.speak("Locating you again");}    
 }
 
 var marker;
@@ -87,19 +100,8 @@ console.log('reloaded: '+pos+'');
 document.addEventListener("deviceready", onDeviceReady, false);
 	
 var app_or_web = localStorage.getItem("app_or_web");
-
-if (app_or_web == "app") {
+/* if (app_or_web == "app") {
 	function onDeviceReady() {
-				navigator.geolocation.getCurrentPosition(
-				displayPosition, 
-				displayError, {
-                enableHighAccuracy: true,
-                maximumAge: 0
-                }		
-			);
-	}
-}
-if (app_or_web == "web") {
 				navigator.geolocation.getCurrentPosition(
 				displayPosition, 
 				displayError, {
@@ -107,7 +109,18 @@ if (app_or_web == "web") {
                 maximumAge: 0
                 }		
 			);
+	}
 }
+*/
+//if (app_or_web == "web") {
+				navigator.geolocation.getCurrentPosition(
+				displayPosition, 
+				displayError, {
+                enableHighAccuracy: false,
+                maximumAge: 0
+                }		
+			);
+//}
 
 var directionsDisplay = new google.maps.DirectionsRenderer;
 var directionsService = new google.maps.DirectionsService;
@@ -153,6 +166,7 @@ document.getElementById("locationfieldholder").style.display = "block";
 document.getElementById("inlocationfield").style.display = "block";
     
 document.getElementById("loading_map_indicator").style.display = "none";
+document.getElementById("loading_map_indicator").className = "lmp_hidden";
             
 			marker = new google.maps.Marker({
                 draggable: true,

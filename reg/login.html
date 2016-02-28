@@ -52,13 +52,13 @@
 
             $('#username').keyup(function() {
                 this.value = this.value.toLowerCase();
-                this.value = this.value.replace(/ /g, "");
+                this.value = this.value.replace(/[^@a-z.]/g, "");
             });
             $(function() {
                 $('#username').keypress(function(e) {
                     var txt = String.fromCharCode(e.which);
                     console.log(txt + ' : ' + e.which);
-                    if (!txt.match(/[A-Za-z0-9]/)) //+#-.
+                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
                     {
                         return false;
                     }
@@ -170,7 +170,7 @@
 
             <div style="clear:both;"></div>
 
-            <input name="username" id="username" type="text" class="textfield" required placeholder="Username">
+            <input name="username" id="username" type="text" class="textfield" required placeholder="Username / E-Mail">
 
             <div style="clear:both;"></div>
 
@@ -179,17 +179,42 @@
         <center>
             <input id="loginpin" style="width:100px;" class="textfield pin" type="tel" placeholder="PIN" maxlength="4" pattern=".{4,}">
         </center>
+		
+		<style>
+			#loginpin {
+				text-align: center;
+				width: 60px;
+				text-indent: 0px;
+			}
+		</style>
 
         <br>
 
         <script>
-            function logincheck() {
+			function logincheck() {
+				var username = document.getElementById('username').value;
+				
+				if(username.indexOf('@') === -1)
+				{
+					localStorage.setItem("username_check",username);
+					logincheckgo();
+				}
+				else {
+					$.get("http://250taxi.com/db/username_from_email.php?username=" + username + "", function(username) {
+						localStorage.setItem("username_check",username);
+						logincheckgo();
+					});
+				}
+			}
+            function logincheckgo() {
 				
 				showindicator();
 
-                var username = document.getElementById('username').value;
-
+                var username = localStorage.getItem("username_check");
+				
                 var loginpin = document.getElementById('loginpin').value;
+				
+				// alert(username);
 
                 $.get("http://250taxi.com/db/check-username-login.php?task=checkusername&username=" + username + "", function(data) {
                     

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>250 taxi</title>
+<title>250 Taxi</title>
 
 <meta charset="utf-8"> 
     
@@ -51,6 +51,9 @@
 <script src="cordova.js"></script>
 
 <script>
+	
+
+	
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     dogpscheck();
@@ -79,6 +82,8 @@ function dogpscheck() {
 
 <script src="jquery.min.js"></script>
 <script src="jquery.validate.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="jquery.ui.touch-punch.min.js"></script>
     
 <script src="ls_reset.js"></script>
 <script src="mli.js"></script>
@@ -101,6 +106,34 @@ function dogpscheck() {
 <link rel="stylesheet" type="text/css" href="toast.css">
 <script src="startmap.js"></script>
 <script>
+	
+	
+$(function() {
+
+$('#customercarebuttonside').draggable({
+    axis: "y",
+	scroll: false,
+	containment: "parent",
+	stop: function() {
+		customercare();
+	}
+});
+	
+});	
+
+function customercare() {
+	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+		location.href = "tel:+4917696341117";
+		return;
+	}
+		location.href = "intent://send/+4917696341117#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end";
+		//location.href = "tel:+250783000096";
+}
+
+	
+	
+
+	
   /*  
 $(document).ready(function() {
     
@@ -183,7 +216,7 @@ html, body, #map {
 }
 #inlocationfield {
        font-family: Roboto, sans-serif;
-     	font-size: 16px; 
+     font-size: 16px; 
         width: 100%;
         border: none;
         height: 100%;
@@ -222,6 +255,38 @@ html, body, #map {
         margin-right: 0px;
         background-color: rgba(255,255,255,0.9);
         max-height: 30px;
+}
+#customercarebutton {
+		background-size: auto 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 15%;
+        width: 10%;
+        z-index: 100;
+        max-width: 30px;
+        border: 1px solid rgba(255,255,255,0.9);     
+        top: 86px;
+        right: 2%;
+        margin-right: 0px;
+        background-color: rgba(255,255,255,0.9);
+        max-height: 30px;
+		display: none;
+}
+#customercarebuttonside {
+		right: 0px;
+		position: absolute;
+		bottom: 30%;
+		width: 50px;
+		height: 50px;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+		background-color: rgba(45, 150, 182, 0.8);
+		z-index: 10000000000000000;
+		background-image: url(headset.png);
+		background-repeat: no-repeat;
+		background-size: 80% 80%;
+		background-position: center center;
 }
 #calltaxiui {
         background-image: url(calltaxi.png);
@@ -304,6 +369,10 @@ html, body, #map {
         background-image: url(crosshairs-gps.svg);
         background-size: 100% 100%;      
 }
+.menucustomercare {
+        background-image: url(customercare.svg);
+        background-size: 100% 100%;      
+}
 #locationfinderdialog {
         width: 100%;
         top: 0%;
@@ -345,10 +414,11 @@ html, body, #map {
     pointer-events: none;
 }
 #loading_map_indicator {
+	opacity: 0.9;
     font-family: sans-serif;
     text-align: center;
     font-weight: 300;
-    font-size: 110%;
+    font-size: 100%;
     position: absolute;
     z-index: 200;
     width: 50%;
@@ -356,7 +426,8 @@ html, body, #map {
     padding-bottom: 10px;
     margin-left: 25%;
     bottom: 35%;
-    background-color: rgba(255,255,255,0.7);
+    background-color: black;
+	color: white;
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
 
@@ -645,17 +716,14 @@ Voice Guidance</div>
     
     
     
-<div id="loading_map_indicator" class="animated fadeInDown" style="-webkit-animation-delay: 1s;">
+<div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
 
-<div class="loader">
-    
-<br><br>
-<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
-</div>
-    
-Loading map...
+<img style="width: 100px;" src="282.gif">
+<br>
+	
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M11.62,1L17.28,6.67L15.16,8.79L13.04,6.67L11.62,8.09L13.95,10.41L12.79,11.58L13.24,12.04C14.17,11.61 15.31,11.77 16.07,12.54L12.54,16.07C11.77,15.31 11.61,14.17 12.04,13.24L11.58,12.79L10.41,13.95L8.09,11.62L6.67,13.04L8.79,15.16L6.67,17.28L1,11.62L3.14,9.5L5.26,11.62L6.67,10.21L3.84,7.38C3.06,6.6 3.06,5.33 3.84,4.55L4.55,3.84C5.33,3.06 6.6,3.06 7.38,3.84L10.21,6.67L11.62,5.26L9.5,3.14L11.62,1M18,14A4,4 0 0,1 14,18V16A2,2 0 0,0 16,14H18M22,14A8,8 0 0,1 14,22V20A6,6 0 0,0 20,14H22Z" />
+</svg> Loading
 
 </div>
     
@@ -821,10 +889,15 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 <script>
 
 </script>
+	
+<div id="customercarebuttonside" class="draggable"></div>
     
-<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"> </div>    
+<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
+	
+<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
 
     <div id="calltaxiui"></div>
+	
     <div id="map"></div>
 
 <script>
@@ -847,6 +920,7 @@ Destination: <span id="journey_fare_display_destination_target"></span>
     
 	
 <div id="getfareestimate" class="animated fadeIn">
+	
 	<div class="sdbox">
 
 		<div class="sdtitle">Fare Estimate</div>
