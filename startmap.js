@@ -1,12 +1,22 @@
-setTimeout(function(){
-	if (document.body.classList.contains('lmp_visible')) {
-    	reloadPositionStart();
-	}
-}, 6000);
-
 $(document).ready(function() {
+
+trigger_check_if_map_loaded();
 	
 document.getElementById("loading_map_indicator").className = "lmp_visible";
+	
+function trigger_check_if_map_loaded() {
+setTimeout(function(){
+	check_if_map_loaded();
+}, 2000);
+}
+	
+function check_if_map_loaded() {
+if ($("#loading_map_indicator").hasClass("lmp_visible")) {
+	reloadPositionStart();
+	audio_update_location();
+	trigger_check_if_map_loaded();
+}
+}
 
 var map;
 

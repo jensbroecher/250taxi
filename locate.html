@@ -110,6 +110,7 @@ function dogpscheck() {
 	
 $(function() {
 
+/*
 $('#customercarebuttonside').draggable({
     axis: "y",
 	scroll: false,
@@ -118,8 +119,60 @@ $('#customercarebuttonside').draggable({
 		customercare();
 	}
 });
+*/
+	
+var dragCheck = false;
+$('#customercarebuttonside').draggable({
+      revert: false,
+	  axis: "y",
+	  scroll: false,
+	  containment: "parent",
+	start: function () {
+        $('#expanded_customer_care_close').off('click');
+		document.getElementById("customercarebuttonside").className = "";
+    },
+	drag: function(){
+            // On drag set that flag to true
+         dragCheck = true;
+   },
+   stop: function(){
+            // On stop of dragging reset the flag back to false
+         dragCheck = false;
+	   	customercarebuttonside_animate();
+	   setTimeout(function(){
+            $('#expanded_customer_care_close').on('click', handleClick);
+        },1);
+   }
+});
+
+// Then instead of using click use mouseup, and on mouseup only fire if the flag is set to false
+$('#customercarebuttonside') .bind('mouseup', function(){
+      if(dragCheck == false){
+          customercarebuttonside_animate();
+      }
+});
 	
 });	
+	
+	
+$("#expanded_customer_care_close").on('click', handleClick);
+	
+function customercarebuttonside_animate() {
+	document.getElementById("customercarebuttonside").style.width = "150px";
+	document.getElementById("customercarebuttonside").style.marginLeft = "-100px";
+	document.getElementById("customercarebuttonside").className = "addtrans";
+	document.getElementById("customercarebuttonside").style.backgroundImage = "none";
+	
+	document.getElementById("expanded_customer_care").style.display = "block";
+	
+}
+	
+function handleClick() {
+  	document.getElementById("customercarebuttonside").style.width = "50px";
+	document.getElementById("customercarebuttonside").style.marginLeft = "0px";
+	document.getElementById("expanded_customer_care").style.display = "none";
+	document.getElementById("customercarebuttonside").style.backgroundImage = "url(headset.png)";
+};
 
 function customercare() {
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
@@ -288,6 +341,9 @@ html, body, #map {
 		background-size: 80% 80%;
 		background-position: center center;
 }
+	.addtrans {
+		transition: all 0.5s;
+	}
 #calltaxiui {
         background-image: url(calltaxi.png);
         background-size: 360px;
@@ -890,7 +946,19 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 
 </script>
 	
-<div id="customercarebuttonside" class="draggable"></div>
+<div id="customercarebuttonside" class="draggable">
+
+<div id="expanded_customer_care" style="display:none;" class="animated fadeIn">
+	
+<div id="expanded_customer_care_close">
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="#FFFFFF" d="M2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2A10,10 0 0,0 2,12M4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12M10,17L15,12L10,7V17Z" />
+</svg>
+</div>
+
+</div>
+	
+</div>
     
 <div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
 	
