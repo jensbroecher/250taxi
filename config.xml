@@ -39,7 +39,7 @@
         
     <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
 		
-	<gap:plugin name="mobi.moica.whatsapp" spec="0.0.1" source="pgb" />
+	<gap:plugin name="mobi.moica.whatsapp" spec="0.0.1" source="pgb" /> 
         
     <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
