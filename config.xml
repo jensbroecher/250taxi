@@ -43,7 +43,7 @@
         
     <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
-    <plugin name="com.simplec.plugins.videosettings" source="pgb" />
+    <plugin name="com.simplec.plugins.videosettings" spec="0.1.4" source="pgb" />
         
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
