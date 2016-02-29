@@ -193,7 +193,7 @@ function dodevicenamecheck() {
 	}
 		
 		
-	#video { 
+	#animation { 
 	position: fixed;
     width: 100%;
     height: 100%;
@@ -214,7 +214,29 @@ function dodevicenamecheck() {
 
 <body>
 	
-<img id="video" src="start.gif">
+<script>
+$( document ).ready(function() {
+	
+var i=0;
+
+timer=setInterval(function(){
+	i++;
+	console.log(i);
+	
+	document.getElementById("animation").src = "vid/"+i+".jpg";
+	
+	if (i == 110) {
+		clearInterval ( timer );
+		document.getElementById("animation").src = "vid/110.jpg";
+	}
+},60);
+	
+});
+
+</script>
+
+
+<img id="animation" src="vid/1.jpg">
     
 <div id="loadingindicator" style="display:none">
     <img src="282.gif" width="120">
