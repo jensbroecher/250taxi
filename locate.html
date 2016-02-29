@@ -73,9 +73,15 @@ function dogpscheck() {
         function opensettings() {
                 alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
 }
+
+$(document).ready(function() {
 	
-$(".cbp-spmenu").on("swipeleft",function(){
-  $(this).hide();
+Gestures.swipe('inlocationfield', {
+  left: function(event) { 
+  	alert("test");
+  };
+});
+	
 });
 </script>
   
@@ -85,7 +91,7 @@ $(".cbp-spmenu").on("swipeleft",function(){
   --><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
 
 <script src="jquery.min.js"></script>
-<script src="jquery.mobile.custom.min.js"></script>
+<script src="gestures.js"></script>
 <script src="jquery.validate.min.js"></script>
 <script src="jquery-ui.min.js"></script>
 <script src="jquery.ui.touch-punch.min.js"></script>
@@ -192,38 +198,6 @@ function customercare() {
 		//location.href = "tel:+250783000096";
 }
 
-	
-	
-
-	
-  /*  
-$(document).ready(function() {
-    
-var map;
-
-// map = new google.maps.Map(document.getElementById('map'), {
-//     center: {lat: -1.957236, lng: 30.100284},
-//     zoom: 10,
-//     disableDefaultUI: true,
-//     streetViewControl: false
-// });
-    
-document.getElementById("locationfieldholder").style.display = "none";
-document.getElementById("locationfield").style.display = "none";
-document.getElementById("inlocationfield").style.display = "none";
-document.getElementById("loading_map_indicator").style.display = "block";
-
-var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
-
-var input = document.getElementById('taxirequest_destination');
-var options = {
-  componentRestrictions: {country: 'rw'}
-};
-
-autocomplete = new google.maps.places.Autocomplete(input, options);    
-
-});*/
 </script>
       
 <style>
