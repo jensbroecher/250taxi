@@ -74,13 +74,7 @@ function dogpscheck() {
                 alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
 }
 
-$(document).ready(function() {
-	
-$("#inlocationfield").on("swipeleft",function(){
-  alert("swipe");
-});
-	
-});
+
 </script>
   
 
@@ -114,6 +108,14 @@ $("#inlocationfield").on("swipeleft",function(){
 <link rel="stylesheet" type="text/css" href="toast.css">
 <script src="startmap.js"></script>
 <script>
+	
+$(document).ready(function() {
+	
+$(".cbp-spmenu-open").on("swipeleft",function(){
+  alert("swipe");
+});
+	
+});
 	
 	
 $(function() {
