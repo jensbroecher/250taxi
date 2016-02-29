@@ -241,9 +241,10 @@ button {
 #forgotpw {
 	text-align: right;
 	padding: 5px;
-	font-size: 15px;
+	font-size: 14px;
 	margin-right: 5%;
-	margin-bottom: 15px;
+	padding-bottom: 15px;
+	cursor: pointer;
 }
 #loginpin {
 				text-align: center;
