@@ -76,10 +76,8 @@ function dogpscheck() {
 
 $(document).ready(function() {
 	
-Gestures.swipe('inlocationfield', {
-  left: function(event) { 
-  	alert("test");
-  };
+$("#inlocationfield").on("swipeleft",function(){
+  alert("swipe");
 });
 	
 });
@@ -91,7 +89,6 @@ Gestures.swipe('inlocationfield', {
   --><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
 
 <script src="jquery.min.js"></script>
-<script src="gestures.js"></script>
 <script src="jquery.validate.min.js"></script>
 <script src="jquery-ui.min.js"></script>
 <script src="jquery.ui.touch-punch.min.js"></script>
@@ -323,6 +320,7 @@ html, body, #map {
 		background-repeat: no-repeat;
 		background-size: 80% 80%;
 		background-position: center center;
+		display: none;
 }
 .addtrans {
 		transition: all 0.5s;
