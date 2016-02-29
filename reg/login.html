@@ -49,6 +49,22 @@
         }
 		
         $(document).ready(function() {
+			
+			var currentTime = new Date().getHours();
+            if (0 <= currentTime && currentTime < 5) {
+                setnight();
+            }
+            if (5 <= currentTime && currentTime < 11) {
+            }
+            if (11 <= currentTime && currentTime < 16) {
+            }
+            if (16 <= currentTime && currentTime < 22) {
+            }
+            if (22 <= currentTime && currentTime <= 24) {
+                setnight();
+            }
+        
+			
 
             $('#username').keyup(function() {
                 this.value = this.value.toLowerCase();
@@ -85,6 +101,10 @@
 
 
 
+		
+        function setnight() {
+            document.getElementById('mainbg').src = 'kigali_night.jpg';
+        }
 
 
         function scancode_hotel_corporate() {
@@ -152,7 +172,7 @@
 
 </head>
 
-<body>
+<body id="mainbg">
 
     <div id="offline" class="animated fadeIn">
         <img src="cloud.png">
@@ -160,35 +180,28 @@
     </div>
 
     <div id="loadingindicator" style="display:block;">
-        <img src="282.gif">
+        <img src="../282.gif">
     </div>
 
     <div id="mainmenu" class="nicewindow" style="display:none;">
 
         <div id="loginscreenstart">
-            <h1>Please sign in</h1>
+			
+            <div class="heading_and_back"><div onClick="document.location.href = '../index.html';" class="backarrow"></div>Please Sign In</div>
 
-            <div style="clear:both;"></div>
-
+			<div id="loginscreenstart_inputs">
             <input name="username" id="username" type="text" class="textfield" required placeholder="Username / E-Mail">
 
-            <div style="clear:both;"></div>
+           <input id="loginpin" style="width:100px;" class="textfield pin" type="tel" placeholder="PIN" maxlength="4" pattern=".{4,}">
+			</div>
+			
+			<div class="windowbutton waves-effect waves-dark" onClick="logincheck();">Sign in</div>
+			
+			<div id="forgotpw" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot PIN?</div>
 
         </div>
 
-        <center>
-            <input id="loginpin" style="width:100px;" class="textfield pin" type="tel" placeholder="PIN" maxlength="4" pattern=".{4,}">
-        </center>
-		
-		<style>
-			#loginpin {
-				text-align: center;
-				width: 60px;
-				text-indent: 0px;
-			}
-		</style>
 
-        <br>
 
         <script>
 			function logincheck() {
@@ -288,12 +301,9 @@ if (battery) {
 
         </script>
 
-        <div class="windowbutton waves-effect waves-dark" style="float: left; width: 48%;" onClick="logincheck();">Login</div>
-        <div class="windowbutton waves-effect waves-dark" style="float: right; width: 48%;" onClick="document.location.href = 'mainmenu.html';">Register</div>
+        
+       
 
-        <div style="clear: both;"></div>
-
-        <div class="windowbutton waves-effect waves-dark" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot username or PIN?</div>
 
         <div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode_hotel_corporate();">
             <img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png"> Hotel / Corporate Login
@@ -302,6 +312,7 @@ if (battery) {
     </div>
 
     <div id="loginscreenforgot" style="display:none;">
+		
         <h1>Please enter your E-Mail</h1>
 
         <div class="instructions">You will recieve an E-Mail with instructions.</div>
@@ -316,8 +327,5 @@ if (battery) {
 
     <br>
 
-    </div>
-
 </body>
-
 </html>

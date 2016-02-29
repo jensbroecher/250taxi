@@ -139,14 +139,21 @@ function dodevicenamecheck() {
 			font-style: normal;
 			font-size: 16px;
 			font-weight: 400;
-			float: left;
+
 			border: solid 1px white;
 			background-color: rgba(255, 255, 255, 0.2);
 			padding-top: 8px;
 			padding-bottom: 7px;
-			margin: 2px;
 			transition: all 0.5s;
+			
+			cursor: pointer;
         }
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+		}
 		#loginregister div:hover {
             background-color: rgba(255, 255, 255, 0.4);
 			transition: all 0.5s;
@@ -221,7 +228,7 @@ var i=0;
 
 timer=setInterval(function(){
 	i++;
-	console.log(i);
+	// console.log(i);
 	
 	document.getElementById("animation").src = "vid/"+i+".jpg";
 	
@@ -229,7 +236,7 @@ timer=setInterval(function(){
 		clearInterval ( timer );
 		document.getElementById("animation").src = "vid/110.jpg";
 	}
-},60);
+},50);
 	
 });
 
@@ -252,9 +259,9 @@ timer=setInterval(function(){
 		
 		<div id="loginregister">
 			
-			<div onclick="showindicator();document.location.href = 'reg/login.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.5s;">Login</div>
+			<div onclick="showindicator();document.location.href = 'reg/login.html'" class="left animated zoomIn" style="-webkit-animation-delay: 1.5s;">Login</div>
 			
-			<div onclick="showindicator();document.location.href = 'reg/mainmenu.html'" class="login_button_vid animated zoomIn" style="-webkit-animation-delay: 1.7s;">Register</div>
+			<div onclick="showindicator();document.location.href = 'reg/mainmenu.html'" class="right animated zoomIn" style="-webkit-animation-delay: 1.7s;">Register</div>
 		
     	</div>
 		
