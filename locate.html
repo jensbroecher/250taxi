@@ -53,6 +53,9 @@
 <script>
 	
 
+
+	
+
 	
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
@@ -86,6 +89,7 @@ function dogpscheck() {
 <script src="jquery.validate.min.js"></script>
 <script src="jquery-ui.min.js"></script>
 <script src="jquery.ui.touch-punch.min.js"></script>
+<script src="jquery.touchSwipe.min.js"></script>
     
 <script src="ls_reset.js"></script>
 <script src="mli.js"></script>
@@ -107,16 +111,21 @@ function dogpscheck() {
     
 <link rel="stylesheet" type="text/css" href="toast.css">
 <script src="startmap.js"></script>
-<script>
+<script>	
 	
-$(document).ready(function() {
-	
-$(".cbp-spmenu-open").on("swipeleft",function(){
-  alert("swipe");
+$( document ).ready(function() {
+
+      var count=0;
+
+      $("#pushmenu").swipe( {
+
+        swipeLeft:function(event, direction, distance, duration, fingerCount) {
+         console.log("You swiped " + direction + " " + ++count + " times " );
+		$('.jPushMenuBtn,body,.cbp-spmenu').removeClass('disabled active cbp-spmenu-open cbp-spmenu-push-toleft cbp-spmenu-push-toright');
+        },
+        threshold:0
+      });
 });
-	
-});
-	
 	
 $(function() {
 
@@ -878,7 +887,7 @@ Destination: <span id="journey_fare_display_destination_target"></span>
 
 </script>
     
-<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+<nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
     
 <br>
 <span id="logoutbutton" onclick="logout();">Logout</span>
