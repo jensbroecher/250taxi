@@ -1,619 +1,390 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>250 Taxi</title>
+	<title>250 Taxi</title>
 
-<meta charset="utf-8"> 
-    
-<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="manifest.json">
-<meta name="msapplication-TileColor" content="#df600a">
-<meta name="msapplication-TileImage" content="mstile-144x144.png">
-<meta name="theme-color" content="#000000">
-	
-<style>
-@media only screen and (max-device-width: 480px) {
-	#taxirequest_destination {
-		width: 80% !important;
-	}
-}
-</style>
-    
-<script src="logupdate.js"></script><script src="infobubble.js"></script>
-      
-<link href="animate.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css"> 
-<link rel="stylesheet" type="text/css" href="waves.css">
-<link rel="stylesheet" type="text/css" href="ball-pulse.css">
-<link rel="stylesheet" type="text/css" href="on_off_switch.css">
-<link rel="stylesheet" type="text/css" href="journey.css">
-<link rel="stylesheet" type="text/css" href="animate.min.css">
-<link rel="stylesheet" type="text/css" href="google_spinner.css">
-<link rel="stylesheet" type="text/css" href="searchdrivers.css">
-<link rel="stylesheet" type="text/css" href="modal250.css">
+	<meta charset="utf-8">
 
-<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
-      
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- 
-<script src="cordova.js"></script>
+	<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="manifest.json">
+	<meta name="msapplication-TileColor" content="#df600a">
+	<meta name="msapplication-TileImage" content="mstile-144x144.png">
+	<meta name="theme-color" content="#000000">
 
-<script>
-	
+	<style>
+		@media only screen and (max-device-width: 480px) {
+			#taxirequest_destination {
+				width: 80% !important;
+			}
+		}
+
+	</style>
+
+	<script src="logupdate.js"></script>
+	<script src="infobubble.js"></script>
+
+	<link href="animate.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
+	<link rel="stylesheet" type="text/css" href="waves.css">
+	<link rel="stylesheet" type="text/css" href="ball-pulse.css">
+	<link rel="stylesheet" type="text/css" href="on_off_switch.css">
+	<link rel="stylesheet" type="text/css" href="journey.css">
+	<link rel="stylesheet" type="text/css" href="animate.min.css">
+	<link rel="stylesheet" type="text/css" href="google_spinner.css">
+	<link rel="stylesheet" type="text/css" href="searchdrivers.css">
+	<link rel="stylesheet" type="text/css" href="modal250.css">
+	<link rel="stylesheet" type="text/css" href="locate.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<script src="cordova.js"></script>
+
+	<script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		function onDeviceReady() {
+			dogpscheck();
+			screen.lockOrientation('portrait');
+			document.addEventListener("backbutton", function(e) {
+				e.preventDefault();
+			}, false);
+		}
+
+		function dogpscheck() {
+			CheckGPS.check(function win() {
+
+				},
+				function fail() {
+					opensettings();
+				});
+		}
+
+		function opensettings() {
+			alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
+		}
+
+	</script>
 
 
-	
-
-	
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    dogpscheck();
-    screen.lockOrientation('portrait');
-    document.addEventListener("backbutton", function (e) {
-        e.preventDefault();
-    }, false );
-}
-function dogpscheck() {
-            CheckGPS.check(function win() {
-
-                },
-                function fail() {
-                    opensettings();
-                });
-        }
-        function opensettings() {
-                alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
-}
-
-
-</script>
-  
-
-  <!--  
+	<!--  
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&libraries=places&callback=initMap"></script>   
-  --><script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
+  -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
 
-<script src="jquery.min.js"></script>
-<script src="jquery.validate.min.js"></script>
-<script src="jquery-ui.min.js"></script>
-<script src="jquery.ui.touch-punch.min.js"></script>
-<script src="jquery.touchSwipe.min.js"></script>
-    
-<script src="ls_reset.js"></script>
-<script src="mli.js"></script>
-    
-<script src="responsivevoice.js"></script>
-<script src="materialize.js"></script>
-<script src="pushmenu/jPushMenu.js"></script>
-<script src="pushmenu/mainmenu.js"></script>
-      
-<script src="preventreload.js"></script>
-    
-<script src="fareestimate.js"></script>
-<script src="searchdrivers.js"></script>
-<script src="journey1.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.validate.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="jquery.ui.touch-punch.min.js"></script>
+	<script src="jquery.touchSwipe.min.js"></script>
 
-<script src="toast.js"></script>
-    
-<script src="http://250taxi.com/appcontent/client/summary.js"></script>
-    
-<link rel="stylesheet" type="text/css" href="toast.css">
-<script src="startmap.js"></script>
-<script>	
-	
-$( document ).ready(function() {
+	<script src="ls_reset.js"></script>
+	<script src="mli.js"></script>
 
-      var count=0;
+	<script src="responsivevoice.js"></script>
+	<script src="materialize.js"></script>
+	<script src="pushmenu/jPushMenu.js"></script>
+	<script src="pushmenu/mainmenu.js"></script>
 
-      $("#pushmenu").swipe( {
+	<script src="preventreload.js"></script>
 
-        swipeLeft:function(event, direction, distance, duration, fingerCount) {
-         console.log("You swiped " + direction + " " + ++count + " times " );
-		$('.jPushMenuBtn,body,.cbp-spmenu').removeClass('disabled active cbp-spmenu-open cbp-spmenu-push-toleft cbp-spmenu-push-toright');
-        },
-        threshold:0
-      });
-});
-	
-$(function() {
+	<script src="fareestimate.js"></script>
+	<script src="searchdrivers.js"></script>
+	<script src="journey1.js"></script>
 
-/*
-$('#customercarebuttonside').draggable({
-    axis: "y",
-	scroll: false,
-	containment: "parent",
-	stop: function() {
-		customercare();
-	}
-});
-*/
-	
-var dragCheck = false;
-	
-$('#customercarebuttonside').draggable({
-      revert: false,
-	  axis: "y",
-	  scroll: false,
-	  containment: "parent",
-	start: function () {
-        $('#expanded_customer_care_close').off('click');
-		document.getElementById("customercarebuttonside").className = "";
-    },
-	drag: function(){
-            // On drag set that flag to true
-         dragCheck = true;
-   },
-   stop: function(){
-            // On stop of dragging reset the flag back to false
-         dragCheck = false;
-	   	customercarebuttonside_animate();
-	   setTimeout(function(){
-            $('#expanded_customer_care_close').on('click', handleClick);
-        },1);
-   }
-});
+	<script src="toast.js"></script>
 
-// Then instead of using click use mouseup, and on mouseup only fire if the flag is set to false
-$('#customercarebuttonside') .bind('mouseup', function(){
-      if(dragCheck == false){
-          customercarebuttonside_animate();
-      }
-});
-	
-});	
-	
-	
-$("#expanded_customer_care_close").on('click', handleClick);
-	
-function customercarebuttonside_animate() {
-	
-	$('#expanded_customer_care_close').on('click', handleClick);
-	
-	document.getElementById("customercarebuttonside").style.width = "150px";
-	document.getElementById("customercarebuttonside").style.marginLeft = "-100px";
-	document.getElementById("customercarebuttonside").className = "addtrans";
-	document.getElementById("customercarebuttonside").style.backgroundPosition = "150px center";
-	
-	document.getElementById("expanded_customer_care").style.display = "block";
-	
-}
-	
-function handleClick() {
-  	document.getElementById("customercarebuttonside").style.width = "50px";
-	document.getElementById("customercarebuttonside").style.marginLeft = "0px";
-	document.getElementById("expanded_customer_care").style.display = "none";
-	document.getElementById("customercarebuttonside").style.backgroundPosition = "center center";
-};
+	<script src="http://250taxi.com/appcontent/client/summary.js"></script>
 
-function customercare() {
-	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-		location.href = "tel:+4917696341117";
-		return;
-	}
-		location.href = "intent://send/+4917696341117#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end";
-		//location.href = "tel:+250783000096";
-}
+	<link rel="stylesheet" type="text/css" href="toast.css">
+	<script src="startmap.js"></script>
+	<script>
+		$(document).ready(function() {
 
-</script>
-      
-<style>
-::-webkit-scrollbar { 
-    display: none; 
-}
-html, body {
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-html, body, #map {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-#locationfieldholder {
-        position: absolute;
-        background-color: rgba(255,255,255,0.9);
-        width: 84%;
-        left: 14%;
-        height: 15%;
-        z-index: 100;
-        top: 8px;
-        border-left: 1px solid rgba(255,255,255,0.9);
-        border-top: 1px solid rgba(255,255,255,0.9);
-        border-bottom: 1px solid rgba(255,255,255,0.9);
-        border-right: 0px solid rgba(255,255,255,0.9);
-        max-height: 30px;
-        display: table;
-}
-#locationfield {
-        position: absolute;
-        background-color: rgba(0,0,0,0.0);
-        width: 100%;
-        height: 100%;
-		  background-image: url(magnify.svg);
-		  background-size: contain;
-		  background-repeat: no-repeat;
-}
-#inlocationfield {
-       font-family: Roboto, sans-serif;
-     font-size: 16px; 
-        width: 100%;
-        border: none;
-        height: 100%;
-        text-indent: 5px;
-        background-color: transparent;
-  text-indent: 28px;
-}
-#menubutton {
-        background-image: url(menu.svg);
-        background-size: auto 80%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute;
-        height: 15%;
-        width: 10%;
-        z-index: 102;
-        max-width: 30px;
-        border: 1px solid rgba(255,255,255,0.9);     
-        top: 8px;
-        left: 2%;
-        background-color: rgba(255,255,255,0.9);
-        max-height: 30px;
-}
-#locationbutton {
-        background-size: auto 80%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute;
-        height: 15%;
-        width: 10%;
-        z-index: 100;
-        max-width: 30px;
-        border: 1px solid rgba(255,255,255,0.9);     
-        top: 47px;
-        right: 2%;
-        margin-right: 0px;
-        background-color: rgba(255,255,255,0.9);
-        max-height: 30px;
-}
-#customercarebutton {
-		background-size: auto 80%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute;
-        height: 15%;
-        width: 10%;
-        z-index: 100;
-        max-width: 30px;
-        border: 1px solid rgba(255,255,255,0.9);     
-        top: 86px;
-        right: 2%;
-        margin-right: 0px;
-        background-color: rgba(255,255,255,0.9);
-        max-height: 30px;
-		display: none;
-}
-#customercarebuttonside {
-		right: 0px;
-		position: absolute;
-		bottom: 30%;
-		width: 50px;
-		height: 50px;
-		border-top-left-radius: 10px;
-		border-bottom-left-radius: 10px;
-		background-color: rgba(45, 150, 182, 0.8);
-		z-index: 10000000000000000;
-		background-image: url(headset.png);
-		background-repeat: no-repeat;
-		background-size: 80% 80%;
-		background-position: center center;
-		display: none;
-}
-.addtrans {
-		transition: all 0.5s;
-}
-#expanded_customer_care_close {
-		margin-top: 8px;
-		margin-left: 0px;
-		width: 24px;
-		height: 24px;
-		display: block;
-		background-color: rgba(255, 255, 255, 0.6);
-		padding: 5px;
-}
-#calltaxiui {
-        background-image: url(calltaxi.png);
-        background-size: 360px;
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        width: 100%;
-        height: 95px;
-        position: absolute;
-        bottom: 0px;
-        z-index: 100;
-        display: block;
-}
-#logoutbutton {
-        font-family: Roboto, sans-serif;
-	    font-size: 14px;
-        border: 1px solid #FFFFFF;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 20px;
-        padding-right: 20px;
-        color: white;
-        margin-left: 30%;
-        text-transform: uppercase;
-}
-#overlay {
-    background-image: url(directions.png);
-    background-size: 100% 100%;
-    opacity: 0.7;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-}
-#loadingindicator {
-	background-color: black;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-	text-align: center;
-}
-#loadingindicator img {
-	margin-top: 100px;
-	width: 160px;
-}
-#divider {
-    height: 1px;
-    width: 100%;
-    display: block;
-    background-color: lightgrey;
-}
-#pages {
-        width: 96%;
-        height: 100%;
-        overflow: scroll;
-        top: 0;
-        left: 0;
-        position: absolute;
-        z-index: 102;
-        background-color: black;
-        display: none;
-        padding-left: 2%;
-        padding-right: 2%;
-        background-image: url(reg/kigali_blur.jpg);
-        background-size: cover;
-}
-#pagestarget {
+			$("#expanded_customer_care_close").swipe({
+				swipeRight: function() {
 
-}
-.menugpsblue {
-        background-image: url(crosshairs-gps_blue.svg);
-        background-size: 100% 100%; 
-}
-.menugps {
-        background-image: url(crosshairs-gps.svg);
-        background-size: 100% 100%;      
-}
-.menucustomercare {
-        background-image: url(customercare.svg);
-        background-size: 100% 100%;      
-}
-#locationfinderdialog {
-        width: 100%;
-        top: 0%;
-        margin-left: 0%;
-        margin-right: 0%;
-        background-color: rgba(44, 148, 179, 0.8);
-        height: 160px;
-        display: none;
-        position: absolute;
-        z-index: 300;
-        box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
-}
-#gosearchbyaddress {
-        font-family: Roboto, sans-serif;
-	    font-size: 14px;
-        background-color: black;
-        text-align: center;
-        color: white;
-        margin-left: 25%;
-        width: 50%;
-        padding-top: 10px;
-        padding-bottom: 8px;
-        text-transform: uppercase;
-}
-#searchbyaddress {
-        border: 0px solid black;
-        color: black;
-        padding-top: 9px;
-        padding-bottom: 9px;
-        background-color: white;
-        margin-left: 10%;
-        text-indent: 5px;
-        width: 80%;
-        margin-bottom: 15px;
-        margin-top: 30px;
-}
-.blur {
-   -webkit-filter: blur(3px);
-    pointer-events: none;
-}
-#loading_map_indicator {
-	opacity: 0.9;
-    font-family: sans-serif;
-    text-align: center;
-    font-weight: 300;
-    font-size: 100%;
-    position: absolute;
-    z-index: 200;
-    width: 50%;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    margin-left: 25%;
-    bottom: 35%;
-    background-color: black;
-	color: white;
-    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
-}
+					$("#customercarebuttonside").draggable("enable");
 
-</style>
+					document.getElementById("customercarebuttonside").className = "addtrans";
+
+					document.getElementById("customercarebuttonside").style.backgroundSize = "50% auto";
+					document.getElementById("customercarebuttonside").style.backgroundPosition = "32px center";
+
+					document.getElementById("swipehand").style.display = "block";
+
+					document.getElementById("customercarebuttonside").style.width = "70px";
+					document.getElementById("customercarebuttonside").style.marginLeft = "0px";
+					document.getElementById("expanded_customer_care").style.display = "none";
+					document.getElementById("customercarebuttonside").style.backgroundPosition = "32px center";
+
+				}
+
+			});
+
+
+
+			$("#customercarebuttonside").swipe({
+				swipeLeft: function() {
+
+					customercarebuttonside_animate();
+
+				}
+
+			});
+
+
+
+			var count = 0;
+
+			$("#pushmenu").swipe({
+				swipeLeft: function(event, direction, distance, duration, fingerCount) {
+
+
+
+					console.log("You swiped " + direction + " " + ++count + " times ");
+					$('.jPushMenuBtn,body,.cbp-spmenu').removeClass('disabled active cbp-spmenu-open cbp-spmenu-push-toleft cbp-spmenu-push-toright');
+				},
+				threshold: 0
+
+
+
+			});
+
+
+
+		});
+
+		$(function() {
+
+			var dragCheck = false;
+
+			$('#customercarebuttonside').draggable({
+				revert: false,
+				axis: "y",
+				scroll: false,
+				containment: "parent",
+				start: function() {
+					$('#expanded_customer_care_close').off('click');
+					document.getElementById("customercarebuttonside").className = "";
+				},
+				drag: function() {
+					// On drag set that flag to true
+					dragCheck = true;
+				},
+				stop: function() {
+					// On stop of dragging reset the flag back to false
+					dragCheck = false;
+					// customercarebuttonside_animate();
+					setTimeout(function() {
+
+					}, 1);
+				}
+			});
+
+			// Then instead of using click use mouseup, and on mouseup only fire if the flag is set to false
+			$('#customercarebuttonside').bind('mouseup', function() {
+				if (dragCheck == false) {
+					customercarebuttonside_animate();
+				}
+			});
+
+		});
+
+
+
+
+		function customercarebuttonside_animate() {
+
+			$("#customercarebuttonside").draggable("disable");
+
+			document.getElementById("customercarebuttonside").style.backgroundSize = "0% auto";
+			document.getElementById("customercarebuttonside").style.backgroundPosition = "center right";
+
+			document.getElementById("swipehand").style.display = "none";
+
+			document.getElementById("customercarebuttonside").style.width = "150px";
+			document.getElementById("customercarebuttonside").style.marginLeft = "-80px";
+			document.getElementById("customercarebuttonside").className = "addtrans";
+
+
+			document.getElementById("expanded_customer_care").style.display = "block";
+
+		}
+
+		function customercare_call() {
+			var web_or_app = localStorage.getItem("web_or_app");
+			if (web_or_app == "web") {
+				location.href = "tel:+250736733747";
+			}
+			if (web_or_app == "app") {
+				window.open('tel:+250736733747', '_system', 'location=yes');
+			}
+		}
+
+		function customercare_whatsapp() {
+			if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+				location.href = "whatsapp://abid?+250736733747";
+			} else {
+				var web_or_app = localStorage.getItem("web_or_app");
+				if (web_or_app == "web") {
+					location.href = "intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end";
+				}
+			}
+			if (web_or_app == "app") {
+				window.open('intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end', '_system', 'location=yes');
+			}
+		}
+
+	</script>
+
+
 
 </head>
 
 <body>
-    
-<div style="display:none;" id="server_com"></div>
-    
-<div class="animated fadeIn" id="instantscreen">
-    
-<center>
-<img id="instantscreen_logo" src="logo.png">
-</center>
-    
-<div id="instantscreen_instructions"><svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#000000" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
-</svg> 250 Taxi has accepted your request, kindly wait for us to contact you with more instructions.</div>
-    
-<div id="time5min"></div>
-    
-<div id="instantscreen_customer_care">
-    <div onclick="call_customer_care();" id="call_customer_care_button" class="waves-effect waves-light">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-</svg>
-    Call Customer Care
-</div>
-</div>
 
-</div>
-    
-<div id="taxis_online_info" class="noselect animated fadeIn"></div>
-    
-<div id="chat_overlay">
-   
-<div id="chat_overlay_close" onclick="close_chat();">
-<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
-</div>
-    
-<div id="chat_load_messages">
+	<div style="display:none;" id="server_com"></div>
 
-</div>
-    
-<input placeholder="Type a message" id="chat_message_input"></input>
-<div class="waves-effect waves-light" id="chat_message_send_button"></div>
-    
-</div>    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<style>
-#account_overlay, #wallet_overlay {
-    position: absolute;
-    z-index: 100000000000;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    background-color: black;
-    display: none;
-    font-family: sans-serif;
-    color: white;
-}
-.account_option {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
-}
-.account_option_info {
-    margin-bottom: 10px;
-    text-align: center;
-}
-.account_option .onoffswitch {
-     margin-left: auto;
-     margin-right: auto;
-}
-#account_overlay_x {
+	<div class="animated fadeIn" id="instantscreen">
 
-}
-#wallet_balance {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 150%;
-    font-weight: 200;
-    max-width: 300px;
-    min-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
-</style>   
-    
-<script>
+		<center>
+			<img id="instantscreen_logo" src="logo.png">
+		</center>
 
-</script>
-    
-<div id="wallet_overlay">
-    
-<div id="wallet_overlay_x" onclick="close_wallet_overlay();" style="padding:5px;">
-<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
-</div>
-    
-<div class="account_option">
+		<div id="instantscreen_instructions">
+			<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+				<path fill="#000000" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
+			</svg> 250 Taxi has accepted your request, kindly wait for us to contact you with more instructions.</div>
 
-<div class="account_option_info">
+		<div id="time5min"></div>
 
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" />
-</svg>
-    
-Wallet</div>
-    
-<div id="wallet_balance">Balance: <span id="wallet_balance_amount">
+		<div id="instantscreen_customer_care">
+			<div onclick="call_customer_care();" id="call_customer_care_button" class="waves-effect waves-light">
+				<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
+				</svg>
+				Call Customer Care
+			</div>
+		</div>
+
+	</div>
+
+	<div id="taxis_online_info" class="noselect animated fadeIn"></div>
+
+	<div id="chat_overlay">
+
+		<div id="chat_overlay_close" onclick="close_chat();">
+			<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+			</svg>
+		</div>
+
+		<div id="chat_load_messages">
+
+		</div>
+
+		<input placeholder="Type a message" id="chat_message_input">
+		<div class="waves-effect waves-light" id="chat_message_send_button"></div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<style>
+		#account_overlay,
+		#wallet_overlay {
+			position: absolute;
+			z-index: 100000000000;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: black;
+			display: none;
+			font-family: sans-serif;
+			color: white;
+		}
+		
+		.account_option {
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 30px;
+		}
+		
+		.account_option_info {
+			margin-bottom: 10px;
+			text-align: center;
+		}
+		
+		.account_option .onoffswitch {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		#account_overlay_x {}
+		
+		#wallet_balance {
+			font-family: 'Roboto', sans-serif;
+			text-align: center;
+			padding: 10px;
+			margin-bottom: 10px;
+			font-size: 150%;
+			font-weight: 200;
+			max-width: 300px;
+			min-width: 200px;
+			margin-left: auto;
+			margin-right: auto;
+			width: 60%;
+		}
+
+	</style>
+
+	<script>
+
+
+	</script>
+
+	<div id="wallet_overlay">
+
+		<div id="wallet_overlay_x" onclick="close_wallet_overlay();" style="padding:5px;">
+			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+			</svg>
+		</div>
+
+		<div class="account_option">
+
+			<div class="account_option_info">
+
+				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" />
+				</svg>
+
+				Wallet</div>
+
+			<div id="wallet_balance">Balance: <span id="wallet_balance_amount">
     
 <div style="display:inline;" class="la-ball-pulse">
 	<div></div>
@@ -622,568 +393,592 @@ Wallet</div>
 </div>
     
     </span> <span id="wallet_balance_currency"></span></div>
-    
-</div>
-    
-<div id="wallet_appcontent"></div>
-    
-</div>
-    
 
-<div id="account_overlay">
-    
-<div id="account_overlay_x" onclick="close_account_overlay();" style="padding:5px;">
-<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
-</div>
-    
-<div class="account_option">
-    
-<div id="account_details_info" class="account_option_info">
-
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-</svg>
-    
-Account details</div>
-    
-<style>
-    .simple_table {
-        width: 90%;
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-    .simple_table div {
-        float:left;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        text-indent: 5px;
-        margin-bottom: 2px;
-        overflow: hidden;
-        white-space: nowrap;
-        background-color: #3C3F41;
-    }
-    .simple_table .simple_table_desc {
-        width: 30%;
-        color: darkgrey;
-    }
-    .simple_table .simple_table_content {
-        width: 70%;
-    }
-    .account_button {
-        border: solid 1px white;
-        font-family: Roboto, sans-serif;
-	    font-size: 14px;
-        text-transform: uppercase;
-        padding-top: 3px;
-        padding-bottom: 3px;
-        margin-left: 30%;
-        width: 36%;
-        max-width: 270px;
-        text-align: center;
-        white-space: nowrap;
-        overflow: hidden;
-        margin-top: 15px;
-    }
-    #account_button_after_click {
-        padding: 5px;
-        background-color: lightgrey;
-        color: black;
-        font-size: 90%;
-        text-align: center;
-        margin-top: 10px;
-    }
-</style>
-    
-<div id="account_simple_table" class="simple_table">
-    
-<div class="simple_table_desc">Name</div>
-<div id="account_name" class="simple_table_content">Loading...</div>
-    
-<div class="simple_table_desc">Username</div>
-<div id="account_username" class="simple_table_content">Loading...</div>
-    
-<div class="simple_table_desc">E-Mail</div>
-<div id="account_email" class="simple_table_content">Loading...</div>
-
-<div class="simple_table_desc">Phone</div>
-<div id="account_phone" class="simple_table_content">Loading...</div>
-
-<div class="simple_table_desc">PIN</div>
-<div class="simple_table_content">****</div>
-
-</div>
-    
-<script>
-function change_account() {
-    
-var clientid = localStorage.getItem("userid");   
-    
-$.get( "http://250taxi.com/db/change_account.php?task=email&userid="+clientid+"", function( data ) {
-  alert('We have sent you instructions to your E-Mail on how to update your account. If you do not recieve it please contact customer care.');
-});
-
-document.getElementById("account_button").style.display = "none";
-document.getElementById("account_button_after_click").style.display = "block";
-
-}
-</script>
-    
-<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light" on>Change</div>
-    
-<div style="clear:both;"></div>
-
-<div id="account_button_after_click" class="animated fadeIn" style="display:none;">E-Mail sent. Please check your inbox!</div>
-
-</div>
-
-<div style="clear:both;"></div>
-   
-<div class="account_option">
-    
-<div class="account_option_info">
-
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
-</svg>
-    
-Voice Guidance</div>
-
-<div id="audio_choice" class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
-    <label class="onoffswitch-label" for="audio_choice_onoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-</div>
-    
-</div>
-
-    
-</div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
-
-<img style="width: 100px;" src="282.gif">
-<br>
-	
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M11.62,1L17.28,6.67L15.16,8.79L13.04,6.67L11.62,8.09L13.95,10.41L12.79,11.58L13.24,12.04C14.17,11.61 15.31,11.77 16.07,12.54L12.54,16.07C11.77,15.31 11.61,14.17 12.04,13.24L11.58,12.79L10.41,13.95L8.09,11.62L6.67,13.04L8.79,15.16L6.67,17.28L1,11.62L3.14,9.5L5.26,11.62L6.67,10.21L3.84,7.38C3.06,6.6 3.06,5.33 3.84,4.55L4.55,3.84C5.33,3.06 6.6,3.06 7.38,3.84L10.21,6.67L11.62,5.26L9.5,3.14L11.62,1M18,14A4,4 0 0,1 14,18V16A2,2 0 0,0 16,14H18M22,14A8,8 0 0,1 14,22V20A6,6 0 0,0 20,14H22Z" />
-</svg> Loading
-
-</div>
-    
-<div id="driveroverlay">
-    
-<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
-
-<div id="driveroverlay_show_details"></div>
-    
-<div id="journey_fare_display">
-<div id="journey_fare_notice">MINIMUM FARE 1500</div>
-<div id="journey_fare_display_km" style="display:none;">
-Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
-</div>
-<div id="journey_fare_display_fare" style="display:none;">
-Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
-</div>
-<div id="journey_fare_display_destination">
-Destination: <span id="journey_fare_display_destination_target"></span>
-</div>
-    
-<div id="journey_route_info"><span>Suggested Route</span><br>(You and the driver may choose a different route)</div>
-
-</div>
-    
-</div>
-    
-<script>
-   
-</script>
-    
-<div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#000000" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
-</svg>
-    Pick me now
-</div>
-
-<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-</svg>
-    Cancel Request
-</div>
-    
-
-<div id="journey_accepted_panel">
-    
-<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel_small" class="waves-effect waves-light">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-</svg>
-</div>
-
-<div onclick="chat();" id="chat_button" class="waves-effect waves-light">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
-</svg>
-    Chat
-</div>
-    
-<div onclick="call();" id="call_button" class="waves-effect waves-light">
-    <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-</svg>
-    Call
-</div>
-
-</div>
-    
-    
-<div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
-
-    <div class="canceldialogbuttontitle">Please state reason</div>
-    
-    <div onclick="localStorage.setItem('cancel_reason','driver_late');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_late">Driver was late</div>
-
-    <div onclick="localStorage.setItem('cancel_reason','cant_track');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_notrack">Can't track driver</div>
-    
-    <div onclick="localStorage.setItem('cancel_reason','cant_reach');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_nocom">Can't reach driver</div>
-    
-    <div onclick="localStorage.setItem('cancel_reason','other');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
-    
-    <div style="padding: 5px; background-color: darkgrey;">
-        
-    <div onclick="$('#driveroverlay_journey_cancel_dialog').fadeOut('slow');" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
-    </div>
-
-</div>
-    
-<div id="pages">
-<div id="pagestarget">
-
-</div>
-</div>
-    
-<div id="overlay"></div>
-    
-<div id="loadingindicator">
-<img src="282.gif" width="120">
-</div>
-
-<script>
-
-</script>
-    
-<nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
-    
-<br>
-<span id="logoutbutton" onclick="logout();">Logout</span>
-<br><br>
-    
-            <div id="mainmenu_account">Account</div>
-			<div id="mainmenu_services">Services</div>
-			<div id="mainmenu_wallet">Wallet</div>
-            <div id="mainmenu_history">History</div>
-            <span id="divider"></span>
-			<div id="mainmenu_becomedriver">BECOME A 250 TAXI DRIVER</div>
-			<div id="mainmenu_corporate">250 TAXI CORPORATE</div>
-            <div id="mainmenu_about">ABOUT</div>
-            <div id="mainmenu_help">HELP</div>
-</nav>
-    
-<div id="menubutton" class="toggle-menu menu-left"> </div>
-    
-<script>
-
-</script>
-    
-<div id="locationfinderdialog">
-    
-<div id="locationfinderdialog_x" style="padding:5px;">
-<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-    <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
-</div>
-
-<input style="display:none" id="lat" name="lat" val="40.713956">
-<input style="display:none" id="long" name="long" val="74.006653">
-
-<input placeholder="Landmark / Street" id="searchbyaddress" value="">
-
-<div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
-
-<svg style="vertical-align: middle; width: 24px; height: 24px;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-</svg>
-    
-    Pickup Location
-</div>
-
-</div>
-    
-<script>
-
-</script>
-
-<div id="locationfieldholder">
-<div id="locationfield"></div>
-<input type="text" id="inlocationfield">
-</div>
-    
-<script>
-
-</script>
-	
-<div id="customercarebuttonside" class="draggable">
-
-<div id="expanded_customer_care" style="display:none;" class="animated fadeIn">
-	
-<div id="expanded_customer_care_close">
-<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2A10,10 0 0,0 2,12M4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12M10,17L15,12L10,7V17Z" />
-</svg>
-</div>
-
-</div>
-	
-</div>
-    
-<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
-	
-<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
-
-    <div id="calltaxiui"></div>
-	
-    <div id="map"></div>
-
-<script>
-    
-
-</script>
-
-
-<div id="journey_status_dialog">
-    
-<div class="sdbox" id="journey_status_dialog_window">
-
-<div id="journey_status_dialog_title" class="sdtitle"></div>
-    
-<p id="journey_status_dialog_content"></p>
-
-</div>
-
-</div>
-    
-	
-<div id="getfareestimate" class="animated fadeIn">
-	
-	<div class="sdbox">
-
-		<div class="sdtitle">Fare Estimate</div>
-		
-		<div id="getfareestimate_price"></div>
-		
-		<div id="getfareestimate_pickup_holder">Pickup: 
-		<span id="getfareestimate_pickup"></span>
 		</div>
-		
-		<div id="getfareestimate_destination_holder">Destination: 
-		<span id="getfareestimate_destination"></span>
-		</div>
-		
-		<div id="getfareestimate_distance_holder">Distance:  
-		<span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
-		</div>
-		
-		
-		
-		<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ getdrivers(); }, 1000);">
-    
-    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
-</svg>
-    
-    NEXT</div>
-		
+
+		<div id="wallet_appcontent"></div>
+
 	</div>
-</div>
 
-    
-<div id="mydetailedlocation">
-	<div class="sdbox">
 
-		<div class="sdtitle">Tell us more info about where you are</div>
-    
-		<input class="sdinput" placeholder="I am at..." id="taxirequest_detailedlocation">
+	<div id="account_overlay">
 
-<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">
-    
-    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-</svg>
-    
-    OK</div>
-    
-<div style="display:none;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
+		<div id="account_overlay_x" onclick="close_account_overlay();" style="padding:5px;">
+			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+			</svg>
+		</div>
 
-</div>
-</div>
-    
-    
-    
-    
-    
-    
-    
-<div id="searchdrivers">    
-    
-<div id="mydestination" class="sdbox">
-    
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
-</div>
-    
-    
-        <div class="sdtitle">My Destination</div>
-        
-        <input class="sdinput" placeholder="Let's go to..." id="taxirequest_destination"></input>
-        
-        <div class="waves-effect waves-light sdbutton" onclick="get_fare_estimate();">
-            
-<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
-</svg>
-            
-        Fare estimate
-        </div>
-    
-    <div class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
-		Skip estimate</div>
-        
-</div>
-    
-<div id="citynavigator_start" class="sdbox">
-    <div class="sdtitle">City Navigator</div>
-    
-<div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
-        
-<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
-</svg> Pick a place
-        </div>
-    
-</div>
-    
-    
-    
-    
-    
-    
-    
-    
-<div id="driverlist" style="display:none;" class="sdbox">
-    
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
-</div>
-    
-    <div class="sdtitle">Please select driver</div>
-    
-    <div id="driverlist_scanner">
-        
-        <div class="loader">
-<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
-</div>
-        
-    </div>
-</div>
-    
-    
-    
-    
-    
+		<div class="account_option">
 
-    
+			<div id="account_details_info" class="account_option_info">
 
-    
-    
-    
-    
-<div id="citynavigator" style="display:none;" class="sdbox">
-    
-<div class="searchdrivers_x">                    
-    <div onclick="searchdrivers_x();">
-        <svg viewBox="0 0 24 24">
-    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-        </svg>
-    </div>
-</div>
+				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+				</svg>
 
-    <div class="sdtitle">City Navigator</div>
-    
-<select id="citynavigator_category">
-    <option>Shopping</option>
-    <option>Hotels</option>
-    <option>Restaurants</option>
-    <option>Police</option>
-    <option>Banks</option>
-    <option>Forex</option>
-    <option>Insurance</option>
-    <option>Petrol</option>
-    <option>Schools</option>
-    <option>Hospitals</option>
-    <option>Pharmacies</option>
-    <option>Sights</option>
-    <option>Government</option>
-    <option>Clubs</option>
-</select>
-    
-    <div id="citynavigatorlist">    
-        
-        <div class="loader">
-            
-            <br><br>
-            
-<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-</svg>
-</div>
-        
-    </div>
-</div>
- 
-<script src="journey_map1.js"></script>
-<div style="display:block;" id="journey_fare_load"></div>
-    
-    
-    
+				Account details</div>
 
-    
+			<style>
+				.simple_table {
+					width: 90%;
+					padding-left: 5%;
+					padding-right: 5%;
+				}
+				
+				.simple_table div {
+					float: left;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					text-indent: 5px;
+					margin-bottom: 2px;
+					overflow: hidden;
+					white-space: nowrap;
+					background-color: #3C3F41;
+				}
+				
+				.simple_table .simple_table_desc {
+					width: 30%;
+					color: darkgrey;
+				}
+				
+				.simple_table .simple_table_content {
+					width: 70%;
+				}
+				
+				.account_button {
+					border: solid 1px white;
+					font-family: Roboto, sans-serif;
+					font-size: 14px;
+					text-transform: uppercase;
+					padding-top: 3px;
+					padding-bottom: 3px;
+					margin-left: 30%;
+					width: 36%;
+					max-width: 270px;
+					text-align: center;
+					white-space: nowrap;
+					overflow: hidden;
+					margin-top: 15px;
+				}
+				
+				#account_button_after_click {
+					padding: 5px;
+					background-color: lightgrey;
+					color: black;
+					font-size: 90%;
+					text-align: center;
+					margin-top: 10px;
+				}
+
+			</style>
+
+			<div id="account_simple_table" class="simple_table">
+
+				<div class="simple_table_desc">Name</div>
+				<div id="account_name" class="simple_table_content">Loading...</div>
+
+				<div class="simple_table_desc">Username</div>
+				<div id="account_username" class="simple_table_content">Loading...</div>
+
+				<div class="simple_table_desc">E-Mail</div>
+				<div id="account_email" class="simple_table_content">Loading...</div>
+
+				<div class="simple_table_desc">Phone</div>
+				<div id="account_phone" class="simple_table_content">Loading...</div>
+
+				<div class="simple_table_desc">PIN</div>
+				<div class="simple_table_content">****</div>
+
+			</div>
+
+			<script>
+				function change_account() {
+
+					var clientid = localStorage.getItem("userid");
+
+					$.get("http://250taxi.com/db/change_account.php?task=email&userid=" + clientid + "", function(data) {
+						alert('We have sent you instructions to your E-Mail on how to update your account. If you do not recieve it please contact customer care.');
+					});
+
+					document.getElementById("account_button").style.display = "none";
+					document.getElementById("account_button_after_click").style.display = "block";
+
+				}
+
+			</script>
+
+			<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light" on>Change</div>
+
+			<div style="clear:both;"></div>
+
+			<div id="account_button_after_click" class="animated fadeIn" style="display:none;">E-Mail sent. Please check your inbox!</div>
+
+		</div>
+
+		<div style="clear:both;"></div>
+
+		<div class="account_option">
+
+			<div class="account_option_info">
+
+				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
+				</svg>
+
+				Voice Guidance</div>
+
+			<div id="audio_choice" class="onoffswitch">
+				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
+				<label class="onoffswitch-label" for="audio_choice_onoffswitch">
+					<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-switch"></span>
+				</label>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
+
+		<img style="width: 100px;" src="282.gif">
+		<br>
+
+		<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+			<path fill="#FFFFFF" d="M11.62,1L17.28,6.67L15.16,8.79L13.04,6.67L11.62,8.09L13.95,10.41L12.79,11.58L13.24,12.04C14.17,11.61 15.31,11.77 16.07,12.54L12.54,16.07C11.77,15.31 11.61,14.17 12.04,13.24L11.58,12.79L10.41,13.95L8.09,11.62L6.67,13.04L8.79,15.16L6.67,17.28L1,11.62L3.14,9.5L5.26,11.62L6.67,10.21L3.84,7.38C3.06,6.6 3.06,5.33 3.84,4.55L4.55,3.84C5.33,3.06 6.6,3.06 7.38,3.84L10.21,6.67L11.62,5.26L9.5,3.14L11.62,1M18,14A4,4 0 0,1 14,18V16A2,2 0 0,0 16,14H18M22,14A8,8 0 0,1 14,22V20A6,6 0 0,0 20,14H22Z" />
+		</svg> Loading
+
+	</div>
+
+	<div id="driveroverlay">
+
+		<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
+
+		<div id="driveroverlay_show_details"></div>
+
+		<div id="journey_fare_display">
+			<div id="journey_fare_notice">MINIMUM FARE 1500</div>
+			<div id="journey_fare_display_km" style="display:none;">
+				Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
+			</div>
+			<div id="journey_fare_display_fare" style="display:none;">
+				Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
+			</div>
+			<div id="journey_fare_display_destination">
+				Destination: <span id="journey_fare_display_destination_target"></span>
+			</div>
+
+			<div id="journey_route_info"><span>Suggested Route</span>
+				<br>(You and the driver may choose a different route)</div>
+
+		</div>
+
+	</div>
+
+	<script>
+
+
+	</script>
+
+	<div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
+		<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+			<path fill="#000000" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+		</svg>
+		Pick me now
+	</div>
+
+	<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
+		<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+			<path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+		</svg>
+		Cancel Request
+	</div>
+
+
+	<div id="journey_accepted_panel">
+
+		<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel_small" class="waves-effect waves-light">
+			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+			</svg>
+		</div>
+
+		<div onclick="chat();" id="chat_button" class="waves-effect waves-light">
+			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
+			</svg>
+			Chat
+		</div>
+
+		<div onclick="call();" id="call_button" class="waves-effect waves-light">
+			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
+			</svg>
+			Call
+		</div>
+
+	</div>
+
+
+	<div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
+
+		<div class="canceldialogbuttontitle">Please state reason</div>
+
+		<div onclick="localStorage.setItem('cancel_reason','driver_late');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_late">Driver was late</div>
+
+		<div onclick="localStorage.setItem('cancel_reason','cant_track');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_notrack">Can't track driver</div>
+
+		<div onclick="localStorage.setItem('cancel_reason','cant_reach');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_nocom">Can't reach driver</div>
+
+		<div onclick="localStorage.setItem('cancel_reason','other');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
+
+		<div style="padding: 5px; background-color: darkgrey;">
+
+			<div onclick="$('#driveroverlay_journey_cancel_dialog').fadeOut('slow');" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
+		</div>
+
+	</div>
+
+	<div id="pages">
+		<div id="pagestarget">
+
+		</div>
+	</div>
+
+	<div id="overlay"></div>
+
+	<div id="loadingindicator">
+		<img src="282.gif" width="120">
+	</div>
+
+	<script>
+
+
+	</script>
+
+	<nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
+
+		<br>
+		<span class="noSwipe" id="logoutbutton" onclick="logout();">Logout</span>
+		<br>
+		<br>
+
+		<div class="noSwipe" id="mainmenu_account">Account</div>
+		<div class="noSwipe" id="mainmenu_services">Services</div>
+		<div class="noSwipe" id="mainmenu_wallet">Wallet</div>
+		<div class="noSwipe" id="mainmenu_history">History</div>
+		<span id="divider"></span>
+		<div class="noSwipe" id="mainmenu_becomedriver">BECOME A 250 TAXI DRIVER</div>
+		<div class="noSwipe" id="mainmenu_corporate">250 TAXI CORPORATE</div>
+		<div class="noSwipe" id="mainmenu_about">ABOUT</div>
+		<div class="noSwipe" id="mainmenu_help">HELP</div>
+	</nav>
+
+	<div id="menubutton" class="toggle-menu menu-left"> </div>
+
+	<script>
+
+
+	</script>
+
+	<div id="locationfinderdialog">
+
+		<div id="locationfinderdialog_x" style="padding:5px;">
+			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+				<path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+			</svg>
+		</div>
+
+		<input style="display:none" id="lat" name="lat" val="40.713956">
+		<input style="display:none" id="long" name="long" val="74.006653">
+
+		<input placeholder="Landmark / Street" id="searchbyaddress" value="">
+
+		<div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
+
+			<svg style="vertical-align: middle; width: 24px; height: 24px;" viewBox="0 0 24 24">
+				<path fill="#FFFFFF" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+			</svg>
+
+			Pickup Location
+		</div>
+
+	</div>
+
+	<script>
+
+
+	</script>
+
+	<div id="locationfieldholder">
+		<div id="locationfield"></div>
+		<input type="text" id="inlocationfield">
+	</div>
+
+	<script>
+
+
+	</script>
+
+	<div id="customercarebuttonside" class="draggable">
+
+		<div id="swipehand"></div>
+
+		<div id="expanded_customer_care" style="display:none;" class="animated fadeIn">
+
+			<div id="expanded_customer_care_close"></div>
+
+			<div id="customercare_call" onclick="customercare_call();">
+
+				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
+				</svg>
+			</div>
+
+			<div id="customercare_whatsapp" onclick="customercare_whatsapp();">
+				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" />
+				</svg>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
+
+	<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
+
+	<div id="calltaxiui"></div>
+
+	<div id="map"></div>
+
+	<script>
+
+
+	</script>
+
+
+	<div id="journey_status_dialog">
+
+		<div class="sdbox" id="journey_status_dialog_window">
+
+			<div id="journey_status_dialog_title" class="sdtitle"></div>
+
+			<p id="journey_status_dialog_content"></p>
+
+		</div>
+
+	</div>
+
+
+	<div id="getfareestimate" class="animated fadeIn">
+
+		<div class="sdbox">
+
+			<div class="sdtitle">Fare Estimate</div>
+
+			<div id="getfareestimate_price"></div>
+
+			<div id="getfareestimate_pickup_holder">Pickup:
+				<span id="getfareestimate_pickup"></span>
+			</div>
+
+			<div id="getfareestimate_destination_holder">Destination:
+				<span id="getfareestimate_destination"></span>
+			</div>
+
+			<div id="getfareestimate_distance_holder">Distance:
+				<span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
+			</div>
+
+
+
+			<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ getdrivers(); }, 1000);">
+
+				<svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+				</svg>
+
+				NEXT</div>
+
+		</div>
+	</div>
+
+
+	<div id="mydetailedlocation">
+		<div class="sdbox">
+
+			<div class="sdtitle">Tell us more info about where you are</div>
+
+			<input class="sdinput" placeholder="I am at..." id="taxirequest_detailedlocation">
+
+			<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">
+
+				<svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+				</svg>
+
+				OK</div>
+
+			<div style="display:none;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div id="searchdrivers">
+
+		<div id="mydestination" class="sdbox">
+
+			<div class="searchdrivers_x">
+				<div onclick="searchdrivers_x();">
+					<svg viewBox="0 0 24 24">
+						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+					</svg>
+				</div>
+			</div>
+
+
+			<div class="sdtitle">My Destination</div>
+
+			<input class="sdinput" placeholder="Let's go to..." id="taxirequest_destination"></input>
+
+			<div class="waves-effect waves-light sdbutton" onclick="get_fare_estimate();">
+
+				<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
+				</svg>
+
+				Fare estimate
+			</div>
+
+			<div class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
+				Skip estimate</div>
+
+		</div>
+
+		<div id="citynavigator_start" class="sdbox">
+			<div class="sdtitle">City Navigator</div>
+
+			<div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
+
+				<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
+				</svg> Pick a place
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+		<div id="driverlist" style="display:none;" class="sdbox">
+
+			<div class="searchdrivers_x">
+				<div onclick="searchdrivers_x();">
+					<svg viewBox="0 0 24 24">
+						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+					</svg>
+				</div>
+			</div>
+
+			<div class="sdtitle">Please select driver</div>
+
+			<div id="driverlist_scanner">
+
+				<div class="loader">
+					<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+					</svg>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<div id="citynavigator" style="display:none;" class="sdbox">
+
+			<div class="searchdrivers_x">
+				<div onclick="searchdrivers_x();">
+					<svg viewBox="0 0 24 24">
+						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+					</svg>
+				</div>
+			</div>
+
+			<div class="sdtitle">City Navigator</div>
+
+			<select id="citynavigator_category">
+				<option>Shopping</option>
+				<option>Hotels</option>
+				<option>Restaurants</option>
+				<option>Police</option>
+				<option>Banks</option>
+				<option>Forex</option>
+				<option>Insurance</option>
+				<option>Petrol</option>
+				<option>Schools</option>
+				<option>Hospitals</option>
+				<option>Pharmacies</option>
+				<option>Sights</option>
+				<option>Government</option>
+				<option>Clubs</option>
+			</select>
+
+			<div id="citynavigatorlist">
+
+				<div class="loader">
+
+					<br>
+					<br>
+
+					<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+					</svg>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="journey_map1.js"></script>
+		<div style="display:block;" id="journey_fare_load"></div>
+
+
+
+
+
 
 
 
 </body>
+
 </html>
