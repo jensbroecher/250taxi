@@ -8,19 +8,16 @@
     <name>250 Taxi</name>
 
     <description>
-		Kigali's Taxi Booking Service
+		Taxi Booking Service
     </description>
 
     <author href="https://www.250taxi.com" email="info@250taxi.com">
         Jens Bröcher / Afshon Group
     </author>
-        
-    <preference name="windows-target-version" value="10.0" />
-    <preference name="windows-phone-target-version" value="10.0" />
-        
-    <splash src="icon.png" platform="winphone" />
 	
 	<icon src="icon.png" />
+		
+	<preference name="phonegap-version" value="3.1.0" />
 		
 	<!-- Core plugins -->
     <gap:plugin name="cordova-plugin-device" source="npm" />
@@ -40,8 +37,6 @@
     <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
         
     <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
-        
-
         
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
