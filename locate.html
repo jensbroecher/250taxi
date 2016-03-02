@@ -26,11 +26,8 @@
 
 	<style>
 		@media only screen and (max-device-width: 480px) {
-			#taxirequest_destination {
-				width: 80% !important;
-			}
-		}
 
+		}
 	</style>
 
 	<script src="logupdate.js"></script>
@@ -227,25 +224,28 @@
 		}
 
 		function customercare_call() {
-			var web_or_app = localStorage.getItem("web_or_app");
-			if (web_or_app == "web") {
-				location.href = "tel:+250736733747";
+			
+			var app_or_web = localStorage.getItem("app_or_web");
+			
+			if (app_or_web == "web") {
+				location.href = "tel:+250783000096";
 			}
-			if (web_or_app == "app") {
-				window.open('tel:+250736733747', '_system', 'location=yes');
+			if (app_or_web == "app") {
+				window.open('tel:+250783000096', '_system', 'location=yes');
 			}
+			
 		}
 
 		function customercare_whatsapp() {
 			if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
 				location.href = "whatsapp://abid?+250736733747";
 			} else {
-				var web_or_app = localStorage.getItem("web_or_app");
-				if (web_or_app == "web") {
+				var app_or_web = localStorage.getItem("app_or_web");
+				if (app_or_web == "web") {
 					location.href = "intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end";
 				}
 			}
-			if (web_or_app == "app") {
+			if (app_or_web == "app") {
 				window.open('intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end', '_system', 'location=yes');
 			}
 		}
@@ -786,7 +786,9 @@
 	<div id="getfareestimate" class="animated fadeIn">
 
 		<div class="sdbox">
-
+			
+<img id="getfareestimate_back" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="getfareestimate_close();">
+			
 			<div class="sdtitle">Fare Estimate</div>
 
 			<div id="getfareestimate_price"></div>
@@ -857,8 +859,23 @@
 
 
 			<div class="sdtitle">My Destination</div>
-
-			<input class="sdinput" placeholder="Let's go to..." id="taxirequest_destination"></input>
+			
+			<div class="fromto">
+		from		
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+</svg>
+				
+				</div>
+			<input onblur="taxirequest_pickup_estimate();" class="sdinput minus2px" placeholder="Pickup" id="taxirequest_pickup_estimate">
+			<div class="fromto">
+		to		
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="#000000" d="M14.4,6H20V16H13L12.6,14H7V21H5V4H14L14.4,6M14,14H16V12H18V10H16V8H14V10L13,8V6H11V8H9V6H7V8H9V10H7V12H9V10H11V12H13V10L14,12V14M11,10V8H13V10H11M14,10H16V12H14V10Z" />
+</svg>
+				
+				</div>
+			<input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination">
 
 			<div class="waves-effect waves-light sdbutton" onclick="get_fare_estimate();">
 

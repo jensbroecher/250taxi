@@ -53,6 +53,15 @@
         color: black !important;
         margin-top: -10px;
 }
+.fromto {
+	text-align: center;
+	font-size: 14px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.minus2px {
+	margin-left: -1px;
+}
 .sdinput {
         font-family: Roboto, sans-serif;
 	    font-size: 14px;
@@ -346,6 +355,9 @@
 	text-align: center;
 	font-size: 22px;
 	margin-bottom: 10px;
+}
+#getfareestimate_back {
+	position: absolute;
 }
 
 #getfareestimate_pickup, #getfareestimate_destination, #getfareestimate_distance {

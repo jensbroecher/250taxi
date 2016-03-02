@@ -51,17 +51,23 @@
         $(document).ready(function() {
 			
 			var currentTime = new Date().getHours();
+			
             if (0 <= currentTime && currentTime < 5) {
-                setnight();
+               document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
             }
             if (5 <= currentTime && currentTime < 11) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
             }
             if (11 <= currentTime && currentTime < 16) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
             }
-            if (16 <= currentTime && currentTime < 22) {
+            if (16 <= currentTime && currentTime < 17) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
             }
-            if (22 <= currentTime && currentTime <= 24) {
-                setnight();
+            if (17 <= currentTime && currentTime <= 24) {
+                document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
             }
         
 			
@@ -102,9 +108,7 @@
 
 
 		
-        function setnight() {
-            document.getElementById('mainbg').src = 'kigali_night.jpg';
-        }
+
 
 
         function scancode_hotel_corporate() {

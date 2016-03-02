@@ -1,5 +1,7 @@
 function get_fare_estimate() {
 	
+	taxirequest_pickup_estimate();
+	
 	showindicator();
 	
 	var taxirequest_destination = document.getElementById("taxirequest_destination").value;
@@ -83,6 +85,10 @@ gcostestimate = Math.ceil(gcostestimate/100)*100;
     
 if (gcostestimate < 1500) {
     gcostestimate = 1500;
+}
+if (isNaN(gcostestimate)) {
+    alert("Sorry, we could not calculate the fare for this route. Please change pickup or destination locations. Make sure your internet connection is working.");
+	getfareestimate_close();
 }
 	
 document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" RWF";

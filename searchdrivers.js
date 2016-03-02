@@ -1,3 +1,8 @@
+function getfareestimate_close() {
+	document.getElementById("getfareestimate").style.display = "none";
+	document.getElementById("mydestination").style.display = "block";
+	document.getElementById("citynavigator_start").style.display = "block";
+}
 $(document).ready( function() {
     
 $( "#calltaxiui" ).click(function() { 
@@ -5,7 +10,16 @@ calltaxigo();
 });
 
 });
+
+function taxirequest_pickup_estimate() {
+	
+document.getElementById("inlocationfield").value =
+document.getElementById("taxirequest_pickup_estimate").value;
+	
+}
 function calltaxigo() {
+	
+document.getElementById("taxirequest_pickup_estimate").value = document.getElementById("inlocationfield").value;
     
 localStorage.setItem('activity','destination_screen');
     

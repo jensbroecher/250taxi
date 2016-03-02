@@ -48,6 +48,7 @@ var autocomplete = new google.maps.places.Autocomplete(input, options);   */
 	
 var input = document.getElementById('taxirequest_destination');
 var input2 = document.getElementById('searchbyaddress');
+var input3 = document.getElementById('taxirequest_pickup_estimate');
 
 var options = {
  componentRestrictions: {country: 'rw'}
@@ -55,6 +56,7 @@ var options = {
 
 autocomplete = new google.maps.places.Autocomplete(input, options);    
 autocomplete = new google.maps.places.Autocomplete(input2, options); 
+autocomplete = new google.maps.places.Autocomplete(input3, options);
 
 });
    
