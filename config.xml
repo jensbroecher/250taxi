@@ -17,6 +17,28 @@
 	
 	<icon src="icon.png" />
 		
-
+	<!-- Core plugins -->
+    <gap:plugin name="cordova-plugin-device" source="npm" />
+    <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+    <gap:plugin name="cordova-plugin-dialogs" source="npm" />
+    <gap:plugin name="cordova-plugin-file" source="npm" />
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <gap:plugin name="cordova-plugin-media" source="npm" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+        
+    <gap:plugin name="cordova-plugin-local-notifications-pgb" source="npm" />
+    <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+    <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
+    <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
+        
+    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
+    <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
+    <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
+        
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
 
 </widget>
