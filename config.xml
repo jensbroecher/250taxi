@@ -17,8 +17,6 @@
 	
 	<icon src="icon.png" />
 		
-	<preference name="phonegap-version" value="3.1.0" />
-		
 	<!-- Core plugins -->
     <gap:plugin name="cordova-plugin-device" source="npm" />
     <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
@@ -31,16 +29,11 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
         
     <gap:plugin name="cordova-plugin-local-notifications-pgb" source="npm" />
-
     <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
-        
     <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
-        
     <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
-    <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
-    <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
-    <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
+
         
     <allow-navigation href="*" />
     <allow-intent href="*" />
