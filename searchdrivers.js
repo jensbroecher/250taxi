@@ -226,6 +226,8 @@ journey_start_map();
 }
 
 function pickdriver_request_start () {
+	
+	document.getElementById("pickdriver_request_timer").style.display = "block";
     
     localStorage.setItem('activity','driver_selected');
     

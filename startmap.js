@@ -72,9 +72,7 @@ document.getElementById("loadingindicator").style.display = "none";
 }, 1000);
 }
 function audio_update_location() {
-    
-localStorage.setItem('toast','Locating you on map');toast();
-    
+  
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Locating you again");}    
 }
