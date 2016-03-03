@@ -9,6 +9,8 @@ document.body.appendChild(toast);
 function toast() {
 
 var toast_status = localStorage.getItem("toast_status");
+	
+
 
 if (toast_status == "end") {
 localStorage.setItem("toast_status","start");
@@ -18,8 +20,15 @@ toast_circle();
 function toast_circle() {
 document.getElementById("toast").style.display = "block";
 document.getElementById("toast").className = "animated zoomIn";
+
+setTimeout(function(){ 
 window.navigator.vibrate([100,30,100,30,100]);
-document.getElementById("toast_inside").innerHTML = localStorage.getItem("toast");
+}, 1000);
+	
+var toast_test = localStorage.getItem("toast");
+// alert(toast_test);
+	
+document.getElementById("toast_inside").innerHTML = toast_test;
 var toastaudio = new Audio('http://250taxi.com/sounds/hollow_p-dog-7588_hifi.mp3');toastaudio.play();
 toast_end_animation1 = setTimeout(function(){ 
 document.getElementById("toast").className = "animated zoomOut";
