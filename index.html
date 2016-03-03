@@ -19,6 +19,13 @@
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
             // Now safe to use device APIs
+			
+var deviceOS  = device.platform;  //fetch the device operating system
+var deviceOSVersion = device.version;  //fetch the device OS version
+         
+alert("Device OS: " + deviceOS); 
+alert("Device OS Version: " + deviceOSVersion);
+			
             // set to either landscape
             screen.lockOrientation('portrait');
             dogpscheck();

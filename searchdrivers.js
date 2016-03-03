@@ -227,6 +227,8 @@ journey_start_map();
 
 function pickdriver_request_start () {
 	
+	request_timer_start();
+	
 	document.getElementById("pickdriver_request_timer").style.display = "block";
     
     localStorage.setItem('activity','driver_selected');
@@ -315,7 +317,8 @@ $( "#mydetailedlocation" ).fadeOut( "slow", function() {
 });
 }
 function pickdriver_request_cancel () { 
-     document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";    
+	 document.getElementById("driveroverlay_journey_cancel_dialog").style.display = "block";  
+     document.getElementById("pickdriver_request_timer").style.display = "none";    
 }
 function pickdriver_request_cancel_confirmed () {
     

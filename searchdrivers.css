@@ -17,6 +17,9 @@
         z-index: 1000;
         display: none;
 }
+#mydetailedlocation .sdbox {
+		margin-top: 260px;
+}
 #getfareestimate {
         position: absolute;
         top: 0px;
@@ -436,3 +439,90 @@
 		float: right;
 		margin-right: 10%;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pickdriver_request_timer {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 60px;
+	top: 175px;
+	background-color: black;
+	display: none;
+}
+#pickdriver_request_timer_animation {
+	background-image: url(282.gif);
+	background-repeat: no-repeat;
+	width: 59px;
+	height: 59px;
+	background-size: contain;
+	position: absolute;
+	margin-top: -60px;
+
+}
+#pickdriver_request_timer_timer {
+	color: white;
+	line-height: 60px;
+	color: #FEDA01;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Orbitron', sans-serif;
+
+}
