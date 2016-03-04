@@ -549,7 +549,7 @@ var status_battery = localStorage.getItem('device_battery');
 	
 var pickup = localStorage.getItem("pickup");
     
-$.get( "http://250taxi.com/db/status_user.php?ver=11&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
+$.get( "http://250taxi.com/db/status_user.php?ver=14&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
     
     // console.log("Status: " + data);
     
@@ -572,7 +572,7 @@ $.get( "http://250taxi.com/db/status_user.php?ver=11&status_lat="+status_lat+"&s
         if (server_journey_status == "accepted") {
             console.log("accepted!");
             localStorage.setItem("activity","driver_has_accepted");
-            localStorage.setItem("toast","Driver accepted and is on his way to you!");toast();
+            localStorage.setItem("toast","Driver accepted and is on his way to you!");toast_big();
             accepted();
         }
         
@@ -603,20 +603,25 @@ function declined () {
 var pickdriver_id = localStorage.getItem("pickdriver_id");
 var username = localStorage.getItem("username");
     
-localStorage.setItem('toast','Sorry, the driver declined your request. Please choose a different driver.');toast();
+localStorage.setItem('toast','The driver you have selected is busy at the moment, kindly choose another driver, enjoy your ride.');toast();
 
     $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=declined&username="+username+"",  function( data ) {
         setTimeout(function(){
         showindicator();
         }, 5000);
         setTimeout(function(){
-        alert("Sorry, the driver declined your request. Please choose a different driver.");
+        alert("The driver you have selected is busy at the moment, kindly choose another driver, enjoy your ride.");
         location.reload();
         }, 6000);
     });
 
 }
 function accepted() {
+	
+localStorage.setItem("end_timer","Yes");
+check_timer_ended();
+	
+document.getElementById("pickdriver_request_timer").style.display = "none";
     
 // Start updating chat
 localStorage.setItem("chat_enabled","Yes");

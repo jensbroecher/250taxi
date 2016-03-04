@@ -11,14 +11,32 @@ function startRequestTimer(duration_request, display_request) {
 
         if (--timer_request < 0) {
             document.getElementById("pickdriver_request_timer").style.display = "none";
-            console.log("Timer has expired, please cancel request and choose another driver.");
+
+			check_timer_ended();
+			
 			clearInterval(timer_interval);
         }
     }, 1000);
 }
+
+function check_timer_ended() {
+	
+	var end_timer = localStorage.getItem("end_timer");
+	
+	if (end_timer == "Yes") {
+				return;
+	} else {
+		console.log("Timer has expired, please cancel request and choose another driver.");
+		pickdriver_request_cancel();
+	}
+}
+
 function request_timer_start() {    
+	
+localStorage.setItem("end_timer","No");
+	
 jQuery(function ($) {
-    var Minutes = 600 * 0.1,
+    var Minutes = 1200 * 0.1,
         display_here = $('#pickdriver_request_timer_timer');
     startRequestTimer(Minutes, display_here);
 });

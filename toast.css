@@ -17,3 +17,26 @@
     max-width: 300px;
     box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
 }
+#toast_big {
+	position: absolute;
+    z-index: 100000;
+    width: 100%;
+    bottom: 20%;
+    display: none;
+}
+#toast_big_inside {
+    text-align: center;
+    font-family: sans-serif;
+    background-color: rgba(255, 255, 0, 0.76);
+    color: black;
+	font-size: 110%;
+    padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
