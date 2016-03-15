@@ -282,8 +282,52 @@ var phoneisvalidated = localStorage.getItem('phoneisvalidated');
         url: "http://250taxi.com/db/registration.php",
         data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidated+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&operator="+operator+"&pin="+pin ,
         success: function(html){
-            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 TAXI with your account details. You can now log in with your username: ('+username+').');
-            document.location.href = 'login.html';
+            alert('Registration successful! Thank you '+first_name+' '+last_name+'! You will recieve an E-Mail from 250 TAXI with your account details. Enjoy your ride!');
+            // document.location.href = 'login.html';
+			
+			
+			localStorage.setItem("rememberuser", "Yes");
+            localStorage.removeItem("hotelcorporate");
+            localStorage.setItem("username", username);
+            
+            localStorage.setItem("logupdate", "User " + username + " - " + first_name + " " + last_name + "</span> completed registration");
+            
+            var randomclientid = Math.floor(Math.random() * 1000000000);
+            localStorage.setItem("randomclientid",randomclientid);
+            console.log(randomclientid);
+			
+			                                     var battery = navigator.battery || navigator.mozBattery;
+			if (battery) {
+    // battery status for firefox 
+        var device_battery = (battery.level * 100);
+    localStorage.setItem("device_battery",device_battery);
+			} else if (navigator.getBattery) {
+    //battery status for chrome
+    navigator.getBattery().then(function(battery) {
+        var device_battery = (battery.level * 100);
+        localStorage.setItem("device_battery",device_battery);
+    });
+}
+                                    
+                             
+
+                                    var device_model = localStorage.getItem("device_model");
+                                    var device_platform = localStorage.getItem("device_platform");
+                                    var device_version = localStorage.getItem("device_version");
+                                    var device_uuid = localStorage.getItem("device_uuid");
+                                    var device_battery = localStorage.getItem("device_battery");
+			
+			 $.get("http://250taxi.com/db/check-username-login.php?task=getuserid&username=" + username + "", function(userid) {
+				 
+			localStorage.setItem("userid", userid);
+			
+			$.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
+                                        document.location.href = '../gotostart.html';
+
+            });
+				 
+			 });
+	
         }
     });   
 }

@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.twofiftytaxi.app"
-        versionCode = "13" 
-        version     = "1.8.4" >
+        versionCode = "14" 
+        version     = "1.8.5" >
 
     <name>250 Taxi</name>
 

@@ -74,7 +74,7 @@
 
             $('#username').keyup(function() {
                 this.value = this.value.toLowerCase();
-                this.value = this.value.replace(/[^@a-z0-9.]/g, "");
+                this.value = this.value.replace(/[^@a-z.]/g, "");
             });
             $(function() {
                 $('#username').keypress(function(e) {
@@ -176,7 +176,7 @@
 
 </head>
 
-<body id="mainbg" style="background-color: #000000;">
+<body id="mainbg">
 
     <div id="offline" class="animated fadeIn">
         <img src="cloud.png">
@@ -201,7 +201,7 @@
 			
 			<div class="windowbutton waves-effect waves-dark" onClick="logincheck();">Sign in</div>
 			
-			<div id="forgotpw" onClick="location.href = 'forgot_password.html';">Forgot PIN?</div>
+			<div id="forgotpw" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot PIN?</div>
 
         </div>
 
@@ -306,17 +306,8 @@ if (battery) {
         </script>
 
         
-       <!--------GOOGLE BUTTON--------->
-		<div class="googleBtn" style="z-index:99999:text-align:center">
-		<div class="g-signin2" data-longtitle="true" data-onsuccess="Google_signIn" approvalprompt= "force" prompt="login" data-theme="light" data-width="200"></div>
-		</div> 
-		
-		<div style="display:none;">
-		<!--------FACEBOOK BUTTON--------->
-		<button id="loginBtn" onclick="logIn();" value="Login">Login with Facebook</button>
-		<button id="logoutBtn" onclick="logOut();" value="Logout">Logout</button>
-		</div>
-		
+       
+
 
         <div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode_hotel_corporate();">
             <img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png"> Hotel / Corporate Login
@@ -342,308 +333,3 @@ if (battery) {
 
 </body>
 </html>
-
-
-	<!------------ GOOGLE LOGIN SCRIPT -------------->
-	
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="786092302025-1lj1os9nkn4fdkc5dbor1rldsjml3i5u.apps.googleusercontent.com">
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	
-	function Google_signIn(googleUser) {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut();
-		var profile = googleUser.getBasicProfile();
-		console.log('ID: ' + profile.getId());
-		console.log('Name: ' + profile.getName());
-		console.log('Image URL: ' + profile.getImageUrl());
-		console.log('Email: ' + profile.getEmail());
-		
-		$.ajax({
-			type: "POST",
-            data: profile,
-            url: 'http://250taxi.com/app/google_login.php',
-            success: function(msg) {
-				msg1=msg.split("|");
-				var username=profile.getEmail();
-				user=username.split('@');
-				localStorage.setItem("userid", msg1[1]);  						// Set user id
-				localStorage.setItem("username", user[0]); 						// Set username
-				var randomclientid = Math.floor(Math.random() * 1000000000);	// Generate randomclientid
-				localStorage.setItem("randomclientid", randomclientid);			// Set randomclientid
-				
-				if(msg1[0] == "AskForPhoneNumber"){				
-					$("#inputUsername").val(user[0]);$("#userEmail").val(profile.getEmail());$("#userId").val(msg1[1]);
-					$("#inputEmail").val(profile.getEmail())
-					$("#myModal").modal({
-							backdrop: 'static',
-							keyboard: false
-					});
-					$("#myModal").modal('show');
-						
-				}
-				else{
-					localStorage.setItem("rememberuser", "Yes");				// Set rememberuser
-					localStorage.removeItem("hotelcorporate");
-					
-					var userid=localStorage.getItem("userid");					
-					var userid = localStorage.getItem("userid");
-					var battery = navigator.battery || navigator.mozBattery;
-					if (battery) {												// battery status for firefox						 
-						var device_battery = (battery.level * 100);
-						localStorage.setItem("device_battery",device_battery);
-					} 
-					else if (navigator.getBattery) {							//battery status for chrome						
-						navigator.getBattery().then(function(battery) {
-							var device_battery = (battery.level * 100);
-							localStorage.setItem("device_battery",device_battery);
-						});
-					}
-											
-					var device_model = localStorage.getItem("device_model");
-					var device_platform = localStorage.getItem("device_platform");
-					var device_version = localStorage.getItem("device_version");
-					var device_uuid = localStorage.getItem("device_uuid");
-					var device_battery = localStorage.getItem("device_battery");
-					
-					$.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
-					
-					   document.location.href = '../gotostart.html'; 			// Redirecting to GotoStart after successful Login
-
-					});
-				}
-			}
-      });
-}
-
-function signOut() {
-   var auth2 = gapi.auth2.getAuthInstance();
-   auth2.signOut().then(function () {
-   console.log('User signed out.');
-   });
-}
-
-$(document).ready(function(){
-
-	$( "#userForm" ).submit(function( event ) {			//Trigger on submit the pop-up form
-		var inputUsername= $("#inputUsername").val();
-		var inputPin= $("#inputPin").val();
-		var inputPhone= $("#inputPhone").val();
-		var inputEmail= $("#inputEmail").val();
-		var userId= $("#userId").val();
-		var email= $("#userEmail").val(); 
-
-		localStorage.setItem("rememberuser", "Yes");
-		if(userId==""){
-			var userid=localStorage.getItem("userid");
-		} 
-		else{
-			var userid=userId;
-		}
-
-		var userid = localStorage.getItem("userid");
-		var battery = navigator.battery || navigator.mozBattery;
-		if (battery) {			
-				var device_battery = (battery.level * 100);			// battery status for firefox 
-				localStorage.setItem("device_battery",device_battery);
-		} 
-		else if (navigator.getBattery) {
-			navigator.getBattery().then(function(battery) {		//battery status for chrome
-				var device_battery = (battery.level * 100);
-				localStorage.setItem("device_battery",device_battery);
-			});
-		}
-		
-		localStorage.removeItem("randomclientid");
-		var randomclientid = Math.floor(Math.random() * 1000000000);
-        localStorage.setItem("randomclientid", randomclientid);          
-
-        var device_model = localStorage.getItem("device_model");
-        var device_platform = localStorage.getItem("device_platform");
-        var device_version = localStorage.getItem("device_version");
-        var device_uuid = localStorage.getItem("device_uuid");
-        var device_battery = localStorage.getItem("device_battery");
-			
-		console.log(localStorage.getItem("userid"));console.log(localStorage.getItem("username"));
-		console.log(localStorage.getItem("randomclientid"));console.log(localStorage.getItem("rememberuser"));
-		
-		$.get( "http://250taxi.com/app/account_update.php?username="+inputUsername+"&pin="+inputPin+"&phone="+inputPhone+"&email="+email+"&randomclientid="+randomclientid+"&inputEmail="+inputEmail,  function( data ) {	
-			//alert(data);
-			alert("You are successfully registered on 250 Taxi.");
-			$("#myModal").modal('hide');
-			$.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
-			
-					document.location.href = '../gotostart.html';  		// Redirecting to GotoStart after successful Login
-
-			});
-		});
-			 
-		event.preventDefault();
-	});
-	});
-  </script>
-
-   
-
-	<!------------ ! GOOGLE LOGIN SCRIPT -------------->
-	
-<!------------ Pop up for completing registration process -------------->
-
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Please fill out the form below to proceed:</h4>
-            </div>
-            <div class="modal-body" style="text-align:center">		
-			<form name="userForm" id="userForm">
-				<label for="inputUsername" class="sr-only">Username</label>
-				<input type="text" id="inputUsername" class="form-control" placeholder="Username" value="" required autofocus>
-				<br>
-				<label for="inputEmail" class="sr-only">Email</label>
-				<input type="text" id="inputEmail" class="form-control" placeholder="Email" required>
-				<br>
-				<label for="inputPin" class="sr-only">Pin</label>
-				<input type="text" id="inputPin" class="form-control" placeholder="Pin" maxlength="4" required >
-				<br>
-				<label for="inputPhone" class="sr-only">Phone</label>
-				<input type="text" id="inputPhone" class="form-control" placeholder="Phone" required>
-				<br>
-				<input type="hidden" name="userEmail" id="userEmail" value="">
-				<input type="hidden" name="userId" id="userId" value="">
-				<input type="submit" value="Save">
-			</form>
-			</div>
-        </div>
-    </div>
-</div>
-
-<!------------ ! Pop up for completing registration process -------------->
-
-<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
- 
-	<!------------ FACEBOOK LOGIN CODE -------------->
-
-	<script src="https://connect.facebook.net/en_US/all.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	
-	<script>
-	$( document ).ready(function() {
-		$('#logoutBtn').hide();
-		$('#userDetails').hide();
-	});
-
-	function fbAsyncInit() {
-		FB.init({
-			appId      : '497708020411902', // Fb App ID
-			status     : true, // check login status
-			cookie     : true, // enable cookies to allow the server to access the session
-			xfbml      : true  // parse XFBML
-		});
-	}
-	function logIn() {
-	  	FB.login(
-	        function(response) {
-				if (response.status== 'connected') {
-					FB.api('/me', function(response) {
-				    	console.log(response);
-				      	console.log('Good to see you, ' + response.name + '.');
-				      	$('#loginBtn').hide();
-				      	$('#logoutBtn').show();
-						$('#userDetails').show();
-						$('#userInfo').html(response.name + '<br>');
-						var name=response.name;var id=response.id;
-						//var email=response.email;
-						$.get( "http://250taxi.com/app/fb_login.php?name="+name+"&id="+id,  function( data ) {
-							
-							var data1=data.split("|");
-							alert(data)	;
-							localStorage.setItem("userid", data1[0]);
-							localStorage.setItem("username", id);
-							localStorage.setItem("rememberuser", "Yes");
-							var userid=localStorage.getItem("userid");
-							var randomclientid = Math.floor(Math.random() * 1000000000);
-							localStorage.setItem("randomclientid", randomclientid); 
-							var userid = localStorage.getItem("userid");
-							var battery = navigator.battery || navigator.mozBattery;
-							if (battery) {
-								// battery status for firefox 
-									var device_battery = (battery.level * 100);
-								localStorage.setItem("device_battery",device_battery);
-							} else if (navigator.getBattery) {
-								//battery status for chrome
-								navigator.getBattery().then(function(battery) {
-									var device_battery = (battery.level * 100);
-									localStorage.setItem("device_battery",device_battery);
-								});
-							}
-							var device_model = localStorage.getItem("device_model");
-							var device_platform = localStorage.getItem("device_platform");
-							var device_version = localStorage.getItem("device_version");
-							var device_uuid = localStorage.getItem("device_uuid");
-							var device_battery = localStorage.getItem("device_battery");
-							if(data1[1] == "AskForPhoneNumber"){				
-							$("#inputUsername").val(id);
-							$("#myModal").modal({
-								backdrop: 'static',
-								keyboard: false
-							});
-							$("#myModal").modal('show');					
-						}
-						else{
-						console.log(localStorage.getItem("userid"));console.log(localStorage.getItem("username"));
-						console.log(localStorage.getItem("randomclientid"));console.log(localStorage.getItem("rememberuser"));
-							  $.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
-							 document.location.href = '../gotostart.html';  
-
-								});
-						
-						}
-						});						
-				    });
-
-				    FB.api("/me/picture?width=200&redirect=0&type=normal&height=200", function (response) {
-				      	if (response && !response.error) {
-				        	/* handle the result */
-				        	console.log('PIC ::', response);
-				        	//$('#userPic').attr('src', response.data.url);
-							//$('#userPic').append(response.name );
-				      	}
-				    });
-				}
-			}
-		);
-	}
-
-	function logOut() {
-		FB.logout(function(response) {
-			console.log('logout :: ', response);
-			//Removing access token form localStorage.
-			$('#loginBtn').show();
-			$('#logoutBtn').hide();
-			$('#userDetails').hide();
-		});
-	}
-
-	fbAsyncInit();
-	  
-	</script>
-	
-	<style>
-	#loginBtn{
-	display: inline-block;
-	color:white;
-	}
-	.googleBtn{
-	display: inline-block;
-	}
-	.g-signin2{
-	display: inline-block;}
-	</style>
-
-
-	
-	<!------------ ! FACEBOOK LOGIN CODE -------------->
