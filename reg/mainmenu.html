@@ -30,6 +30,8 @@
 <script type="text/javascript" charset="utf-8" src="jquery-ui.js"></script>
 <script type="text/javascript" charset="utf-8" src="jquery.validate.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="logic.js"></script>
+	
+<script src="logupdate.js"></script>
     
 <script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
 <link href="../waves.css" rel="stylesheet" type="text/css">
@@ -111,7 +113,7 @@ document.getElementById("reg_start").style.display = "block";
 
 </head>
 
-<body>
+<body id="mainbg">
     
 <div id="viewterms" class="animated fadeInLeft">
 
@@ -130,13 +132,19 @@ document.getElementById("reg_start").style.display = "block";
 </div>
 
 <div id="loadingindicator" style="display:block;">
-<img src="../282.gif">
+<img src="282.gif">
 </div>
     
 <div class="submenu animated fadeIn" id="reg_start">
     <div class="heading_and_back"><div onClick="document.location.href = '../index.html';" class="backarrow"></div>User Details</div>
 
 <form id="reg_step_1">
+	
+<div class="steps">
+<img src="123/numeric-1-box.svg">
+<img src="123/numeric-2-box-outline.svg">
+<img src="123/numeric-3-box-outline.svg">
+</div>
 
 <div class="fieldgroup">
 <input name="first_name" id="first_name" type="text" class="textfield" required placeholder="First Name">
@@ -246,6 +254,12 @@ rules: {
 <div class="reg_heading"><div onclick="gobackto_reg_start();" class="backarrow"></div>Location Details</div>
 
 <form id="reg_step_2">
+	
+<div class="steps">
+<img src="123/numeric-1-box-outline.svg">
+<img src="123/numeric-2-box.svg">
+<img src="123/numeric-3-box-outline.svg">
+</div>
 
 <div class="fieldgroup">
     
@@ -585,6 +599,12 @@ rules: {
 <div class="reg_heading"><div onclick="gobackto_reg_company();" class="backarrow"></div>Login Details</div>
 
 <form id="reg_step_3">
+	
+<div class="steps">
+<img src="123/numeric-1-box-outline.svg">
+<img src="123/numeric-2-box-outline.svg">
+<img src="123/numeric-3-box.svg">
+</div>
 
 <div class="fieldgroup">
     
@@ -604,6 +624,10 @@ Please provide a 4-Digit PIN.<br>Never share this PIN with anyone.<br>
 <button class="waves-effect waves-light">Continue</button>
     
 <script type="text/javascript">
+	
+$.validator.addMethod('lowercasesymbols', function(value) {
+    return value.match(/^[^A-Z0-9]+$/);
+}, 'Only lowercase letters');
     
 $("#reg_step_3").validate({
 	rules: {
@@ -614,6 +638,7 @@ $("#reg_step_3").validate({
     },
     username: {
         required: true,
+		lowercasesymbols: true,
 		minlength: 4,
         remote: "http://250taxi.com/db/check-username.php"
     }
@@ -662,6 +687,26 @@ Please validate your phone number by entering the code you recieved via text mes
 	
 $( document ).ready(function() {
     checkapp();
+	
+	var currentTime = new Date().getHours();
+			
+            if (0 <= currentTime && currentTime < 5) {
+               document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
+            }
+            if (5 <= currentTime && currentTime < 11) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (11 <= currentTime && currentTime < 16) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (16 <= currentTime && currentTime < 17) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (17 <= currentTime && currentTime <= 24) {
+                document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
+            }
 });
     
     var isMobile = {

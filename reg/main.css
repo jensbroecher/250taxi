@@ -3,6 +3,9 @@ html {
   	width: 100%;
 	height: 100%;
 }
+.steps {
+	margin-top: -15px;
+}
 body {
     font-family: "Roboto",sans-serif;
 	
@@ -23,7 +26,7 @@ body {
 }
 #offline {
     color: #000;
-    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0.8);
     height: 100%;
     width: 100%;
     position: absolute;
@@ -61,6 +64,11 @@ body {
 select {
     padding-top: 6px;
     padding-bottom: 6px;
+}
+input {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .pin {
     -webkit-text-security: disc;
@@ -233,8 +241,7 @@ button {
 }
 .nicewindow {
     background-color: rgba(255, 255, 255, 0.6);
-    width: 80%;
-    margin-right: 5%;
+    width: 90%;
     margin-left: 5%;
     box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.5);
     padding: 5%;
@@ -293,6 +300,8 @@ button {
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 35px;
+	text-transform: uppercase;
+	font-size: 14px;
 }
 .backarrow {
     width: 40px;
