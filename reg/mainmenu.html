@@ -626,7 +626,7 @@ Please provide a 4-Digit PIN.<br>Never share this PIN with anyone.<br>
 <script type="text/javascript">
 	
 $.validator.addMethod('lowercasesymbols', function(value) {
-    return value.match(/^[^A-Z0-9]+$/);
+    return value.match(/^[^A-Z]+$/);
 }, 'Only lowercase letters');
     
 $("#reg_step_3").validate({
