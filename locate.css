@@ -18,6 +18,11 @@ html, body {
     -ms-user-select: none;
     user-select: none;
 }
+input {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 html, body, #map {
     margin: 0;
     padding: 0;
@@ -286,6 +291,17 @@ html, body, #map {
 		padding: 5px;
 	}
 #customercare_whatsapp {
+	position: absolute;
+	border-radius: 6px;
+	border: solid 2px white;
+	padding-top: 5px;
+	padding-bottom: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: -36px;
+	margin-left: 40px;
+}
+#customercare_sms {
 	position: absolute;
 	border-radius: 6px;
 	border: solid 2px white;
