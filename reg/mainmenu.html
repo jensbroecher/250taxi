@@ -43,10 +43,20 @@ $( document ).ready(function() {
 	
 localStorage.clear();
 
-$('#username').keyup(function(){
-    this.value = this.value.toLowerCase();
-    this.value = this.value.replace(/ /g, "");
-});
+$('#username').keyup(function() {
+                this.value = this.value.toLowerCase();
+                this.value = this.value.replace(/[^@a-z0-9.]/g, "");
+            });
+            $(function() {
+                $('#username').keypress(function(e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+            });
 $('#first_name').keyup(function(){
     this.value = this.value.replace(/ /g, "");
 });
