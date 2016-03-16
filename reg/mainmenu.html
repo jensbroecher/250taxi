@@ -43,10 +43,20 @@ $( document ).ready(function() {
 	
 localStorage.clear();
 
-$('#username').keyup(function(){
-    this.value = this.value.toLowerCase();
-    this.value = this.value.replace(/ /g, "");
-});
+$('#username').keyup(function() {
+                this.value = this.value.toLowerCase();
+                this.value = this.value.replace(/[^@a-z0-9.]/g, "");
+            });
+            $(function() {
+                $('#username').keypress(function(e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+            });
 $('#first_name').keyup(function(){
     this.value = this.value.replace(/ /g, "");
 });
@@ -664,7 +674,7 @@ $("#reg_step_3").validate({
     
 <div class="fieldgroup">
 
-Please validate your phone number by entering the code you recieved via text message (SMS).
+Please validate your phone number by entering the code you received via text message (SMS).
 <br><br>
     
 <center>
