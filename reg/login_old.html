@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
 
@@ -332,4 +333,340 @@ if (battery) {
     <br>
 
 </body>
+=======
+<!doctype html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="../apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="../manifest.json">
+<meta name="msapplication-TileColor" content="#df600a">
+<meta name="msapplication-TileImage" content="../mstile-144x144.png">
+<meta name="theme-color" content="#000000">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <link href="animate.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="logic.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../logupdate.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
+    <link href="../waves.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
+
+    <script src="../preventreload.js"></script>
+
+    <script type="text/javascript">
+		
+		function showindicator() {
+            document.getElementById("loadingindicator").className = "animated fadeIn";
+            document.getElementById("loadingindicator").style.display = "block";
+        }
+		function hideindicator() {
+            document.getElementById("loadingindicator").style.display = "none";
+        }
+		
+        $(document).ready(function() {
+			
+			var currentTime = new Date().getHours();
+			
+            if (0 <= currentTime && currentTime < 5) {
+               document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
+            }
+            if (5 <= currentTime && currentTime < 11) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (11 <= currentTime && currentTime < 16) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (16 <= currentTime && currentTime < 17) {
+				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
+            }
+            if (17 <= currentTime && currentTime <= 24) {
+                document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
+				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
+            }
+        
+			
+
+            $('#username').keyup(function() {
+                this.value = this.value.toLowerCase();
+                this.value = this.value.replace(/[^@a-z.]/g, "");
+            });
+            $(function() {
+                $('#username').keypress(function(e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+            });
+
+            if (localStorage.getItem('username') === null) {
+            var username = localStorage.getItem('username');
+            document.getElementById('username').value = username;
+            }
+
+            setTimeout(function() {
+                document.getElementById("loadingindicator").className = "animated fadeOut";
+            }, 1000);
+            setTimeout(function() {
+                document.getElementById("loadingindicator").style.display = "none";
+            }, 2000);
+
+            setTimeout(function() {
+                document.getElementById("mainmenu").style.display = "block";
+                document.getElementById("mainmenu").className = "nicewindow animated fadeIn";
+            }, 2500);
+        });
+
+
+
+		
+
+
+
+        function scancode_hotel_corporate() {
+
+            cordova.plugins.barcodeScanner.scan(
+                function(result) {
+                    // alert("We got a barcode\n" +
+                    //   "Result: " + result.text + "\n" +
+                    //   "Format: " + result.format + "\n" +
+                    //   "Cancelled: " + result.cancelled);
+
+                    is_cancelled = result.cancelled;
+
+                    //  alert(is_cancelled);
+
+                    if (is_cancelled == true) {
+                        alert("Scanning cancelled. Please try again.")
+                    } else if (is_cancelled == false) {
+
+                        //  alert("Test");
+
+                        localStorage.setItem("codefromqr_hotel_corporate", result.text);
+                        codefromqr_hotel_corporate_login_after_scan();
+
+                    }
+
+                },
+                function(error) {
+                    alert("Scanning failed: " + error);
+                }
+            );
+
+        }
+
+        function rot13(str) {
+            return str.replace(/[a-zA-Z]/g, function(chr) {
+                var start = chr <= 'Z' ? 65 : 97;
+                return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
+            });
+        }
+
+        function codefromqr_hotel_corporate_login_after_scan() {
+
+            document.getElementById("loadingindicator").className = "animated fadeIn";
+
+            var codefromqr_hotel_corporate = localStorage.getItem("codefromqr_hotel_corporate");
+            var codefromqr_hotel_corporate = window.atob(codefromqr_hotel_corporate);
+            var codefromqr_hotel_corporate = rot13(codefromqr_hotel_corporate);
+            var codefromqr_hotel_corporate = codefromqr_hotel_corporate.substring(5);
+            localStorage.setItem("codefromqr_hotel_corporate_decode", codefromqr_hotel_corporate);
+
+            $.get("http://250taxi.com/db/partner/hotel/client_hotel_corporate_login.php?task=guest_name&hotel_card_id=" + codefromqr_hotel_corporate + "", function(data) {
+                localStorage.setItem("cardid", codefromqr_hotel_corporate);
+                localStorage.setItem("rememberuser", "Yes");
+                localStorage.setItem("hotelcorporate", "Yes");
+                localStorage.setItem("username", "hotelcorporate");
+                localStorage.setItem("userid", "3");
+                alert("Welcome to the 250TAXI hotel account. Request for the taxi and watch it approach you in real time within minutes. You will be able to use this card during your travel. Kindly return this card to the Hotel's administration once done with your journey. Enjoy your ride, " + data + "!");
+                document.location.href = '../locate.html';
+            });
+
+        }
+
+    </script>
+
+</head>
+
+<body id="mainbg">
+
+    <div id="offline" class="animated fadeIn">
+        <img src="cloud.png">
+        <div>You are offline. This app requires an active internet connection.</div>
+    </div>
+
+    <div id="loadingindicator" style="display:block;">
+        <img src="../282.gif">
+    </div>
+
+    <div id="mainmenu" class="nicewindow" style="display:none;">
+
+        <div id="loginscreenstart">
+			
+            <div class="heading_and_back"><div onClick="document.location.href = '../index.html';" class="backarrow"></div>Please Sign In</div>
+
+			<div id="loginscreenstart_inputs">
+            <input name="username" id="username" type="text" class="textfield" required placeholder="Username / E-Mail">
+
+           <input id="loginpin" style="width:100px;" class="textfield pin" type="tel" placeholder="PIN" maxlength="4" pattern=".{4,}">
+			</div>
+			
+			<div class="windowbutton waves-effect waves-dark" onClick="logincheck();">Sign in</div>
+			
+			<div id="forgotpw" onClick="alert('Please contact customer support:\n\nsupport@250taxi.com\n\nYou can also contact us trough our website and facebook.');">Forgot PIN?</div>
+
+        </div>
+
+
+
+        <script>
+			function logincheck() {
+				var username = document.getElementById('username').value;
+				
+				if(username.indexOf('@') === -1)
+				{
+					localStorage.setItem("username_check",username);
+					logincheckgo();
+				}
+				else {
+					$.get("http://250taxi.com/db/username_from_email.php?username=" + username + "", function(username) {
+						localStorage.setItem("username_check",username);
+						logincheckgo();
+					});
+				}
+			}
+            function logincheckgo() {
+				
+				showindicator();
+
+                var username = localStorage.getItem("username_check");
+				
+                var loginpin = document.getElementById('loginpin').value;
+				
+				// alert(username);
+
+                $.get("http://250taxi.com/db/check-username-login.php?task=checkusername&username=" + username + "", function(data) {
+                    
+                    // alert(data);
+
+                    if (data == "account_found") {
+
+                        $.get("http://250taxi.com/db/check-username-login.php?task=getuserid&username=" + username + "", function(userid) {
+
+                            $.get("http://250taxi.com/db/check-pin.php?username=" + username + "&pin=" + loginpin + "", function(pindata) {
+
+                                if (pindata == "pin_found") {
+                                    localStorage.setItem("rememberuser", "Yes");
+                                    localStorage.removeItem("hotelcorporate");
+                                    localStorage.setItem("username", username);
+                                    localStorage.setItem("userid", userid);
+
+                                    localStorage.setItem("logupdate", "User <span class='log_userid'>" + userid + "</span> logged in");
+                                    logupdate();
+
+                                    var randomclientid = Math.floor(Math.random() * 1000000000);
+                                    localStorage.setItem("randomclientid", randomclientid);
+
+                                    console.log(randomclientid);
+                                    
+                                     var battery = navigator.battery || navigator.mozBattery;
+if (battery) {
+    // battery status for firefox 
+        var device_battery = (battery.level * 100);
+    localStorage.setItem("device_battery",device_battery);
+} else if (navigator.getBattery) {
+    //battery status for chrome
+    navigator.getBattery().then(function(battery) {
+        var device_battery = (battery.level * 100);
+        localStorage.setItem("device_battery",device_battery);
+    });
+}
+                                    
+                             
+
+                                    var device_model = localStorage.getItem("device_model");
+                                    var device_platform = localStorage.getItem("device_platform");
+                                    var device_version = localStorage.getItem("device_version");
+                                    var device_uuid = localStorage.getItem("device_uuid");
+                                    var device_battery = localStorage.getItem("device_battery");
+
+
+
+                                    $.get("http://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
+                                        document.location.href = '../gotostart.html';
+
+                                    });
+
+
+                                } else if (pindata == "pin_not_found") {
+                                    alert("Sorry, your PIN was incorrect. Please check your PIN or contact support.");
+									hideindicator();
+                                }
+
+                            });
+                        });
+
+                    } else if (data == "account_not_found") {
+						
+						hideindicator();
+						
+                        alert("Sorry, your account was not found. Please check your username or contact support.");
+                    }
+                });
+            }
+
+        </script>
+
+        
+       
+
+
+        <div id="scanqr" class="windowbutton waves-effect waves-dark" onclick="scancode_hotel_corporate();">
+            <img style="width: 50px; vertical-align: middle;" id="scan_qr" src="scan_qr.png"> Hotel / Corporate Login
+        </div>
+
+    </div>
+
+    <div id="loginscreenforgot" style="display:none;">
+		
+        <h1>Please enter your E-Mail</h1>
+
+        <div class="instructions">You will recieve an E-Mail with instructions.</div>
+
+        <input id="loginemailforgot" class="textfield" type="email" placeholder="eMail">
+
+        <div class="windowbutton" onClick="loginforgotgo();">Go</div>
+
+        <div class="windowbutton" onClick="loginforgotcancel();">Cancel</div>
+
+    </div>
+
+    <br>
+
+</body>
+>>>>>>> master
 </html>

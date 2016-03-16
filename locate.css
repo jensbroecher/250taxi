@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ::-webkit-scrollbar { 
     display: none; 
 }
@@ -322,4 +323,330 @@ html, body, #map {
 	padding-right: 7px;
 	margin-top: -36px;
 	margin-left: 87px;
+=======
+::-webkit-scrollbar { 
+    display: none; 
+}
+html, body {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+input {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html, body, #map {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+#locationfieldholder {
+        position: absolute;
+        background-color: rgba(255,255,255,0.9);
+        width: 84%;
+        left: 14%;
+        height: 15%;
+        z-index: 100;
+        top: 8px;
+        border-left: 1px solid rgba(255,255,255,0.9);
+        border-top: 1px solid rgba(255,255,255,0.9);
+        border-bottom: 1px solid rgba(255,255,255,0.9);
+        border-right: 0px solid rgba(255,255,255,0.9);
+        max-height: 30px;
+        display: table;
+}
+#locationfield {
+        position: absolute;
+        background-color: rgba(0,0,0,0.0);
+        width: 100%;
+        height: 100%;
+		  background-image: url(magnify.svg);
+		  background-size: contain;
+		  background-repeat: no-repeat;
+}
+#inlocationfield {
+       font-family: Roboto, sans-serif;
+     font-size: 16px; 
+        width: 100%;
+        border: none;
+        height: 100%;
+        text-indent: 5px;
+        background-color: transparent;
+  text-indent: 28px;
+}
+#menubutton {
+        background-image: url(menu.svg);
+        background-size: auto 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 15%;
+        width: 10%;
+        z-index: 102;
+        max-width: 30px;
+        border: 1px solid rgba(255,255,255,0.9);     
+        top: 8px;
+        left: 2%;
+        background-color: rgba(255,255,255,0.9);
+        max-height: 30px;
+}
+#locationbutton {
+        background-size: auto 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 15%;
+        width: 10%;
+        z-index: 100;
+        max-width: 30px;
+        border: 1px solid rgba(255,255,255,0.9);     
+        top: 47px;
+        right: 2%;
+        margin-right: 0px;
+        background-color: rgba(255,255,255,0.9);
+        max-height: 30px;
+}
+#customercarebutton {
+		background-size: auto 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: absolute;
+        height: 15%;
+        width: 10%;
+        z-index: 100;
+        max-width: 30px;
+        border: 1px solid rgba(255,255,255,0.9);     
+        top: 86px;
+        right: 2%;
+        margin-right: 0px;
+        background-color: rgba(255,255,255,0.9);
+        max-height: 30px;
+		display: none;
+}
+#customercarebuttonside {
+		right: 0px;
+		position: absolute;
+		bottom: 30%;
+		width: 70px;
+		height: 50px;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+		background-color: rgba(45, 150, 182, 0.8);
+		z-index: 10000000000000000;
+		background-image: url(headset.png);
+		background-repeat: no-repeat;
+		background-size: 50% auto;
+		background-position: 32px center;
+}
+.addtrans {
+		transition: all 0.5s;
+}
+#calltaxiui {
+        background-image: url(calltaxi.png);
+        background-size: 360px;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        width: 100%;
+        height: 95px;
+        position: absolute;
+        bottom: 0px;
+        z-index: 100;
+        display: block;
+}
+#logoutbutton {
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        border: 1px solid #FFFFFF;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        margin-left: 30%;
+        text-transform: uppercase;
+}
+#overlay {
+    background-image: url(directions.png);
+    background-size: 100% 100%;
+    opacity: 0.7;
+	position: absolute;
+	z-index: 10000000000000000;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+}
+#loadingindicator {
+	background-color: black;
+	position: absolute;
+	z-index: 10000000000000000;
+	height: 100%;
+	width: 100%;
+	left: 0px;
+	top: 0px;
+	text-align: center;
+}
+#loadingindicator img {
+	margin-top: 100px;
+	width: 160px;
+}
+#divider {
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: lightgrey;
+}
+#pages {
+        width: 96%;
+        height: 100%;
+        overflow: scroll;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 102;
+        background-color: black;
+        display: none;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-image: url(reg/kigali_blur.jpg);
+        background-size: cover;
+}
+#pagestarget {
+
+}
+.menugpsblue {
+        background-image: url(crosshairs-gps_blue.svg);
+        background-size: 100% 100%; 
+}
+.menugps {
+        background-image: url(crosshairs-gps.svg);
+        background-size: 100% 100%;      
+}
+.menucustomercare {
+        background-image: url(customercare.svg);
+        background-size: 100% 100%;      
+}
+#locationfinderdialog {
+        width: 100%;
+        top: 0%;
+        margin-left: 0%;
+        margin-right: 0%;
+        background-color: rgba(44, 148, 179, 0.8);
+        height: 160px;
+        display: none;
+        position: absolute;
+        z-index: 300;
+        box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
+#gosearchbyaddress {
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        background-color: black;
+        text-align: center;
+        color: white;
+        margin-left: 25%;
+        width: 50%;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-transform: uppercase;
+}
+#searchbyaddress {
+        border: 0px solid black;
+        color: black;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        background-color: white;
+        margin-left: 10%;
+        text-indent: 5px;
+        width: 80%;
+        margin-bottom: 15px;
+        margin-top: 30px;
+}
+.blur {
+   -webkit-filter: blur(3px);
+    pointer-events: none;
+}
+#loading_map_indicator {
+	opacity: 0.9;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 300;
+    font-size: 100%;
+    position: absolute;
+    z-index: 200;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-left: 25%;
+    bottom: 35%;
+    background-color: black;
+	color: white;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
+	#expanded_customer_care_close {
+		background-image: url(swiperight.png);
+	}
+	#swipehand {
+		background-image: url(swipeleft.png);
+	}
+	#swipehand, #expanded_customer_care_close {
+		
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center center;
+		
+		margin-top: 8px;
+		margin-left: 0px;
+		width: 20px;
+		height: 24px;
+		display: block;
+		padding: 5px;
+	}
+#customercare_whatsapp {
+	position: absolute;
+	border-radius: 6px;
+	border: solid 2px white;
+	padding-top: 5px;
+	padding-bottom: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: -36px;
+	margin-left: 40px;
+}
+#customercare_sms {
+	position: absolute;
+	border-radius: 6px;
+	border: solid 2px white;
+	padding-top: 5px;
+	padding-bottom: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: -36px;
+	margin-left: 40px;
+}
+#customercare_call {
+	position: absolute;
+	border-radius: 6px;
+	border: solid 2px white;
+	padding-top: 5px;
+	padding-bottom: 1px;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: -36px;
+	margin-left: 87px;
+>>>>>>> master
 }
