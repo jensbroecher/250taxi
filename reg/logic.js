@@ -282,7 +282,7 @@ var phoneisvalidated = localStorage.getItem('phoneisvalidated');
         url: "http://250taxi.com/db/registration.php",
         data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidated+"&gps_lat="+lat+"&gps_long="+long+"&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address="+address+"&country="+country+"&city="+city+"&operator="+operator+"&pin="+pin ,
         success: function(html){
-            alert('Registration successful! Welcome to the 250 Taxi experience where we connect you with the closest taxi to you. '+first_name+' '+last_name+'! You will receive an E-Mail with your account details. Enjoy your ride!\n\nFor more info call 0783000096.');
+            alert('Registration successful! Welcome to the 250 Taxi experience '+first_name+' '+last_name+', where we connect you with the closest taxi to you. You will receive an E-Mail with your account details. Enjoy your ride!\n\nFor more info call 0783000096.');
             // document.location.href = 'login.html';
 			
 			
