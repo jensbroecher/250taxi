@@ -411,7 +411,8 @@
 #pickdriver_request_info {
     color: black;
     position: absolute;
-    margin-left: 120px;
+    margin-left: 100px;
+    margin-top: 30px;
 }
 
 

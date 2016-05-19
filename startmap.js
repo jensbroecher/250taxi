@@ -789,7 +789,7 @@ document.getElementById("pickdriver_request_timer").style.display = "none";
 localStorage.setItem("chat_enabled","Yes");
     
 driverid = localStorage.getItem("pickdriver_id");
-clientid = localStorage.getItem("userid");
+userid = localStorage.getItem("userid");
     
 localStorage.setItem("logupdate", ""+userid+"*"+driverid+"*request_accepted*User"+userid+" request acccepted by Driver"+driverid+".");
 logupdate_v2();
