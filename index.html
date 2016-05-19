@@ -3,241 +3,239 @@
 
 <head>
 
-<meta charset="utf-8">
-
-<link href="animate.min.css" rel="stylesheet" type="text/css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <script src="jquery.min.js"></script>
-    <script src="cordova.js"></script>
-    <script src="preventreload.js"></script>
-    <script src="http://250taxi.com/appcontent/welcome.js"></script>
-
-    <script type="text/javascript">
-		
-        document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-            // Now safe to use device APIs
-			
-var deviceOS  = device.platform;  //fetch the device operating system
-var deviceOSVersion = device.version;  //fetch the device OS version
-         
-console.log("Device OS: " + deviceOS); 
-console.log("Device OS Version: " + deviceOSVersion);
-			
-if (deviceOSVersion == "4.1.2") {
-	location.href = "index_mobile_web.html";
-}
-if (deviceOSVersion == "4.1.1") {
-	location.href = "index_mobile_web.html";
-}
-			
-            // set to either landscape
-            screen.lockOrientation('portrait');
-            dogpscheck();
-            dodevicenamecheck();
-			}
-        function showindicator() {
-            document.getElementById("loadingindicator").className = "animated fadeIn";
-            document.getElementById("loadingindicator").style.display = "block";
-        }
-        function letsgo() {
-            showindicator();
-            setTimeout(function() {
-                document.location.href = 'locate.html';
-            }, 3000);
-        }
-        
-        document.addEventListener('deviceready', function () {    
+	<meta charset="utf-8">
     
-  // Enable to debug issues.
-  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-  
-  var notificationOpenedCallback = function(jsonData) {
-    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-  };
-  window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3",
-                                 {googleProjectNumber: "1006498509511"},
-                                 notificationOpenedCallback);
-  
-  // Show an alert box if a notification comes in when the user is in your app.
-  window.plugins.OneSignal.enableInAppAlertNotification(true);
-}, false);
-        $(document).ready(function() {
-			
-$( "#welcome_notice" ).load( "http://250taxi.com/appcontent/welcome.php", function() {
-});
-            $.get("http://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
-                var currentversion = "14";
-                var serverversion = data;
-                if (currentversion < serverversion) {
-                    alert("Your app is outdated. Please install the update to ensure smooth operation.");
-                }
-            });
-            var rememberuser = localStorage.getItem('rememberuser');
-            // alert(rememberuser);
-            if (rememberuser == 'Yes') {
-                document.location.href = 'gotostart.html';
-            } else {
-                //    alert('Please log in');
-            }
-            var currentTime = new Date().getHours();
-            if (0 <= currentTime && currentTime < 5) {
-                setnight();
-            }
-            if (5 <= currentTime && currentTime < 11) {
-            }
-            if (11 <= currentTime && currentTime < 16) {
-            }
-            if (16 <= currentTime && currentTime < 22) {
-            }
-            if (22 <= currentTime && currentTime <= 24) {
-                setnight();
-            }
-        });
-        function setnight() {
-            // document.getElementById('splashimg').src = 'splash_night.jpg';
-            // document.getElementById('splashpage').style.backgroundColor = '#130F20';
-            // document.getElementById('claim').style.color = '#73CEE9';
-        }
-function dogpscheck() {
-            CheckGPS.check(function win() {
-                },
-                function fail() {
-                    opensettings();
-                });
-        }
-        function opensettings() {
-                alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
-}
-function dodevicenamecheck() {
-    var device_model = device.model;
-    var device_platform = device.platform;
-    var device_version = device.version;
-    var device_uuid = device.uuid;
-    // alert(device_model + device_platform + device_version + device_uuid);
-    localStorage.setItem("device_model",device_model);
-    localStorage.setItem("device_platform",device_platform);
-    localStorage.setItem("device_version",device_version);
-    localStorage.setItem("device_uuid",device_uuid);
-}
-        
+    <title>250 Taxi</title>
+
+	<link href="animate.min.css" rel="stylesheet" type="text/css">
+    
+    <link href="addtohomescreen.css" rel="stylesheet" type="text/css">
+    <script src="addtohomescreen.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="manifest.json">
+	<meta name="msapplication-TileColor" content="#df600a">
+	<meta name="msapplication-TileImage" content="mstile-144x144.png">
+	<meta name="theme-color" content="#000000">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link href="reg/ios.css" rel="stylesheet" type="text/css">
+	<link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
+    
+    <link href="reg/desktopt.css" rel="stylesheet" type="text/css">
+
+	<script src="myalert.js"></script>  
+
+	<script src="jquery.min.js"></script>
+    
+    <script src="responsivevoice.js"></script>  
+
+	<script src="reg/logic.js"></script>
+
+	<script src="cordova.js"></script>
+	<script src="preventreload.js"></script>
+	<script src="https://250taxi.com/appcontent/welcome.js"></script>
+
+	<script src="logupdate.js"></script>
+    
+    <script>
+        addToHomescreen();
     </script>
 
-    <style>
-        ::-webkit-scrollbar { 
-        display: none; 
-        }
-		body {
-            font-family: Roboto, sans-serif;
-            font-size: 18px;
-            color: #000;
-            text-align: center;
-            margin: 0px;
-            padding: 0px;
-			height: 100%;
-		}
-        
-        #loginregister {
-			position: absolute;
-			bottom: 20%;
-            width: 80%;
-            margin-left: 10%;
-        }
-        
-        #loginregister div {
-            width: 47%;
-			display: block;
-			font-family: Roboto;
-			font-style: normal;
-			font-size: 16px;
-			font-weight: 400;
+	<script type="text/javascript">
+		document.addEventListener("deviceready", onDeviceReady, false);
 
-			border: solid 1px white;
-			background-color: rgba(255, 255, 255, 0.2);
-			padding-top: 8px;
-			padding-bottom: 7px;
-			transition: all 0.5s;
+		function onDeviceReady() {
+			// Now safe to use device APIs
+
+			var deviceOS = device.platform; //fetch the device operating system
+			var deviceOSVersion = device.version; //fetch the device OS version
+
+			console.log("Device OS: " + deviceOS);
+			console.log("Device OS Version: " + deviceOSVersion);
+
+            if (deviceOSVersion == "4.1.3") {
+				alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+			}
+			if (deviceOSVersion == "4.1.2") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+			}
+			if (deviceOSVersion == "4.1.1") {
+				alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+			}
+
+			// set to either landscape
+			screen.lockOrientation('portrait');
+			dogpscheck();
+			dodevicenamecheck();
+		}
+
+		function showindicator() {
+			document.getElementById("loadingindicator").className = "animated fadeIn";
+			document.getElementById("loadingindicator").style.display = "block";
+		}
+        function hideindicator() {
+			document.getElementById("loadingindicator").className = "animated fadeOut";
+            setTimeout(function(){ 
+                document.getElementById("loadingindicator").style.display = "none";
+            }, 1000);
+		}
+
+		function letsgo() {
+			showindicator();
+			setTimeout(function() {
+				document.location.href = 'locate.html';
+			}, 3000);
+		}
+
+		document.addEventListener('deviceready', function() {
+
+			// Enable to debug issues.
+			// window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+			setTimeout(function() {
+
+				var notificationOpenedCallback = function(jsonData) {
+					console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+				};
+				window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
+						googleProjectNumber: "1006498509511"
+					},
+					notificationOpenedCallback);
+
+				// Show an alert box if a notification comes in when the user is in your app.
+				window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+			}, 5000);
+
+		}, false);
+
+		$(document).ready(function() {
+            
+if (window.location.protocol !== 'https:') {
+    window.location = 'https://' + window.location.hostname + window.location.pathname + window.location.hash;
+}
+
+            
+            location.href = "#start";
 			
-			cursor: pointer;
-        }
-		.left {
-			float: left;
-		}
-		.right {
-			float: right;
-		}
-		#loginregister div:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-			transition: all 0.5s;
-        }
-        
-        
-        #claim {
-            font-size: 25px;
-            font-style: italic;
-            font-weight: 700;
-            position: absolute;
-            text-align: center;
-            z-index: 100;
-            width: 100%;
-			height: 100%;
-			color:#FFFFFF;
-        }
-        
-        #copyright {
-            color: #FFFFFF;
-            font-size: 16px;
-            position: absolute;
-            text-align: center;
-            z-index: 100;
-            width: 100%;
-            bottom: 5%;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px #000000;
-        }
-	#loadingindicator {
-    background-color: black;
-    position: absolute;
-    z-index: 10000000000000000;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    text-align: center;
-    display: none;
-	}
-	#loadingindicator img {
-    margin-top: 100px;
-    width: 160px;
-	}
-		
-		
-	#animation { 
-	position: fixed;
-    width: 100%;
-    height: 100%;
-	left: 0px;
-    z-index: -100;
-	object-fit: fill;
-	}
-	#video_placeholder {
-		height: 50%;
-	}
-		#welcome_notice {
-			position: absolute;
-			bottom: 30%;
-		}
-	</style>
-	
-<link rel="prefetch" href="welcome.gif">
+			var quick_tour_viewed = localStorage.getItem('quick_tour_viewed');
+			if (quick_tour_viewed == 'Yes') {
+				document.getElementById("start_white").style.display = "none";
+			} else {
+				document.location.href = 'tour/swipe.html';
+			}
 
-</head>
+			$("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function() {});
+			$.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
+				var currentversion = "14";
+				var serverversion = data;
+				if (currentversion < serverversion) {
+					alert("Your app is outdated. Please install the update to ensure smooth operation.");
+				}
+			});
+			var rememberuser = localStorage.getItem('rememberuser');
+			// alert(rememberuser);
+			if (rememberuser == 'Yes') {
+				document.location.href = 'gotostart.html';
+			} else {
+				document.getElementById("start_white").style.display = "none";
+			}
+			var currentTime = new Date().getHours();
+			if (0 <= currentTime && currentTime < 5) {
+				setnight();
+			}
+			if (5 <= currentTime && currentTime < 11) {}
+			if (11 <= currentTime && currentTime < 16) {}
+			if (16 <= currentTime && currentTime < 22) {}
+			if (22 <= currentTime && currentTime <= 24) {
+				setnight();
+			}
+		});
 
-<body>
-	
-<script>
+		function setnight() {
+			// document.getElementById('splashimg').src = 'splash_night.jpg';
+			// document.getElementById('splashpage').style.backgroundColor = '#130F20';
+			// document.getElementById('claim').style.color = '#73CEE9';
+		}
+
+		function dogpscheck() {
+			CheckGPS.check(function win() {},
+				function fail() {
+					opensettings();
+				});
+		}
+
+		function opensettings() {
+			alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
+		}
+
+		function dodevicenamecheck() {
+			var device_model = device.model;
+			var device_platform = device.platform;
+			var device_version = device.version;
+			var device_uuid = device.uuid;
+			// alert(device_model + device_platform + device_version + device_uuid);
+			localStorage.setItem("device_model", device_model);
+			localStorage.setItem("device_platform", device_platform);
+			localStorage.setItem("device_version", device_version);
+			localStorage.setItem("device_uuid", device_uuid);
+		}
+
+		function start_reg() {
+			$("#reg_start").load("reg/mainmenu.html", function() {
+				document.getElementById("reg_start").style.height = "100%";
+				document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
+				// document.getElementById("reg_start").style.backgroundImage = "url(11.jog)";
+			});
+            location.href = "#registration";
+            localStorage.setItem("reg_start_open","Yes");
+		}
+
+		function start_login() {
+			$("#reg_start").load("reg/login.html", function() {
+				document.getElementById("reg_start").style.height = "100%";
+				document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
+				// document.getElementById("reg_start").style.backgroundImage = "url(arrive.jog)";
+			});
+            location.href = "#login";
+            localStorage.setItem("reg_start_open","Yes");
+		}
+
+		function close_reg_start() {
+            
+            localStorage.setItem("reg_start_open","No");
+            location.href = "#start";
+            
+			document.getElementById("reg_start").style.height = "0%";
+			document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
+		}
+
+		function terms() {
+			window.open('https://250taxi.com/termsandconditions.php', '_blank', 'location=no');
+		}
+
+	</script>
+    
+    <script src="hash_start.js"></script>
+    
+    <script>
 $( document ).ready(function() {
 	
 var i=0;
@@ -258,39 +256,198 @@ timer=setInterval(function(){
 
 </script>
 
+	<style>
+		#background_frame_login {
+			background-image: url(arrive.jpg);
+			height: 100%;
+			width: 100%;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+		}
+		
+		#background_frame_register {
+			background-image: url(11.jpg);
+			height: 100%;
+			width: 100%;
+			background-repeat: no-repeat;
+			background-size: 100% auto;
+		}
+		
+		::-webkit-scrollbar {
+			display: none;
+		}
+		
+		body {
+			font-family: Roboto, sans-serif;
+			font-size: 18px;
+			color: #000;
+			text-align: center;
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+		}
+		
+		#loginregister {
+			position: absolute;
+			bottom: 20%;
+			width: 80%;
+			margin-left: 10%;
+		}
+		
+		#loginregister div {
+			width: 47%;
+			display: block;
+			font-family: sans-serif;
+			font-style: normal;
+			font-size: 16px;
+			font-weight: 400;
+			border-radius: 15px;
+			border: solid 1px white;
+			background-color: rgba(255, 255, 255, 0.2);
+			padding-top: 8px;
+			padding-bottom: 7px;
+			transition: all 0.5s;
+			cursor: pointer;
+		}
+		
+		.left {
+			float: left;
+		}
+		
+		.right {
+			float: right;
+		}
+		
+		#loginregister div:hover {
+			background-color: rgba(255, 255, 255, 0.4);
+			transition: all 0.5s;
+		}
+		
+		#claim {
+			font-size: 25px;
+			font-style: italic;
+			font-weight: 700;
+			position: absolute;
+			text-align: center;
+			z-index: 100;
+			width: 100%;
+			height: 100%;
+			color: #FFFFFF;
+		}
+		
+		#copyright {
+			color: #FFFFFF;
+			font-size: 16px;
+			position: absolute;
+			text-align: center;
+			z-index: 100;
+			width: 100%;
+			bottom: 5%;
+			text-transform: uppercase;
+			text-shadow: 0 0 5px #000000;
+		}
+		
+		#loadingindicator {
+			background-color: black;
+			position: absolute;
+			z-index: 10000000000000000;
+			height: 100%;
+			width: 100%;
+			left: 0px;
+			top: 0px;
+			text-align: center;
+			display: none;
+		}
+		
+		#loadingindicator img {
+			margin-top: 100px;
+			width: 160px;
+		}
+		
+		#animation {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			left: 0px;
+			z-index: -100;
+			object-fit: fill;
+		}
+		
+		#video_placeholder {
+			height: 50%;
+		}
+		
+		#welcome_notice {
+			position: absolute;
+			bottom: 30%;
+		}
+		
+		#start_white {
+			position: absolute;
+			z-index: 10000;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: white;
+			z-index: 10000000;
+		}
 
-<img id="animation" src="vid/1.jpg">
+	</style>
+
+	<link rel="prefetch" href="welcome.gif">
+
+</head>
+
+<body>
+	
+	<div id="start_white"></div>
+
+	<div id="reg_start"></div>
+
+	<img id="animation" src="vid/110.jpg">
     
-<div id="loadingindicator" style="display:none">
-    <img src="282.gif" width="120">
-</div>
+    <div id="logo_white"></div>
 
-    <div id="claim" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
-		
+	<div id="loadingindicator">
+		<img src="282.gif" width="120">
+        
+        
+        
+        <div onclick="location.reload();" id="loading_reset">
+            <strong>Not connecting?</strong>
+            <br>Try again</div>
+        
+	</div>
+
+	<div id="claim" class="" style="-webkit-animation-delay: 2s;">
+
 		<br>
-		
-		
-		
+
 		<div id="welcome_notice"></div>
-		
+
 		<div id="loginregister">
-			
-			<div onclick="showindicator();document.location.href = 'reg/login.html'" class="left animated flipInY" style="-webkit-animation-delay: 2s;">Login</div>
-			
-			<div onclick="showindicator();document.location.href = 'reg/mainmenu.html'" class="right animated flipInY" style="-webkit-animation-delay: 3s;">Register</div>
-		
-    	</div>
+
+			<div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
+
+			<div onclick="start_reg();" class="right notextselect" style="-webkit-animation-delay: 3s;">Register</div>
+
+		</div>
+
+	</div>
+
+
+	<div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;">
 		
 	</div>
 
-    
+    <div id="loginregister_desktop">
 
-    <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;">
-        <img style="width: 50%;" src="tigo.png">
-    </div>
+			<div onclick="start_login();" class="notextselect" style="-webkit-animation-delay: 2s;">Login</div>
 
+			<div onclick="start_reg();" class="notextselect" style="-webkit-animation-delay: 3s;">Register</div>
 
+		</div>
 
 </body>
-
 </html>

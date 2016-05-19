@@ -1,0 +1,41 @@
+#dialataxi {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000000000;
+    background-image: url(dialataxi.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#dialataxi_info {
+    position:absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10%;
+    cursor: default;
+}
+#dialataxi_pickup {
+    padding-right: 10px;
+}
+#dialataxi_reference_number {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 150%;
+}
+#dialataxi h1 {
+    background-color: rgba(45, 150, 182, 1);
+    font-size: 120%;
+    padding: 10px;
+    color: #FCD711;
+    text-shadow: 1px 1px 4px #000000;
+    box-shadow:  1px 1px 3px #000000;
+    cursor: pointer;
+}
+.shadow {
+    -webkit-filter: drop-shadow( 1px 1px 3px #000 );
+    filter: drop-shadow( 1px 1px 3px #000 );
+}

@@ -103,7 +103,7 @@ input {
     border-left-style: none;
     color: #FFFFFF;
     background-color: rgba(0, 0, 0, 0.3);
-    border: solid 0px #4B76A9;
+    border: solid 1px rgba(0, 0, 0, 0.3);
 }
 
 /* do not group these rules */
@@ -338,6 +338,7 @@ button:active {
 }
 button:focus {
     outline: none;
+	outline: 0;
 }
 #termsaccepted {
     padding: 5px;

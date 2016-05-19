@@ -29,7 +29,7 @@ function get_fare_estimate() {
 	}
 	
 	
-	$.get( "http://250taxi.com/db/journey/gestimate.php?origins="+pickup_location+"&destinations="+taxirequest_destination+"", function( data ) {
+	$.get( "https://250taxi.com/db/journey/gestimate.php?origins="+pickup_location+"&destinations="+taxirequest_destination+"", function( data ) {
 		
 	hideindicator();
 
@@ -70,7 +70,7 @@ var googledistancexml = data;
 
 function getgooglefareestimate() {
 	
-$.get( "http://250taxi.com/db/partner/get_fare_setting.php", function( fare_setting ) {
+$.get( "https://250taxi.com/db/partner/get_fare_setting.php", function( fare_setting ) {
 	
 gestimatedistance = localStorage.getItem("gestimatedistance");
 	
@@ -87,11 +87,15 @@ if (gcostestimate < 1500) {
     gcostestimate = 1500;
 }
 if (isNaN(gcostestimate)) {
-    alert("Sorry, we could not calculate the fare for this route. Please change pickup or destination locations. Make sure your internet connection is working.");
+    alert("Sorry, we could not calculate the fare for this route. Please change pickup or destination locations.");
 	getfareestimate_close();
 }
+    
+localStorage.setItem("fare_estimate",gcostestimate);
+    
+var gcostestimate_plus1000 = gcostestimate + 1000;
 	
-document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" RWF";
+document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF";
 	
 });
 	

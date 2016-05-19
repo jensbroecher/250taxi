@@ -23,6 +23,9 @@
 	<meta name="msapplication-TileColor" content="#df600a">
 	<meta name="msapplication-TileImage" content="mstile-144x144.png">
 	<meta name="theme-color" content="#000000">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<style>
 		@media only screen and (max-device-width: 480px) {
@@ -32,6 +35,7 @@
 
 	<script src="logupdate.js"></script>
 	<script src="infobubble.js"></script>
+    <script src="myalert.js"></script>
 
 	<link href="animate.min.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
@@ -44,6 +48,17 @@
 	<link rel="stylesheet" type="text/css" href="searchdrivers.css">
 	<link rel="stylesheet" type="text/css" href="modal250.css">
 	<link rel="stylesheet" type="text/css" href="locate.css">
+    <link rel="stylesheet" type="text/css" href="taxis_online_info.css">
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="detailed_pickup_location.css">
+    
+    
+    
+    <link rel="stylesheet" type="text/css" href="locate_desktop.css">
+    
+
 
 	<link href='https://fonts.googleapis.com/css?family=Orbitron:500' rel='stylesheet' type='text/css'>
 
@@ -81,7 +96,7 @@
 	<!--  
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb1A29Jk9FtTZSiHDlfUPM9mHM42cAiRo&libraries=places&callback=initMap"></script>   
   -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
 
 	<script src="jquery.min.js"></script>
 	<script src="jquery.validate.min.js"></script>
@@ -91,6 +106,9 @@
 
 	<script src="ls_reset.js"></script>
 	<script src="mli.js"></script>
+    
+    <script src="jquery.knob.js"></script>
+	<script src="init.js"></script>
 
 	<script src="responsivevoice.js"></script>
 	<script src="materialize.js"></script>
@@ -106,13 +124,69 @@
 	<script src="toast.js"></script>
 	
 	<script src="driver_request_timer.js"></script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<style type="text/css">
+	.col-centered {
+		display:inline-block;
+		float:none;
+		text-align:left;
+		margin-right:-4px;
+	}
+	.row-centered {
+		margin-left: 9px;
+		margin-right: 9px;
+	}
+		#account_overlay1 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			z-index: 1000;
+			display: none;
+		}
+	</style>
+	
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	
+	<script>
+	function submit_card_details(){
+	var a= $("#payment-form").serialize();
+	var a= $("#stripeToken").val();
+	// alert(12);
+	$.get( "https://250taxi.com/app/stripe-payment/stripe_payment.php?a="+a,  function( data ) {
+        alert(data);
+    });
+	}
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
 
-	<script src="http://250taxi.com/appcontent/client/summary.js"></script>
+	<script src="https://250taxi.com/appcontent/client/summary.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="toast.css">
 	<script src="startmap.js"></script>
 	<script>
 		$(document).ready(function() {
+            
+if (window.location.protocol !== 'https:') {
+    window.location = 'https://' + window.location.hostname + window.location.pathname + window.location.hash;
+}
 
 			$("#expanded_customer_care_close").swipe({
 				swipeRight: function() {
@@ -161,6 +235,13 @@
 				threshold: 0
 
 
+
+			});
+            
+            $("#mydetailedlocation").swipe({
+				swipeDown: function() {
+                    mydetailedlocation_close();
+                }
 
 			});
 
@@ -466,8 +547,8 @@
 					font-family: Roboto, sans-serif;
 					font-size: 14px;
 					text-transform: uppercase;
-					padding-top: 3px;
-					padding-bottom: 3px;
+					padding-top: 5px;
+					padding-bottom: 5px;
 					margin-left: 30%;
 					width: 36%;
 					max-width: 270px;
@@ -475,6 +556,7 @@
 					white-space: nowrap;
 					overflow: hidden;
 					margin-top: 15px;
+                    border-radius: 15px;
 				}
 				
 				#account_button_after_click {
@@ -512,8 +594,8 @@
 
 					var clientid = localStorage.getItem("userid");
 
-					$.get("http://250taxi.com/db/change_account.php?task=email&userid=" + clientid + "", function(data) {
-						alert('We have sent you instructions to your E-Mail on how to update your account. If you do not recieve it please contact customer care.');
+					$.get("https://250taxi.com/db/change_account.php?task=email&userid=" + clientid + "", function(data) {
+						alert('Customer care will contact you soon.');
 					});
 
 					document.getElementById("account_button").style.display = "none";
@@ -523,7 +605,7 @@
 
 			</script>
 
-			<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light" on>Change</div>
+			<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light">Change</div>
 
 			<div style="clear:both;"></div>
 
@@ -568,11 +650,6 @@
 	<div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
 
 		<img style="width: 100px;" src="282.gif">
-		<br>
-
-		<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-			<path fill="#FFFFFF" d="M11.62,1L17.28,6.67L15.16,8.79L13.04,6.67L11.62,8.09L13.95,10.41L12.79,11.58L13.24,12.04C14.17,11.61 15.31,11.77 16.07,12.54L12.54,16.07C11.77,15.31 11.61,14.17 12.04,13.24L11.58,12.79L10.41,13.95L8.09,11.62L6.67,13.04L8.79,15.16L6.67,17.28L1,11.62L3.14,9.5L5.26,11.62L6.67,10.21L3.84,7.38C3.06,6.6 3.06,5.33 3.84,4.55L4.55,3.84C5.33,3.06 6.6,3.06 7.38,3.84L10.21,6.67L11.62,5.26L9.5,3.14L11.62,1M18,14A4,4 0 0,1 14,18V16A2,2 0 0,0 16,14H18M22,14A8,8 0 0,1 14,22V20A6,6 0 0,0 20,14H22Z" />
-		</svg> Loading
 
 	</div>
 
@@ -607,16 +684,16 @@
 	</script>
 	
 	<div id="pickdriver_request_timer" class="animated fadeIn">
+        
+        <div id="pickdriver_request_info">
+        Contacting driver...
+        </div>
 		
-	<div class="la-ball-pulse" style="width: 100px;">
-				<div></div><div></div><div></div>
-	</div>
-		
-	<div id="pickdriver_request_notice">
-	<span id="pickdriver_request_timer_timer">
-	00:00
-	</span> <span style="padding-left: 6px;">Waiting for driver to accept your request, please be patient. </span>
-	</div>
+	
+      <input class="knob second" data-readOnly="true" data-width="90" data-min="0" data-max="120" data-displayPrevious=true data-fgColor="#148AAE" data-skin="tron" data-thickness=".2" value="120">  
+        
+    
+	
 	
 	</div>
 
@@ -687,7 +764,7 @@
 
 	<div id="overlay"></div>
 
-	<div id="loadingindicator">
+	<div id="loadingindicator" style="display:block;">
 		<img src="282.gif" width="120">
 	</div>
 
@@ -698,20 +775,29 @@
 
 	<nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
 
-		<br>
-		<span class="noSwipe" id="logoutbutton" onclick="logout();">Logout</span>
-		<br>
+        
+        <br>
+        <span onclick="logout();" class="noSwipe" id="mainmenu_userinfo">
+        <span id="mainmenu_email"></span>
+        <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="white" d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z" />
+</svg>
+        </span>
 		<br>
 
+        <span id="mainmenu">
 		<div class="noSwipe" id="mainmenu_account">Account</div>
 		<div class="noSwipe" id="mainmenu_services">Services</div>
 		<div class="noSwipe" id="mainmenu_wallet">Wallet</div>
 		<div class="noSwipe" id="mainmenu_history">History</div>
 		<span id="divider"></span>
+        <div class="noSwipe" id="mainmenu_tour">Quick tour</div>
+        <span id="divider"></span>
 		<div class="noSwipe" id="mainmenu_becomedriver">BECOME A 250 TAXI PARTNER</div>
 		<div class="noSwipe" id="mainmenu_corporate">250 TAXI CORPORATE</div>
-		<div class="noSwipe" id="mainmenu_about">ABOUT</div>
-		<div class="noSwipe" id="mainmenu_help">HELP</div>
+        </span>
+        
+		
 	</nav>
 
 	<div id="menubutton" class="toggle-menu menu-left"> </div>
@@ -740,7 +826,7 @@
 				<path fill="#FFFFFF" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
 			</svg>
 
-			Pickup Location
+			Search
 		</div>
 
 	</div>
@@ -788,8 +874,100 @@
 	<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
 
 	<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
+    
+    <script>
+	$( document ).ready(function() {
 
-	<div id="calltaxiui"></div>
+	setTimeout(function(){ 
+	document.getElementById("calltaxiui").style.opacity = "1";
+	}, 2000);
+		
+	setTimeout(function(){ 
+	document.getElementById("calltaxiui").style.webkitFilter = "brightness(2)";
+	}, 4000);
+		
+	setTimeout(function(){ 
+	document.getElementById("calltaxiui").style.webkitFilter = "brightness(1)";
+	}, 4300);
+
+	});
+	</script>
+
+	<div id="calltaxiui">
+		
+		
+		
+		
+    
+        <div id="ride_now_button">
+            
+        <div class="start_buttons">
+        
+        <div class="start_button_pick">
+            Pick me up
+        </div>
+            
+        <div class="start_button_time">
+            Now
+        </div>
+            
+        </div>
+        
+        </div>
+		
+		
+		
+		
+		
+		
+		
+        
+        <div id="ride_later_button">
+            
+            <div class="start_buttons">
+            
+            <div class="start_button_pick">
+                Pick me up
+            </div>
+                
+            <div class="start_button_time">
+                Later
+            </div>
+                
+            </div>
+            
+        </div>
+			
+			
+			
+			
+			
+			
+		 <div id="call_now_button">
+            
+        <div class="start_buttons">
+        
+        <div class="start_button_pick">
+            Dial a
+        </div>
+            
+        <div class="start_button_time">
+            250 Taxi
+        </div>
+            
+        </div>
+        
+        </div>	
+			
+			
+			
+			
+			
+			
+            
+        </div>
+    
+
 
 	<div id="map"></div>
 
@@ -848,25 +1026,7 @@
 	</div>
 
 
-	<div id="mydetailedlocation">
-		<div class="sdbox">
-
-			<div class="sdtitle">Tell us more info about where you are</div>
-
-			<input class="sdinput" placeholder="I am at..." id="taxirequest_detailedlocation">
-
-			<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">
-
-				<svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-				</svg>
-
-				OK</div>
-
-			<div style="display:none;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="setTimeout(function(){ detailedlocation_complete_skip(); }, 1000);">Skip</div>
-
-		</div>
-	</div>
+	
 
 
 
@@ -915,7 +1075,12 @@
 				Fare estimate
 			</div>
 
-			<div class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
+			<div style="margin-top: 0px; margin-bottom: 10px;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
+                
+                <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+					<path fill="#FFFFFF" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+				</svg>
+                
 				Skip estimate</div>
 
 		</div>
@@ -931,6 +1096,8 @@
 			</div>
 
 		</div>
+        
+        
 
 
 
@@ -1020,6 +1187,171 @@
 
 
 
-	</div>
-</body>
+    </div>
+
+<input type="hidden" name="angle" id="angle">
+	<div name="angle1" id="angle1"></div>
+	
+<div id="preload_taxi_img" style="display:none;">
+	<img src="taxi/taxi_0.svg">
+	<img src="taxi/taxi_10.svg">
+	<img src="taxi/taxi_20.svg">
+	<img src="taxi/taxi_30.svg">
+	<img src="taxi/taxi_40.svg">
+	<img src="taxi/taxi_50.svg">
+	<img src="taxi/taxi_60.svg">
+	<img src="taxi/taxi_70.svg">
+	<img src="taxi/taxi_80.svg">
+	<img src="taxi/taxi_90.svg">
+	<img src="taxi/taxi_100.svg">
+	<img src="taxi/taxi_110.svg">
+	<img src="taxi/taxi_120.svg">
+	<img src="taxi/taxi_130.svg">
+	<img src="taxi/taxi_140.svg">
+	<img src="taxi/taxi_150.svg">
+	<img src="taxi/taxi_160.svg">
+	<img src="taxi/taxi_170.svg">
+	<img src="taxi/taxi_180.svg">
+	<img src="taxi/taxi_190.svg">
+	<img src="taxi/taxi_200.svg">
+	<img src="taxi/taxi_210.svg">
+	<img src="taxi/taxi_220.svg">
+	<img src="taxi/taxi_230.svg">
+	<img src="taxi/taxi_240.svg">		
+	<img src="taxi/taxi_250.svg">
+	<img src="taxi/taxi_260.svg">
+	<img src="taxi/taxi_270.svg">
+	<img src="taxi/taxi_280.svg">
+	<img src="taxi/taxi_290.svg">
+	<img src="taxi/taxi_300.svg">
+	<img src="taxi/taxi_310.svg">
+	<img src="taxi/taxi_320.svg">
+	<img src="taxi/taxi_330.svg">
+	<img src="taxi/taxi_340.svg">
+	<img src="taxi/taxi_350.svg">
+	<img src="taxi/taxi_360.svg">
+    <img src="taxi/taxi_NaN.svg">
+</div>
+    
+
+
+<div id="mydetailedlocation" class="animated fadeIn">
+
+    <div id="mydetailedlocation_dialog">
+
+        <div id="mydetailedlocation_content">
+            <svg onclick="mydetailedlocation_close();" style="width:24px;height:24px;padding:10px;right:0px;position:absolute;margin-top:-10px;" viewBox="0 0 24 24">
+                <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+
+            <div class="sdtitle">My pickup location</div>
+            
+            
+            
+<div class="pickup_card">
+    
+    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+        <path fill="white" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+    </svg><span id="mydetailedlocation_street"></span>
+
+    <div id="pickup_location_details">
+        <select name="list_of_nearby_places" id="list_of_nearby_places"></select>
+    </div>
+    
+    <input placeholder="Where are you standing?" id="taxirequest_detailedlocation">
+
+</div>            
+
+            
+            <input onchange="pickup_booking_date_check();" onblur="pickup_booking_date_check();" id="pickup_booking_date" type="datetime-local">
+            
+            
+            
+            
+            
+            <div id="detailedlocation_date_time_button" class="waves-effect waves-light sdbutton_booklater_gray">Set date/time</div>
+            
+            
+            
+            <div class="waves-effect waves-light sdbutton_booklater" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">Next</div>
+
+            
+            
+            <input id="ddtest">
+            
+            
+        </div>
+    </div>
+</div>
+    
+<script src="date.format.js"></script>
+    
+<script>
+    
+function parseDate(from){
+    from = from.replace('T', ' ').replace(/-/g,'/');
+    return new Date(from);
+}
+    
+function pickup_booking_date_check() {
+   var pickup_booking_date_time = document.getElementById("pickup_booking_date").value;
+    
+pickup_booking_date_time = parseDate(pickup_booking_date_time);
+    
+    
+    
+    
+
+
+var date_for_button = dateFormat(pickup_booking_date_time, "mmmm d - h:MM TT");
+    
+// alert(date_for_button);
+
+    
+document.getElementById("detailedlocation_date_time_button").innerHTML = date_for_button;
+    
+document.getElementById("ddtest").value = date_for_button;
+   
+}
+    
+</script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </body>
+
 </html>

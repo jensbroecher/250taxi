@@ -58,7 +58,7 @@ localStorage.setItem("chat_enabled","No");
 function driverAnimation(){
 pickdriver_id = localStorage.getItem("pickdriver_id");
     
-$( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
+$( "#driveroverlay_show_details" ).load( "https://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
 
 });
     
@@ -84,7 +84,7 @@ var previous_lat;var previous_lng;
 		var deltaLng;
 		console.log(pickdriver_currentgpslat+","+pickdriver_currentgpslong);
  var iconimage2 = {
-    url: "http://250taxi.com/app/journey/journey_marker_driver.png", // url
+    url: "https://250taxi.com/app/journey/journey_marker_driver.png", // url
     scaledSize: new google.maps.Size(90, 90), // scaled size
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(43,90) // anchor
@@ -110,7 +110,7 @@ driverMarker = new google.maps.Marker({
 	   }
 	   if( typeof marker['Driver'] !== 'undefined'){
 			var arg;
-			var contentString = '<div style="color:white;">&nbsp;<b>'+pickdriver_name+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="http://www.250taxi.com/driverpics/'+pickdriver_id+'.jpg" onError="this.src = \'http://www.250taxi.com/app/no-user-image.gif\'"></div>';
+			var contentString = '<div style="color:white;">&nbsp;<b>'+pickdriver_name+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="https://www.250taxi.com/driverpics/'+pickdriver_id+'.jpg" onError="this.src = \'https://www.250taxi.com/app/no-user-image.gif\'"></div>';
 			var currentmarker=marker['Driver'];
 			google.maps.event.addListener(currentmarker, 'click', (function(currentmarker, arg) {
                return function() {				   

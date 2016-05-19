@@ -1,7 +1,5 @@
 .cbp-spmenu {
-	background: rgba(0,0,0,0.7);
-    background-image: url(gradient.png);
-    background-size: 100% 100%;
+	background: rgba(0, 0, 0, 0.8);
 	position: fixed;
 	
 	-webkit-transform: translateZ(0);
@@ -137,6 +135,15 @@
 		bottom: -110px;
 	}
 
+}
+
+#mainmenu_userinfo {
+    color: white;
+    text-align: center;
+    display: block;
+    text-transform: lowercase;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 @media screen and (max-height: 26.375em){

@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link rel="stylesheet" type="text/css" href="swipe.css" />
+
+<script type="text/javascript" src="swipe.js"></script>
+
+</head>
+<body>
+
+<iframe style="display:none;" src="timedown.html" marginwidth="0" marginheight="0" width="100%" height="5" frameborder="0"></iframe>
+
+<div id="ibox7" class="info swipegallery animated fadeInDownBig">
+<div id="slider" class="swipe">
+
+<ul>
+<li><img src="slide1.jpg"></li>
+<li><img src="slide2.jpg"></li>
+<li><img src="slide3.jpg"></li>
+<li><img src="slide4.jpg"></li>
+<li><img src="slide5.jpg"></li>
+</ul>
+
+<span id="position">
+
+<em>&#9679;</em>
+<em>&#9679;</em>
+<em>&#9679;</em>
+<em>&#9679;</em>
+<em>&#9679;</em>
+
+</span>
+
+</div></div>
+
+<div style="margin-top: 10px;" class="gobutton animated fadeIn" onClick="go_login();">Continue</div>
+
+<script>
+	
+function go_login() {
+	localStorage.setItem('quick_tour_viewed','Yes');
+	location.href='../index.html';
+}
+
+var slider = new Swipe(document.getElementById('slider'), {
+											    
+      callback: function(e, pos) {
+        
+        var i = bullets.length;
+        while (i--) {
+          bullets[i].className = ' ';
+        }
+        bullets[pos].className = 'on';
+
+      }
+	 
+    }),
+
+    bullets = document.getElementById('position').getElementsByTagName('em');
+
+function setTab(elem) {
+  for (var i = 0; i < selectors.length; i++) {
+    selectors[i].className = selectors[i].className.replace('on',' ');
+  }
+  elem.className += ' on';
+}
+
+var element = document.getElementById('position').getElementsByTagName('em')[0];  
+if(element) //lets sanitize this, shall we  
+{  
+element.setAttribute('class', 'on'); //other browsers
+}
+
+</script>
+
+<style type="text/css">
+.swipe img {
+width:100%;
+}
+</style>
+
+</body>
+</html>

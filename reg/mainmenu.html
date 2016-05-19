@@ -1,742 +1,250 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-    
-<link rel="apple-touch-icon" sizes="57x57" href="../apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="../apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="../apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="../apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="../apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="../android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="../manifest.json">
-<meta name="msapplication-TileColor" content="#df600a">
-<meta name="msapplication-TileImage" content="../mstile-144x144.png">
-<meta name="theme-color" content="#000000">
-    
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<div id="background_frame_register">
 
-<link href="main.css" rel="stylesheet" type="text/css">
-<link href="animate.min.css" rel="stylesheet" type="text/css">
+<style>
+	.reg_check_img {
+		width: 16px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		vertical-align: middle;
+	}
 
-<script type="text/javascript" charset="utf-8" src="jquery-1.9.1.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery-ui.js"></script>
-<script type="text/javascript" charset="utf-8" src="jquery.validate.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="logic.js"></script>
-	
-<script src="logupdate.js"></script>
-    
-<script type="text/javascript" charset="utf-8" src="../materialize.js"></script>
-<link href="../waves.css" rel="stylesheet" type="text/css">
- 
-<script src="../preventreload.js"></script>
+</style>
 
-<script type="text/javascript">
-$( document ).ready(function() {
-	
-localStorage.clear();
-
-$('#username').keyup(function() {
-                this.value = this.value.toLowerCase();
-                this.value = this.value.replace(/[^@a-z0-9.]/g, "");
-            });
-            $(function() {
-                $('#username').keypress(function(e) {
-                    var txt = String.fromCharCode(e.which);
-                    console.log(txt + ' : ' + e.which);
-                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
-                    {
-                        return false;
-                    }
-                });
-            });
-$('#first_name').keyup(function(){
-    this.value = this.value.replace(/ /g, "");
-});
-$('#last_name').keyup(function(){
-    this.value = this.value.replace(/ /g, "");
-});
-$('#email').keyup(function(){
-    this.value = this.value.toLowerCase();
-    this.value = this.value.replace(/ /g, "");
-});
-$(function(){
-    $('#username').keypress(function(e){
-        var txt = String.fromCharCode(e.which);
-        console.log(txt + ' : ' + e.which);
-        if(!txt.match(/[A-Za-z0-9]/))//+#-.
-        {
-            return false;
-        }
-    });
-});
-$(function(){
-    $('#first_name').keypress(function(e){
-        var txt = String.fromCharCode(e.which);
-        console.log(txt + ' : ' + e.which);
-        if(!txt.match(/[A-Za-z0-9]/))//+#-.
-        {
-            return false;
-        }
-    });
-});
-$(function(){
-    $('#last_name').keypress(function(e){
-        var txt = String.fromCharCode(e.which);
-        console.log(txt + ' : ' + e.which);
-        if(!txt.match(/[A-Za-z0-9]/))//+#-.
-        {
-            return false;
-        }
-    });
-});
-$(function(){
-    $('#email').keypress(function(e){
-        var txt = String.fromCharCode(e.which);
-        console.log(txt + ' : ' + e.which);
-        if(!txt.match(/[A-Za-z0-9@.]/))//+#-.
-        {
-            return false;
-        }
-    });
-});
-    
-setTimeout(function(){
-document.getElementById("loadingindicator").className = "animated fadeOut";
-}, 1000);
-setTimeout(function(){
-	document.getElementById("loadingindicator").style.display = "none";
-}, 2000);
-
-setTimeout(function(){
-document.getElementById("reg_start").style.display = "block";
-}, 2500);
-});
-</script>
-
-</head>
-
-<body id="mainbg">
-    
-<div id="viewterms" class="animated fadeInLeft">
-
-<span style="padding: 5px; position:absolute; right: 0px;" onclick="document.getElementById('viewterms').style.display = 'none';">
-<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-    <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-</svg>
-</span>
-
-<div id="viewtermsinside"></div>
-</div>
-    
-<div id="offline" class="animated fadeIn">
-<img src="cloud.png">
-<div>You are offline. This app requires an active internet connection.</div>
-</div>
-
-<div id="loadingindicator" style="display:block;">
-<img src="282.gif">
-</div>
-    
-<div class="submenu animated fadeIn" id="reg_start">
-    <div class="heading_and_back"><div onClick="document.location.href = '../index.html';" class="backarrow"></div>User Details</div>
-
-<form id="reg_step_1">
-	
-<div class="steps">
-<img src="123/numeric-1-box.svg">
-<img src="123/numeric-2-box-outline.svg">
-<img src="123/numeric-3-box-outline.svg">
-</div>
-
-<div class="fieldgroup">
-<input name="first_name" id="first_name" type="text" class="textfield" required placeholder="First Name">
-<input name="last_name" id="last_name" type="text" class="textfield" required placeholder="Last Name">
-<input name="email" id="email" type="email" class="textfield" required placeholder="E-Mail">
-    
-<div style="clear:both;"></div>
-    
-<select name="operator" id="operator" class="textfield" required>
-<option value="">Mobile Operator:</option>
-<option value="tigo">Tigo</option>
-<option value="mtn">MTN</option>
-<option value="airtel">Airtel</option>
-</select>
-    
-<div style="clear:both;"></div>
-    
-<input onblur="document.getElementById('phone').value = '';" id="countrycode" class="textfield" required placeholder="+250" value="+250">
-    
 <script>
+	function register() {
 
-function nocountrycode() {
-    
-var phone = document.getElementById('phone').value;
-    
-if(phone.indexOf('+') === -1) {
-  
-}
-else {
-    alert('Please enter your phone number without country code!');
-    return;
-}
+		check_name = "No";
+		check_phone = "No";
+		check_email = "No";
 
-}
+		first_name = document.getElementById("first_name").value;
+		last_name = document.getElementById("last_name").value;
+		phone = document.getElementById("phone").value;
+		email = document.getElementById("email").value;
+
+		var check_phone_is_number = isNaN(phone);
+
+		if (check_phone_is_number == true || phone.length < 1) {
+			phone = "Invalid";
+			check_phone_img = "bad.png";
+		} else {
+			check_phone = "OK";
+			check_phone_img = "ok.png";
+		}
+
+		if (first_name.length < 1 || last_name.length < 1) {
+			first_name = "Invalid";
+			check_name_img = "bad.png";
+		} else {
+			check_name = "OK";
+			check_name_img = "ok.png";
+		}
+
+
+		function validateEmail(email) {
+			var re = /\S+@\S+\.\S+/;
+			return re.test(email);
+		}
+
+		var check_email_format = validateEmail(email);
+
+		if (check_email_format == false || email.length < 1) {
+			email = "Invalid";
+			check_email_img = "bad.png";
+		} else {
+			check_email = "OK";
+			check_email_img = "ok.png";
+		}
+
+
+		alert("<img width='16px' class='reg_check_img' src=reg/" + check_name_img + ">Name: " + first_name + " " + last_name + "<br><img width='16px' class='reg_check_img' src=reg/" + check_phone_img + ">Phone: " + phone + "<br><img width='16px' class='reg_check_img' src=reg/" + check_email_img + ">E-Mail: " + email + "");
+
+		if (check_name == "OK" && check_email == "OK" && check_phone == "OK") {
+
+			$.get("https://250taxi.com/db/check-email.php", {
+				email: email
+			}).done(function(data) {
+
+				if (data == "false") {
+					alert("Account is in use.");
+				}
+				if (data == "true") {
+					
+					username = first_name;
+					username = username.toLowerCase();
+					
+					check_username();
+				}
+
+			});
+
+
+		} else {
+			return;
+		}
+
+	}
+	function check_username() {
+		
+		console.log("check_username");
+		
+		
+		
+		$.get("https://250taxi.com/db/check-username.php", {
+						username: username
+					}).done(function(data) {
+
+						if (data == "false") {
+							
+							username_random_number = Math.floor(Math.random() * 90 + 10);
+							username = username + username_random_number;
+							check_username();
+						}
+						if (data == "true") {
+							console.log(username);
+							gotopin();
+						}
+
+
+					});
+		
+	}
+
+	function convert_uc_first_name() {
+		var data_new = document.getElementById("first_name").value;
+		var data_new_first = data_new.toUpperCase();
+		var data_new_first = data_new_first.substring(0, 1);
+		var data_new = data_new.substring(1);
+		document.getElementById("first_name").value = data_new_first + data_new;
+	}
+
+	function convert_uc_last_name() {
+		var data_new = document.getElementById("last_name").value;
+		var data_new_first = data_new.toUpperCase();
+		var data_new_first = data_new_first.substring(0, 1);
+		var data_new = data_new.substring(1);
+		document.getElementById("last_name").value = data_new_first + data_new;
+	}
+
+
+	function gotopin() {
+		document.getElementById("reg_personal_details").style.display = "none";
+		document.getElementById("reg_pin").style.display = "block";
+	}
+
 </script>
-    
 
-<input onblur="nocountrycode();" name="phone" id="phone" type="tel" class="textfield" required placeholder="Phone">
-    
-<div style="clear:both;"></div>
-    <br>
 
-<input id="termsaccepted" type="checkbox" name="termsaccepted" value="termsaccepted" required><span id="termsacceptedtext" onclick="viewterms();"> I accept the <u>terms & conditions</u>.</span> 
 
-<div style="clear:both;"></div>
+<img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="ios_icons/Icon-arrow-left.png">
 
+<div id="reg_form">
+
+	<div id="reg_personal_details" class="animated fadeIn">
+
+		<input onblur="convert_uc_first_name();" placeholder="First name" id="first_name">
+		<input onblur="convert_uc_last_name();" placeholder="Last name" id="last_name">
+		<input placeholder="Phone" type="tel" id="phone">
+		<input placeholder="E-Mail" type="email" id="email">
+
+		<button onclick="register();">Next</button>
+
+	</div>
+
+	<div id="reg_pin" style="display:none;" class="animated fadeIn">
+
+		<input type="tel" maxlength="4" placeholder="PIN" id="pin">
+		
+		<br>
+		<input id="terms_checkbox" type="checkbox"> <span onclick="terms();" id="terms_text">I accept the terms & conditions.</span>
+
+		<button onclick="check_pin_and_register();">Next</button>
+
+
+	</div>
 </div>
 
-<button class="waves-effect waves-light">Continue</button>
-    
-<script type="text/javascript">
-
-$.validator.addMethod('phone', function(value, element) {
-    return this.optional(element) || (/^\d{7,}$/).test(value.replace(/[\s()+\-\.]|ext/gi, ''));
-});
-
-$.validator.messages.remote = "This account is in use.";
-    
-$("#reg_step_1").validate({
-rules: {
-    phone: {
-      required: true,
-      phone: true,
-      minlength: 7,
-      remote: { 
-        url:"http://250taxi.com/db/check-phone-signup.php", 
-        data: {'phone':function(){
-            var countrycode = $('#countrycode').val();
-            var phone = $('#phone').val();
-            
-            var phone = phone.replace(/^0+/, '');
-            
-            var countrycode = countrycode.replace('+', '');
-            
-            var pandc = ''+countrycode+''+phone+'';
-            return pandc;
-        }},
-        async:false 
-      }
-    },
-    email: {
-      required: true,
-      email: true,
-      remote: "http://250taxi.com/db/check-email.php"
-    }
-  },
-  messages: {
-    phone: {
-      required: "Please enter a phone number.",
-      phone: "Please enter a phone number."
-    }
-    },
-  submitHandler: function(form) {
-    reg_step_1_complete();
-  }
- });
-</script>
-    
-</form>
-    
-</div>
-    
-    
-    
-    
-<div class="submenu animated fadeIn" id="reg_company">
-<div class="reg_heading"><div onclick="gobackto_reg_start();" class="backarrow"></div>Location Details</div>
-
-<form id="reg_step_2">
-	
-<div class="steps">
-<img src="123/numeric-1-box-outline.svg">
-<img src="123/numeric-2-box.svg">
-<img src="123/numeric-3-box-outline.svg">
-</div>
-
-<div class="fieldgroup">
-    
-<select name="country" id="country" class="textfield" required>
-<option value="">Country:</option>
-<option value="city_rwanda">Rwanda</option>
-<option value="city_other">Other</option>
-</select>
-    
 <script>
-        $(function() {
-        $('#country').change(function(){
-            $('.countryselect').hide();
-            $('#address').show();
-            
-            var countrychoice = $(this).val();
+	function check_pin_and_register() {
 
-            localStorage.setItem('countrychoice',countrychoice);
-            
-            $('#' + $(this).val()).show();
-            $('#' + $(this).val()).attr("required", "required");
+		var pin = document.getElementById("pin").value;
 
-        });
-    });
-</script>
-    
-<input id="city_other" class="textfield countryselect" placeholder="City" value="" style="display:none;">
+		var pin_is_number = /^\d{4}$/.test(pin);
 
-<select name="city_drc" id="city_drc" class="textfield countryselect" style="display:none;">
-<option value="">City:</option>
-<option>Kinshasa</option>
-<option>Goma</option>
-<option>Aba</option>
-<option>Aketi</option>
-<option>Ango</option>
-<option>Aru</option>
-<option>Bafwasende</option>
-<option>Bagata</option>
-<option>Bakwa-Kalonji</option>
-<option>Balamba</option>
-<option>Bambesa</option>
-<option>Banana</option>
-<option>Bandundu</option>
-<option>Baraka</option>
-<option>Basankusu</option>
-<option>Basoko (Basoko-Bandu)</option>
-<option>Befale</option>
-<option>Beni</option>
-<option>Bikoro</option>
-<option>Binga</option>
-<option>Boende</option>
-<option>Bokoro</option>
-<option>Bokungu (Bokungo)</option>
-<option>Bolobo</option>
-<option>Bolomba</option>
-<option>Boma</option>
-<option>Bomongo</option>
-<option>Bondo</option>
-<option>Bongandanga</option>
-<option>Bosobolo</option>
-<option>Budjala</option>
-<option>Bukama (Bukama-Kibanda)</option>
-<option>Bukavu (Costermansville)</option>
-<option>Bulungu</option>
-<option>Bumba</option>
-<option>Bunia</option>
-<option>Businga (Mombombo)</option>
-<option>Buta</option>
-<option>Butembo</option>
-<option>Dekese</option>
-<option>Demba</option>
-<option>Dibaya</option>
-<option>Dibaya-Lubue (Dibaya-Lubwe)</option>
-<option>Dilolo</option>
-<option>Dilunga</option>
-<option>Dimbelenge</option>
-<option>Djugu</option>
-<option>Dungu</option>
-<option>Feshi</option>
-<option>Fizi</option>
-<option>Fungurume</option>
-<option>Gandajika</option>
-<option>Gbadolite</option>
-<option>Gemena</option>
-<option>Gungu</option>
-<option>Gwane</option>
-<option>Idiofa</option>
-<option>Idjwi</option>
-<option>Ikela</option>
-<option>Ilebo (Port-Franqui)</option>
-<option>Inga</option>
-<option>Ingende</option>
-<option>Inkisi</option>
-<option>Inongo</option>
-<option>Irumu</option>
-<option>Isangi</option>
-<option>Isiro</option>
-<option>Kabalo</option>
-<option>Kabambare</option>
-<option>Kabeya-Kamwanga (Kenankuna)</option>
-<option>Kabinda</option>
-<option>Kabongo</option>
-<option>Kahemba</option>
-<option>Kalemie (Albertville)</option>
-<option>Kalima (Kamisuku)</option>
-<option>Kalo</option>
-<option>Kambove</option>
-<option>Kamina</option>
-<option>Kamituga</option>
-<option>Kampene</option>
-<option>Kananga (Luluabourg)</option>
-<option>Kaniama</option>
-<option>Kanteba (Kateba)</option>
-<option>Kanyabayonga</option>
-<option>Kapanga</option>
-<option>Kasangulu</option>
-<option>Kasenga</option>
-<option>Kasongo</option>
-<option>Kasongo-Lunda</option>
-<option>Katako-Kombe</option>
-<option>Katanda</option>
-<option>Katwa</option>
-<option>Kayna</option>
-<option>Kazumba</option>
-<option>Kenge</option>
-<option>Kibombo</option>
-<option>Kikwit</option>
-<option>Kimpese</option>
-<option>Kindu</option>
-<option>Kinzau-Mvuete (Kinzau-Vuete)</option>
-<option>Kipamba (Kikondja)</option>
-<option>Kipushi</option>
-<option>Kiri</option>
-<option>Kirumba</option>
-<option>Kisangani (Stanleyville)</option>
-<option>Kitona</option>
-<option>Kituku</option>
-<option>Kole</option>
-<option>Kolwezi</option>
-<option>Kongolo</option>
-<option>Kungu</option>
-<option>Kutu</option>
-<option>Libenge</option>
-<option>Likasi (Jadotville)</option>
-<option>Lisala</option>
-<option>Lodja</option>
-<option>Lomela</option>
-<option>Lubao (Sentery)</option>
-<option>Lubefu</option>
-<option>Lubero</option>
-<option>Lubudi</option>
-<option>Lubumbashi (Elizabethville)</option>
-<option>Lubutu</option>
-<option>Luebo</option>
-<option>Luiza</option>
-<option>Lukolela</option>
-<option>Lukula</option>
-<option>Luozi</option>
-<option>Lupatapata (Luhatahata)</option>
-<option>Luputa</option>
-<option>Lusambo</option>
-<option>Lwambo (Luambo)</option>
-<option>Mahagi</option>
-<option>Malemba-Nkulu</option>
-<option>Mangai (Mangaï)</option>
-<option>Mangina</option>
-<option>Mankanza</option>
-<option>Manono</option>
-<option>Masi-Manimba</option>
-<option>Masisi</option>
-<option>Matadi</option>
-<option>Mbandaka (Coquilhatville)</option>
-<option>Mbanza-Ngungu (Thysville)</option>
-<option>Mbuji-Mayi (Bakwanga)</option>
-<option>Miabi</option>
-<option>Mitwaba</option>
-<option>Moba (Baudouinville)</option>
-<option>Mobayi-Mbongo</option>
-<option>Mokambo</option>
-<option>Mongbwalu</option>
-<option>Monkoto</option>
-<option>Muanda (Moanda)</option>
-<option>Mulongo</option>
-<option>Mushie</option>
-<option>Mutshatsha</option>
-<option>Mweka</option>
-<option>Mwene-Ditu</option>
-<option>Niangara</option>
-<option>Nioki</option>
-<option>Nyunzu</option>
-<option>Oicha</option>
-<option>Opala</option>
-<option>Oshwe</option>
-<option>Poko</option>
-<option>Popokabaka</option>
-<option>Punia</option>
-<option>Pweto</option>
-<option>Rutshuru</option>
-<option>Sakania</option>
-<option>Sandoa</option>
-<option>Sedzo</option>
-<option>Seke-Banza</option>
-<option>Shabunda</option>
-<option>Shinkolobwe</option>
-<option>Songololo</option>
-<option>Tshela</option>
-<option>Tshikapa</option>
-<option>Tshilenge</option>
-<option>Tshimbulu</option>
-<option>Ubundu</option>
-<option>Uvira</option>
-<option>Vivi</option>
-<option>Walikale</option>
-<option>Walungu</option>
-<option>Wamba</option>
-<option>Watsa</option>
-<option>Yahuma</option>
-<option>Yakoma</option>
-<option>Yangambi</option>
-<option>Zaba</option>
-<option>Zongo</option>
-</select>
-
-<select name="city_uganda" id="city_uganda" class="textfield countryselect" style="display:none;">
-<option value="">City:</option>
-<option>Kampala</option>
-<option>Kira</option>
-<option>Mbarara</option>
-<option>Mukono</option>
-<option>Gulu</option>
-<option>Nansana</option>
-<option>Masaka</option>
-<option>Kasese</option>
-<option>Hoima</option>
-<option>Lira</option>
-<option>Mbale</option>
-<option>Masindi</option>
-<option>Njeru</option>
-<option>Jinja</option>
-<option>Entebbe</option>
-<option>Arua</option>
-<option>Wakiso</option>
-<option>Busia</option>
-<option>Fort Portal</option>
-<option>Iganga</option>
-<option>Mpondwe</option>
-<option>Kabale</option>
-<option>Soroti</option>
-<option>Mityana</option>
-<option>Mubende</option>
-</select>
-    
-<select name="city_rwanda" id="city_rwanda" class="textfield countryselect" style="display:none;">
-<option value="">City:</option>
-
-    <option>Kigali</option>
-    <option>Butare</option>
-    <option>Byumba</option>
-    <option>Cyangugu</option>
-    <option>Gisenyi</option>
-    <option>Gitarama</option>
-    <option>Kibeho</option>
-    <option>Kibungo</option>
-    <option>Kibuye</option>
-    <option>Nyanza</option>
-    <option>Ruhengeri</option>
-    <option>Rwamagana</option>
-    <option>Gikongoro</option>
-    <option>Gasarenda</option>
-    <option>Musanze</option>
-    <option>Muhanga</option>
-
-</select>
-    
-<select name="city_burundi" id="city_burundi" class="textfield countryselect" style="display:none;">
-<option value="">City:</option>
-
-    <option>Bujumbura</option>
-    <option>Bubanza</option>
-    <option>Buhongo</option>
-    <option>Bukirasazi</option>
-    <option>Bururi</option>
-    <option>Cankuzo</option>
-    <option>Cibitoke</option>
-    <option>Gitega</option>
-    <option>Kabezi</option>
-    <option>Karuzi</option>
-    <option>Kayanza</option>
-    <option>Kayero</option>
-    <option>Kayogoro</option>
-    <option>Kibondo</option>
-    <option>Kirundo</option>
-    <option>Kisozi</option>
-    <option>Makamba</option>
-    <option>Magara</option>
-    <option>Mukenke</option>
-    <option>Muramvya</option>
-    <option>Murore</option>
-    <option>Musenyi</option>
-    <option>Muyaga</option>
-    <option>Muyinga</option>
-    <option>Mwaro</option>
-    <option>Ngozi</option>
-    <option>Nyanza-Lac</option>
-    <option>Rugari</option>
-    <option>Rumonge</option>
-    <option>Rutana</option>
-    <option>Ruyigi</option>
-
-</select>
-    
-<input name="address" id="address" type="text" class="textfield" required placeholder="Place of residence" style="display:none;">
-
-</div>
-
-<button class="waves-effect waves-light">Continue</button>
-    
-<script type="text/javascript">
-
-$("#reg_step_2").validate({
-rules: {
-  },
-  messages: {
-            },
-  submitHandler: function(form) {
-    reg_step_2_complete();
-  }
- });
-</script>
-    
-</form>
-    
-</div>
-    
-
-<div class="submenu animated fadeIn" id="reg_complete">
-<div class="reg_heading"><div onclick="gobackto_reg_company();" class="backarrow"></div>Login Details</div>
-
-<form id="reg_step_3">
-	
-<div class="steps">
-<img src="123/numeric-1-box-outline.svg">
-<img src="123/numeric-2-box-outline.svg">
-<img src="123/numeric-3-box.svg">
-</div>
-
-<div class="fieldgroup">
-    
-<input name="username" id="username" type="text" class="textfield" required placeholder="Username">
-    
-<center>
-<input style="width:100px; font-size:17px; text-align:center; margin-right:5px;" type="tel" name="pin" required class="textfield pin" id="pin" placeholder="PIN" 
- maxlength = "4"
- pattern=".{4,}"> 
-</center>
-
-<br>
-Please provide a 4-Digit PIN.<br>Never share this PIN with anyone.<br>
-
-</div>
-
-<button class="waves-effect waves-light">Continue</button>
-    
-<script type="text/javascript">
-	
-$.validator.addMethod('lowercasesymbols', function(value) {
-    return value.match(/^[^A-Z]+$/);
-}, 'Only lowercase letters');
-    
-$("#reg_step_3").validate({
-	rules: {
-    pin: {
-      required: true,
-      number: true,
-	  minlength: 4
-    },
-    username: {
-        required: true,
-		lowercasesymbols: true,
-		minlength: 4,
-        remote: "http://250taxi.com/db/check-username.php"
-    }
-  },
-  messages: {
-            pin: {
-                required: "PIN required.",
-                minlength: "Enter 4 digits." }
-            },
-  submitHandler: function(form) {
-    complete_registration();
-  }
- });
-    
-</script>
-    
-</form>
-    
-</div>
-    
-<div class="submenu animated fadeIn" id="reg_smsvalidationwindow">
-<div class="reg_heading">Validate your number</div>
-    
-<div class="fieldgroup">
-
-Please validate your phone number by entering the code you received via text message (SMS).
-<br><br>
-    
-<center>
-<input style="width:100px; font-size:17px; text-align:center; margin-right:5px;" type="tel" name="smscode"  class="textfield" id="smscode" placeholder="SMS code" 
- maxlength = "4"
- pattern=".{4,}"> 
-</center>
-    
-</div>
-    
-<button class="waves-effect waves-light" onclick="checksmscode();">Validate</button>
-    
-<button style="background-color: black;" class="waves-effect waves-light" onclick="localStorage.setItem('phoneisvalidated','No');showindicator();storeindb();">Skip (Validate later)</button>
-
-</div>
-    
-<iframe style="display:none; border: 2px solid #000;" id="smsgateway" name="smsgateway" src=""></iframe>
-	
-<script>
-	
-$( document ).ready(function() {
-    checkapp();
-	
-	var currentTime = new Date().getHours();
+		if (pin_is_number == false) {
+			document.getElementById("pin").value = "";
+			alert("PIN format incorrect.<br>Please enter a 4-digit number.");
+		} else {
 			
-            if (0 <= currentTime && currentTime < 5) {
-               document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
-				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
-            }
-            if (5 <= currentTime && currentTime < 11) {
-				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
-            }
-            if (11 <= currentTime && currentTime < 16) {
-				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
-            }
-            if (16 <= currentTime && currentTime < 17) {
-				 document.getElementById("mainbg").style.backgroundImage = "url('kigali_day.jpg')";
-            }
-            if (17 <= currentTime && currentTime <= 24) {
-                document.getElementById("mainbg").style.backgroundImage = "url('kigali_night.jpg')";
-				document.getElementById("mainbg").style.backgroundSize = "auto 100%";
-            }
-});
-    
-    var isMobile = {
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    any: function() {
-        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-    }
-};
-        
-function checkapp() {
-    if( isMobile.iOS() ) go_ios();
-}
-        
-function go_ios() {
-    // document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"ios.css\" />");
-}
-    
+			var terms_checkbox = $('#terms_checkbox:checked').val();
+			
+			if(terms_checkbox == "on") {
+				showindicator();
+				complete_registration();
+			}
+			else {
+				alert("Please accept our<br>terms & conditions!");
+			}
+			
+		}
+	}
+
+
+
+
+
+
+	$(document).ready(function() {
+		$('#first_name').keyup(function() {
+			this.value = this.value.replace(/ /g, "");
+		});
+		$('#last_name').keyup(function() {
+			this.value = this.value.replace(/ /g, "");
+		});
+		$('#email').keyup(function() {
+			this.value = this.value.toLowerCase();
+			this.value = this.value.replace(/ /g, "");
+		});
+		$(function() {
+			$('#first_name').keypress(function(e) {
+				var txt = String.fromCharCode(e.which);
+				console.log(txt + ' : ' + e.which);
+				if (!txt.match(/[A-Za-z0-9]/)) //+#-.
+				{
+					return false;
+				}
+			});
+		});
+		$(function() {
+			$('#last_name').keypress(function(e) {
+				var txt = String.fromCharCode(e.which);
+				console.log(txt + ' : ' + e.which);
+				if (!txt.match(/[A-Za-z0-9]/)) //+#-.
+				{
+					return false;
+				}
+			});
+		});
+		$(function() {
+			$('#email').keypress(function(e) {
+				var txt = String.fromCharCode(e.which);
+				console.log(txt + ' : ' + e.which);
+				if (!txt.match(/[A-Za-z0-9@.]/)) //+#-.
+				{
+					return false;
+				}
+			});
+		});
+	});
+
 </script>
 
-</body>
-</html>
+<style>
+	#pin {
+		-webkit-text-security: circle;
+		text-security: circle;
+	}
+
+</style>
+
+</div>

@@ -72,7 +72,7 @@ if (activity == 'driver_has_accepted') {
     var userid = localStorage.getItem('userid');
     var pickdriver_id = localStorage.getItem("pickdriver_id");
     
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"&pickdriver_id="+pickdriver_id+"",      function( data ) {});
+    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"&pickdriver_id="+pickdriver_id+"",      function( data ) {});
         
     var pickdriver_name = localStorage.getItem("pickdriver_name");
         
@@ -93,7 +93,7 @@ if (activity == 'driver_has_accepted') {
     
 pickdriver_id = localStorage.getItem("pickdriver_id");
     
-$( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
+$( "#driveroverlay_show_details" ).load( "https://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
 
 });
     
@@ -187,7 +187,7 @@ if( typeof marker[name] !== 'undefined'){
 	   
 	   if( typeof marker['Driver'] !== 'undefined'){
 			var arg;
-			var contentString = '<div style="color:white;">&nbsp;<b>'+pickdriver_name+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="http://www.250taxi.com/driverpics/'+pickdriver_id+'.jpg" onError="this.src = \'http://www.250taxi.com/app/no-user-image.gif\'"></div>';
+			var contentString = '<div style="color:white;">&nbsp;<b>'+pickdriver_name+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="https://www.250taxi.com/driverpics/'+pickdriver_id+'.jpg" onError="this.src = \'https://www.250taxi.com/app/no-user-image.gif\'"></div>';
 			var currentmarker=marker['Driver'];
 			google.maps.event.addListener(currentmarker, 'click', (function(currentmarker, arg) {
                return function() {				   
@@ -230,7 +230,7 @@ if (activity == 'driver_has_accepted') {
     var userid = localStorage.getItem('userid');
     var pickdriver_id = localStorage.getItem("pickdriver_id");
     
-    $.get( "http://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"&pickdriver_id="+pickdriver_id+"",      function( data ) {});
+    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=accepted&passenger_id="+userid+"&pickdriver_id="+pickdriver_id+"",      function( data ) {});
         
     var pickdriver_name = localStorage.getItem("pickdriver_name");
         
@@ -252,7 +252,7 @@ longitude = document.getElementById('long').value;
     
 pickdriver_id = localStorage.getItem("pickdriver_id");
     
-$( "#driveroverlay_show_details" ).load( "http://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
+$( "#driveroverlay_show_details" ).load( "https://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"&passenger_lat="+latitude+"&passenger_long="+longitude+"", function() {
 
 });
     
@@ -385,11 +385,12 @@ localStorage.setItem('activity','has_boarded');
 driverid = localStorage.getItem("pickdriver_id");
 clientid = localStorage.getItem("userid");
     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+clientid+"</span> boarded with driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+localStorage.setItem("logupdate", ""+userid+"*"+driverid+"*boarding*User"+userid+" boarded with driver Driver"+driverid+".");
+logupdate_v2();    
     
 console.log("Start Journey!"); 
     
-$.get( "http://250taxi.com/db/journey/journey_mode.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
+$.get( "https://250taxi.com/db/journey/journey_mode.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
     console.log("Journey ID: " + journey_id);
     localStorage.setItem("journey_id",journey_id);
     journey_start_fare();
@@ -426,7 +427,8 @@ var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
 var phonenumber = localStorage.getItem("phonenumber");
     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> calls phone  "+phonenumber+" of driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+localStorage.setItem("logupdate", ""+userid+"*"+driverid+"*call*User"+userid+" calls phone  "+phonenumber+" of   Driver"+driverid+".");
+logupdate_v2();    
     
 window.open("tel:"+phonenumber+"","_self");
 }
@@ -452,7 +454,8 @@ localStorage.setItem("chat_window_status","open");
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> started chatting with  driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+localStorage.setItem("logupdate", "" + userid + "*"+driverid+"*chat*User"+userid+" started chatting with  Driver"+driverid+".");
+logupdate_v2();
     
     document.getElementById("chat_overlay").className = "animated fadeInUp"
     document.getElementById("chat_overlay").style.display = "block";
@@ -479,13 +482,13 @@ if (/^\s*$/.test(chat_message)) {
             driverid = localStorage.getItem("pickdriver_id");
             clientid = localStorage.getItem("userid");
 
-            $.get("http://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
+            $.get("https://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
                var chataudio = new Audio('sound/Bell_but-xk-105_hifi.mp3');chataudio.play(); 
             });
 
             document.getElementById("chat_message_input").value = "";
 
-            $("#chat_load_messages").load("http://250taxi.com/db/journey/chat.php?task=show_messages&driverid=" + driverid + "&clientid=" + clientid + "", function (data) {
+            $("#chat_load_messages").load("https://250taxi.com/db/journey/chat.php?task=show_messages&driverid=" + driverid + "&clientid=" + clientid + "", function (data) {
     
 });
 }
@@ -509,7 +512,7 @@ var journey_id = localStorage.getItem("journey_id");
 var journey_id = "journey_"+journey_id+"";
 var journey_id = window.btoa(journey_id);
 
-$("#journey_fare_load").load("http://250taxi.com/db/journey/get_total_distance.php?journey_id=" + journey_id + "", function (data) {
+$("#journey_fare_load").load("https://250taxi.com/db/journey/get_total_distance.php?journey_id=" + journey_id + "", function (data) {
 
 document.getElementById("journey_fare_display_km_count").innerHTML = localStorage.getItem("journey_total_distance");
 

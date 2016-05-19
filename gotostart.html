@@ -30,49 +30,16 @@
 <script src="cordova.js"></script>
 
 <script type = "text/javascript" >
+
     history.pushState(null, null, 'gotostart.html');
+
     window.addEventListener('popstate', function(event) {
     	history.pushState(null, null, 'gotostart.html');
     });
 	
-	setTimeout(function(){ 
+
 		location.href = "locate.html";
-	}, 5000);
-	
-	document.addEventListener("deviceready", onDeviceReady, false);
-	
-localStorage.setItem("app_or_web","app");
-	
-function onDeviceReady() {
-// alert("navigator.geolocation started");
-		
-// onSuccess Callback
-// This method accepts a Position object, which contains the
-// current GPS coordinates
-//
-var onSuccess = function(position) {
-    console.log('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + position.timestamp                + '\n');
-};
 
-// onError Callback receives a PositionError object
-
-function onError(error) {
-    console.log('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
-
-var options = { enableHighAccuracy: false };
-navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
-
-}
-	
 
 </script>
 
@@ -100,10 +67,6 @@ body {
 </head>
 
 <body>
-	
-<div style="position:absolute; display:none;"><button onclick="location.reload();">Reload</button></div>
-
-<img id="video" src="welcome.gif">
 
 </body>
 </html>

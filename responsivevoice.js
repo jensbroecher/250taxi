@@ -1,4 +1,4 @@
-﻿//Look for other responsivevoice instances
+//Look for other responsivevoice instances
 /*if (window.parent != null) {
     var iframes = window.parent.document.getElementsByTagName('iframe');
     for (var i = 0; i < iframes.length; i++) {

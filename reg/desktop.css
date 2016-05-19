@@ -1,0 +1,93 @@
+#logo_white {
+    display: none;
+}
+
+#loginregister_desktop {
+    display: none;
+}
+
+@media only screen and (min-width: 450px) {
+    #animation {
+        display: none;
+    }
+    #logo_white {
+        display: block;
+        left: 50px;
+        top: 30px;
+        width: 300px;
+        height: 200px;
+        position: fixed;
+        z-index: 100;
+        background-image: url(logo_white_shadow.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    #claim {
+        display: none;
+    }
+    #welcome_notice {
+        display: none;
+    }
+    body {
+        background-image: url(10.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #148AAE;
+        background-attachment: fixed;
+        background-position: bottom;
+    }
+    #loginregister_desktop {
+        position: absolute;
+        z-index: 10;
+        left: 50px;
+        bottom: 50px;
+        display: block;
+    }
+    #loginregister_desktop div {
+        width: 250px;
+        display: block;
+        font-family: sans-serif;
+        font-style: normal;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 15px;
+        border: solid 1px white;
+        background-color: rgba(255, 255, 255, 1);
+        padding-top: 8px;
+        padding-bottom: 7px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin-bottom: 10px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    #reg_form {
+        width: 400px !important;
+    }
+    #background_frame_login {
+        background-image: url(1.jpg) !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #148AAE;
+        background-attachment: fixed;
+        background-position: top;
+    }
+    #background_frame_register {
+        background-image: url(11.jpg) !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #148AAE;
+        background-attachment: fixed;
+        background-position: top;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    body {
+        background-image: url(10.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #148AAE;
+        background-attachment: fixed;
+        background-position: top;
+    }
+}

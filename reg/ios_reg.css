@@ -1,0 +1,98 @@
+#reg_form {
+	height: 230px;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+input {
+	width: 80%;
+	line-height: 160%;
+	text-indent: 6px;
+	margin-bottom: 5px;
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 6px;
+	font-size: 100%;
+	color: #717171;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+#reg_start {
+	background-color: white;
+	padding: 0px;
+	margin: 0px;
+	top: 0px;
+	left: 0px;
+	height: 0%;
+	width: 100%;
+	position: absolute;
+	transition: all 1s;
+	z-index: 100000000000;
+}
+#terms_and_conditions_external {
+	position: absolute;
+	padding: 0px;
+	margin: 0px;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50%;
+	z-index: 100000000000000000000000000000000000000000000000;
+	background-color: white;
+	transition: all 1s;
+}
+#terms_checkbox {
+	width: 25px;
+	height: 25px;
+	margin-left: 0px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+#pin {
+	margin-bottom: 10px;
+    text-align: center;
+    -webkit-text-security: disc;
+    text-security: disc;
+    text-indent: 0px;
+}
+#loginpin {
+    text-align: center;
+    -webkit-text-security: disc;
+    text-security: disc;
+    text-indent: 0px;
+}
+#username {
+	border-radius: 6px;
+}
+#mainmenu {
+	margin-top: 50px;
+}
+input:focus {
+	outline: none;
+	border: 1px solid blue;
+}
+.ios_back_arrow {
+	width: 24px;
+	margin: 10px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	transition: all 1s;
+}
+button {
+	background-color: #1489AD;
+	color: white;
+	line-height: 200%;
+	font-size: 100%;
+	width: 60%;
+	text-align: center;
+	border: none 0px;
+	margin-top: 10px;
+	border-radius: 15px;
+}
+button:focus {
+	-webkit-outline: none;
+	outline: none;
+	outline: 0;
+}

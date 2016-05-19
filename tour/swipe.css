@@ -1,0 +1,160 @@
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+footer,
+header,
+nav,
+section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: white;
+}
+.gobutton {
+	font-family: sans-serif;
+	font-style: normal;
+	font-size: 16px;
+	font-weight: 400;
+	border-radius: 15px;
+	border: none;
+	color: white;
+	background-color: #4B76A9;
+	padding-top: 8px;
+	padding-bottom: 7px;
+	transition: all 0.5s;
+	cursor: pointer;
+	width: 50%;
+	margin-left: 25%;
+	display: block;
+	text-align: center;
+	z-index: 10;
+}
+a {
+	text-decoration: none;
+}
+.headline {
+	font-size: 26px;
+	color: #757575;
+	padding-bottom: 45px;
+	padding-top: 45px;
+}
+body {
+	-webkit-text-size-adjust: none;
+}
+.subtext {
+	color: #DE4809;
+	font-size: 18px;
+}
+.swipe {
+	padding: 0px;
+	clear: both;
+	margin: 0px;
+}
+#slider .swipecomment {
+	color: #EFEFEF;
+}
+#slider .swipecommentbox {
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+}
+.swipe img {}
+.swipegallery {
+	padding-top: 0px !important;
+	padding-right: 0px !important;
+	padding-bottom: 0px !important;
+	padding-left: 0px !important;
+	border-top-width: 0px !important;
+	border-right-width: 0px !important;
+	border-bottom-width: 0px !important;
+	border-left-width: 0px !important;
+	border-top-style: none !important;
+	border-right-style: none !important;
+	border-bottom-style: none !important;
+	border-left-style: none !important;
+}
+.galleryarrow {
+	display: inline;
+	cursor: pointer;
+}
+#galleryarrows {
+	width: 90px;
+	float: right;
+}
+.galleryarrow img {
+	width: 35px;
+}
+#gallerynav {
+	width: 100%;
+}
+.swipegallery ul {
+	list-style-type: none;
+}
+#position {
+	display: block;
+	text-align: center;
+	width: 100%;
+	cursor: default;
+	font-size: 20px;
+	position: absolute;
+	bottom: 10px;
+}
+#position em {
+	display: inline-block;
+	padding: 0 3px;
+	font-style: normal;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .35);
+	font-family: sans-serif;
+	color: #b1b1b1;
+}
+#position em.on {
+	color: #4B76A9;
+}

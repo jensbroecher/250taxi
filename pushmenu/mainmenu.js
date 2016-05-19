@@ -1,6 +1,42 @@
+function close_account_overlay() {
+$( "#account_overlay" ).fadeOut( "slow", function() {
+});
+}
+function close_wallet_overlay() {
+$( "#wallet_overlay" ).fadeOut( "slow", function() {
+});
+}
+function close_help_overlay() {
+    
+overlay_open = "closed";
+    
+$( "#pages" ).fadeOut( "slow", function() {});
+
+}
+
 $(document).ready(function() {
     
-$( "#mainmenu_account" ).click(function() {
+load_mainmenu();
+    
+var username = localStorage.getItem("username");
+username = btoa(username);
+    
+$.get( "https://250taxi.com/db/account/get_details.php?task=email&username="+username+"", function( data ) {
+document.getElementById("mainmenu_email").innerHTML = data;
+});
+    
+$( "#mainmenu" ).load( "https://250taxi.com/appcontent/mainmenu.php", function() {
+load_mainmenu();
+});
+
+});
+
+function close_mainmenu() {
+    $('.jPushMenuBtn,body,.cbp-spmenu').removeClass('disabled active cbp-spmenu-open cbp-spmenu-push-toleft cbp-spmenu-push-toright');
+}
+
+function load_mainmenu() {
+    $( "#mainmenu_account" ).click(function() {
     
     var hotelcorporate = localStorage.getItem("hotelcorporate");
     
@@ -12,17 +48,22 @@ $( "#mainmenu_account" ).click(function() {
     
      $( "#account_overlay" ).fadeIn( "slow", function() {
          
+        close_mainmenu();
+         
         var username = localStorage.getItem("username");
 
         username = btoa(username);
          
-$.get( "http://250taxi.com/db/account/get_details.php?task=phone&username="+username+"", function( data ) {
+$.get( "https://250taxi.com/db/account/get_details.php?task=phone&username="+username+"", function( data ) {
 document.getElementById("account_phone").innerHTML = data;
+    
+overlay_open = "mainmenu_account";
+    
 });
-$.get( "http://250taxi.com/db/account/get_details.php?task=name&username="+username+"", function( data ) {
+$.get( "https://250taxi.com/db/account/get_details.php?task=name&username="+username+"", function( data ) {
 document.getElementById("account_name").innerHTML = data;
 });
-$.get( "http://250taxi.com/db/account/get_details.php?task=email&username="+username+"", function( data ) {
+$.get( "https://250taxi.com/db/account/get_details.php?task=email&username="+username+"", function( data ) {
 document.getElementById("account_email").innerHTML = data;
 });
          
@@ -32,17 +73,37 @@ document.getElementById("account_username").innerHTML = localStorage.getItem("us
 });
     
 $( "#mainmenu_services" ).click(function() {
-    document.location.href = 'services.html';
+    
+close_mainmenu();
+
+if ("overlay_open" in window) { 
+if (overlay_open == "mainmenu_services") {
+    return;
+}
+}
+
+close_mainmenu();
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/services.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_services";
+  });
+});
+
+    
 });
     
 $( "#mainmenu_wallet" ).click(function() {
-    $( "#wallet_overlay" ).fadeIn( "slow", function() {
+    
+close_mainmenu();
+
+$( "#wallet_overlay" ).fadeIn( "slow", function() {
         
 var balance_clientid = localStorage.getItem("userid");   
     
-$( "#wallet_balance_amount" ).load( "http://250taxi.com/db/balance/get_balance.php?task=get_balance&userid="+balance_clientid+"", function() {
-$( "#wallet_balance_currency" ).load( "http://250taxi.com/db/balance/get_balance.php?task=get_currency&userid="+balance_clientid+"", function() {
-$( "#wallet_appcontent" ).load( "http://250taxi.com/appcontent/wallet/wallet.php?&userid="+balance_clientid+"", function() {
+$( "#wallet_balance_amount" ).load( "https://250taxi.com/db/balance/get_balance.php?task=get_balance&userid="+balance_clientid+"", function() {
+$( "#wallet_balance_currency" ).load( "https://250taxi.com/db/balance/get_balance.php?task=get_currency&userid="+balance_clientid+"", function() {
+$( "#wallet_appcontent" ).load( "https://250taxi.com/appcontent/wallet/wallet.php?&userid="+balance_clientid+"", function() {
 });
 });
 });
@@ -51,44 +112,57 @@ $( "#wallet_appcontent" ).load( "http://250taxi.com/appcontent/wallet/wallet.php
 });
     
 $( "#mainmenu_help" ).click(function() {
-$( "#pagestarget" ).load( "http://250taxi.com/appcontent/help.php", function() {
-  $( "#pages" ).fadeIn( "slow", function() {
     
+close_mainmenu();
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/help.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_help";
   });
 });
 });
     
 $( "#mainmenu_becomedriver" ).click(function() {
-$( "#pagestarget" ).load( "http://250taxi.com/appcontent/becomedriver.php", function() {
-  $( "#pages" ).fadeIn( "slow", function() {
     
+close_mainmenu();
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/becomedriver.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_becomedriver";
   });
 });
 });
     
-$( "#mainmenu_corporate" ).click(function() {
-$( "#pagestarget" ).load( "http://250taxi.com/appcontent/corporate.php", function() {
-  $( "#pages" ).fadeIn( "slow", function() {
+$( "#mainmenu_tour" ).click(function() {
+location.href = "tour/swipe.html";
+});
     
+$( "#mainmenu_corporate" ).click(function() {
+    
+close_mainmenu();
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/corporate.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_corporate";
   });
 });
 });
 	
 $( "#mainmenu_history" ).click(function() {
+    
+close_mainmenu();
 	
 var username = localStorage.getItem("username");
-
 username = btoa(username);
 	
-$( "#pagestarget" ).load( "http://250taxi.com/appcontent/history.php?username="+username+"", function() {
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/history.php?username="+username+"", function() {
   $( "#pages" ).fadeIn( "slow", function() {
-    
+    overlay_open = "mainmenu_history";
   });
 });
 });
     
-$( "#mainmenu_about" ).click(function() {
+$( "#mainmenu_about" ).click(function() {    
 window.open('https://www.facebook.com/250taxi', '_system');
 });
-    
-});
+}

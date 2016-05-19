@@ -1,8 +1,17 @@
+$( document ).ready(function() {
+    
+    mlicheck();
+    
+    if (localStorage.getItem("username") === null) {
+        location.href = "index.html";
+    }
+    
+});
 function mlicheck() {
 
     var userid = localStorage.getItem("userid");
 
-    $.get("http://250taxi.com/db/account/get_randomclientid.php?&userid=" + userid + "", function (data) {
+    $.get("https://250taxi.com/db/account/get_randomclientid.php?&userid=" + userid + "", function (data) {
 
         var randomclientid = localStorage.getItem("randomclientid");
         
@@ -13,7 +22,7 @@ function mlicheck() {
             localStorage.removeItem("rememberuser");
             localStorage.removeItem("status");
             localStorage.removeItem("activity");
-            location.href = "forcedout.html";
+            location.href = "signinnote.html";
         }
 
     });
