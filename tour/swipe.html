@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<iframe style="display:none;" src="timedown.html" marginwidth="0" marginheight="0" width="100%" height="5" frameborder="0"></iframe>
+<iframe src="timedown.html" marginwidth="0" marginheight="0" width="100%" height="5" frameborder="0"></iframe>
 
 <div id="ibox7" class="info swipegallery animated fadeInDownBig">
 <div id="slider" class="swipe">
@@ -37,7 +37,7 @@
 
 </div></div>
 
-<div style="margin-top: 10px;" class="gobutton animated fadeIn" onClick="go_login();">Continue</div>
+<div style="margin-top: 10px; display:none;" class="gobutton animated fadeIn" onClick="go_login();">Continue</div>
 
 <script>
 	
@@ -74,6 +74,13 @@ if(element) //lets sanitize this, shall we
 {  
 element.setAttribute('class', 'on'); //other browsers
 }
+    
+window.onload = function(){
+ setTimeout(function(){
+     localStorage.setItem('quick_tour_viewed','Yes');
+   location.href = "../index.html";
+ }, 42000);
+};
 
 </script>
 
