@@ -709,7 +709,7 @@ var status_battery = localStorage.getItem('device_battery');
 	
 var pickup = localStorage.getItem("pickup");
     
-$.get( "https://250taxi.com/db/status_user.php?ver=30&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
+$.get( "https://250taxi.com/db/status_user.php?ver=31&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
     
     // console.log("Status: " + data);
     

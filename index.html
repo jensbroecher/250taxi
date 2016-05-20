@@ -130,7 +130,7 @@
 
             $("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function () {});
             $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
-                var currentversion = "30";
+                var currentversion = "31";
                 var serverversion = data;
                 if (currentversion < serverversion) {
                     alert("Your app is outdated. Please install the update to ensure smooth operation.");
@@ -180,11 +180,13 @@
         }
 
         function start_reg() {
+            
             $("#reg_start").load("reg/mainmenu.html", function () {
                 document.getElementById("reg_start").style.height = "100%";
+                if(document.getElementById("close_reg_start_arrow"))
                 document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
-                // document.getElementById("reg_start").style.backgroundImage = "url(11.jog)";
             });
+            
             location.href = "#registration";
             localStorage.setItem("reg_start_open", "Yes");
         }
@@ -192,8 +194,10 @@
         function start_login() {
             $("#reg_start").load("reg/login.html", function () {
                 document.getElementById("reg_start").style.height = "100%";
+                
+                if(document.getElementById("close_reg_start_arrow"))
                 document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
-                // document.getElementById("reg_start").style.backgroundImage = "url(arrive.jog)";
+
             });
             location.href = "#login";
             localStorage.setItem("reg_start_open", "Yes");
@@ -317,12 +321,12 @@
         
         #copyright {
             color: #FFFFFF;
-            font-size: 16px;
-            position: absolute;
+            font-size: 12px;
+            position: fixed;
             text-align: center;
             z-index: 100;
             width: 100%;
-            bottom: 5%;
+            bottom: 10px;
             text-transform: uppercase;
             text-shadow: 0 0 5px #000000;
         }
@@ -397,7 +401,7 @@
 
             <div id="welcome_notice"></div>
 
-            <div id="loginregister">
+            <div id="loginregister" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
 
                 <div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
 
@@ -406,9 +410,18 @@
             </div>
 
         </div>
+        
+        
+        <script>           
+        $( document ).ready(function() {
+        var year = new Date().getFullYear();
+        document.getElementById("copyright_current_year").innerHTML = year;
+        });
+        </script>
 
-
-        <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;"></div>
+        <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
+        © 2015 - <span id="copyright_current_year"></span> Afshon Group. v2.0.5
+        </div>
 
     </div>
 

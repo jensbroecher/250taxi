@@ -19,7 +19,7 @@ function processHash(hash) {
         
             if (reg_start_open == "Yes") {
                 close_reg_start();
-                localStorage.setItem("reg_start_open","Yes");
+                localStorage.setItem("reg_start_open","No");
             }
 	}
 	
