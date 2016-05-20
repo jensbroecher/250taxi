@@ -30,6 +30,15 @@
 
 
 	<script type="text/javascript">
+    
+        var rememberuser = localStorage.getItem('rememberuser');
+
+			if (rememberuser == 'Yes') {
+				document.location.href = 'gotostart.html';
+			} else {
+				document.getElementById("start_white").style.display = "none";
+			}
+        
 		document.addEventListener("deviceready", onDeviceReady, false);
 
 		function onDeviceReady() {
@@ -119,13 +128,7 @@
 					alert("Your app is outdated. Please install the update to ensure smooth operation.");
 				}
 			});
-			var rememberuser = localStorage.getItem('rememberuser');
-			// alert(rememberuser);
-			if (rememberuser == 'Yes') {
-				document.location.href = 'gotostart.html';
-			} else {
-				document.getElementById("start_white").style.display = "none";
-			}
+            
 			var currentTime = new Date().getHours();
 			if (0 <= currentTime && currentTime < 5) {
 				setnight();
