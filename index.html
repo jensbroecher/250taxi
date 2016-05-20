@@ -31,13 +31,16 @@
 
 	<script type="text/javascript">
     
-        var rememberuser = localStorage.getItem('rememberuser');
+$( document ).ready(function() {
+    var rememberuser = localStorage.getItem('rememberuser');
 
 			if (rememberuser == 'Yes') {
 				document.location.href = 'gotostart.html';
 			} else {
 				document.getElementById("start_white").style.display = "none";
 			}
+});
+        
         
 		document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -121,11 +124,12 @@
 			}
 
 			$("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function() {});
-			$.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
-				var currentversion = "14";
+			$.get("https://250taxi.com/db/partner/check_app_update_2016.php?check=client", function(data) {
+				var currentversion = "30";
 				var serverversion = data;
 				if (currentversion < serverversion) {
 					alert("Your app is outdated. Please install the update to ensure smooth operation.");
+                    window.open('https://250taxi.com/mobile_select.html', '_blank', 'location=no');
 				}
 			});
             
@@ -373,7 +377,13 @@ timer=setInterval(function(){
 
 <body>
 	
-	<div id="start_white"></div>
+	<div id="start_white" onclick="close_start_white();"></div>
+    
+    <script>
+    function close_start_white() {
+        document.getElementById("start_white").style.display = "none";
+    }
+    </script>
 
 	<div id="reg_start"></div>
 
