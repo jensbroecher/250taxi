@@ -32,6 +32,8 @@
 $( document ).ready(function() {
 
     var rememberuser = localStorage.getItem('rememberuser');
+    
+    alert(rememberuser);
 
 			if (rememberuser == 'Yes') {
 				document.location.href = 'gotostart.html';
