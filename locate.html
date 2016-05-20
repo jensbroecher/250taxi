@@ -104,14 +104,6 @@
 	
 	<script src="driver_request_timer.js"></script>
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	<style type="text/css">
 	.col-centered {
 		display:inline-block;
@@ -134,29 +126,6 @@
 			display: none;
 		}
 	</style>
-	
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	
-	<script>
-	function submit_card_details(){
-	var a= $("#payment-form").serialize();
-	var a= $("#stripeToken").val();
-	// alert(12);
-	$.get( "https://250taxi.com/app/stripe-payment/stripe_payment.php?a="+a,  function( data ) {
-        alert(data);
-    });
-	}
-	</script>
-	
-	
-	
-	
-	
-	
-	
-	
-
-	<script src="https://250taxi.com/appcontent/client/summary.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="toast.css">
 	<script src="startmap.js"></script>
@@ -320,6 +289,13 @@
 				window.open('intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end', '_system', 'location=yes');
 			}
 		}
+
+        function summary() {
+	alert("Thank you for using 250 Taxi. We hope you enjoyed our service. Please rate your journey to help us improve.");
+	document.getElementById("pages").style.display = "block";
+	$( "#pagestarget" ).load( "https://250taxi.com/appcontent/client/ratings.php", function() {
+	});
+}
 
 	</script>
 
