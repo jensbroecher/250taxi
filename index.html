@@ -123,7 +123,7 @@ $( document ).ready(function() {
 			}
 
 			$("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function() {});
-			$.get("https://250taxi.com/db/partner/check_app_update_2016.php?check=client", function(data) {
+			$.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
 				var currentversion = "30";
 				var serverversion = data;
 				if (currentversion < serverversion) {
