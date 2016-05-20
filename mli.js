@@ -2,7 +2,7 @@ $( document ).ready(function() {
     
     mlicheck();
     
-    if (localStorage.getItem("username") === null) {
+    if (localStorage.getItem("userid") === null) {
         location.href = "index.html";
     }
     
@@ -18,7 +18,7 @@ function mlicheck() {
         if (randomclientid == data) {
 
         } else {
-            console.log("Forced logout");
+            console.log("Automatic logout");
             localStorage.removeItem("rememberuser");
             localStorage.removeItem("status");
             localStorage.removeItem("activity");

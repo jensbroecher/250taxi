@@ -39,7 +39,7 @@ var phoneisvalidated = localStorage.getItem('phoneisvalidated');
             localStorage.removeItem("hotelcorporate");
             localStorage.setItem("username", username);
             
-            localStorage.setItem("logupdate", "0*0*registration*" + first_name + " " + last_name + "completed registration.");
+            localStorage.setItem("logupdate", "0*0*registration*" + first_name + " " + last_name + " completed registration.");
             logupdate_v2();
             
             var randomclientid = Math.floor(Math.random() * 1000000000);
