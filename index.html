@@ -3,427 +3,415 @@
 
 <head>
 
-	<meta charset="utf-8">
-    
+    <meta charset="utf-8">
+
     <title>250 Taxi</title>
 
-	<link href="animate.min.css" rel="stylesheet" type="text/css">
+    <link href="animate.min.css" rel="stylesheet" type="text/css">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<link href="reg/ios.css" rel="stylesheet" type="text/css">
-	<link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
+    <link href="reg/ios.css" rel="stylesheet" type="text/css">
+    <link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
 
-	<script src="myalert.js"></script>  
+    <script src="myalert.js"></script>
 
-	<script src="jquery.min.js"></script>
-    
-    <script src="responsivevoice.js"></script>  
+    <script src="jquery.min.js"></script>
 
-	<script src="reg/logic.js"></script>
+    <script src="responsivevoice.js"></script>
 
-	<script src="cordova.js"></script>
-	<script src="preventreload.js"></script>
+    <script src="reg/logic.js"></script>
 
-	<script src="logupdate.js"></script>
-    
-<script type="text/javascript">
-    
-$( document ).ready(function() {
+    <script src="cordova.js"></script>
+    <script src="preventreload.js"></script>
 
-    var rememberuser = localStorage.getItem('rememberuser');
-    
-    // alert(rememberuser);
+    <script src="logupdate.js"></script>
 
-			if (rememberuser == 'Yes') {
-				document.location.href = 'gotostart.html';
-			} else {
-				document.getElementById("start_white").style.display = "none";
-			}
-});
-        
-        
-		document.addEventListener("deviceready", onDeviceReady, false);
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-		function onDeviceReady() {
-			// Now safe to use device APIs
+            var rememberuser = localStorage.getItem("rememberuser");
 
-			var deviceOS = device.platform; //fetch the device operating system
-			var deviceOSVersion = device.version; //fetch the device OS version
+            if (rememberuser == "Yes") {
+                
+                console.log("Remember user, go to start.");
+                document.location.href = "gotostart.html";
+                
+            } else {
+                
+                console.log("User not logged in, show splash screen.");
+                document.getElementById("start_hide").style.display = "block";
+                
+            }
+        });
 
-			console.log("Device OS: " + deviceOS);
-			console.log("Device OS Version: " + deviceOSVersion);
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            // Now safe to use device APIs
+
+            var deviceOS = device.platform; //fetch the device operating system
+            var deviceOSVersion = device.version; //fetch the device OS version
+
+            console.log("Device OS: " + deviceOS);
+            console.log("Device OS Version: " + deviceOSVersion);
 
             if (deviceOSVersion == "4.1.3") {
-				alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-			}
-			if (deviceOSVersion == "4.1.2") {
                 alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-			}
-			if (deviceOSVersion == "4.1.1") {
-				alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-			}
+            }
+            if (deviceOSVersion == "4.1.2") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+            }
+            if (deviceOSVersion == "4.1.1") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+            }
 
-			// set to either landscape
-			screen.lockOrientation('portrait');
-			dogpscheck();
-			dodevicenamecheck();
-		}
+            // set to either landscape
+            screen.lockOrientation('portrait');
+            dogpscheck();
+            dodevicenamecheck();
+        }
 
-		function showindicator() {
-			document.getElementById("loadingindicator").className = "animated fadeIn";
-			document.getElementById("loadingindicator").style.display = "block";
-		}
+        function showindicator() {
+            document.getElementById("loadingindicator").className = "animated fadeIn";
+            document.getElementById("loadingindicator").style.display = "block";
+        }
+
         function hideindicator() {
-			document.getElementById("loadingindicator").className = "animated fadeOut";
-            setTimeout(function(){ 
+            document.getElementById("loadingindicator").className = "animated fadeOut";
+            setTimeout(function () {
                 document.getElementById("loadingindicator").style.display = "none";
             }, 1000);
-		}
+        }
 
-		function letsgo() {
-			showindicator();
-			setTimeout(function() {
-				document.location.href = 'locate.html';
-			}, 3000);
-		}
+        function letsgo() {
+            showindicator();
+            setTimeout(function () {
+                document.location.href = 'locate.html';
+            }, 3000);
+        }
 
-		document.addEventListener('deviceready', function() {
+        document.addEventListener('deviceready', function () {
 
-			// Enable to debug issues.
-			// window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-			setTimeout(function() {
+            setTimeout(function () {
 
-				var notificationOpenedCallback = function(jsonData) {
-					console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-				};
-				window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
-						googleProjectNumber: "1006498509511"
-					},
-					notificationOpenedCallback);
+                var notificationOpenedCallback = function (jsonData) {
+                    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                };
+                window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
+                        googleProjectNumber: "1006498509511"
+                    }
+                    , notificationOpenedCallback);
 
-				// Show an alert box if a notification comes in when the user is in your app.
-				window.plugins.OneSignal.enableInAppAlertNotification(true);
+                // Show an alert box if a notification comes in when the user is in your app.
+                window.plugins.OneSignal.enableInAppAlertNotification(true);
 
-			}, 5000);
+            }, 5000);
 
-		}, false);
+        }, false);
 
-		$(document).ready(function() {
-            
+        $(document).ready(function () {
 
 
-            
+
+
             location.href = "#start";
-			
-			var quick_tour_viewed = localStorage.getItem('quick_tour_viewed');
-			if (quick_tour_viewed == 'Yes') {
-				document.getElementById("start_white").style.display = "none";
-			} else {
-				document.location.href = 'tour/swipe.html';
-			}
 
-			$("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function() {});
-			$.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
-				var currentversion = "30";
-				var serverversion = data;
-				if (currentversion < serverversion) {
-					alert("Your app is outdated. Please install the update to ensure smooth operation.");
+            var quick_tour_viewed = localStorage.getItem('quick_tour_viewed');
+            if (quick_tour_viewed == 'Yes') {
+               
+            } else {
+                document.location.href = 'tour/swipe.html';
+            }
+
+            $("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function () {});
+            $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
+                var currentversion = "30";
+                var serverversion = data;
+                if (currentversion < serverversion) {
+                    alert("Your app is outdated. Please install the update to ensure smooth operation.");
                     window.open('https://250taxi.com/mobile_select.html', '_blank', 'location=no');
-				}
-			});
-            
-			var currentTime = new Date().getHours();
-			if (0 <= currentTime && currentTime < 5) {
-				setnight();
-			}
-			if (5 <= currentTime && currentTime < 11) {}
-			if (11 <= currentTime && currentTime < 16) {}
-			if (16 <= currentTime && currentTime < 22) {}
-			if (22 <= currentTime && currentTime <= 24) {
-				setnight();
-			}
-		});
+                }
+            });
 
-		function setnight() {
-			// document.getElementById('splashimg').src = 'splash_night.jpg';
-			// document.getElementById('splashpage').style.backgroundColor = '#130F20';
-			// document.getElementById('claim').style.color = '#73CEE9';
-		}
+            var currentTime = new Date().getHours();
+            if (0 <= currentTime && currentTime < 5) {
+                setnight();
+            }
+            if (5 <= currentTime && currentTime < 11) {}
+            if (11 <= currentTime && currentTime < 16) {}
+            if (16 <= currentTime && currentTime < 22) {}
+            if (22 <= currentTime && currentTime <= 24) {
+                setnight();
+            }
+        });
 
-		function dogpscheck() {
-			CheckGPS.check(function win() {},
-				function fail() {
-					opensettings();
-				});
-		}
+        function setnight() {
+            // document.getElementById('splashimg').src = 'splash_night.jpg';
+            // document.getElementById('splashpage').style.backgroundColor = '#130F20';
+            // document.getElementById('claim').style.color = '#73CEE9';
+        }
 
-		function opensettings() {
-			alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
-		}
+        function dogpscheck() {
+            CheckGPS.check(function win() {}
+                , function fail() {
+                    opensettings();
+                });
+        }
 
-		function dodevicenamecheck() {
-			var device_model = device.model;
-			var device_platform = device.platform;
-			var device_version = device.version;
-			var device_uuid = device.uuid;
-			// alert(device_model + device_platform + device_version + device_uuid);
-			localStorage.setItem("device_model", device_model);
-			localStorage.setItem("device_platform", device_platform);
-			localStorage.setItem("device_version", device_version);
-			localStorage.setItem("device_uuid", device_uuid);
-		}
+        function opensettings() {
+            alert("Your GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
+        }
 
-		function start_reg() {
-			$("#reg_start").load("reg/mainmenu.html", function() {
-				document.getElementById("reg_start").style.height = "100%";
-				document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
-				// document.getElementById("reg_start").style.backgroundImage = "url(11.jog)";
-			});
+        function dodevicenamecheck() {
+            var device_model = device.model;
+            var device_platform = device.platform;
+            var device_version = device.version;
+            var device_uuid = device.uuid;
+            // alert(device_model + device_platform + device_version + device_uuid);
+            localStorage.setItem("device_model", device_model);
+            localStorage.setItem("device_platform", device_platform);
+            localStorage.setItem("device_version", device_version);
+            localStorage.setItem("device_uuid", device_uuid);
+        }
+
+        function start_reg() {
+            $("#reg_start").load("reg/mainmenu.html", function () {
+                document.getElementById("reg_start").style.height = "100%";
+                document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
+                // document.getElementById("reg_start").style.backgroundImage = "url(11.jog)";
+            });
             location.href = "#registration";
-            localStorage.setItem("reg_start_open","Yes");
-		}
+            localStorage.setItem("reg_start_open", "Yes");
+        }
 
-		function start_login() {
-			$("#reg_start").load("reg/login.html", function() {
-				document.getElementById("reg_start").style.height = "100%";
-				document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
-				// document.getElementById("reg_start").style.backgroundImage = "url(arrive.jog)";
-			});
+        function start_login() {
+            $("#reg_start").load("reg/login.html", function () {
+                document.getElementById("reg_start").style.height = "100%";
+                document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
+                // document.getElementById("reg_start").style.backgroundImage = "url(arrive.jog)";
+            });
             location.href = "#login";
-            localStorage.setItem("reg_start_open","Yes");
-		}
+            localStorage.setItem("reg_start_open", "Yes");
+        }
 
-		function close_reg_start() {
-            
-            localStorage.setItem("reg_start_open","No");
+        function close_reg_start() {
+
+            localStorage.setItem("reg_start_open", "No");
             location.href = "#start";
-            
-			document.getElementById("reg_start").style.height = "0%";
-			document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
-		}
 
-		function terms() {
-			window.open('https://250taxi.com/termsandconditions.php', '_blank', 'location=no');
-		}
+            document.getElementById("reg_start").style.height = "0%";
+            document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
+        }
 
-	</script>
-    
+        function terms() {
+            window.open('https://250taxi.com/termsandconditions.php', '_blank', 'location=no');
+        }
+    </script>
+
     <script src="hash_start.js"></script>
-    
+
     <script>
-$( document ).ready(function() {
-	
-var i=0;
+        $(document).ready(function () {
 
-timer=setInterval(function(){
-	i++;
-	// console.log(i);
-	
-	document.getElementById("animation").src = "vid/"+i+".jpg";
-	
-	if (i == 110) {
-		clearInterval ( timer );
-		document.getElementById("animation").src = "vid/110.jpg";
-	}
-},70);
-	
-});
+            var i = 0;
 
-</script>
+            timer = setInterval(function () {
+                i++;
+                // console.log(i);
 
-	<style>
-		#background_frame_login {
-			background-image: url(arrive.jpg);
-			height: 100%;
-			width: 100%;
-			background-repeat: no-repeat;
-			background-size: 100% auto;
-		}
-		
-		#background_frame_register {
-			background-image: url(11.jpg);
-			height: 100%;
-			width: 100%;
-			background-repeat: no-repeat;
-			background-size: 100% auto;
-		}
-		
-		::-webkit-scrollbar {
-			display: none;
-		}
-		
-		body {
-			font-family: Roboto, sans-serif;
-			font-size: 18px;
-			color: #000;
-			text-align: center;
-			margin: 0px;
-			padding: 0px;
-			height: 100%;
-		}
-		
-		#loginregister {
-			position: absolute;
-			bottom: 20%;
-			width: 80%;
-			margin-left: 10%;
-		}
-		
-		#loginregister div {
-			width: 47%;
-			display: block;
-			font-family: sans-serif;
-			font-style: normal;
-			font-size: 16px;
-			font-weight: 400;
-			border-radius: 15px;
-			border: solid 1px white;
-			background-color: rgba(255, 255, 255, 0.2);
-			padding-top: 8px;
-			padding-bottom: 7px;
-			transition: all 0.5s;
-			cursor: pointer;
-		}
-		
-		.left {
-			float: left;
-		}
-		
-		.right {
-			float: right;
-		}
-		
-		#loginregister div:hover {
-			background-color: rgba(255, 255, 255, 0.4);
-			transition: all 0.5s;
-		}
-		
-		#claim {
-			font-size: 25px;
-			font-style: italic;
-			font-weight: 700;
-			position: absolute;
-			text-align: center;
-			z-index: 100;
-			width: 100%;
-			height: 100%;
-			color: #FFFFFF;
-		}
-		
-		#copyright {
-			color: #FFFFFF;
-			font-size: 16px;
-			position: absolute;
-			text-align: center;
-			z-index: 100;
-			width: 100%;
-			bottom: 5%;
-			text-transform: uppercase;
-			text-shadow: 0 0 5px #000000;
-		}
-		
-		#loadingindicator {
-			background-color: black;
-			position: absolute;
-			z-index: 10000000000000000;
-			height: 100%;
-			width: 100%;
-			left: 0px;
-			top: 0px;
-			text-align: center;
-			display: none;
-		}
-		
-		#loadingindicator img {
-			margin-top: 100px;
-			width: 160px;
-		}
-		
-		#animation {
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			left: 0px;
-			z-index: -100;
-			object-fit: fill;
-		}
-		
-		#video_placeholder {
-			height: 50%;
-		}
-		
-		#welcome_notice {
-			position: absolute;
-			bottom: 30%;
-		}
-		
-		#start_white {
-			position: absolute;
-			z-index: 10000;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-			background-color: white;
-			z-index: 10000000;
+                document.getElementById("animation").src = "vid/" + i + ".jpg";
+
+                if (i == 110) {
+                    clearInterval(timer);
+                    document.getElementById("animation").src = "vid/110.jpg";
+                }
+            }, 70);
+
+        });
+    </script>
+
+    <style>
+        #background_frame_login {
+            background-image: url(arrive.jpg);
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+        }
+        
+        #background_frame_register {
+            background-image: url(11.jpg);
+            height: 100%;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+        }
+        
+        ::-webkit-scrollbar {
             display: none;
-		}
+        }
+        
+        body {
+            font-family: Roboto, sans-serif;
+            font-size: 18px;
+            color: #000;
+            background-color: black;
+            text-align: center;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+        
+        #loginregister {
+            position: absolute;
+            bottom: 20%;
+            width: 80%;
+            margin-left: 10%;
+        }
+        
+        #loginregister div {
+            width: 47%;
+            display: block;
+            font-family: sans-serif;
+            font-style: normal;
+            font-size: 16px;
+            font-weight: 400;
+            border-radius: 10px;
 
-	</style>
-
-	<link rel="prefetch" href="welcome.gif">
+            background-color: rgba(255, 255, 255, 0.4);
+            padding-top: 8px;
+            padding-bottom: 7px;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+        
+        .left {
+            float: left;
+        }
+        
+        .right {
+            float: right;
+        }
+        
+        #loginregister div:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transition: all 0.5s;
+        }
+        
+        #claim {
+            font-size: 25px;
+            font-style: italic;
+            font-weight: 700;
+            position: absolute;
+            text-align: center;
+            z-index: 100;
+            width: 100%;
+            height: 100%;
+            color: #FFFFFF;
+        }
+        
+        #copyright {
+            color: #FFFFFF;
+            font-size: 16px;
+            position: absolute;
+            text-align: center;
+            z-index: 100;
+            width: 100%;
+            bottom: 5%;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #000000;
+        }
+        
+        #loadingindicator {
+            background-color: black;
+            position: absolute;
+            z-index: 10000000000000000;
+            height: 100%;
+            width: 100%;
+            left: 0px;
+            top: 0px;
+            text-align: center;
+            display: none;
+        }
+        
+        #loadingindicator img {
+            margin-top: 100px;
+            width: 160px;
+        }
+        
+        #animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            z-index: -100;
+            object-fit: fill;
+        }
+        
+        #video_placeholder {
+            height: 50%;
+        }
+        
+        #welcome_notice {
+            position: absolute;
+            bottom: 30%;
+        }
+        
+        #start_hide {
+            display: none;
+        }
+    </style>
 
 </head>
 
 <body>
-	
-	<div id="start_white" onclick="close_start_white();"></div>
-    
-    <script>
-    function close_start_white() {
-        document.getElementById("start_white").style.display = "none";
-    }
-    </script>
 
-	<div id="reg_start"></div>
-
-	<img id="animation" src="vid/110.jpg">
-    
-    <div id="logo_white"></div>
-
-	<div id="loadingindicator">
-		<img src="282.gif" width="120">
-        
-        
-        
-        <div onclick="location.reload();" id="loading_reset">
-            <strong>Not connecting?</strong>
-            <br>Try again</div>
-        
-	</div>
-
-	<div id="claim" class="" style="-webkit-animation-delay: 2s;">
-
-		<br>
-
-		<div id="welcome_notice"></div>
-
-		<div id="loginregister">
-
-			<div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
-
-			<div onclick="start_reg();" class="right notextselect" style="-webkit-animation-delay: 3s;">Register</div>
-
-		</div>
-
-	</div>
+    <div id="start_hide">
 
 
-	<div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;">
-		
-	</div>
+        <div id="reg_start"></div>
+
+        <img id="animation" src="vid/110.jpg">
+
+        <div id="logo_white"></div>
+
+        <div id="loadingindicator">
+            <img src="282.gif" width="120">
+
+
+
+            <div onclick="location.reload();" id="loading_reset">
+                <strong>Not connecting?</strong>
+                <br>Try again</div>
+
+        </div>
+
+        <div id="claim" class="" style="-webkit-animation-delay: 2s;">
+
+            <br>
+
+            <div id="welcome_notice"></div>
+
+            <div id="loginregister">
+
+                <div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
+
+                <div onclick="start_reg();" class="right notextselect" style="-webkit-animation-delay: 3s;">Register</div>
+
+            </div>
+
+        </div>
+
+
+        <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s; display:none;"></div>
+
+    </div>
 
 </body>
+
 </html>

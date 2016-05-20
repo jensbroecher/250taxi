@@ -89,7 +89,7 @@ button {
 	text-align: center;
 	border: none 0px;
 	margin-top: 10px;
-	border-radius: 15px;
+	border-radius: 10px;
 }
 button:focus {
 	-webkit-outline: none;

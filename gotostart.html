@@ -1,54 +1,57 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-	
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-<link rel="stylesheet" href="animate.min.css">
-    
-<script src="jquery.min.js"></script>
-<script src="preventreload.js"></script>
-<script src="cordova.js"></script>
+    <meta charset="utf-8">
 
-<script type = "text/javascript" >
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    history.pushState(null, null, 'gotostart.html');
+    <link rel="stylesheet" href="animate.min.css">
 
-    window.addEventListener('popstate', function(event) {
-    	history.pushState(null, null, 'gotostart.html');
-    });
-	
+    <script src="jquery.min.js"></script>
+    <script src="preventreload.js"></script>
+    <script src="cordova.js"></script>
 
-		location.href = "locate.html";
+    <script type="text/javascript">
+        history.pushState(null, null, 'gotostart.html');
+
+        window.addEventListener('popstate', function (event) {
+            history.pushState(null, null, 'gotostart.html');
+        });
 
 
-</script>
+        setTimeout(function () {
+            location.href = "locate.html";
+        }, 5000);
+    </script>
 
-<style type="text/css">
-::-webkit-scrollbar { 
-    display: none; 
-}
-body {
-	background-color: #000;
-    font-family: 'Roboto', sans-serif;
-    font-size: 150%;
-    color: white;
-    font-weight: 300;
-    overflow: hidden;
-}
-#video { 
-	position: fixed;
-    width: 100%;
-    height: 100%;
-	left: 0px;
-    z-index: -100;
-	object-fit: fill;
-}
-</style>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        body {
+            background-color: #000;
+            font-family: 'Roboto', sans-serif;
+            font-size: 150%;
+            color: white;
+            font-weight: 300;
+            overflow: hidden;
+        }
+        
+        #video {
+            position: absolute;
+            width: 90%;
+            height: auto;
+            left: 5%;
+        }
+    </style>
 </head>
 
 <body>
+    
+<img id="video" src="welcome.gif">
 
 </body>
+
 </html>
