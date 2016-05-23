@@ -389,7 +389,10 @@
 
 <body>
     
-    <button id="connection_issue_start" onclick="location.reload();">Not connecting?</button>
+    <div class="animated fadeIn" style="-webkit-animation-delay: 3s;" onclick="location.reload();" id="connection_issue_start">
+        <strong>Not connecting?</strong>
+                <br>Try again
+    </div>
 
     <div id="start_hide">
 
@@ -402,13 +405,10 @@
         <div id="loadingindicator">
             <img src="282.gif" width="120">
 
-
-
             <div onclick="location.reload();" id="loading_reset">
                 <strong>Not connecting?</strong>
                 <br>Try again</div>
-
-        </div>
+            </div>
 
         <div id="claim" class="" style="-webkit-animation-delay: 2s;">
 
@@ -441,28 +441,6 @@
         <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
         © 2015 - <span id="copyright_current_year"></span> Afshon Group. v2.0.5
         </div>
-        
-        <div id="google_welcome">
-                <h1></h1>
-            
-                <p></p>
-                
-                <button onclick="test_local_storage();">Check values</button>
-                
-        </div>
-        
-        <style>
-            #google_welcome {
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                background-color: white;
-                top: 0px;
-                left: 0px;
-                z-index: 1000000000000;
-                display: none;
-            }
-        </style>
 
     </div>
 

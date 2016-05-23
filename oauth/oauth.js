@@ -123,12 +123,12 @@ var app = {
         });
     },
     showLoginView: function() {
-        $('#google_sign_in').show();
-        $('#google_welcome').hide();
+       // $('#google_sign_in').show();
+       // $('#google_welcome').hide();
     },
     showGreetView: function() {
-        $('#google_sign_in').hide();
-        $('#google_welcome').show();
+        // $('#google_sign_in').hide();
+        // $('#google_welcome').show();
 
         //Get the token, either from the cache
         //or by using the refresh token.
@@ -140,13 +140,15 @@ var app = {
             return googleapi.userInfo({ access_token: data.access_token });
         }).done(function(user) {
             //Display a greeting if the API call was successful
-            $('#google_welcome h1').html('Hello ' + user.name + ' ' + user.email + '!');
+            // $('#google_welcome h1').html('Hello ' + user.name + ' ' + user.email + '!');
             
             usersname = user.name;
             usersemail = user.email;
             
             localStorage.setItem("name_from_google", usersname);
             localStorage.setItem("email_from_google", usersemail);
+            
+            alert(" "+usersname+" "+usersemail+" ");
             
         }).fail(function() {
             //If getting the token fails, or the token has been
@@ -166,7 +168,7 @@ var app = {
             app.showGreetView();
         }).fail(function(data) {
             //Show an error message if access was denied
-            $('#google_welcome p').html(data.error);
+         //   $('#google_welcome p').html(data.error);
         });
     }
 };
