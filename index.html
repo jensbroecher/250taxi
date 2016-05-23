@@ -13,18 +13,15 @@
 
     <link href="reg/ios.css" rel="stylesheet" type="text/css">
     <link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
+    
+    <script src="cordova.js"></script>
 
     <script src="myalert.js"></script>
-
     <script src="jquery.min.js"></script>
-
     <script src="responsivevoice.js"></script>
-
-    <script src="reg/logic.js"></script>
-
-    <script src="cordova.js"></script>
+    <script src="reg/logic.js"></script> 
+    <script src="oauth/oauth.js"></script>
     <script src="preventreload.js"></script>
-
     <script src="logupdate.js"></script>
 
     <script type="text/javascript">
@@ -41,6 +38,7 @@
                 
                 console.log("User not logged in, show splash screen.");
                 document.getElementById("start_hide").style.display = "block";
+                document.getElementById("connection_issue_start").style.display = "none";
                 
             }
         });
@@ -390,9 +388,10 @@
 </head>
 
 <body>
+    
+    <button id="connection_issue_start" onclick="location.reload();">Not connecting?</button>
 
     <div id="start_hide">
-
 
         <div id="reg_start"></div>
 
@@ -436,12 +435,34 @@
         </script>
         
         <div id="google_sign_in" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
-        <img src="signinwithgoogle.png" onclick="google_sign_in();">
+        <img id="google_login" src="signinwithgoogle.png" onclick="google_sign_in();">
         </div>
 
         <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
         © 2015 - <span id="copyright_current_year"></span> Afshon Group. v2.0.5
         </div>
+        
+        <div id="google_welcome">
+                <h1></h1>
+            
+                <p></p>
+                
+                <button onclick="test_local_storage();">Check values</button>
+                
+        </div>
+        
+        <style>
+            #google_welcome {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                top: 0px;
+                left: 0px;
+                z-index: 1000000000000;
+                display: none;
+            }
+        </style>
 
     </div>
 
