@@ -148,7 +148,9 @@ var app = {
             localStorage.setItem("name_from_google", usersname);
             localStorage.setItem("email_from_google", usersemail);
             
-            alert(" "+usersname+" "+usersemail+" ");
+            console.log("Google login: "+usersname+" "+usersemail+" ");
+            
+            go_google_login();
             
         }).fail(function() {
             //If getting the token fails, or the token has been
@@ -176,3 +178,65 @@ var app = {
 $(document).on('deviceready', function() {
     app.init();
 });
+
+function go_google_login() {
+    
+var email_from_google = localStorage.getItem("email_from_google");
+    
+$.get("https://250taxi.com/db/username_from_email.php?username=" + email_from_google + "", function(username) {
+localStorage.setItem("username_check",username);
+    
+    $.get("https://250taxi.com/db/check-username-login.php?task=getuserid&username=" + username + "", function(userid) {
+        
+        localStorage.setItem("userid", userid);
+        
+        go_google_login_next();
+    });
+    
+});
+    
+}
+
+function go_google_login_next() {
+
+showindicator();
+    
+var username = localStorage.getItem("username_check");
+var userid = localStorage.getItem("userid");
+
+localStorage.setItem("rememberuser", "Yes");
+localStorage.removeItem("hotelcorporate");
+localStorage.setItem("username", username);
+
+localStorage.setItem("logupdate", "" + userid + "*0*login google*User" + userid + " logged in trough google.");
+logupdate_v2();
+
+var randomclientid = Math.floor(Math.random() * 1000000000);
+localStorage.setItem("randomclientid", randomclientid);
+
+console.log(randomclientid);
+                                    
+var battery = navigator.battery || navigator.mozBattery;
+if (battery) {
+var device_battery = (battery.level * 100);
+localStorage.setItem("device_battery",device_battery);
+} else if (navigator.getBattery) {
+    navigator.getBattery().then(function(battery) {
+        var device_battery = (battery.level * 100);
+        localStorage.setItem("device_battery",device_battery);
+    });
+}
+
+var device_model = localStorage.getItem("device_model");
+var device_platform = localStorage.getItem("device_platform");
+var device_version = localStorage.getItem("device_version");
+var device_uuid = localStorage.getItem("device_uuid");
+var device_battery = localStorage.getItem("device_battery");
+
+$.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
+                            
+    document.location.href = 'gotostart.html';
+
+});
+
+}
