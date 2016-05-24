@@ -192,7 +192,9 @@ var email_from_google = localStorage.getItem("email_from_google");
     
 $.get("https://250taxi.com/db/username_from_email.php?username=" + email_from_google + "", function(username) {
     
-if (username == "") {
+if (username == "") {   
+    localStorage.setItem("google_login_button_clicked","");
+    
     alert("Account not found.<br>Please register first.");
     start_reg();
     return;
