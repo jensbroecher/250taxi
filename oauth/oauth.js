@@ -191,6 +191,13 @@ if (google_login_button_clicked != "Yes") {
 var email_from_google = localStorage.getItem("email_from_google");
     
 $.get("https://250taxi.com/db/username_from_email.php?username=" + email_from_google + "", function(username) {
+    
+if (username == "") {
+    alert("Account not found. Please register first.");zuuuz7
+    start_reg();
+    return;
+}
+    
 localStorage.setItem("username_check",username);
     
     $.get("https://250taxi.com/db/check-username-login.php?task=getuserid&username=" + username + "", function(userid) {

@@ -7,6 +7,9 @@
 }
 
 @media only screen and (min-width: 450px) {
+    #google_sign_in {
+            display: none;
+        }
     #animation {
         display: none;
     }
@@ -18,7 +21,7 @@
         height: 200px;
         position: fixed;
         z-index: 100;
-        background-image: url(logo_white_shadow.png);
+        background-image: url(../logo_white_shadow.png);
         background-repeat: no-repeat;
         background-size: contain;
     }
