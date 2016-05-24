@@ -105,6 +105,7 @@ var app = {
 
     init: function() {
         $('#google_login').on('click', function() {
+            localStorage.setItem("google_login_button_clicked","Yes");
             app.onLoginButtonClick();
         });
 
@@ -181,6 +182,12 @@ $(document).on('deviceready', function() {
 
 function go_google_login() {
     
+var google_login_button_clicked = localStorage.getItem("google_login_button_clicked");
+    
+if (google_login_button_clicked != "Yes") {
+    return;
+}
+    
 var email_from_google = localStorage.getItem("email_from_google");
     
 $.get("https://250taxi.com/db/username_from_email.php?username=" + email_from_google + "", function(username) {
@@ -198,6 +205,8 @@ localStorage.setItem("username_check",username);
 }
 
 function go_google_login_next() {
+    
+localStorage.setItem("google_login_button_clicked","");
 
 showindicator();
     
