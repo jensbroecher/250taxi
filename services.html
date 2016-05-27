@@ -97,11 +97,9 @@ function luxury() {
 }
 function luxury_web() {
     
-
-    
-    var userid = localStorage.getItem("userid");
-    
-    localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> selected luxury");logupdate();
+    var userid = localStorage.getItem('userid');
+    var driverid = localStorage.getItem("pickdriver_id");
+    localStorage.setItem("logupdate",""+userid+"*"+driverid+"*luxury*User"+userid+"selected luxury.");logupdate_v2();
     
    location.href = 'https://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'';
 }

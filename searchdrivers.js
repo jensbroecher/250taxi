@@ -329,10 +329,8 @@ function pickdriver_request_start () {
     
     localStorage.setItem('activity','driver_selected');
     
-var driverid = localStorage.getItem("pickdriver_id");
 var userid = localStorage.getItem('userid');
-
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> is waiting for driver <span class='log_driverid'>"+driverid+"</span> to accept");logupdate();
+var driverid = localStorage.getItem("pickdriver_id");
     
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to accept");}
@@ -441,8 +439,10 @@ showindicator();
     
 var driverid = localStorage.getItem("pickdriver_id");
 var userid = localStorage.getItem('userid');
-
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> cancelled journey with <span class='log_driverid'>"+driverid+"</span>");logupdate();
+    
+var userid = localStorage.getItem('userid');
+var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User"+userid+" cancelled journey with Driver"+driverid+".");logupdate_v2();
 
 alert("Request for driver cancelled!");
     

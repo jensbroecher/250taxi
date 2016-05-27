@@ -385,7 +385,9 @@ localStorage.setItem('activity','has_boarded');
 driverid = localStorage.getItem("pickdriver_id");
 clientid = localStorage.getItem("userid");
     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+clientid+"</span> boarded with driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+var userid = localStorage.getItem('userid');
+var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*boarded*User"+clientid+" boarded with Driver"+driverid+"");logupdate_v2();
     
 console.log("Start Journey!"); 
     
@@ -429,10 +431,16 @@ $.get( "https://250taxi.com/db/partner/taxi_id_get_phone.php?id_no="+driverid+""
 var userid = localStorage.getItem('userid');
 var phonenumber = data;
     
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> calls phone  "+phonenumber+" of driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+var userid = localStorage.getItem('userid');
+var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*phone*User"+clientid+" calls phone  "+phonenumber+" of Driver"+driverid+"");logupdate_v2();
 
 if (phonenumber == "no_number") {
-localStorage.setItem("logupdate","driver <span class='log_driverid'>"+driverid+"</span> has no phone number!");logupdate();   
+
+var userid = localStorage.getItem('userid');
+var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*phone missing*No phone number found!");logupdate_v2();
+    
 }
 else {
 alert("Trying to call: "+phonenumber+"");
@@ -463,8 +471,7 @@ localStorage.setItem("chat_window_status","open");
     
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
-    
-localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> started chatting with  driver <span class='log_driverid'>"+driverid+"</span>");logupdate();
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*chat*User"+userid+" started chat with Driver"+driverid+".");logupdate_v2();
     
     document.getElementById("chat_overlay").className = "animated fadeInUp"
     document.getElementById("chat_overlay").style.display = "block";
