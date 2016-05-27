@@ -331,6 +331,7 @@ function pickdriver_request_start () {
     
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request*User"+userid+" is waiting for Driver"+driverid+" to accept.");logupdate_v2();
     
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to accept");}
