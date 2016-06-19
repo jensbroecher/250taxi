@@ -222,8 +222,13 @@
     
     reg_how_found_select = document.getElementById("reg_how_found_select").value;
         
+    showindicator();
+        
     if (reg_how_found_select == "") {
         alert("Please let us know how you heard about us.");
+        
+        hideindicator();
+        
         return;
     }
         

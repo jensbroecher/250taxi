@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
+    /*
     if (window.location.protocol !== 'https:') {
         window.location = 'https://' + window.location.hostname + window.location.pathname + window.location.hash;
     }
+    */
 
     $("#expanded_customer_care_close").swipe({
         swipeRight: function () {
