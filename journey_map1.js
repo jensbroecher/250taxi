@@ -54,7 +54,7 @@ localStorage.setItem("chat_enabled","No");
 												  arrowStyle: 2
 												});
 		driverAnimation();
-		
+		var angle2;
 function driverAnimation(){
 pickdriver_id = localStorage.getItem("pickdriver_id");
     
@@ -77,23 +77,60 @@ var previous_lat;var previous_lng;
 		if( typeof driverMarker !== 'undefined'){
 		 previous_lat = driverMarker.getPosition().lat();
 		 previous_lng = driverMarker.getPosition().lng();
+
+			var B = {
+				x : lat,
+			  y : lng
+			};
+
+			var A = {
+				x : previous_lat,
+			  y : previous_lng
+			};
+			 angle2 = ( ( ( -(Math.atan2((A.x-B.x),(A.y-B.y))*(180/Math.PI)) % 360) + 360) % 360);
+			 angle2= angle2 +60; 
 		}
+// console.log(angle2);
+	
+angle2 = Math.floor(angle2);
+	
+angle2 = Math.round(angle2 / 10) * 10;
+	
+// console.log("Angle:" +angle2);
+	
+// imgUrl="https://250taxi.com/ios/test.php?a="+angle2;
+	
+if (angle2 > 360) {
+	console.log("360 exceeded");
+	angle2_s = angle2.toString();
+	angle2_s = angle2_s.substring(1);
+	angle2 = parseInt(angle2_s);
+}
+	
+imgUrl="taxi/taxi_"+angle2+".svg";
+    
+// console.log(imgUrl);
+
+var iconimage1 = {
+ url: imgUrl, // url
+	//path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
+	//rotation: angle2,
+    scaledSize: new google.maps.Size(60, 60), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(43,90),// anchor
+	
+};
 		var position = [previous_lat, previous_lng];
 		var inc = 0;
 		var deltaLat;
 		var deltaLng;
 		console.log(pickdriver_currentgpslat+","+pickdriver_currentgpslong);
- var iconimage2 = {
-    url: "https://250taxi.com/app/journey/journey_marker_driver.png", // url
-    scaledSize: new google.maps.Size(90, 90), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(43,90) // anchor
-};
+
 if( typeof driverMarker === 'undefined'){
 	console.log("DRiver");
 driverMarker = new google.maps.Marker({
         position: new google.maps.LatLng(locations1[0][1], locations1[0][2]),
-        icon: iconimage2,
+        icon: iconimage1,
         map: map,
 		title:"Taxi",
 		draggable:false 

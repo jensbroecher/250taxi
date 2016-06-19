@@ -6,44 +6,85 @@
 
 	<meta charset="utf-8">
 
-	<style>
-		@media only screen and (max-device-width: 480px) {
+	<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+	<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="manifest.json">
+	<meta name="msapplication-TileColor" content="#df600a">
+	<meta name="msapplication-TileImage" content="mstile-144x144.png">
+	<meta name="theme-color" content="#000000">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
 
-		}
-	</style>
-
-	<script src="logupdate.js"></script>
+    <script src="cordova.js"></script>
 	<script src="infobubble.js"></script>
     <script src="myalert.js"></script>
+	<script src="jquery.min.js"></script>
+	<script src="jquery.validate.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="jquery.ui.touch-punch.min.js"></script>
+	<script src="jquery.touchSwipe.min.js"></script>
+	<script src="mli.js"></script>
+    <script src="jquery.knob.js"></script>
+	<script src="responsivevoice.js"></script>
+	<script src="materialize.js"></script>
+	<script src="pushmenu/jPushMenu.js"></script>
+	<script src="preventreload.js"></script>
+	<script src="toast.js"></script>
+    <script src="date.format.js"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	
+	<script>
+    $.getScript( "https://250taxi.com/app/logupdate.js" );
+    $.getScript( "https://250taxi.com/app/audio_definitions.js" );
+    $.getScript( "https://250taxi.com/app/init.js" );
+    $.getScript( "https://250taxi.com/app/ls_reset.js" );
+    $.getScript( "https://250taxi.com/app/pushmenu/mainmenu.js" );
+    $.getScript( "https://250taxi.com/app/fareestimate.js" );
+    $.getScript( "https://250taxi.com/app/searchdrivers.js" );
+    $.getScript( "https://250taxi.com/app/journey1.js" );
+    $.getScript( "https://250taxi.com/app/journey_map1.js" );
+    $.getScript( "https://250taxi.com/app/status_actions.js" );
+    $.getScript( "https://250taxi.com/app/message_center.js" );
+    $.getScript( "https://250taxi.com/app/driver_request_timer.js" );
+    $.getScript( "https://250taxi.com/app/startmap.js" );
+    $.getScript( "https://250taxi.com/app/searchalternatives.js" );
+    $.getScript( "https://250taxi.com/appcontent/client/summary.js" );
+    $.getScript( "https://250taxi.com/app/locate.js" );
+    </script>
 
-	<link href="animate.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="animate.min.css">
 	<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
 	<link rel="stylesheet" type="text/css" href="waves.css">
 	<link rel="stylesheet" type="text/css" href="ball-pulse.css">
 	<link rel="stylesheet" type="text/css" href="on_off_switch.css">
-	<link rel="stylesheet" type="text/css" href="journey.css">
 	<link rel="stylesheet" type="text/css" href="animate.min.css">
 	<link rel="stylesheet" type="text/css" href="google_spinner.css">
-	<link rel="stylesheet" type="text/css" href="searchdrivers.css">
-	<link rel="stylesheet" type="text/css" href="modal250.css">
-	<link rel="stylesheet" type="text/css" href="locate.css">
-    <link rel="stylesheet" type="text/css" href="taxis_online_info.css">
+    <link rel="stylesheet" type="text/css" href="toast.css">
     
-    
-    
-    <link rel="stylesheet" type="text/css" href="detailed_pickup_location.css">
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="locate_desktop.css">
-    
-
-
-
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<script src="cordova.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/journey.css">
+	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/searchdrivers.css">
+	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/modal250.css">
+	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/locate.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/taxis_online_info.css"> 
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/detailed_pickup_location.css"> 
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/locate_desktop.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/functions.css">
 
 	<script>
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -70,236 +111,6 @@
 		}
 
 	</script>
-
-
-
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
-    
-    
-
-	<script src="jquery.min.js"></script>
-	<script src="jquery.validate.min.js"></script>
-	<script src="jquery-ui.min.js"></script>
-	<script src="jquery.ui.touch-punch.min.js"></script>
-	<script src="jquery.touchSwipe.min.js"></script>
-
-	<script src="ls_reset.js"></script>
-	<script src="mli.js"></script>
-    
-    <script src="jquery.knob.js"></script>
-	<script src="init.js"></script>
-
-	<script src="responsivevoice.js"></script>
-	<script src="materialize.js"></script>
-	<script src="pushmenu/jPushMenu.js"></script>
-	<script src="pushmenu/mainmenu.js"></script>
-
-	<script src="preventreload.js"></script>
-
-	<script src="fareestimate.js"></script>
-	<script src="searchdrivers.js"></script>
-	<script src="journey1.js"></script>
-
-	<script src="toast.js"></script>
-	
-	<script src="driver_request_timer.js"></script>
-	
-	<style type="text/css">
-	.col-centered {
-		display:inline-block;
-		float:none;
-		text-align:left;
-		margin-right:-4px;
-	}
-	.row-centered {
-		margin-left: 9px;
-		margin-right: 9px;
-	}
-		#account_overlay1 {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-			background-color: black;
-			z-index: 1000;
-			display: none;
-		}
-	</style>
-
-	<link rel="stylesheet" type="text/css" href="toast.css">
-	<script src="startmap.js"></script>
-	<script>
-		$(document).ready(function() {
-
-			$("#expanded_customer_care_close").swipe({
-				swipeRight: function() {
-
-					$("#customercarebuttonside").draggable("enable");
-
-					document.getElementById("customercarebuttonside").className = "addtrans";
-
-					document.getElementById("customercarebuttonside").style.backgroundSize = "50% auto";
-					document.getElementById("customercarebuttonside").style.backgroundPosition = "32px center";
-
-					document.getElementById("swipehand").style.display = "block";
-
-					document.getElementById("customercarebuttonside").style.width = "70px";
-					document.getElementById("customercarebuttonside").style.marginLeft = "0px";
-					document.getElementById("expanded_customer_care").style.display = "none";
-					document.getElementById("customercarebuttonside").style.backgroundPosition = "32px center";
-
-				}
-
-			});
-
-
-
-			$("#customercarebuttonside").swipe({
-				swipeLeft: function() {
-
-					customercarebuttonside_animate();
-
-				}
-
-			});
-
-
-
-			var count = 0;
-
-			$("#pushmenu").swipe({
-				swipeLeft: function(event, direction, distance, duration, fingerCount) {
-
-
-
-					console.log("You swiped " + direction + " " + ++count + " times ");
-					$('.jPushMenuBtn,body,.cbp-spmenu').removeClass('disabled active cbp-spmenu-open cbp-spmenu-push-toleft cbp-spmenu-push-toright');
-				},
-				threshold: 0
-
-
-
-			});
-            
-            $("#mydetailedlocation").swipe({
-				swipeDown: function() {
-                    mydetailedlocation_close();
-                }
-
-			});
-
-
-
-		});
-
-		$(function() {
-
-			var dragCheck = false;
-
-			$('#customercarebuttonside').draggable({
-				revert: false,
-				axis: "y",
-				scroll: false,
-				containment: "parent",
-				start: function() {
-					$('#expanded_customer_care_close').off('click');
-					document.getElementById("customercarebuttonside").className = "";
-				},
-				drag: function() {
-					// On drag set that flag to true
-					dragCheck = true;
-				},
-				stop: function() {
-					// On stop of dragging reset the flag back to false
-					dragCheck = false;
-					// customercarebuttonside_animate();
-					setTimeout(function() {
-
-					}, 1);
-				}
-			});
-
-			// Then instead of using click use mouseup, and on mouseup only fire if the flag is set to false
-			$('#customercarebuttonside').bind('mouseup', function() {
-				if (dragCheck == false) {
-					customercarebuttonside_animate();
-				}
-			});
-
-		});
-
-
-
-
-		function customercarebuttonside_animate() {
-
-			$("#customercarebuttonside").draggable("disable");
-
-			document.getElementById("customercarebuttonside").style.backgroundSize = "0% auto";
-			document.getElementById("customercarebuttonside").style.backgroundPosition = "center right";
-
-			document.getElementById("swipehand").style.display = "none";
-
-			document.getElementById("customercarebuttonside").style.width = "150px";
-			document.getElementById("customercarebuttonside").style.marginLeft = "-80px";
-			document.getElementById("customercarebuttonside").className = "addtrans";
-
-
-			document.getElementById("expanded_customer_care").style.display = "block";
-
-		}
-
-		function customercare_call() {
-			
-			var app_or_web = localStorage.getItem("app_or_web");
-			
-			if (app_or_web == "web") {
-				location.href = "tel:+250783000096";
-			}
-			if (app_or_web == "app") {
-				window.open('tel:+250783000096', '_system', 'location=yes');
-			}
-			
-		}
-		
-		function customercare_sms() {
-			
-			var app_or_web = localStorage.getItem("app_or_web");
-			
-			if (app_or_web == "web") {
-				location.href = "sms:+250783000096";
-			}
-			if (app_or_web == "app") {
-				window.open('sms:+250783000096', '_system', 'location=yes');
-			}
-			
-		}
-
-		function customercare_whatsapp() {
-			if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
-				location.href = "whatsapp://abid?+250736733747";
-			} else {
-				var app_or_web = localStorage.getItem("app_or_web");
-				if (app_or_web == "web") {
-					location.href = "intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end";
-				}
-			}
-			if (app_or_web == "app") {
-				window.open('intent://send/+250736733747#Intent;scheme=smsto;package=com.whatsapp;action=android.intent.action.SENDTO;end', '_system', 'location=yes');
-			}
-		}
-
-        function summary() {
-	alert("Thank you for using 250 Taxi. We hope you enjoyed our service. Please rate your journey to help us improve.");
-	document.getElementById("pages").style.display = "block";
-	$( "#pagestarget" ).load( "https://250taxi.com/appcontent/client/ratings.php", function() {
-	});
-}
-
-	</script>
-
-
 
 </head>
 
@@ -359,59 +170,7 @@
 
 
 
-	<style>
-		#account_overlay,
-		#wallet_overlay {
-			position: absolute;
-			z-index: 100000000000;
-			width: 100%;
-			height: 100%;
-			top: 0px;
-			left: 0px;
-			background-color: black;
-			display: none;
-			font-family: sans-serif;
-			color: white;
-		}
-		
-		.account_option {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 30px;
-		}
-		
-		.account_option_info {
-			margin-bottom: 10px;
-			text-align: center;
-		}
-		
-		.account_option .onoffswitch {
-			margin-left: auto;
-			margin-right: auto;
-		}
-		
-		#account_overlay_x {}
-		
-		#wallet_balance {
-			font-family: 'Roboto', sans-serif;
-			text-align: center;
-			padding: 10px;
-			margin-bottom: 10px;
-			font-size: 150%;
-			font-weight: 200;
-			max-width: 300px;
-			min-width: 200px;
-			margin-left: auto;
-			margin-right: auto;
-			width: 60%;
-		}
 
-	</style>
-
-	<script>
-
-
-	</script>
 
 	<div id="wallet_overlay">
 
@@ -466,60 +225,7 @@
 
 				Account details</div>
 
-			<style>
-				.simple_table {
-					width: 90%;
-					padding-left: 5%;
-					padding-right: 5%;
-				}
-				
-				.simple_table div {
-					float: left;
-					padding-top: 5px;
-					padding-bottom: 5px;
-					text-indent: 5px;
-					margin-bottom: 2px;
-					overflow: hidden;
-					white-space: nowrap;
-					background-color: #3C3F41;
-				}
-				
-				.simple_table .simple_table_desc {
-					width: 30%;
-					color: darkgrey;
-				}
-				
-				.simple_table .simple_table_content {
-					width: 70%;
-				}
-				
-				.account_button {
-					border: solid 1px white;
-					font-family: Roboto, sans-serif;
-					font-size: 14px;
-					text-transform: uppercase;
-					padding-top: 5px;
-					padding-bottom: 5px;
-					margin-left: 30%;
-					width: 36%;
-					max-width: 270px;
-					text-align: center;
-					white-space: nowrap;
-					overflow: hidden;
-					margin-top: 15px;
-                    border-radius: 15px;
-				}
-				
-				#account_button_after_click {
-					padding: 5px;
-					background-color: lightgrey;
-					color: black;
-					font-size: 90%;
-					text-align: center;
-					margin-top: 10px;
-				}
 
-			</style>
 
 			<div id="account_simple_table" class="simple_table">
 
@@ -539,24 +245,14 @@
 				<div class="simple_table_content">****</div>
 
 			</div>
+            
+            <div style="clear:both;"></div>
+            
+            <div id="account_button_phone" onclick="change_account('phone');" class="account_button waves-effect waves-light">Update phone</div>
+            
+            <div id="account_button_pin" onclick="location.href='reg/forgot_password.html';" class="account_button waves-effect waves-light">Update PIN</div>
 
-			<script>
-				function change_account() {
-
-					var clientid = localStorage.getItem("userid");
-
-					$.get("https://250taxi.com/db/change_account.php?task=email&userid=" + clientid + "", function(data) {
-						alert('Customer care will contact you soon.');
-					});
-
-					document.getElementById("account_button").style.display = "none";
-					document.getElementById("account_button_after_click").style.display = "block";
-
-				}
-
-			</script>
-
-			<div id="account_button" onclick="change_account();" class="account_button waves-effect waves-light">Change</div>
+			<div id="account_button" onclick="change_account('assistance');" class="account_button waves-effect waves-light">Request assistance</div>
 
 			<div style="clear:both;"></div>
 
@@ -606,7 +302,7 @@
 
 	<div id="driveroverlay">
 
-		<img id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
+		<img style="display:none;" id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
 
 		<div id="driveroverlay_show_details"></div>
 
@@ -641,7 +337,7 @@
         </div>
 		
 	
-      <input class="knob second" data-readOnly="true" data-width="90" data-min="0" data-max="120" data-displayPrevious=true data-fgColor="#148AAE" data-skin="tron" data-thickness=".2" value="120">  
+      <input class="knob second" data-readOnly="true" data-width="90" data-min="0" data-max="60" data-displayPrevious=true data-fgColor="#148AAE" data-skin="tron" data-thickness=".2" value="60">  
         
     
 	
@@ -717,7 +413,13 @@
 
 	<div id="loadingindicator" style="display:block;">
 		<img src="282.gif" width="120">
-	</div>
+        
+        <div onclick="location.reload();" id="loading_reset" class="animated fadeIn">
+            <b>Not connecting?</b>
+            <br>Try again
+        </div>
+    
+    </div>
 
 	<script>
 
@@ -737,21 +439,13 @@
 		<br>
 
         <span id="mainmenu">
-		<div class="noSwipe" id="mainmenu_account">Account</div>
-		<div class="noSwipe" id="mainmenu_services">Services</div>
-		<div class="noSwipe" id="mainmenu_wallet">Wallet</div>
-		<div class="noSwipe" id="mainmenu_history">History</div>
-		<span id="divider"></span>
-        <div class="noSwipe" id="mainmenu_tour">Quick tour</div>
-        <span id="divider"></span>
-		<div class="noSwipe" id="mainmenu_becomedriver">BECOME A 250 TAXI PARTNER</div>
-		<div class="noSwipe" id="mainmenu_corporate">250 TAXI CORPORATE</div>
+		
         </span>
         
 		
 	</nav>
 
-	<div id="menubutton" class="toggle-menu menu-left"> </div>
+	<div onmousedown="menubtn_audio.play();" id="menubutton" class="toggle-menu menu-left"> </div>
 
 	<script>
 
@@ -760,7 +454,7 @@
 
 	<div id="locationfinderdialog">
 
-		<div id="locationfinderdialog_x" style="padding:5px;">
+		<div id="locationfinderdialog_x">
 			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
 				<path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
 			</svg>
@@ -768,8 +462,17 @@
 
 		<input style="display:none" id="lat" name="lat" val="40.713956">
 		<input style="display:none" id="long" name="long" val="74.006653">
-
-		<input placeholder="Landmark / Street" id="searchbyaddress" value="">
+        
+        <input placeholder="Landmark / Street" id="searchbyaddress" value="">
+        
+        <button id="searchbyaddress_clear">
+        </button>
+        
+        
+        
+        
+        
+        
 
 		<div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
 
@@ -826,23 +529,7 @@
 
 	<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
     
-    <script>
-	$( document ).ready(function() {
 
-	setTimeout(function(){ 
-	document.getElementById("calltaxiui").style.opacity = "1";
-	}, 2000);
-		
-	setTimeout(function(){ 
-	document.getElementById("calltaxiui").style.webkitFilter = "brightness(2)";
-	}, 4000);
-		
-	setTimeout(function(){ 
-	document.getElementById("calltaxiui").style.webkitFilter = "brightness(1)";
-	}, 4300);
-
-	});
-	</script>
 
 	<div id="calltaxiui">
 		
@@ -878,11 +565,11 @@
             <div class="start_buttons">
             
             <div class="start_button_pick">
-                Pick me up
+                Book a
             </div>
                 
             <div class="start_button_time">
-                Later
+                Ride
             </div>
                 
             </div>
@@ -1037,7 +724,7 @@
 		</div>
 
 		<div id="citynavigator_start" class="sdbox">
-			<div class="sdtitle">City Navigator</div>
+			<div style="display:none;" class="sdtitle">City Navigator</div>
 
 			<div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
 
@@ -1058,6 +745,11 @@
 
 
 		<div id="driverlist" style="display:none;" class="sdbox">
+            
+            <div style="display:none;">
+            <button onclick="driverlist_scanner_up();">Up</button>
+            <button onclick="driverlist_scanner_down();">Down</button>
+            </div>
 
 			<div class="searchdrivers_x">
 				<div onclick="searchdrivers_x();">
@@ -1069,6 +761,17 @@
 
 			<div class="sdtitle">Please select driver</div>
 
+            <script>
+                function driverlist_scanner_up() {
+                var elmnt = document.getElementById("driverlist_scanner");
+                elmnt.scrollTop += 200;
+                }
+                function driverlist_scanner_down() {
+                var elmnt = document.getElementById("driverlist_scanner");
+                elmnt.scrollTop -= 200;
+                }
+            </script>
+
 			<div id="driverlist_scanner">
 
 				<div class="loader">
@@ -1078,6 +781,8 @@
 				</div>
 
 			</div>
+            
+            
 		</div>
 
 
@@ -1133,7 +838,7 @@
 			</div>
 		</div>
 
-		<script src="journey_map1.js"></script>
+		
 		<div style="display:block;" id="journey_fare_load"></div>
 
 
@@ -1214,6 +919,7 @@
 </div>            
 
             
+            
             <input onchange="pickup_booking_date_check();" onblur="pickup_booking_date_check();" id="pickup_booking_date" type="datetime-local">
             
             
@@ -1235,37 +941,7 @@
     </div>
 </div>
     
-<script src="date.format.js"></script>
-    
-<script>
-    
-function parseDate(from){
-    from = from.replace('T', ' ').replace(/-/g,'/');
-    return new Date(from);
-}
-    
-function pickup_booking_date_check() {
-   var pickup_booking_date_time = document.getElementById("pickup_booking_date").value;
-    
-pickup_booking_date_time = parseDate(pickup_booking_date_time);
-    
-    
-    
-    
 
-
-var date_for_button = dateFormat(pickup_booking_date_time, "mmmm d - h:MM TT");
-    
-// alert(date_for_button);
-
-    
-document.getElementById("detailedlocation_date_time_button").innerHTML = date_for_button;
-    
-document.getElementById("ddtest").value = date_for_button;
-   
-}
-    
-</script>
     
     
     

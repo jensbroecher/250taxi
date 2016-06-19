@@ -12,6 +12,12 @@ document.getElementById("detailedlocation_date_time_button").style.display = "no
     
 $("#taxirequest_detailedlocation").attr("placeholder", "Where are you standing?");
     
+$("#taxirequest_detailedlocation").keypress(function(e) {
+    if(e.which == 13) {
+        detailedlocation_complete();
+    }
+});
+    
 document.getElementById("pickup_booking_date").style.display = "none";
 
 console.log("ride_start: now");
@@ -94,6 +100,10 @@ document.getElementById("taxirequest_pickup_estimate").value;
 }
 function calltaxigo() {
     
+if (typeof getdriverslist_updater !== 'undefined') {
+    clearInterval(getdriverslist_updater);
+}
+    
 document.getElementById("taxis_online_info").style.display = "block";
 	
 document.getElementById("taxirequest_pickup_estimate").value = document.getElementById("inlocationfield").value;
@@ -115,18 +125,22 @@ var passenger_long = document.getElementById("long").value;
 // console.log(passenger_lat);
 // console.log(passenger_long);
 
-$( "#driverlist_scanner" ).load( "https://250taxi.com/db/partner/taxi_scanner.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
-
+$( "#driverlist_scanner" ).load( "https://250taxi.com/db/partner/taxi_scanner_v2.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
+    
+        document.getElementById("driverlist_scanner").className = "makeScrollable";
+    
 });
-        getdriverslist_updater = setInterval(getdriverslist, 15000);
+        getdriverslist_updater = setInterval(getdriverslist, 10000);
 });
 });
 });
 }   
 
+
+
 function searchdrivers_x() {
-    
-document.getElementById("taxis_online_info").style.display = "block";
+   
+$( "#taxis_online_info" ).fadeIn( "slow", function() {});
     
 document.getElementById("citynavigator").style.display = "none";
 document.getElementById("searchdrivers").style.display = "none";
@@ -140,12 +154,10 @@ $( "#calltaxiui" ).fadeIn( "slow", function() {});
 }
 function getdriverslist() {
     
-$( "#taxis_online_info" ).fadeOut( "slow", function() {});
-    
 var passenger_lat = document.getElementById("lat").value;
 var passenger_long = document.getElementById("long").value;
 
-$( "#driverlist_scanner" ).load( "https://250taxi.com/db/partner/taxi_scanner.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
+$( "#driverlist_scanner" ).load( "https://250taxi.com/db/partner/taxi_scanner_v2.php?passenger_lat="+passenger_lat+"&passenger_long="+passenger_long+"", function() {
     
 });
 }
@@ -164,12 +176,15 @@ document.getElementById("citynavigator_start").style.display = "none";
     
 }
 function getdrivers() {
+    
+
 
 document.getElementById("getfareestimate").style.display = "none";
     
 localStorage.setItem('activity','driver_list');
 
 var taxirequest_destination = document.getElementById('taxirequest_destination').value;
+localStorage.setItem("destination_name",taxirequest_destination);
 
 var taxirequest_destination = taxirequest_destination.split(', Kigali')[0]+'';
 
@@ -272,8 +287,15 @@ if (ride_start == "now") {
 	localStorage.setItem('activity','driver_list');
     
 var places_name = localStorage.getItem("places_name");
+var places_lat = localStorage.getItem("places_lat");
+var places_lng = localStorage.getItem("places_long");
     
 localStorage.setItem("destination",places_name);
+
+localStorage.setItem("destination_name",places_name);
+localStorage.setItem("destination_lat",places_lat);
+localStorage.setItem("destination_lng",places_lng);
+
 localStorage.setItem("destination_type","city_navigator");
 
 document.getElementById("citynavigator").style.display = "none";
@@ -295,10 +317,10 @@ if (ride_start == "later") {
 
 function pickdriver() {
     
-    localStorage.setItem('activity','driver_details');
+localStorage.setItem('activity','driver_details');
     
 var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Press the pick me now button to notify this taxi");}
+if (voice_enabled == "On") {responsiveVoice.speak("We are notifying this taxi!");}
     
     document.getElementById("driverlist").style.display = "none";
     document.getElementById("menubutton").style.display = "none";
@@ -315,10 +337,12 @@ if (voice_enabled == "On") {responsiveVoice.speak("Press the pick me now button 
         
 $( "#driveroverlay_show_details" ).load( "https://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {
 journey_start_map();
+pickdriver_request_start();
 });
         
-        $( "#driveroverlay_journey_start" ).fadeIn( "slow", function() {});
+    // $( "#driveroverlay_journey_start" ).fadeIn( "slow", function() {});
     });
+    
 }
 
 function pickdriver_request_start () {
@@ -333,8 +357,37 @@ var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
 localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request*User"+userid+" is waiting for Driver"+driverid+" to accept.");logupdate_v2();
     
+// Update new request system
+    
+$.get( "https://250taxi.com/db/requests/requests.php", { 
+    task: "create_request",
+    userid: userid
+}).done(function( requestid ) {
+    
+    if (requestid == "request_existed") {
+            alert("Connection problem. Please try again.");
+            document.getElementById("driveroverlay_journey_cancel").style.display = "none";
+            setTimeout(function(){ 
+            location.reload();
+            }, 3000);
+            return;
+        }
+    
+    $.get( "https://250taxi.com/db/requests/requests.php", { 
+    task: "add_driver",
+    userid: userid,
+    requestid: requestid,
+    driverid: driverid
+}).done(function( data ) {
+        
+});
+    
+});
+    
+// End
+    
 var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to accept");}
+if (voice_enabled == "On") {responsiveVoice.speak("Contacting driver, please wait...");}
     
     document.getElementById("driveroverlay_back_to_list").style.display = "none";
     document.getElementById("driveroverlay_journey_start").style.pointerEvents = "none";
@@ -367,7 +420,7 @@ if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to acc
     
 	var pickup = localStorage.getItem("pickup");
     
-    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"&pickup="+pickup+"",  function( data ) {
+    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey_v2.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"&pickup="+pickup+"",  function( data ) {
         
     });
 
@@ -387,10 +440,8 @@ if (voice_enabled == "On") {responsiveVoice.speak("Waiting for the driver to acc
 }
 function detailedlocation_complete (){
 
+showindicator();
 
-
-
-    
 var detailedlocation_date_time_button_content = document.getElementById("detailedlocation_date_time_button").innerHTML;
     
 console.log(detailedlocation_date_time_button_content);
@@ -404,9 +455,15 @@ if (detailedlocation_date_time_button_content == "Set date/time") {
 }
 }
     
+var pickup_name = localStorage.getItem("pickup");
+var pickup_lat = localStorage.getItem("pickup_lat");
+var pickup_lng = localStorage.getItem("pickup_lng");
+    
 var username = localStorage.getItem("username");
-var pickdriver_id = localStorage.getItem("pickdriver_id");
+
 var detailedlocation = document.getElementById("taxirequest_detailedlocation").value;
+var landmark = document.getElementById("list_of_nearby_places").value;
+var userid = localStorage.getItem("userid");
     
 var detailedlocation_length = detailedlocation.length;
     
@@ -414,10 +471,11 @@ if (detailedlocation_length > 2) {
     
 localStorage.setItem("detailedlocation",detailedlocation);
 
-$.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=detailedlocation&username="+username+"&pickdriver_id="+pickdriver_id+"&detailedlocation="+detailedlocation+"",  function( data ) {
+$.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=detailedlocation&pickup_name="+pickup_name+"&pickup_lat="+pickup_lat+"&pickup_lng="+pickup_lng+"&username="+username+"&userid="+userid+"&detailedlocation="+detailedlocation+"&landmark="+landmark+"",  function( data ) {
     
+hideindicator();
 calltaxigo();
-mydetailedlocation_close ();
+mydetailedlocation_close();
     
 });
 }
@@ -438,18 +496,15 @@ function pickdriver_request_cancel_confirmed () {
     
 showindicator();
     
-var driverid = localStorage.getItem("pickdriver_id");
-var userid = localStorage.getItem('userid');
-    
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
 localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User"+userid+" cancelled journey with Driver"+driverid+".");logupdate_v2();
 
 alert("Request for driver cancelled!");
-    
+
 setTimeout(function(){ 
     location.reload();
-}, 3000);   
+}, 5000);   
 
 }
 
@@ -617,4 +672,50 @@ showindicator();
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function accepted() {
+	
+localStorage.setItem("end_timer","Yes");
+
+clearInterval(itimer);
+document.getElementById("pickdriver_request_timer").style.display = "none";
+    
+// Start updating chat
+localStorage.setItem("chat_enabled","Yes");
+
+userid = localStorage.getItem("userid");
+    
+$.get( "https://250taxi.com/db/requests/requests.php", { 
+    task: "get_assigned_driver",
+    userid: userid,
+    }).done(function( driverid ) {
+    
+        localStorage.setItem("pickdriver_id",driverid);
+    
+        localStorage.setItem("logupdate", ""+userid+"*"+driverid+"*request accepted*User"+userid+" request accepted by Driver"+driverid+".");
+        logupdate_v2();
+    
+    // Show overlay with buttons 
+    document.getElementById("driveroverlay_journey_cancel").style.display = "none";
+    document.getElementById("journey_accepted_panel").style.display = "block";
+    document.getElementById("journey_accepted_panel").className = "animated fadeIn";
+    
+    });
+
+}
 

@@ -7,6 +7,7 @@ function get_fare_estimate() {
 	var taxirequest_destination = document.getElementById("taxirequest_destination").value;
 	
 	localStorage.setItem('destination',taxirequest_destination);
+    localStorage.setItem('destination_name',taxirequest_destination);
 	
 	localStorage.setItem('destination_type','user_input');
 	
@@ -14,7 +15,6 @@ function get_fare_estimate() {
 	
 	var pickup_location = document.getElementById("inlocationfield").value;
 
-	
 	taxirequest_destination_length = taxirequest_destination.length;
 	
 	if (taxirequest_destination_length < 6) {
@@ -91,11 +91,13 @@ if (isNaN(gcostestimate)) {
 	getfareestimate_close();
 }
     
-localStorage.setItem("fare_estimate",gcostestimate);
-    
 var gcostestimate_plus1000 = gcostestimate + 1000;
 	
 document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF";
+    
+localStorage.setItem("destination_fare_estimate","" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF");
+localStorage.setItem("destination_distance_estimate",gestimatedistance);
+
 	
 });
 	

@@ -17,9 +17,22 @@
         z-index: 1100;
         display: none;
 }
+#driverlist {
+    height: 430px;
+}
 #driverlist_scanner {
-    height: 350px;
-    overflow: scroll;
+    height: 330px;
+    
+     overflow-x: hidden;
+     overflow-y: scroll;
+  
+    /* -webkit-overflow-scrolling: touch; */
+
+    -webkit-transform: translate3d(0px,0px,0px);
+    
+}
+.makeScrollable {
+    /* -webkit-overflow-scrolling: touch; */
 }
 #citynavigatorlist {
     height: 300px;

@@ -21,16 +21,14 @@ if ($("#loading_map_indicator").hasClass("lmp_visible")) {
 
 var map;
 
+/*
 map = new google.maps.Map(document.getElementById('map'), {
      center: {lat: -1.957236, lng: 30.100284},
      zoom: 10,
      disableDefaultUI: true,
      streetViewControl: false
 });
-	
-var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Loading map");}
-
+*/
     
 document.getElementById("locationfieldholder").style.display = "none";
 document.getElementById("locationfield").style.display = "none";
@@ -65,6 +63,10 @@ autocomplete = new google.maps.places.Autocomplete(input3, options);
 function showindicator() {
 document.getElementById("loadingindicator").className = "animated fadeIn";
 document.getElementById("loadingindicator").style.display = "block";
+document.getElementById("loading_reset").style.display = "none";
+setTimeout(function(){
+    document.getElementById("loading_reset").style.display = "block";
+}, 5000);
 }
 function hideindicator() {
 document.getElementById("loadingindicator").className = "animated fadeOut";
@@ -160,7 +162,7 @@ function displayPosition(position) {
 			
 					
 			var options = {
-				zoom: 16,
+				zoom: 18,
                 disableDefaultUI: true,
                 streetViewControl: false,
 				center: pos,
@@ -229,6 +231,7 @@ document.getElementById("loading_map_indicator").className = "lmp_hidden";
                 draggable: true,
                 // icon: "userpinicon.png",
                 icon: iconimage,
+zIndex: google.maps.Marker.MAX_ZINDEX + 1,
 				position: pos,
 				map: map,
 				title: "User location"
@@ -290,6 +293,7 @@ var count=0; var markers = {}; var iconimage1 = {}; var lat; var lng; var loc; v
 												  position: new google.maps.LatLng(-32.0, 149.0),
 												  shadowStyle: 1,
 												  padding: 5,
+                                                  minHeight: 48,
 												  color: '#ffffff',
 												  backgroundColor: '#3f9eb9',
 												  borderRadius: 5,
@@ -304,11 +308,18 @@ var count=0; var markers = {}; var iconimage1 = {}; var lat; var lng; var loc; v
 												});
 												var angle2;
 												
-
-
+function isLocationFree(search) {
+  for (var i = 0, l = lookup.length; i < l; i++) {
+    if (lookup[i][0] === search[0] && lookup[i][1] === search[1]) {
+      return false;
+    }
+  }
+  return true;
+}
+var l=0;
 function a(){
-			
-$.get( "https://250taxi.com/db/journey/online.php",  function( data ) {
+	var lookup = [];		
+$.get( "https://250taxi.com/db/journey/online_v2.php",  function( data ) {
 if(data !="[]"){ 
 var array = JSON.parse(data);
 										 										 
@@ -324,6 +335,11 @@ array.forEach(function(entry) {
 		lng=loc[1];
 		status=loc[2];
 		taxi_id=loc[3];
+
+
+
+
+
 		accuracy=loc[4];
 		driverName=loc[5];
 		driverSurname=loc[6];
@@ -331,7 +347,7 @@ array.forEach(function(entry) {
 		var previous_lng;var imgUrl;
 		
 		var angle=0;
-		if( typeof markers[taxi_id] !== 'undefined'){
+		if( typeof markers[taxi_id] !== 'undefined' ){
 		 previous_lat = markers[taxi_id].getPosition().lat();
 		 previous_lng = markers[taxi_id].getPosition().lng();
 
@@ -342,7 +358,7 @@ array.forEach(function(entry) {
 			//console.log(ang);
 										  
 		//	}); 
-			
+
 			var B = {
 				x : lat,
 			  y : lng
@@ -353,13 +369,20 @@ array.forEach(function(entry) {
 			  y : previous_lng
 			};
 			 angle2 = ( ( ( -(Math.atan2((A.x-B.x),(A.y-B.y))*(180/Math.PI)) % 360) + 360) % 360);
-			 angle2= angle2 +60; 
+			 angle2= angle2 +60;
+
 		}
 		
 			
-// console.log(angle2);
-	
-angle2 = Math.floor(angle2);
+/*if (taxi_id.match("^o")) {
+			   // do this if begins with o
+			//console.log(taxi_id);
+			angle2=Math.floor((Math.random() * 36) + 1); 
+			angle2=angle2 * 10;
+			} */
+
+			
+angle2 = Math.floor(angle2);    
 	
 angle2 = Math.round(angle2 / 10) * 10;
 	
@@ -373,16 +396,20 @@ if (angle2 > 360) {
 	angle2_s = angle2_s.substring(1);
 	angle2 = parseInt(angle2_s);
 }
-	
+if (taxi_id.match("^o")) {
+angle2=Math.floor((Math.random() * 36) + 1); angle2=angle2 * 10;
 imgUrl="taxi/taxi_"+angle2+".svg";
-    
-// console.log(imgUrl);
+}
+else{
+imgUrl="taxi/taxi_"+angle2+".svg";
+}
+  //console.log(angle2 +","+ taxi_id);  
 
 var iconimage1 = {
  url: imgUrl, // url
 	//path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
 	//rotation: angle2,
-    scaledSize: new google.maps.Size(80, 80), // scaled size
+    scaledSize: new google.maps.Size(60, 60), // scaled size
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(43,90),// anchor
 	
@@ -426,13 +453,25 @@ markers[taxi_id].setMap(null); delete markers[taxi_id]; } */
 			}
 		}
 		if( typeof markers[taxi_id] === 'undefined' && status=="online") {
+
+/*
+var i=0;
+var search =lat+","+lng;
+var a= lookup.indexOf(search); var lat1=lat; var lng1=lng;
+if (a != "-1"){ i=100;
+ //lat =parseFloat(lat) + parseFloat('0.1');
+ lng =parseFloat(lng) + parseFloat('0.5');
+}
+lookup.push(lat1+","+lng1); */
 				var pos = new google.maps.LatLng(lat, lng);
 				markers[taxi_id] = new google.maps.Marker({
 				position: pos,
 				map: map,
+				//zIndex: i,
 				draggable: false,
 				icon: iconimage1,
-				title: "Taxi"+taxi_id,
+                // title: "Taxi"+taxi_id+"angle"+angle2,
+				// title: "Taxi"+taxi_id+"",
 				id: taxi_id
 				});	
 		}
@@ -482,7 +521,7 @@ markers[taxi_id].setMap(null); delete markers[taxi_id]; } */
 				});				
 
 			}
-			   setInterval(a,6000); 
+			   setInterval(a,10000); 
 			
 
             google.maps.event.addListener(marker, 'dragend', function (event) {
@@ -568,6 +607,10 @@ function geocodeLatLng(geocoder, map) {
         document.getElementById('inlocationfield').value = results[0].formatted_address;
 		lat = results[0].geometry.location.lat();
 		lng = results[0].geometry.location.lng();
+          
+        localStorage.setItem("pickup_lat",lat);
+        localStorage.setItem("pickup_lng",lng);
+          
 		position = new google.maps.LatLng(lat, lng);
 
 			//Script for getting distance between the nearest landmark and the user current location
@@ -627,12 +670,22 @@ jQuery(document).ready(function($) {
     
 localStorage.setItem('activity','searching_address');
     
- $('#searchbyaddress').blur(function() {
+$('#searchbyaddress').blur(function () {
         document.getElementById("calltaxiui").style.display = "block";
-      })
-      .focus(function() {
+    }).focus(function () {
         document.getElementById("calltaxiui").style.display = "none";
-      });
+    })
+    .keypress(function (e) {
+        if (e.which == 13) {
+            codeAddress();
+        }
+    });
+    
+$('#searchbyaddress_clear').click(function () {
+        document.getElementById("searchbyaddress").value = "";
+    });
+    
+
 
 $('.toggle-menu').jPushMenu();
     
@@ -643,9 +696,8 @@ document.getElementById("loadingindicator").style.display = "none";
     
 });
 
-$(document).ready( function() {
-function hi(){
-    
+
+function hi(){    
     
 // Update chat window
 
@@ -674,7 +726,7 @@ $( "#chat_load_messages" ).load( "https://250taxi.com/db/journey/chat.php?task=s
 
             
             $.get( "https://250taxi.com/db/journey/chat.php?task=clear_driver&driverid=" + driverid + "&clientid=" + clientid + "",  function( data ) {
-             var chataudio = new Audio('sound/Bell_but-xk-106_hifi.mp3');chataudio.play();   
+             chataudio.play();   
             });
 
         
@@ -705,11 +757,16 @@ if (battery) {
     });
 }
     
-var status_battery = localStorage.getItem('device_battery');
-	
+var status_battery = localStorage.getItem('device_battery');	
 var pickup = localStorage.getItem("pickup");
     
-$.get( "https://250taxi.com/db/status_user.php?ver=31&status_lat="+status_lat+"&status_long="+status_long+"&status_username="+status_username+"&status_userid="+status_userid+"&status_activity="+status_activity+"&status_battery="+status_battery+"&pickup="+pickup+"", function( data ) {
+$.get( "https://250taxi.com/db/status_user_v2.php", {
+    status_lat: status_lat,
+    status_long: status_long,
+    status_userid: status_userid,
+    status_activity: status_activity,
+    status_battery: status_battery   
+} ).done(function( data ) {
     
     // console.log("Status: " + data);
     
@@ -718,46 +775,51 @@ $.get( "https://250taxi.com/db/status_user.php?ver=31&status_lat="+status_lat+"&
     // check activity and show messages to client
     
     var activity = localStorage.getItem("activity");
-    var server_check_if_declined = document.getElementById("server_check_if_declined").innerHTML;
-    var server_journey_status = document.getElementById("server_journey_status").innerHTML;
  
     // Prevent multiple logins
     mlicheck();
     
-    if (activity == "driver_selected" || activity == "driver_has_arrived") {
-        
-        if (server_check_if_declined == "declined") {
-            declined();
-        }
-        if (server_journey_status == "accepted") {
-            console.log("accepted!");
-            localStorage.setItem("activity","driver_has_accepted");
-            localStorage.setItem("toast","Driver accepted and is on his way to you!");toast_big();
-            accepted();
-            
-            
-        }
-        
-    }
+   // if (activity == "searching_address" || activity == "driver_selected" || activity == "driver_has_arrived") {
+        server_status_check = document.getElementById("server_status").innerHTML;  
+        server_message_check = document.getElementById("server_message").innerHTML;
     
-    if (activity == "has_boarded") {
+if (server_message_check > 0) {
+    
+var userid = localStorage.getItem("userid");
+            
+$.get( "https://250taxi.com/db/message.php?&task=confirm&userid="+userid+"&messageid="+server_message_check+"", function(responsetext) {    
 
-        if (server_journey_status == "summary") {
-            console.log("Summary");
-            localStorage.setItem("activity","summary");
-            localStorage.setItem("toast","Journey has ended");toast();
-            summary();
+console.log("Reset notification: "+responsetext+"");
+    
+show_message(responsetext);
+    
+});
+            
+        }
+    
+        console.log("Server Status: " + server_status_check);
+   
+        if(server_status_check == "accepted") {
+           status_accepted(); 
+        }
+        if(server_status_check == "summary") {
+           status_summary();
+        }
+        if(server_status_check == "driver_assigned") {
+            driver_assigned();
         }
         
-    }  
-    
+  //  }
+
 });       
 }
-setInterval(hi, 6000);
-    
-// Repeat Server ping
-    
-hi();
+  
+$(document).ready( function() {
+
+    // Start Intervall
+    setInterval(hi, 10000);
+    hi();
+
 });
     
 function declined () {
@@ -765,44 +827,24 @@ function declined () {
 var pickdriver_id = localStorage.getItem("pickdriver_id");
 var username = localStorage.getItem("username");
     
-localStorage.setItem('toast','The driver you have selected is busy at the moment, kindly choose another driver, enjoy your ride.');toast();
+localStorage.setItem('toast','The driver you have selected is busy at the moment, kindly choose another driver.');toast();
 
     $.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=declined&username="+username+"",  function( data ) {
         setTimeout(function(){
         showindicator();
         }, 5000);
         setTimeout(function(){
-        alert("The driver you have selected is busy at the moment, kindly choose another driver, enjoy your ride.");
+        alert("The driver you have selected is busy at the moment, kindly choose another driver.");
         location.reload();
         }, 6000);
     });
 
 }
-function accepted() {
-	
-localStorage.setItem("end_timer","Yes");
 
-clearInterval(itimer);
-document.getElementById("pickdriver_request_timer").style.display = "none";
-    
-// Start updating chat
-localStorage.setItem("chat_enabled","Yes");
-    
-driverid = localStorage.getItem("pickdriver_id");
-userid = localStorage.getItem("userid");
-    
-localStorage.setItem("logupdate", ""+userid+"*"+driverid+"*request_accepted*User"+userid+" request acccepted by Driver"+driverid+".");
-logupdate_v2();
-    
-// Show overlay with buttons 
-    document.getElementById("driveroverlay_journey_cancel").style.display = "none";
-    document.getElementById("journey_accepted_panel").style.display = "block";
-    document.getElementById("journey_accepted_panel").className = "animated fadeIn";
-}
 function taxis_online_info_load () {   
 
-var lat = document.getElementById("lat").value;
-var long = document.getElementById("long").value;
+var lat = localStorage.getItem("pickup_lat");
+var long = localStorage.getItem("pickup_lng");
     
 $( "#taxis_online_info" ).load( "https://250taxi.com/db/partner/taxi_drivers_online.php?lat="+lat+"&long="+long+"", function() {});
 
@@ -813,12 +855,10 @@ $(document).ready(function() {
 taxis_online_info_load();
     
 $( "#taxis_online_info" ).click(function() {
-    // calltaxigo();
     // document.getElementById("taxis_online_info").style.display = "none";
 });
     
 var taxis_online_info = setInterval(taxis_online_info_load, 15000);
-// document.getElementById("taxis_online_info").style.display = "none";
     
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {
@@ -854,6 +894,9 @@ if (voice_enabled == "On") {
     }
 	
 	    function cancel_reason_close() {
+            
+
+
         
         showindicator();
         
@@ -865,6 +908,14 @@ if (voice_enabled == "On") {
         var username = localStorage.getItem("username");
         
         var cancel_reason = localStorage.getItem("cancel_reason");
+            
+            
+        var userid = localStorage.getItem('userid');
+var driverid = localStorage.getItem("pickdriver_id");
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User"+userid+" cancelled journey with Driver"+driverid+" - Reason: "+cancel_reason+"");logupdate_v2();
+            
+            
+            
         
         if(cancel_reason == "other") {
             cancel_reason = prompt("Please let the driver know why you cancel", "");
@@ -913,7 +964,7 @@ $( "#overlay" ).click(function() {
     
 $( "#locationfield" ).click(function() {
     
-    document.getElementById("taxis_online_info").style.display = "none";
+    // document.getElementById("taxis_online_info").style.display = "none";
     
     $( "#locationfinderdialog").slideDown( "slow", function() {
         $("#searchbyaddress").focus();

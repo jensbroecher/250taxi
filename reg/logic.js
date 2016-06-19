@@ -31,7 +31,7 @@ var phoneisvalidated = localStorage.getItem('phoneisvalidated');
     $.ajax({
         type: "GET",
         url: "https://250taxi.com/db/registration.php",
-       data:       "phone="+phone+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidated+"&gps_lat=&gps_long=&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address=&country=&city=&operator=&pin="+pin ,
+       data:       "phone="+phone+"&how_found="+reg_how_found_select+"&task=reg&email="+email+"&phoneisvalidated="+phoneisvalidated+"&gps_lat=&gps_long=&last_name="+last_name+"&first_name="+first_name+"&username="+username+"&address=&country=&city=&operator=&pin="+pin ,
         success: function(html){
             // alert('Registration successful! Welcome to the 250 Taxi experience '+first_name+' '+last_name+', where we connect you with the closest taxi to you. You will receive an E-Mail with your account details. Enjoy your ride!\n\nFor more info call 0783000096.');			
 			

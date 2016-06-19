@@ -18,7 +18,6 @@
 		$(this).click(function() {
 			var target         = '',
 			push_direction     = '';
-			
 		
 			if($(this).is('.'+o.showLeftClass)) {
 				target         = '.cbp-spmenu-left';

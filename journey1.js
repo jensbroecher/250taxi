@@ -82,8 +82,8 @@ if (activity == 'driver_has_accepted') {
     document.getElementById('journey_status_dialog').style.display = "block";
     document.getElementById('journey_status_dialog').className = "animated fadeIn jd_yellow"
     document.getElementById('journey_status_dialog_window').className = "sdbox animated fadeInUp"
-    document.getElementById('journey_status_dialog_title').innerHTML = "Driver has arrived";
-    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Have you boarded the taxi?</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Yes</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>Not yet</div>";
+    document.getElementById('journey_status_dialog_title').innerHTML = "Your taxi is close";
+    document.getElementById('journey_status_dialog_content').innerHTML = "<div>Please look for the taxi and confirm your boarding.</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_has_boarded(); }, 1000);'>Boarded</div><br><div class='waves-effect waves-light jd_button' onclick='setTimeout(function(){ journey_not_yet_boarded(); }, 1000);'>I don't see the taxi.</div>";
 
     }
     
@@ -142,7 +142,7 @@ else{
 			}
 			}
 		}
-    var i;
+    var i; var angle2;
 
     for (i = 0; i < locations.length; i++) {
 
@@ -158,7 +158,56 @@ var iconimage = {
 if( typeof marker[name] !== 'undefined'){
 		 previous_lat = marker[name].getPosition().lat();
 		 previous_lng = marker[name].getPosition().lng();
+var B = {
+				x : lat,
+			  y : lng
+			};
+
+			var A = {
+				x : previous_lat,
+			  y : previous_lng
+			};
+			 angle2 = ( ( ( -(Math.atan2((A.x-B.x),(A.y-B.y))*(180/Math.PI)) % 360) + 360) % 360);
+			 angle2= angle2 +60; 
 		}
+// console.log(angle2);
+	
+angle2 = Math.floor(angle2);
+	
+angle2 = Math.round(angle2 / 10) * 10;
+	
+// console.log("Angle:" +angle2);
+	
+// imgUrl="https://250taxi.com/ios/test.php?a="+angle2;
+	
+if (angle2 > 360) {
+	console.log("360 exceeded");
+	angle2_s = angle2.toString();
+	angle2_s = angle2_s.substring(1);
+	angle2 = parseInt(angle2_s);
+}
+	
+imgUrl="taxi/taxi_"+angle2+".svg";
+    
+// console.log(imgUrl);
+if(name=="Driver"){
+var iconimage1 = {
+ url: imgUrl, // url
+	//path: 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3',
+	//rotation: angle2,
+    scaledSize: new google.maps.Size(60, 60), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(43,90),// anchor
+	
+};
+} else{
+var iconimage1 = {
+    url: locations[i][3],
+    scaledSize: new google.maps.Size(90, 90), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(43,90) // anchor
+};
+}
 		var position = [previous_lat, previous_lng];
 		//var numDeltas = 100;
 		//var delay = 30; //milliseconds
@@ -168,7 +217,7 @@ if( typeof marker[name] !== 'undefined'){
        if( typeof marker[name] === 'undefined'){
       marker[name] = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        icon: iconimage,
+        icon: iconimage1,
         map: map,
 		title:name,
 		draggable:false 
@@ -402,6 +451,10 @@ function journey_not_yet_boarded() {
     
     localStorage.setItem('activity','not_yet_boarded');
     
+    var userid = localStorage.getItem('userid');
+    var driverid = localStorage.getItem("pickdriver_id");
+    localStorage.setItem("logupdate",""+userid+"*"+driverid+"*not_boarded*User"+clientid+" has not yet boarded with Driver"+driverid+"");logupdate_v2();
+    
     document.getElementById('journey_status_dialog').className = "animated fadeOut";
     setTimeout(function(){
     document.getElementById('journey_status_dialog').style.display = "none";  
@@ -491,7 +544,7 @@ function chat_send_message() {
     
 if (/^\s*$/.test(chat_message)) {
     console.log("Only whitespace. Message blocked.");
-    var chataudio = new Audio('sound/error.mp3');chataudio.play();
+    chataudio_error.play();
     return;
 }
 
@@ -499,7 +552,7 @@ if (/^\s*$/.test(chat_message)) {
             clientid = localStorage.getItem("userid");
 
             $.get("https://250taxi.com/db/journey/chat.php?task=send_message&driverid=" + driverid + "&clientid=" + clientid + "&message=" + chat_message + "&origin=client", function (data) {
-               var chataudio = new Audio('sound/Bell_but-xk-105_hifi.mp3');chataudio.play(); 
+               chataudio.play(); 
             });
 
             document.getElementById("chat_message_input").value = "";

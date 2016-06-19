@@ -122,6 +122,19 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/help.php", function() 
 });
 });
     
+$( "#mainmenu_messages" ).click(function() {
+    
+close_mainmenu();
+    
+var userid = localStorage.getItem("userid");
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/messages.php?userid="+userid+"", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_messages";
+  });
+});
+});
+    
 $( "#mainmenu_becomedriver" ).click(function() {
     
 close_mainmenu();

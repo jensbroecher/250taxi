@@ -162,10 +162,29 @@
 
 
 	</div>
+    
+    <div id="reg_how_found" style="display:none;" class="animated fadeIn">
+
+		<select id="reg_how_found_select">
+        <option value="">How did you hear about us?</option>
+        <option value="Social Media">Social Media</option>
+        <option value="Google">Google</option>
+        <option value="From a friend">From a friend</option>
+        <option value="TV/Newspaper">TV/Newspaper</option>
+        <option value="Flier">Flier</option>
+        </select>
+		
+		<br>
+
+		<button onclick="how_did_you_find_us_complete()">Complete</button>
+
+
+	</div>
+    
 </div>
 
 <script>
-	function check_pin_and_register() {
+    function check_pin_and_register() {
 
 		var pin = document.getElementById("pin").value;
 
@@ -180,7 +199,7 @@
 			
 			if(terms_checkbox == "on") {
 				showindicator();
-				complete_registration();
+				how_did_you_find_us();
 			}
 			else {
 				alert("Please accept our<br>terms & conditions!");
@@ -190,9 +209,27 @@
 	}
 
 
+    function how_did_you_find_us() {
+        
+    hideindicator();
+        
+    document.getElementById("reg_how_found").style.display = "block";
+    document.getElementById("reg_pin").style.display = "none";
+    
+    }
+    
+    function how_did_you_find_us_complete() {
+    
+    reg_how_found_select = document.getElementById("reg_how_found_select").value;
+        
+    if (reg_how_found_select == "") {
+        alert("Please let us know how you heard about us.");
+        return;
+    }
+        
+    complete_registration();
 
-
-
+    }
 
 	$(document).ready(function() {
 		$('#first_name').keyup(function() {

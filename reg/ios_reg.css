@@ -4,7 +4,7 @@
 	position: absolute;
 	bottom: 0px;
 }
-input {
+input, select {
 	width: 80%;
 	line-height: 160%;
 	text-indent: 6px;
@@ -89,7 +89,7 @@ button {
 	text-align: center;
 	border: none 0px;
 	margin-top: 10px;
-	border-radius: 10px;
+	border-radius: 15px;
 }
 button:focus {
 	-webkit-outline: none;
