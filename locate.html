@@ -39,6 +39,9 @@
     <script src="jquery-ui.min.js"></script>
     <script src="jquery.ui.touch-punch.min.js"></script>
     <script src="jquery.touchSwipe.min.js"></script>
+    
+    <script src="startmap.js"></script>
+    
     <script src="mli.js"></script>
     <script src="jquery.knob.js"></script>
     <script src="responsivevoice.js"></script>
@@ -47,17 +50,8 @@
     <script src="preventreload.js"></script>
     <script src="toast.js"></script>
     <script src="date.format.js"></script>
-
+    
     <script>
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-            dogpscheck();
-            screen.lockOrientation('portrait');
-            document.addEventListener("backbutton", function (e) {
-                e.preventDefault();
-            }, false);
-
             $.getScript("https://250taxi.com/app/logupdate.js");
             $.getScript("https://250taxi.com/app/audio_definitions.js");
             $.getScript("https://250taxi.com/app/init.js");
@@ -70,10 +64,21 @@
             $.getScript("https://250taxi.com/app/status_actions.js");
             $.getScript("https://250taxi.com/app/message_center.js");
             $.getScript("https://250taxi.com/app/driver_request_timer.js");
-            $.getScript("https://250taxi.com/app/startmap.js");
             $.getScript("https://250taxi.com/app/searchalternatives.js");
             $.getScript("https://250taxi.com/appcontent/client/summary.js");
             $.getScript("https://250taxi.com/app/locate.js");
+    </script>
+
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            dogpscheck();
+            screen.lockOrientation('portrait');
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+            }, false);
+
         }
 
         function dogpscheck() {
