@@ -39,9 +39,6 @@
     <script src="jquery-ui.min.js"></script>
     <script src="jquery.ui.touch-punch.min.js"></script>
     <script src="jquery.touchSwipe.min.js"></script>
-    
-    <script src="startmap.js"></script>
-    
     <script src="mli.js"></script>
     <script src="jquery.knob.js"></script>
     <script src="responsivevoice.js"></script>
@@ -51,23 +48,7 @@
     <script src="toast.js"></script>
     <script src="date.format.js"></script>
     
-    <script>
-            $.getScript("https://250taxi.com/app/logupdate.js");
-            $.getScript("https://250taxi.com/app/audio_definitions.js");
-            $.getScript("https://250taxi.com/app/init.js");
-            $.getScript("https://250taxi.com/app/ls_reset.js");
-            $.getScript("https://250taxi.com/app/pushmenu/mainmenu.js");
-            $.getScript("https://250taxi.com/app/fareestimate.js");
-            $.getScript("https://250taxi.com/app/searchdrivers.js");
-            $.getScript("https://250taxi.com/app/journey1.js");
-            $.getScript("https://250taxi.com/app/journey_map1.js");
-            $.getScript("https://250taxi.com/app/status_actions.js");
-            $.getScript("https://250taxi.com/app/message_center.js");
-            $.getScript("https://250taxi.com/app/driver_request_timer.js");
-            $.getScript("https://250taxi.com/app/searchalternatives.js");
-            $.getScript("https://250taxi.com/appcontent/client/summary.js");
-            $.getScript("https://250taxi.com/app/locate.js");
-    </script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>  
 
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -93,6 +74,25 @@
         function opensettings() {
             alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
         }
+    </script>
+
+    <script>
+        $.getScript("https://250taxi.com/app/logupdate.js");
+        $.getScript("https://250taxi.com/app/audio_definitions.js");
+        $.getScript("https://250taxi.com/app/init.js");
+        $.getScript("https://250taxi.com/app/ls_reset.js");
+        $.getScript("https://250taxi.com/app/pushmenu/mainmenu.js");
+        $.getScript("https://250taxi.com/app/fareestimate.js");
+        $.getScript("https://250taxi.com/app/searchdrivers.js");
+        $.getScript("https://250taxi.com/app/journey1.js");
+        $.getScript("https://250taxi.com/app/journey_map1.js");
+        $.getScript("https://250taxi.com/app/status_actions.js");
+        $.getScript("https://250taxi.com/app/message_center.js");
+        $.getScript("https://250taxi.com/app/driver_request_timer.js");
+        $.getScript("https://250taxi.com/app/startmap.js");
+        $.getScript("https://250taxi.com/app/searchalternatives.js");
+        $.getScript("https://250taxi.com/appcontent/client/summary.js");
+        $.getScript("https://250taxi.com/app/locate.js");
     </script>
 
     <link rel="stylesheet" type="text/css" href="animate.min.css">
@@ -408,7 +408,7 @@
 
     <div id="overlay"></div>
 
-    <div id="loadingindicator" style="display:block;">
+    <div id="loadingindicator" style="display:none;">
         <img src="282.gif" width="120">
 
         <div onclick="location.reload();" id="loading_reset" class="animated fadeIn">
@@ -937,10 +937,6 @@
 
 
 
-
-    <!--
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>  
-!-->
 
 
 
