@@ -2,166 +2,163 @@
 <html>
 
 <head>
-	<title>250 Taxi</title>
+    <title>250 Taxi</title>
 
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 
-	<link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
-	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
-	<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
-	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-	<link rel="manifest" href="manifest.json">
-	<meta name="msapplication-TileColor" content="#df600a">
-	<meta name="msapplication-TileImage" content="mstile-144x144.png">
-	<meta name="theme-color" content="#000000">
-    
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#df600a">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
+    <meta name="theme-color" content="#000000">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
 
     <script src="cordova.js"></script>
-	<script src="infobubble.js"></script>
+    <script src="infobubble.js"></script>
     <script src="myalert.js"></script>
-	<script src="jquery.min.js"></script>
-	<script src="jquery.validate.min.js"></script>
-	<script src="jquery-ui.min.js"></script>
-	<script src="jquery.ui.touch-punch.min.js"></script>
-	<script src="jquery.touchSwipe.min.js"></script>
-	<script src="mli.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.validate.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
+    <script src="jquery.touchSwipe.min.js"></script>
+    <script src="mli.js"></script>
     <script src="jquery.knob.js"></script>
-	<script src="responsivevoice.js"></script>
-	<script src="materialize.js"></script>
-	<script src="pushmenu/jPushMenu.js"></script>
-	<script src="preventreload.js"></script>
-	<script src="toast.js"></script>
+    <script src="responsivevoice.js"></script>
+    <script src="materialize.js"></script>
+    <script src="pushmenu/jPushMenu.js"></script>
+    <script src="preventreload.js"></script>
+    <script src="toast.js"></script>
     <script src="date.format.js"></script>
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-	
-	<script>
-    $.getScript( "https://250taxi.com/app/logupdate.js" );
-    $.getScript( "https://250taxi.com/app/audio_definitions.js" );
-    $.getScript( "https://250taxi.com/app/init.js" );
-    $.getScript( "https://250taxi.com/app/ls_reset.js" );
-    $.getScript( "https://250taxi.com/app/pushmenu/mainmenu.js" );
-    $.getScript( "https://250taxi.com/app/fareestimate.js" );
-    $.getScript( "https://250taxi.com/app/searchdrivers.js" );
-    $.getScript( "https://250taxi.com/app/journey1.js" );
-    $.getScript( "https://250taxi.com/app/journey_map1.js" );
-    $.getScript( "https://250taxi.com/app/status_actions.js" );
-    $.getScript( "https://250taxi.com/app/message_center.js" );
-    $.getScript( "https://250taxi.com/app/driver_request_timer.js" );
-    $.getScript( "https://250taxi.com/app/startmap.js" );
-    $.getScript( "https://250taxi.com/app/searchalternatives.js" );
-    $.getScript( "https://250taxi.com/appcontent/client/summary.js" );
-    $.getScript( "https://250taxi.com/app/locate.js" );
+
+    <script>
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            dogpscheck();
+            screen.lockOrientation('portrait');
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+            }, false);
+        }
+
+        function dogpscheck() {
+            CheckGPS.check(function win() {
+
+                }
+                , function fail() {
+                    opensettings();
+                });
+        }
+
+        function opensettings() {
+            alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
+        }
+
+        $.getScript("https://250taxi.com/app/logupdate.js");
+        $.getScript("https://250taxi.com/app/audio_definitions.js");
+        $.getScript("https://250taxi.com/app/init.js");
+        $.getScript("https://250taxi.com/app/ls_reset.js");
+        $.getScript("https://250taxi.com/app/pushmenu/mainmenu.js");
+        $.getScript("https://250taxi.com/app/fareestimate.js");
+        $.getScript("https://250taxi.com/app/searchdrivers.js");
+        $.getScript("https://250taxi.com/app/journey1.js");
+        $.getScript("https://250taxi.com/app/journey_map1.js");
+        $.getScript("https://250taxi.com/app/status_actions.js");
+        $.getScript("https://250taxi.com/app/message_center.js");
+        $.getScript("https://250taxi.com/app/driver_request_timer.js");
+        $.getScript("https://250taxi.com/app/startmap.js");
+        $.getScript("https://250taxi.com/app/searchalternatives.js");
+        $.getScript("https://250taxi.com/appcontent/client/summary.js");
+        $.getScript("https://250taxi.com/app/locate.js");
+
+        }
+        
     </script>
 
-	<link rel="stylesheet" type="text/css" href="animate.min.css">
-	<link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
-	<link rel="stylesheet" type="text/css" href="waves.css">
-	<link rel="stylesheet" type="text/css" href="ball-pulse.css">
-	<link rel="stylesheet" type="text/css" href="on_off_switch.css">
-	<link rel="stylesheet" type="text/css" href="animate.min.css">
-	<link rel="stylesheet" type="text/css" href="google_spinner.css">
+    <link rel="stylesheet" type="text/css" href="animate.min.css">
+    <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
+    <link rel="stylesheet" type="text/css" href="waves.css">
+    <link rel="stylesheet" type="text/css" href="ball-pulse.css">
+    <link rel="stylesheet" type="text/css" href="on_off_switch.css">
+    <link rel="stylesheet" type="text/css" href="animate.min.css">
+    <link rel="stylesheet" type="text/css" href="google_spinner.css">
     <link rel="stylesheet" type="text/css" href="toast.css">
-    
+
     <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/journey.css">
-	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/searchdrivers.css">
-	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/modal250.css">
-	<link rel="stylesheet" type="text/css" href="https://250taxi.com/app/locate.css">
-    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/taxis_online_info.css"> 
-    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/detailed_pickup_location.css"> 
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/searchdrivers.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/modal250.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/locate.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/taxis_online_info.css">
+    <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/detailed_pickup_location.css">
     <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/locate_desktop.css">
     <link rel="stylesheet" type="text/css" href="https://250taxi.com/app/functions.css">
-
-	<script>
-		document.addEventListener("deviceready", onDeviceReady, false);
-
-		function onDeviceReady() {
-			dogpscheck();
-			screen.lockOrientation('portrait');
-			document.addEventListener("backbutton", function(e) {
-				e.preventDefault();
-			}, false);
-		}
-
-		function dogpscheck() {
-			CheckGPS.check(function win() {
-
-				},
-				function fail() {
-					opensettings();
-				});
-		}
-
-		function opensettings() {
-			alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location. On iOS go to Settings -> General, scroll to the bottom and go to Reset-> Reset Location & Privacy.")
-		}
-
-	</script>
 
 </head>
 
 <body>
 
-	<div style="display:none;" id="server_com"></div>
+    <div style="display:none;" id="server_com"></div>
 
-	<div class="animated fadeIn" id="instantscreen">
+    <div class="animated fadeIn" id="instantscreen">
 
-		<center>
-			<img id="instantscreen_logo" src="logo.png">
-		</center>
+        <center>
+            <img id="instantscreen_logo" src="logo.png">
+        </center>
 
-		<div id="instantscreen_instructions">
-			<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-				<path fill="#000000" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
-			</svg> 250 Taxi has accepted your request, kindly wait for us to contact you with more instructions.</div>
+        <div id="instantscreen_instructions">
+            <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                <path fill="#000000" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
+            </svg> 250 Taxi has accepted your request, kindly wait for us to contact you with more instructions.</div>
 
-		<div id="time5min"></div>
+        <div id="time5min"></div>
 
-		<div id="instantscreen_customer_care">
-			<div onclick="call_customer_care();" id="call_customer_care_button" class="waves-effect waves-light">
-				<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-				</svg>
-				Call Customer Care
-			</div>
-		</div>
+        <div id="instantscreen_customer_care">
+            <div onclick="call_customer_care();" id="call_customer_care_button" class="waves-effect waves-light">
+                <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
+                </svg>
+                Call Customer Care
+            </div>
+        </div>
 
-	</div>
+    </div>
 
-	<div id="taxis_online_info" class="noselect animated fadeIn"></div>
+    <div id="taxis_online_info" class="noselect animated fadeIn"></div>
 
-	<div id="chat_overlay">
+    <div id="chat_overlay">
 
-		<div id="chat_overlay_close" onclick="close_chat();">
-			<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-			</svg>
-		</div>
+        <div id="chat_overlay_close" onclick="close_chat();">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+        </div>
 
-		<div id="chat_load_messages">
+        <div id="chat_load_messages">
 
-		</div>
+        </div>
 
-		<input placeholder="Type a message" id="chat_message_input">
-		<div class="waves-effect waves-light" id="chat_message_send_button"></div>
+        <input placeholder="Type a message" id="chat_message_input">
+        <div class="waves-effect waves-light" id="chat_message_send_button"></div>
 
-	</div>
-
-
+    </div>
 
 
 
@@ -172,25 +169,25 @@
 
 
 
-	<div id="wallet_overlay">
+    <div id="wallet_overlay">
 
-		<div id="wallet_overlay_x" onclick="close_wallet_overlay();" style="padding:5px;">
-			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-			</svg>
-		</div>
+        <div id="wallet_overlay_x" onclick="close_wallet_overlay();" style="padding:5px;">
+            <svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+        </div>
 
-		<div class="account_option">
+        <div class="account_option">
 
-			<div class="account_option_info">
+            <div class="account_option_info">
 
-				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" />
-				</svg>
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" />
+                </svg>
 
-				Wallet</div>
+                Wallet</div>
 
-			<div id="wallet_balance">Balance: <span id="wallet_balance_amount">
+            <div id="wallet_balance">Balance: <span id="wallet_balance_amount">
     
 <div style="display:inline;" class="la-ball-pulse">
 	<div></div>
@@ -200,471 +197,456 @@
     
     </span> <span id="wallet_balance_currency"></span></div>
 
-		</div>
+        </div>
 
-		<div id="wallet_appcontent"></div>
+        <div id="wallet_appcontent"></div>
 
-	</div>
-
-
-	<div id="account_overlay">
-
-		<div id="account_overlay_x" onclick="close_account_overlay();" style="padding:5px;">
-			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-			</svg>
-		</div>
-
-		<div class="account_option">
-
-			<div id="account_details_info" class="account_option_info">
-
-				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-				</svg>
-
-				Account details</div>
+    </div>
 
 
+    <div id="account_overlay">
 
-			<div id="account_simple_table" class="simple_table">
+        <div id="account_overlay_x" onclick="close_account_overlay();" style="padding:5px;">
+            <svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+        </div>
 
-				<div class="simple_table_desc">Name</div>
-				<div id="account_name" class="simple_table_content">Loading...</div>
+        <div class="account_option">
 
-				<div class="simple_table_desc" style="display:none;">Username</div>
-				<div id="account_username" class="simple_table_content" style="display:none;">Loading...</div>
+            <div id="account_details_info" class="account_option_info">
 
-				<div class="simple_table_desc">E-Mail</div>
-				<div id="account_email" class="simple_table_content">Loading...</div>
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                </svg>
 
-				<div class="simple_table_desc">Phone</div>
-				<div id="account_phone" class="simple_table_content">Loading...</div>
+                Account details</div>
 
-				<div class="simple_table_desc">PIN</div>
-				<div class="simple_table_content">****</div>
 
-			</div>
-            
+
+            <div id="account_simple_table" class="simple_table">
+
+                <div class="simple_table_desc">Name</div>
+                <div id="account_name" class="simple_table_content">Loading...</div>
+
+                <div class="simple_table_desc" style="display:none;">Username</div>
+                <div id="account_username" class="simple_table_content" style="display:none;">Loading...</div>
+
+                <div class="simple_table_desc">E-Mail</div>
+                <div id="account_email" class="simple_table_content">Loading...</div>
+
+                <div class="simple_table_desc">Phone</div>
+                <div id="account_phone" class="simple_table_content">Loading...</div>
+
+                <div class="simple_table_desc">PIN</div>
+                <div class="simple_table_content">****</div>
+
+            </div>
+
             <div style="clear:both;"></div>
-            
+
             <div id="account_button_phone" onclick="change_account('phone');" class="account_button waves-effect waves-light">Update phone</div>
-            
+
             <div id="account_button_pin" onclick="location.href='reg/forgot_password.html';" class="account_button waves-effect waves-light">Update PIN</div>
 
-			<div id="account_button" onclick="change_account('assistance');" class="account_button waves-effect waves-light">Request assistance</div>
+            <div id="account_button" onclick="change_account('assistance');" class="account_button waves-effect waves-light">Request assistance</div>
 
-			<div style="clear:both;"></div>
+            <div style="clear:both;"></div>
 
-			<div id="account_button_after_click" class="animated fadeIn" style="display:none;">E-Mail sent. Please check your inbox!</div>
+            <div id="account_button_after_click" class="animated fadeIn" style="display:none;">E-Mail sent. Please check your inbox!</div>
 
-		</div>
-
-		<div style="clear:both;"></div>
-
-		<div class="account_option">
-
-			<div class="account_option_info">
-
-				<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
-				</svg>
-
-				Voice Guidance</div>
-
-			<div id="audio_choice" class="onoffswitch">
-				<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
-				<label class="onoffswitch-label" for="audio_choice_onoffswitch">
-					<span class="onoffswitch-inner"></span>
-					<span class="onoffswitch-switch"></span>
-				</label>
-			</div>
-
-		</div>
-
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-	<div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
-
-		<img style="width: 100px;" src="282.gif">
-
-	</div>
-
-	<div id="driveroverlay">
-
-		<img style="display:none;" id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
-
-		<div id="driveroverlay_show_details"></div>
-
-		<div id="journey_fare_display">
-			<div id="journey_fare_notice">MINIMUM FARE 1500</div>
-			<div id="journey_fare_display_km" style="display:none;">
-				Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
-			</div>
-			<div id="journey_fare_display_fare" style="display:none;">
-				Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
-			</div>
-			<div id="journey_fare_display_destination">
-				Destination: <span id="journey_fare_display_destination_target"></span>
-			</div>
-
-			<div id="journey_route_info"><span>Suggested Route</span>
-				<br>(You and the driver may choose a different route)</div>
-
-		</div>
-
-	</div>
-
-	<script>
-
-
-	</script>
-	
-	<div id="pickdriver_request_timer" class="animated fadeIn">
-        
-        <div id="pickdriver_request_info">
-        Contacting driver...
         </div>
-		
-	
-      <input class="knob second" data-readOnly="true" data-width="90" data-min="0" data-max="60" data-displayPrevious=true data-fgColor="#148AAE" data-skin="tron" data-thickness=".2" value="60">  
-        
-    
-	
-	
-	</div>
 
-	<div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
-		<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-			<path fill="#000000" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
-		</svg>
-		Pick me now
-	</div>
+        <div style="clear:both;"></div>
 
-	<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
-		<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-			<path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-		</svg>
-		Cancel Request
-	</div>
+        <div class="account_option">
 
+            <div class="account_option_info">
 
-	<div id="journey_accepted_panel">
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
+                </svg>
 
-		<div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel_small" class="waves-effect waves-light">
-			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-			</svg>
-		</div>
+                Voice Guidance</div>
 
-		<div onclick="chat();" id="chat_button" class="waves-effect waves-light">
-			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
-			</svg>
-			Chat
-		</div>
+            <div id="audio_choice" class="onoffswitch">
+                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
+                <label class="onoffswitch-label" for="audio_choice_onoffswitch">
+                    <span class="onoffswitch-inner"></span>
+                    <span class="onoffswitch-switch"></span>
+                </label>
+            </div>
 
-		<div onclick="call();" id="call_button" class="waves-effect waves-light">
-			<svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-			</svg>
-			Call
-		</div>
-
-	</div>
+        </div>
 
 
-	<div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
+    </div>
 
-		<div class="canceldialogbuttontitle">Please state reason</div>
 
-		<div onclick="localStorage.setItem('cancel_reason','driver_late');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_late">Driver was late</div>
 
-		<div onclick="localStorage.setItem('cancel_reason','cant_track');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_notrack">Can't track driver</div>
 
-		<div onclick="localStorage.setItem('cancel_reason','cant_reach');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_nocom">Can't reach driver</div>
 
-		<div onclick="localStorage.setItem('cancel_reason','other');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
 
-		<div style="padding: 5px; background-color: darkgrey;">
 
-			<div onclick="$('#driveroverlay_journey_cancel_dialog').fadeOut('slow');" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
-		</div>
 
-	</div>
 
-	<div id="pages">
-		<div id="pagestarget">
 
-		</div>
-	</div>
+    <div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
 
-	<div id="overlay"></div>
+        <img style="width: 100px;" src="282.gif">
 
-	<div id="loadingindicator" style="display:block;">
-		<img src="282.gif" width="120">
-        
+    </div>
+
+    <div id="driveroverlay">
+
+        <img style="display:none;" id="driveroverlay_back_to_list" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="reloadPositionStart();driveroverlay_back_to_list_x();">
+
+        <div id="driveroverlay_show_details"></div>
+
+        <div id="journey_fare_display">
+            <div id="journey_fare_notice">MINIMUM FARE 1500</div>
+            <div id="journey_fare_display_km" style="display:none;">
+                Driven Kilometers: <span id="journey_fare_display_km_count">0</span>
+            </div>
+            <div id="journey_fare_display_fare" style="display:none;">
+                Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
+            </div>
+            <div id="journey_fare_display_destination">
+                Destination: <span id="journey_fare_display_destination_target"></span>
+            </div>
+
+            <div id="journey_route_info"><span>Suggested Route</span>
+                <br>(You and the driver may choose a different route)</div>
+
+        </div>
+
+    </div>
+
+    <script>
+    </script>
+
+    <div id="pickdriver_request_timer" class="animated fadeIn">
+
+        <div id="pickdriver_request_info">
+            Contacting driver...
+        </div>
+
+
+        <input class="knob second" data-readOnly="true" data-width="90" data-min="0" data-max="60" data-displayPrevious=true data-fgColor="#148AAE" data-skin="tron" data-thickness=".2" value="60">
+
+
+
+
+    </div>
+
+    <div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
+        <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#000000" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+        </svg>
+        Pick me now
+    </div>
+
+    <div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
+        <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+        </svg>
+        Cancel Request
+    </div>
+
+
+    <div id="journey_accepted_panel">
+
+        <div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel_small" class="waves-effect waves-light">
+            <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
+            </svg>
+        </div>
+
+        <div onclick="chat();" id="chat_button" class="waves-effect waves-light">
+            <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
+            </svg>
+            Chat
+        </div>
+
+        <div onclick="call();" id="call_button" class="waves-effect waves-light">
+            <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
+            </svg>
+            Call
+        </div>
+
+    </div>
+
+
+    <div id="driveroverlay_journey_cancel_dialog" class="animated zoomIn">
+
+        <div class="canceldialogbuttontitle">Please state reason</div>
+
+        <div onclick="localStorage.setItem('cancel_reason','driver_late');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_late">Driver was late</div>
+
+        <div onclick="localStorage.setItem('cancel_reason','cant_track');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_notrack">Can't track driver</div>
+
+        <div onclick="localStorage.setItem('cancel_reason','cant_reach');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_nocom">Can't reach driver</div>
+
+        <div onclick="localStorage.setItem('cancel_reason','other');cancel_reason_close();" class="canceldialogbutton" id="driveroverlay_journey_cancel_dialog_other">Other</div>
+
+        <div style="padding: 5px; background-color: darkgrey;">
+
+            <div onclick="$('#driveroverlay_journey_cancel_dialog').fadeOut('slow');" class="canceldialogbutton" style="color: black;" id="driveroverlay_journey_cancel_dialog_cancel">Cancel</div>
+        </div>
+
+    </div>
+
+    <div id="pages">
+        <div id="pagestarget">
+
+        </div>
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="loadingindicator" style="display:block;">
+        <img src="282.gif" width="120">
+
         <div onclick="location.reload();" id="loading_reset" class="animated fadeIn">
             <b>Not connecting?</b>
             <br>Try again
         </div>
-    
+
     </div>
 
-	<script>
+    <script>
+    </script>
+
+    <nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
 
 
-	</script>
-
-	<nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
-
-        
         <br>
         <span onclick="logout();" class="noSwipe" id="mainmenu_userinfo">
         <span id="mainmenu_email"></span>
         <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="white" d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z" />
-</svg>
+            <path fill="white" d="M14.08,15.59L16.67,13H7V11H16.67L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5C3,3.89 3.89,3 5,3H19Z" />
+        </svg>
         </span>
-		<br>
+        <br>
 
         <span id="mainmenu">
 		
         </span>
-        
-		
-	</nav>
-
-	<div onmousedown="menubtn_audio.play();" id="menubutton" class="toggle-menu menu-left"> </div>
-
-	<script>
 
 
-	</script>
+    </nav>
 
-	<div id="locationfinderdialog">
+    <div onmousedown="menubtn_audio.play();" id="menubutton" class="toggle-menu menu-left"> </div>
 
-		<div id="locationfinderdialog_x">
-			<svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
-				<path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-			</svg>
-		</div>
+    <script>
+    </script>
 
-		<input style="display:none" id="lat" name="lat" val="40.713956">
-		<input style="display:none" id="long" name="long" val="74.006653">
-        
+    <div id="locationfinderdialog">
+
+        <div id="locationfinderdialog_x">
+            <svg style="width:24px;height:24px; float:right; margin-top:5px; margin-right: 5px;" viewBox="0 0 24 24">
+                <path fill="#000000" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+            </svg>
+        </div>
+
+        <input style="display:none" id="lat" name="lat" val="40.713956">
+        <input style="display:none" id="long" name="long" val="74.006653">
+
         <input placeholder="Landmark / Street" id="searchbyaddress" value="">
-        
+
         <button id="searchbyaddress_clear">
         </button>
-        
-        
-        
-        
-        
-        
-
-		<div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
-
-			<svg style="vertical-align: middle; width: 24px; height: 24px;" viewBox="0 0 24 24">
-				<path fill="#FFFFFF" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-			</svg>
-
-			Search
-		</div>
-
-	</div>
-
-	<script>
 
 
-	</script>
-
-	<div id="locationfieldholder">
-		<div id="locationfield"></div>
-		<input type="text" id="inlocationfield">
-	</div>
-
-	<script>
 
 
-	</script>
-
-	<div id="customercarebuttonside" class="draggable">
-
-		<div id="swipehand"></div>
-
-		<div id="expanded_customer_care" style="display:none;" class="animated fadeIn">
-
-			<div id="expanded_customer_care_close"></div>
-
-			<div id="customercare_call" onclick="customercare_call();">
-
-				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
-				</svg>
-			</div>
-
-			<div id="customercare_sms" onclick="customercare_sms();">
-				<svg style="width:24px;height:24px" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z" />
-				</svg>
-			</div>
-
-		</div>
-
-	</div>
-
-	<div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
-
-	<div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
-    
 
 
-	<div id="calltaxiui">
-		
-		
-		
-		
-    
+
+        <div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
+
+            <svg style="vertical-align: middle; width: 24px; height: 24px;" viewBox="0 0 24 24">
+                <path fill="#FFFFFF" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+            </svg>
+
+            Search
+        </div>
+
+    </div>
+
+    <script>
+    </script>
+
+    <div id="locationfieldholder">
+        <div id="locationfield"></div>
+        <input type="text" id="inlocationfield">
+    </div>
+
+    <script>
+    </script>
+
+    <div id="customercarebuttonside" class="draggable">
+
+        <div id="swipehand"></div>
+
+        <div id="expanded_customer_care" style="display:none;" class="animated fadeIn">
+
+            <div id="expanded_customer_care_close"></div>
+
+            <div id="customercare_call" onclick="customercare_call();">
+
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z" />
+                </svg>
+            </div>
+
+            <div id="customercare_sms" onclick="customercare_sms();">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z" />
+                </svg>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="locationbutton" class="menugps" onclick="reloadPositionStart();audio_update_location();"></div>
+
+    <div id="customercarebutton" class="menucustomercare" onclick="customercare();"></div>
+
+
+
+    <div id="calltaxiui">
+
+
+
+
+
         <div id="ride_now_button">
-            
-        <div class="start_buttons">
-        
-        <div class="start_button_pick">
-            Pick me up
-        </div>
-            
-        <div class="start_button_time">
-            Now
-        </div>
-            
-        </div>
-        
-        </div>
-		
-		
-		
-		
-		
-		
-		
-        
-        <div id="ride_later_button">
-            
+
             <div class="start_buttons">
-            
-            <div class="start_button_pick">
-                Book a
+
+                <div class="start_button_pick">
+                    Pick me up
+                </div>
+
+                <div class="start_button_time">
+                    Now
+                </div>
+
             </div>
-                
-            <div class="start_button_time">
-                Ride
+
+        </div>
+
+
+
+
+
+
+
+
+        <div id="ride_later_button">
+
+            <div class="start_buttons">
+
+                <div class="start_button_pick">
+                    Book a
+                </div>
+
+                <div class="start_button_time">
+                    Ride
+                </div>
+
             </div>
-                
+
+        </div>
+
+
+
+
+
+
+        <div id="call_now_button">
+
+            <div class="start_buttons">
+
+                <div class="start_button_pick">
+                    Dial a
+                </div>
+
+                <div class="start_button_time">
+                    250 Taxi
+                </div>
+
             </div>
-            
+
         </div>
-			
-			
-			
-			
-			
-			
-		 <div id="call_now_button">
-            
-        <div class="start_buttons">
-        
-        <div class="start_button_pick">
-            Dial a
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div id="map"></div>
+
+    <script>
+    </script>
+
+
+    <div id="journey_status_dialog">
+
+        <div class="sdbox" id="journey_status_dialog_window">
+
+            <div id="journey_status_dialog_title" class="sdtitle"></div>
+
+            <p id="journey_status_dialog_content"></p>
+
         </div>
-            
-        <div class="start_button_time">
-            250 Taxi
+
+    </div>
+
+
+    <div id="getfareestimate" class="animated fadeIn">
+
+        <div class="sdbox">
+
+            <img id="getfareestimate_back" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="getfareestimate_close();">
+
+            <div class="sdtitle">Fare Estimate</div>
+
+            <div id="getfareestimate_price"></div>
+
+            <div id="getfareestimate_pickup_holder">Pickup:
+                <span id="getfareestimate_pickup"></span>
+            </div>
+
+            <div id="getfareestimate_destination_holder">Destination:
+                <span id="getfareestimate_destination"></span>
+            </div>
+
+            <div id="getfareestimate_distance_holder">Distance:
+                <span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
+            </div>
+
+
+
+            <div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ getdrivers(); }, 1000);">
+
+                <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+                </svg>
+
+                NEXT</div>
+
         </div>
-            
-        </div>
-        
-        </div>	
-			
-			
-			
-			
-			
-			
-            
-        </div>
-    
-
-
-	<div id="map"></div>
-
-	<script>
-
-
-	</script>
-
-
-	<div id="journey_status_dialog">
-
-		<div class="sdbox" id="journey_status_dialog_window">
-
-			<div id="journey_status_dialog_title" class="sdtitle"></div>
-
-			<p id="journey_status_dialog_content"></p>
-
-		</div>
-
-	</div>
-
-
-	<div id="getfareestimate" class="animated fadeIn">
-
-		<div class="sdbox">
-			
-<img id="getfareestimate_back" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="getfareestimate_close();">
-			
-			<div class="sdtitle">Fare Estimate</div>
-
-			<div id="getfareestimate_price"></div>
-
-			<div id="getfareestimate_pickup_holder">Pickup:
-				<span id="getfareestimate_pickup"></span>
-			</div>
-
-			<div id="getfareestimate_destination_holder">Destination:
-				<span id="getfareestimate_destination"></span>
-			</div>
-
-			<div id="getfareestimate_distance_holder">Distance:
-				<span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
-			</div>
-
-
-
-			<div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ getdrivers(); }, 1000);">
-
-				<svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
-				</svg>
-
-				NEXT</div>
-
-		</div>
-	</div>
-
-
-	
+    </div>
 
 
 
@@ -672,120 +654,122 @@
 
 
 
-	<div id="searchdrivers">
-
-		<div id="mydestination" class="sdbox">
-
-			<div class="searchdrivers_x">
-				<div onclick="searchdrivers_x();">
-					<svg viewBox="0 0 24 24">
-						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-					</svg>
-				</div>
-			</div>
 
 
-			<div class="sdtitle">My Destination</div>
-			
-			<div class="fromto">
-		from		
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#000000" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-</svg>
-				
-				</div>
-			<input onblur="taxirequest_pickup_estimate();" class="sdinput minus2px" placeholder="Pickup" id="taxirequest_pickup_estimate">
-			<div class="fromto">
-		to		
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="#000000" d="M14.4,6H20V16H13L12.6,14H7V21H5V4H14L14.4,6M14,14H16V12H18V10H16V8H14V10L13,8V6H11V8H9V6H7V8H9V10H7V12H9V10H11V12H13V10L14,12V14M11,10V8H13V10H11M14,10H16V12H14V10Z" />
-</svg>
-				
-				</div>
-			<input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination">
 
-			<div class="waves-effect waves-light sdbutton" onclick="get_fare_estimate();">
+    <div id="searchdrivers">
 
-				<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
-				</svg>
+        <div id="mydestination" class="sdbox">
 
-				Fare estimate
-			</div>
+            <div class="searchdrivers_x">
+                <div onclick="searchdrivers_x();">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+                    </svg>
+                </div>
+            </div>
 
-			<div style="margin-top: 0px; margin-bottom: 10px;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
-                
+
+            <div class="sdtitle">My Destination</div>
+
+            <div class="fromto">
+                from
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                </svg>
+
+            </div>
+            <input onblur="taxirequest_pickup_estimate();" class="sdinput minus2px" placeholder="Pickup" id="taxirequest_pickup_estimate">
+            <div class="fromto">
+                to
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M14.4,6H20V16H13L12.6,14H7V21H5V4H14L14.4,6M14,14H16V12H18V10H16V8H14V10L13,8V6H11V8H9V6H7V8H9V10H7V12H9V10H11V12H13V10L14,12V14M11,10V8H13V10H11M14,10H16V12H14V10Z" />
+                </svg>
+
+            </div>
+            <input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination">
+
+            <div class="waves-effect waves-light sdbutton" onclick="get_fare_estimate();">
+
                 <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-				</svg>
-                
-				Skip estimate</div>
+                    <path fill="#FFFFFF" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
+                </svg>
 
-		</div>
-
-		<div id="citynavigator_start" class="sdbox">
-			<div style="display:none;" class="sdtitle">City Navigator</div>
-
-			<div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
-
-				<svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-					<path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
-				</svg> Pick a place
-			</div>
-
-		</div>
-        
-        
-
-
-
-
-
-
-
-
-		<div id="driverlist" style="display:none;" class="sdbox">
-            
-            <div style="display:none;">
-            <button onclick="driverlist_scanner_up();">Up</button>
-            <button onclick="driverlist_scanner_down();">Down</button>
+                Fare estimate
             </div>
 
-			<div class="searchdrivers_x">
-				<div onclick="searchdrivers_x();">
-					<svg viewBox="0 0 24 24">
-						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-					</svg>
-				</div>
-			</div>
+            <div style="margin-top: 0px; margin-bottom: 10px;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
 
-			<div class="sdtitle">Please select driver</div>
+                <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                </svg>
+
+                Skip estimate</div>
+
+        </div>
+
+        <div id="citynavigator_start" class="sdbox">
+            <div style="display:none;" class="sdtitle">City Navigator</div>
+
+            <div class="waves-effect waves-light sdbutton" onclick="citynavigator();">
+
+                <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="#FFFFFF" d="M6,21V8A2,2 0 0,1 8,6L16,3V6A2,2 0 0,1 18,8V21H12V16H8V21H6M14,19H16V16H14V19M8,13H10V9H8V13M12,13H16V9H12V13Z" />
+                </svg> Pick a place
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div id="driverlist" style="display:none;" class="sdbox">
+
+            <div style="display:none;">
+                <button onclick="driverlist_scanner_up();">Up</button>
+                <button onclick="driverlist_scanner_down();">Down</button>
+            </div>
+
+            <div class="searchdrivers_x">
+                <div onclick="searchdrivers_x();">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="sdtitle">Please select driver</div>
 
             <script>
                 function driverlist_scanner_up() {
-                var elmnt = document.getElementById("driverlist_scanner");
-                elmnt.scrollTop += 200;
+                    var elmnt = document.getElementById("driverlist_scanner");
+                    elmnt.scrollTop += 200;
                 }
+
                 function driverlist_scanner_down() {
-                var elmnt = document.getElementById("driverlist_scanner");
-                elmnt.scrollTop -= 200;
+                    var elmnt = document.getElementById("driverlist_scanner");
+                    elmnt.scrollTop -= 200;
                 }
             </script>
 
-			<div id="driverlist_scanner">
+            <div id="driverlist_scanner">
 
-				<div class="loader">
-					<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
-						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-					</svg>
-				</div>
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                    </svg>
+                </div>
 
-			</div>
-            
-            
-		</div>
+            </div>
 
 
+        </div>
 
 
 
@@ -794,191 +778,171 @@
 
 
 
-		<div id="citynavigator" style="display:none;" class="sdbox">
 
-			<div class="searchdrivers_x">
-				<div onclick="searchdrivers_x();">
-					<svg viewBox="0 0 24 24">
-						<path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-					</svg>
-				</div>
-			</div>
 
-			<div class="sdtitle">City Navigator</div>
+        <div id="citynavigator" style="display:none;" class="sdbox">
 
-			<select id="citynavigator_category">
-				<option>Shopping</option>
-				<option>Hotels</option>
-				<option>Restaurants</option>
-				<option>Police</option>
-				<option>Banks</option>
-				<option>Forex</option>
-				<option>Insurance</option>
-				<option>Petrol</option>
-				<option>Schools</option>
-				<option>Hospitals</option>
-				<option>Pharmacies</option>
-				<option>Sights</option>
-				<option>Government</option>
-				<option>Clubs</option>
-			</select>
+            <div class="searchdrivers_x">
+                <div onclick="searchdrivers_x();">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+                    </svg>
+                </div>
+            </div>
 
-			<div id="citynavigatorlist">
+            <div class="sdtitle">City Navigator</div>
 
-				<div class="loader">
+            <select id="citynavigator_category">
+                <option>Shopping</option>
+                <option>Hotels</option>
+                <option>Restaurants</option>
+                <option>Police</option>
+                <option>Banks</option>
+                <option>Forex</option>
+                <option>Insurance</option>
+                <option>Petrol</option>
+                <option>Schools</option>
+                <option>Hospitals</option>
+                <option>Pharmacies</option>
+                <option>Sights</option>
+                <option>Government</option>
+                <option>Clubs</option>
+            </select>
 
-					<br>
-					<br>
+            <div id="citynavigatorlist">
 
-					<svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
-						<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-					</svg>
-				</div>
+                <div class="loader">
 
-			</div>
-		</div>
+                    <br>
+                    <br>
 
-		
-		<div style="display:block;" id="journey_fare_load"></div>
+                    <svg class="circular" viewBox="25 25 50 50" style="vertical:align: middle;">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div style="display:block;" id="journey_fare_load"></div>
 
 
 
     </div>
 
-<input type="hidden" name="angle" id="angle">
-	<div name="angle1" id="angle1"></div>
-	
-<div id="preload_taxi_img" style="display:none;">
-	<img src="taxi/taxi_0.svg">
-	<img src="taxi/taxi_10.svg">
-	<img src="taxi/taxi_20.svg">
-	<img src="taxi/taxi_30.svg">
-	<img src="taxi/taxi_40.svg">
-	<img src="taxi/taxi_50.svg">
-	<img src="taxi/taxi_60.svg">
-	<img src="taxi/taxi_70.svg">
-	<img src="taxi/taxi_80.svg">
-	<img src="taxi/taxi_90.svg">
-	<img src="taxi/taxi_100.svg">
-	<img src="taxi/taxi_110.svg">
-	<img src="taxi/taxi_120.svg">
-	<img src="taxi/taxi_130.svg">
-	<img src="taxi/taxi_140.svg">
-	<img src="taxi/taxi_150.svg">
-	<img src="taxi/taxi_160.svg">
-	<img src="taxi/taxi_170.svg">
-	<img src="taxi/taxi_180.svg">
-	<img src="taxi/taxi_190.svg">
-	<img src="taxi/taxi_200.svg">
-	<img src="taxi/taxi_210.svg">
-	<img src="taxi/taxi_220.svg">
-	<img src="taxi/taxi_230.svg">
-	<img src="taxi/taxi_240.svg">		
-	<img src="taxi/taxi_250.svg">
-	<img src="taxi/taxi_260.svg">
-	<img src="taxi/taxi_270.svg">
-	<img src="taxi/taxi_280.svg">
-	<img src="taxi/taxi_290.svg">
-	<img src="taxi/taxi_300.svg">
-	<img src="taxi/taxi_310.svg">
-	<img src="taxi/taxi_320.svg">
-	<img src="taxi/taxi_330.svg">
-	<img src="taxi/taxi_340.svg">
-	<img src="taxi/taxi_350.svg">
-	<img src="taxi/taxi_360.svg">
-    <img src="taxi/taxi_NaN.svg">
-</div>
-    
+    <input type="hidden" name="angle" id="angle">
+    <div name="angle1" id="angle1"></div>
 
-
-<div id="mydetailedlocation" class="animated fadeIn">
-
-    <div id="mydetailedlocation_dialog">
-
-        <div id="mydetailedlocation_content">
-            <svg onclick="mydetailedlocation_close();" style="width:24px;height:24px;padding:10px;right:0px;position:absolute;margin-top:-10px;" viewBox="0 0 24 24">
-                <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-            </svg>
-
-            <div class="sdtitle">My pickup location</div>
-            
-            
-            
-<div class="pickup_card">
-    
-    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-        <path fill="white" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-    </svg><span id="mydetailedlocation_street"></span>
-
-    <div id="pickup_location_details">
-        <select name="list_of_nearby_places" id="list_of_nearby_places"></select>
+    <div id="preload_taxi_img" style="display:none;">
+        <img src="taxi/taxi_0.svg">
+        <img src="taxi/taxi_10.svg">
+        <img src="taxi/taxi_20.svg">
+        <img src="taxi/taxi_30.svg">
+        <img src="taxi/taxi_40.svg">
+        <img src="taxi/taxi_50.svg">
+        <img src="taxi/taxi_60.svg">
+        <img src="taxi/taxi_70.svg">
+        <img src="taxi/taxi_80.svg">
+        <img src="taxi/taxi_90.svg">
+        <img src="taxi/taxi_100.svg">
+        <img src="taxi/taxi_110.svg">
+        <img src="taxi/taxi_120.svg">
+        <img src="taxi/taxi_130.svg">
+        <img src="taxi/taxi_140.svg">
+        <img src="taxi/taxi_150.svg">
+        <img src="taxi/taxi_160.svg">
+        <img src="taxi/taxi_170.svg">
+        <img src="taxi/taxi_180.svg">
+        <img src="taxi/taxi_190.svg">
+        <img src="taxi/taxi_200.svg">
+        <img src="taxi/taxi_210.svg">
+        <img src="taxi/taxi_220.svg">
+        <img src="taxi/taxi_230.svg">
+        <img src="taxi/taxi_240.svg">
+        <img src="taxi/taxi_250.svg">
+        <img src="taxi/taxi_260.svg">
+        <img src="taxi/taxi_270.svg">
+        <img src="taxi/taxi_280.svg">
+        <img src="taxi/taxi_290.svg">
+        <img src="taxi/taxi_300.svg">
+        <img src="taxi/taxi_310.svg">
+        <img src="taxi/taxi_320.svg">
+        <img src="taxi/taxi_330.svg">
+        <img src="taxi/taxi_340.svg">
+        <img src="taxi/taxi_350.svg">
+        <img src="taxi/taxi_360.svg">
+        <img src="taxi/taxi_NaN.svg">
     </div>
-    
-    <input placeholder="Where are you standing?" id="taxirequest_detailedlocation">
 
-</div>            
 
-            
-            
-            <input onchange="pickup_booking_date_check();" onblur="pickup_booking_date_check();" id="pickup_booking_date" type="datetime-local">
-            
-            
-            
-            
-            
-            <div id="detailedlocation_date_time_button" class="waves-effect waves-light sdbutton_booklater_gray">Set date/time</div>
-            
-            
-            
-            <div class="waves-effect waves-light sdbutton_booklater" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">Next</div>
 
-            
-            
-            <input id="ddtest">
-            
-            
+    <div id="mydetailedlocation" class="animated fadeIn">
+
+        <div id="mydetailedlocation_dialog">
+
+            <div id="mydetailedlocation_content">
+                <svg onclick="mydetailedlocation_close();" style="width:24px;height:24px;padding:10px;right:0px;position:absolute;margin-top:-10px;" viewBox="0 0 24 24">
+                    <path fill="grey" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
+                </svg>
+
+                <div class="sdtitle">My pickup location</div>
+
+
+
+                <div class="pickup_card">
+
+                    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                        <path fill="white" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                    </svg><span id="mydetailedlocation_street"></span>
+
+                    <div id="pickup_location_details">
+                        <select name="list_of_nearby_places" id="list_of_nearby_places"></select>
+                    </div>
+
+                    <input placeholder="Where are you standing?" id="taxirequest_detailedlocation">
+
+                </div>
+
+
+
+                <input onchange="pickup_booking_date_check();" onblur="pickup_booking_date_check();" id="pickup_booking_date" type="datetime-local">
+
+
+
+
+
+                <div id="detailedlocation_date_time_button" class="waves-effect waves-light sdbutton_booklater_gray">Set date/time</div>
+
+
+
+                <div class="waves-effect waves-light sdbutton_booklater" onclick="setTimeout(function(){ detailedlocation_complete(); }, 1000);">Next</div>
+
+
+
+                <input id="ddtest">
+
+
+            </div>
         </div>
     </div>
-</div>
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-    
-    
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </body>
+
+
+
+
+
+
+
+    <!--
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>  
+!-->
+
+
+
+
+</body>
 
 </html>
