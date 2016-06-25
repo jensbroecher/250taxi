@@ -1,3 +1,8 @@
+function open_dial_service() {
+    document.getElementById("search_animation").style.display = "none";
+    $( "#call_now_button" ).click();
+}
+
 function getfareestimate_close() {
 	document.getElementById("getfareestimate").style.display = "none";
 	document.getElementById("mydestination").style.display = "block";
@@ -229,6 +234,10 @@ var ride_start = localStorage.getItem("ride_start");
 if (ride_start == "now") {
     
 document.getElementById("search_animation").style.display = "block";
+ 
+setTimeout(function(){
+    document.getElementById("search_animation_timeout").style.display = "block";
+}, 20000);
 
 // alert("Please select a driver from the list to take you to "+taxirequest_destination+". If the driver is not available, we will find a different one for you.");
     

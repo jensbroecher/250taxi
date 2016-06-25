@@ -27,6 +27,31 @@
     margin-bottom: 10px;
     border-radius: 10px;
 }
+#search_animation_timeout {
+    position: fixed;
+    bottom: 5px;
+    left: 0px;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    margin-left: 5%;
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: none;
+}
+#search_animation_title {
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+}
 #taxirequest_destination:focus {
         position: fixed;
         top: 0px;

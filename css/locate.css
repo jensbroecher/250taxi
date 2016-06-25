@@ -32,14 +32,14 @@ body {
     display: none;
 }
 #search_animation .searcher {
-    margin-top: 47%;
+    margin-top: 27%;
     padding: 10px;
     border-radius: 6px;
     background-color: white;
     box-shadow: 1px 1px 20px 0.7px rgba(0, 0, 0, 0.5);
 }
 #search_animation .searcher_logo {
-    margin-top: 15%;
+    margin-top: 10%;
     width: 100px;
 }
 

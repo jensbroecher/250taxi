@@ -506,7 +506,7 @@ lookup.push(lat1+","+lng1); */
 		/**********************/
 			if( typeof markers[taxi_id] !== 'undefined'){
 			var arg;
-			var contentString = '<div style="color:white;">&nbsp;<b>'+driverName+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="https://www.250taxi.com/driverpics/'+taxi_id+'.jpg" onError="this.src = \'css/no-user-image.gif\'"></div>';
+			var contentString = '<div style="color:white;">&nbsp;<b>'+driverName+'</b><IMG BORDER="0" ALIGN="Left" WIDTH="40" SRC="https://www.250taxi.com/driverpics/'+taxi_id+'.jpg" onError="this.src = \'https://www.250taxi.com/app/no-user-image.gif\'"></div>';
 			var currentmarker=markers[taxi_id];
 			google.maps.event.addListener(currentmarker, 'click', (function(currentmarker, arg) {
                return function() {				   
