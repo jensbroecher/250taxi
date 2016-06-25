@@ -705,7 +705,7 @@ showindicator();
         
         document.getElementById("searchdrivers").style.display = "none";
         document.getElementById("calltaxiui").style.display = "block";
-        alert("We received your booking, customer care is about to call you in a few for a follow up. You can check your status in the bookings tab.);
+        alert("We received your booking, customer care is about to call you in a few for a follow up. You can check your status in the bookings tab.");
         
         hideindicator(); 
         
