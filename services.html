@@ -127,7 +127,7 @@ function letsgo(service) {
     display: none; 
 }
 body {
-    background-image: url(reg/kigali_blur.jpg);
+    background-image: url(../reg/kigali_blur.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -177,20 +177,6 @@ body, html {
     background-color: rgba(255,255,255,1);
     transition: all 0.3s;
 }
-#loadingindicator {
-	background-color: black;
-	position: absolute;
-	z-index: 10000000000000000;
-	height: 100%;
-	width: 100%;
-	left: 0px;
-	top: 0px;
-	text-align: center;
-}
-#loadingindicator img {
-	margin-top: 100px;
-	width: 160px;
-}
 </style>
     
 <script>
@@ -210,7 +196,7 @@ document.getElementById("loadingindicator").style.display = "none";
 <body>
     
 <div id="loadingindicator">
-<img src="282.gif" width="120">
+<img style="width: 60px !important;" src="282.gif">
 </div>
 
 <div id="loginregister">

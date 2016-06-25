@@ -25,9 +25,9 @@ $.get( "https://250taxi.com/db/account/get_details.php?task=email&username="+use
 document.getElementById("mainmenu_email").innerHTML = data;
 });
     
-$( "#mainmenu" ).load( "https://250taxi.com/appcontent/mainmenu.php", function() {
-load_mainmenu();
-});
+// $( "#mainmenu" ).load( "https://250taxi.com/appcontent/mainmenu.php", function() {
+//load_mainmenu();
+// });
 
 });
 
@@ -122,6 +122,17 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/help.php", function() 
 });
 });
     
+$( "#mainmenu_bookings" ).click(function() {
+    
+close_mainmenu();
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/bookings.php", function() {
+  $( "#pages" ).fadeIn( "slow", function() {
+    overlay_open = "mainmenu_bookings";
+  });
+});
+});
+    
 $( "#mainmenu_messages" ).click(function() {
     
 close_mainmenu();
@@ -162,7 +173,7 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/corporate.php", functi
 });
 	
 $( "#mainmenu_history" ).click(function() {
-    
+
 close_mainmenu();
 	
 var username = localStorage.getItem("username");

@@ -1,0 +1,247 @@
+#journey_status_dialog {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        z-index: 1000;
+        display: none;
+}
+#journey_status_dialog_window {
+        width: 100%;
+        margin-top: 0px;
+        border-radius: 0px;
+        margin: 0px;
+}
+#journey_status_dialog_content {
+    padding: 5px;
+    text-align: center;
+    margin-top: -10px;
+    padding-bottom: 10px;
+}
+#journey_accepted_panel {
+    position: absolute;
+    background-image: url(gradient.png);
+    background-size: 100% 100%;
+    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 80px;
+    bottom: 0px;
+    z-index: 100;
+    display:none;
+}
+#driveroverlay_journey_cancel_small {
+    font-family: Roboto, sans-serif;
+	font-size: 14px;
+    background-color: red;
+    text-align: center;
+    color: white;
+    left: 80%;
+    width: 15%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 20px;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
+#chat_button {
+    font-family: Roboto, sans-serif;
+	font-size: 14px;
+    background-color: black;
+    text-align: center;
+    color: white;
+    left: 40%;
+    width: 30%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 20px;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
+#call_button {
+    font-family: Roboto, sans-serif;
+	font-size: 14px;
+    background-color: black;
+    text-align: center;
+    color: white;
+    left: 5%;
+    width: 30%;
+    padding-top: 10px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 20px;
+    box-shadow: 2px 2px 6px 0.7px rgba(0,0,0,0.5);
+}
+.jd_yellow {
+    
+}
+.jd_button {
+        font-family: Roboto, sans-serif;
+	    font-size: 14px;
+        background-color: lightgray;
+        text-align: center;
+        color: black;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        width: 50%;
+        max-width: 200px;
+        white-space: nowrap;
+        border-radius: 15px;
+}
+
+
+
+
+
+
+
+
+
+#chat_overlay {
+    position: absolute;
+    display: none;
+    background-color: darkslategrey;
+    height: 45%;
+    width: 100%;
+    z-index: 200;
+    bottom: 0px;
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.5);
+}
+#chat_overlay_close {
+    position: absolute;
+    width: 100%;
+    height: 28px;
+    margin-top: -32px;
+    text-align: right;
+    padding-top: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+#chat_message_input {
+    border: none;
+    outline-width: 0;
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+    height: 40px;
+    text-indent: 7px;
+    width: 90%;
+    left: 0%;
+    padding-left: 0%;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+}
+#chat_message_send_button {
+    position: fixed;
+    background-color: #1389AE;
+    background-image: url(../journey/send.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    background-size: 80% 80%;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    height: 40px;
+    width: 10%;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+}
+.chat_time {
+    float: right;
+    color: darkgrey;
+    font-size: 80%;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    display: none;
+}
+#chat_new_from_driver, #chat_new_from_client {
+    display: none;
+}
+#chat_load_messages {
+    height: 100%;
+    overflow: scroll;
+}
+.chat_message_client {
+    font-family: sans-serif;
+    background-color: white;
+    width: 70%;
+    float: right;
+    padding: 7px;
+    padding-left: 35px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    background-image: url(message-text-outline.svg);
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    word-break: break-all;
+}
+.chat_message_driver {
+    font-family: sans-serif;
+    background-color: #FFFF00;
+    width: 70%;
+    float: left;
+    padding: 7px;
+    padding-left: 35px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    background-image: url(taxi.svg);
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    word-break: break-all;
+}
+.chat_message_driver .chat_arrow_right {
+    display: none;
+}
+.chat_message_client .chat_arrow_left {
+    display: none;
+}
+
+
+
+#journey_fare_display {
+    display: none;
+}
+#journey_fare_display_km {
+    font-size: 150%;
+    font-weight: 200;
+    text-align: center;
+    margin-top: 25px;
+}
+#journey_fare_display_fare {
+    font-size: 180%;
+    font-weight: 200;
+    text-align: center;
+}
+#journey_fare_notice {
+	margin-top: 20px;
+    font-size: 160%;
+    font-weight: 200;
+    text-align: center;
+}
+#journey_fare_display_destination {
+    font-size: 100%;
+    font-weight: 400;
+    margin-top: 25px;
+    text-align: center;
+}
+#journey_fare_display_fare span, #journey_fare_display_km span {
+    font-weight: 400;
+}
+#journey_route_info {
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    font-size: 80%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#journey_route_info span {
+    font-size: 120% !important;
+}

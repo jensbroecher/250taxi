@@ -7,7 +7,7 @@
 
     <title>250 Taxi</title>
 
-    <link href="animate.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -18,13 +18,13 @@
     
     <script src="cordova.js"></script>
 
-    <script src="myalert.js"></script>
-    <script src="jquery.min.js"></script>
-    <script src="responsivevoice.js"></script>
+    <script src="js/myalert.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/responsivevoice.js"></script>
     <script src="reg/logic.js"></script> 
     <script src="oauth/oauth.js"></script>
-    <script src="preventreload.js"></script>
-    <script src="logupdate.js"></script>
+    <script src="js/preventreload.js"></script>
+    <script src="js/logupdate.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -132,7 +132,7 @@
 
             $("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function () {});
             $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
-                var currentversion = "31";
+                var currentversion = "34";
                 var serverversion = data;
                 if (currentversion < serverversion) {
                     alert("Your app is outdated. Please install the update to ensure smooth operation.");
@@ -244,7 +244,7 @@
 
     <style>
         #background_frame_login {
-            background-image: url(arrive.jpg);
+            background-image: url(css/arrive.jpg);
             height: 100%;
             width: 100%;
             background-repeat: no-repeat;
@@ -252,7 +252,7 @@
         }
         
         #background_frame_register {
-            background-image: url(11.jpg);
+            background-image: url(css/11.jpg);
             height: 100%;
             width: 100%;
             background-repeat: no-repeat;
