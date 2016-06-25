@@ -129,8 +129,15 @@ getdrivers();
 }
 // console.log(passenger_lat);
 // console.log(passenger_long);
+    
+    
+var ride_start = localStorage.getItem("ride_start");
+if (ride_start == "now") {
+    getdriverslist_updater = setInterval(getdriverslist, 5000);
+}
+if (ride_start == "later") {
 
-getdriverslist_updater = setInterval(getdriverslist, 5000);
+}
 
 }
 
@@ -229,6 +236,10 @@ document.getElementById("search_animation").style.display = "block";
 }
 if (ride_start == "later") {
 confirm_booking();
+document.getElementById("getfareestimate").style.display = "none";
+document.getElementById("mydetailedlocation").style.display = "none";
+document.getElementById("search_animation").style.display = "none";
+return;
 }
 
 }
@@ -295,7 +306,6 @@ $('#citynavigator_category').find('option:eq(0)').prop('selected', true);
     
     $( "#citynavigator" ).fadeIn( "slow", function() {});
 }
-
 
 function goplaces() {
 	
@@ -675,7 +685,7 @@ function confirm_booking() {
     
 showindicator();
     
- var task = "booking";
+    var task = "booking";
     var userid = localStorage.getItem("userid");
     var pickup_date_time = document.getElementById("pickup_booking_date").value;
     var street = document.getElementById("inlocationfield").value;
@@ -695,7 +705,7 @@ showindicator();
         
         document.getElementById("searchdrivers").style.display = "none";
         document.getElementById("calltaxiui").style.display = "block";
-        alert("We received your booking, customer care is about to call you in a few for a follow up.");
+        alert("We received your booking, customer care is about to call you in a few for a follow up. You can check your status in the bookings tab.);
         
         hideindicator(); 
         

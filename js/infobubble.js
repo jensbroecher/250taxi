@@ -215,7 +215,7 @@ InfoBubble.prototype.buildDom_ = function() {
   close.style['border'] = 0;
   close.style['zIndex'] = this.baseZIndex_ + 1;
   close.style['cursor'] = 'pointer';
-  close.src = 'https://www.250taxi.com/app/close-circle-outline.png';
+  close.src = 'css/close-circle-outline.png';
 
   var that = this;
   google.maps.event.addDomListener(close, 'click', function() {
