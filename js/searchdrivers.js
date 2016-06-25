@@ -395,7 +395,7 @@ $.get( "https://250taxi.com/db/requests/requests.php", {
 }).done(function( requestid ) {
     
     if (requestid == "request_existed") {
-            alert("Connection problem. Please try again.");
+            // alert("Connection problem. Please try again.");
             document.getElementById("driveroverlay_journey_cancel").style.display = "none";
             setTimeout(function(){ 
             location.reload();
