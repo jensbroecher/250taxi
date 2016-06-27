@@ -13,6 +13,7 @@
 
     <link href="reg/ios.css" rel="stylesheet" type="text/css">
     <link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
+    <link href="css/toast.css" rel="stylesheet" type="text/css">
 
     <script src="cordova.js"></script>
     
@@ -23,18 +24,22 @@
     <script src="oauth/oauth.js"></script>
     <script src="js/preventreload.js"></script>
     <script src="js/logupdate.js"></script>
+    <script src="js/audio_definitions.js"></script>
     <script src="js/toast.js"></script>
     <script src="js/hash_start.js"></script>
 
     <script type="text/javascript">
+        function app_restart() {
+            setTimeout(function(){
+            location.reload();
+            }, 3000);
+        }
+        
         $(document).ready(function () {
             
             loading_error_check = setTimeout(function(){
-                
-            localStorage.setItem('toast','Loading...');toast();
-                setTimeout(function(){
-                    location.reload();
-                }, 6000);
+                localStorage.setItem('toast','Loading...');toast();
+                app_restart();    
             }, 6000);
 
             var rememberuser = localStorage.getItem("rememberuser");
