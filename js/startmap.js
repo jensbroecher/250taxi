@@ -938,11 +938,21 @@ localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User
     }
 	
 function logout() {
+    
+swal({   
+    title: "Logout?",   
+    text: "",
+    type: "",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes",
+    closeOnConfirm: true
+}, function(){
+    
+    showindicator();
         
-showindicator();
-        
-var userid = localStorage.getItem('userid');     
-localStorage.setItem("logupdate",""+userid+"*0*logout*User"+userid+" logged out.");logupdate_v2();
+    var userid = localStorage.getItem('userid');     
+    localStorage.setItem("logupdate",""+userid+"*0*logout*User"+userid+" logged out.");logupdate_v2();
 
     localStorage.removeItem('rememberuser');
     localStorage.removeItem('username');
@@ -952,8 +962,10 @@ localStorage.setItem("logupdate",""+userid+"*0*logout*User"+userid+" logged out.
     setTimeout(function(){
         location.replace('index.html');    
     }, 3000);
+    
+});
 
-    }
+}
 	
 $(document).ready(function() {
     
