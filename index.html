@@ -23,10 +23,19 @@
     <script src="oauth/oauth.js"></script>
     <script src="js/preventreload.js"></script>
     <script src="js/logupdate.js"></script>
+    <script src="js/toast.js"></script>
     <script src="js/hash_start.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            
+            loading_error_check = setTimeout(function(){
+                
+            localStorage.setItem('toast','Loading...');toast();
+                setTimeout(function(){
+                    location.reload();
+                }, 6000);
+            }, 6000);
 
             var rememberuser = localStorage.getItem("rememberuser");
 
@@ -181,6 +190,8 @@
         }
 
         function onDeviceReady() {
+            
+            clearTimeout(loading_error_check);
   
             var deviceOS = device.platform; //fetch the device operating system
             var deviceOSVersion = device.version; //fetch the device OS version
