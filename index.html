@@ -144,7 +144,7 @@
         function start_reg() {
 
             $("#reg_start").load("reg/mainmenu.html", function () {
-                document.getElementById("reg_start").style.height = "100%";
+                document.getElementById("reg_start").style.width = "100%";
                 if (document.getElementById("close_reg_start_arrow"))
                     document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
             });
@@ -155,7 +155,7 @@
 
         function start_login() {
             $("#reg_start").load("reg/login.html", function () {
-                document.getElementById("reg_start").style.height = "100%";
+                document.getElementById("reg_start").style.width = "100%";
 
                 if (document.getElementById("close_reg_start_arrow"))
                     document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
@@ -170,7 +170,7 @@
             localStorage.setItem("reg_start_open", "No");
             location.href = "#start";
 
-            document.getElementById("reg_start").style.height = "0%";
+            document.getElementById("reg_start").style.width = "0%";
             document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
         }
 
