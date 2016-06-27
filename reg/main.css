@@ -136,19 +136,6 @@ input {
     padding: 5%;
     text-align: justify;
 }
-#contribution {
-    background-color: #000;
-    position: absolute;
-    z-index: 10;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    font-size: 14px;
-    background-image: url(img/GOR-MAHIA-CHAMPIONS.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
-}
 .infobox {
     background-color: rgba(255, 255, 255, 0.8);
     border: 3px solid #0A7A26;
