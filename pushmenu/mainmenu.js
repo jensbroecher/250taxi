@@ -1,3 +1,7 @@
+function menubtn_hit() {
+    $( "#menubutton" ).click();
+}
+
 function close_account_overlay() {
 $( "#account_overlay" ).fadeOut( "slow", function() {
 });

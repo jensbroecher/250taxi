@@ -20,8 +20,14 @@
 
     // device APIs are available
     //
-    function onDeviceReady() {
-        // Now safe to use device APIs
+    function onDeviceReady() {        
+        document.addEventListener("resume", onResume, false);
+    }
+
+    // Handle the resume event
+    //
+    function onResume() {
+        reloadPositionStart();
     }
 
     </script>
@@ -290,7 +296,7 @@
 
     <div id="loading_map_indicator" class="animated zoomIn" style="-webkit-animation-delay: 2s; display:none;">
 
-        Loading map
+        Updating map
 
     </div>
 
@@ -448,6 +454,8 @@
 
     </nav>
 
+    <div id="menubtn_hitzone" onclick="menubtn_hit();"></div>
+      
     <div onmousedown="menubtn_audio.play();" id="menubutton" class="toggle-menu menu-left"> </div>
 
     <script>
