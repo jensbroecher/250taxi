@@ -166,12 +166,12 @@
         }
 
         function close_reg_start() {
-
             localStorage.setItem("reg_start_open", "No");
             location.href = "#start";
 
             document.getElementById("reg_start").style.width = "0%";
             document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
+            document.getElementById("reg_form").style.display = "none";      
         }
 
         function terms() {
