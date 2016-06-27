@@ -11,9 +11,6 @@ function alert(message) {
 			}
 	
 			message_length = message.length;
-    
-var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak(message);}
 	
 			myalert_inner = document.getElementById('myalert_inner');
 			myalert = document.getElementById('myalert');

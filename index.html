@@ -139,7 +139,7 @@
 
                 if (i == 110) {
                     clearInterval(timer);
-                    document.getElementById("animation").src = "vid/110.jpg";
+                    document.getElementById("animation").src = "css/swipe.png";
                 }
             }, 70);
 
@@ -322,7 +322,7 @@
             text-shadow: 0 0 5px #000000;
         }
         
-        #google_sign_in {
+        #google_sign_in_box {
             position: fixed;
             text-align: center;
             z-index: 100;
@@ -330,7 +330,7 @@
             bottom: 30px;
         }
         
-        #google_sign_in img {
+        #google_sign_in_box img {
             max-width: 160px;
             width: 100%;
         }
@@ -422,8 +422,8 @@
             });
         </script>
 
-        <div id="google_sign_in" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
-            <img id="google_login" src="signinwithgoogle.png" onclick="google_sign_in();">
+        <div id="google_sign_in_box" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
+            <img id="google_login" src="signinwithgoogle.png">
         </div>
 
         <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
