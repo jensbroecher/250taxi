@@ -130,7 +130,9 @@ $( "#mainmenu_bookings" ).click(function() {
     
 close_mainmenu();
     
-$( "#pagestarget" ).load( "https://250taxi.com/appcontent/bookings.php", function() {
+var userid = localStorage.getItem("userid");
+    
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/bookings.php?userid="+userid+"", function() {
   $( "#pages" ).fadeIn( "slow", function() {
     overlay_open = "mainmenu_bookings";
   });
