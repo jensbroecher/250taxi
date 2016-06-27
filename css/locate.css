@@ -438,13 +438,15 @@ body,
     z-index: 200;
     width: 50%;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
     margin-left: 25%;
     bottom: 35%;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
     box-shadow: 2px 2px 6px 0.7px rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
+    border-radius: 6px;
+    pointer-events: none;
+    cursor: default;
 }
 
 
