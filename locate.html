@@ -14,7 +14,7 @@
 
     // Wait for device API libraries to load
     //
-    function onLoad() {
+    function cordova_start() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
 
@@ -110,7 +110,7 @@
 
 
   </head>
-  <body onload="cordova_start()">
+  <body onload="cordova_start();">
 
     <div style="display:none;" id="server_com"></div>
 

@@ -17,6 +17,23 @@
     <link href="reg/desktop.css" rel="stylesheet" type="text/css">
     
     <script src="cordova.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    function cordova_start() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Now safe to use device APIs
+    }
+
+    </script>
+
 
     <script src="js/myalert.js"></script>
     <script src="js/jquery.min.js"></script>
@@ -388,7 +405,7 @@
 
 </head>
 
-<body>
+<body onload="cordova_start();">
     
     <div class="animated fadeIn" style="-webkit-animation-delay: 3s;" onclick="location.reload();" id="connection_issue_start">
         <strong>Not connecting?</strong>
