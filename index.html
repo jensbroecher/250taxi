@@ -17,59 +17,7 @@
     <link href="reg/desktop.css" rel="stylesheet" type="text/css">
 
     <script src="cordova.js"></script>
-
-    <script type="text/javascript" charset="utf-8">
-
-        function cordova_start() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-        }
-
-        function onDeviceReady() {
-            // Now safe to use device APIs
-
-            var deviceOS = device.platform; //fetch the device operating system
-            var deviceOSVersion = device.version; //fetch the device OS version
-
-            // alert(deviceOSVersion);
-
-            console.log("Device OS: " + deviceOS);
-            console.log("Device OS Version: " + deviceOSVersion);
-
-            if (deviceOSVersion == "4.1.3") {
-                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-            }
-            if (deviceOSVersion == "4.1.2") {
-                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-            }
-            if (deviceOSVersion == "4.1.1") {
-                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
-            }
-
-            // set to either landscape
-            screen.lockOrientation('portrait');
-            dogpscheck();
-            dodevicenamecheck();
-
-            // Enable to debug issues.
-            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-            setTimeout(function () {
-
-                var notificationOpenedCallback = function (jsonData) {
-                    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                };
-                window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
-                        googleProjectNumber: "1006498509511"
-                    }
-                    , notificationOpenedCallback);
-
-                // Show an alert box if a notification comes in when the user is in your app.
-                window.plugins.OneSignal.enableInAppAlertNotification(true);
-
-            }, 5000);
-        }
-    </script>
-
+    
     <script src="js/myalert.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/responsivevoice.js"></script>
@@ -228,6 +176,52 @@
 
         function terms() {
             window.open('https://250taxi.com/termsandconditions.php', '_blank', 'location=no');
+        }
+    </script>
+
+    <script type="text/javascript" charset="utf-8">
+
+        function cordova_start() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        function onDeviceReady() {
+
+            var deviceOS = device.platform; //fetch the device operating system
+            var deviceOSVersion = device.version; //fetch the device OS version
+
+            // alert(deviceOSVersion);
+
+            console.log("Device OS: " + deviceOS);
+            console.log("Device OS Version: " + deviceOSVersion);
+
+            if (deviceOSVersion == "4.1.3") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+            }
+            if (deviceOSVersion == "4.1.2") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+            }
+            if (deviceOSVersion == "4.1.1") {
+                alert("Your Android Version is very old. If you experience problems with the app, please call our customer care number.");
+            }
+
+            // set to either landscape
+            screen.lockOrientation('portrait');
+            dogpscheck();
+            dodevicenamecheck();
+
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+                var notificationOpenedCallback = function (jsonData) {
+                    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                };
+                window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
+                        googleProjectNumber: "1006498509511"
+                    }
+                    , notificationOpenedCallback);
+
+                // Show an alert box if a notification comes in when the user is in your app.
+                window.plugins.OneSignal.enableInAppAlertNotification(true);
         }
     </script>
 
