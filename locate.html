@@ -9,6 +9,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <script src="cordova.js"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Now safe to use device APIs
+    }
+
+    </script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
 
@@ -90,9 +106,11 @@
         }
     </script>
 
-</head>
 
-<body>
+
+
+  </head>
+  <body onload="cordova_start()">
 
     <div style="display:none;" id="server_com"></div>
 
