@@ -13,4 +13,7 @@
         right: 0px !important;
         left: auto !important;
     }
+    #google_login {
+        display: none;
+    }
 }
