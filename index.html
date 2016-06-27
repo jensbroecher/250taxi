@@ -7,9 +7,9 @@
 
     <title>250 Taxi</title>
 
-    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
 
     <link href="reg/ios.css" rel="stylesheet" type="text/css">
     <link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
@@ -29,44 +29,7 @@
     // device APIs are available
     //
     function onDeviceReady() {
-        // Now safe to use device APIs
-    }
-
-    </script>
-
-
-    <script src="js/myalert.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/responsivevoice.js"></script>
-    <script src="reg/logic.js"></script> 
-    <script src="oauth/oauth.js"></script>
-    <script src="js/preventreload.js"></script>
-    <script src="js/logupdate.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            var rememberuser = localStorage.getItem("rememberuser");
-
-            if (rememberuser == "Yes") {
-                
-                console.log("Remember user, go to start.");
-                document.location.href = "gotostart.html";
-                
-            } else {
-                
-                console.log("User not logged in, show splash screen.");
-                document.getElementById("start_hide").style.display = "block";
-                document.getElementById("connection_issue_start").style.display = "none";
-                
-            }
-        });
-
-
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-            // Now safe to use device APIs
+         // Now safe to use device APIs
 
             var deviceOS = device.platform; //fetch the device operating system
             var deviceOSVersion = device.version; //fetch the device OS version
@@ -90,7 +53,40 @@
             screen.lockOrientation('portrait');
             dogpscheck();
             dodevicenamecheck();
-        }
+    }
+
+    </script>
+
+
+    <script src="js/myalert.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/responsivevoice.js"></script>
+    <script src="reg/logic.js"></script> 
+    <script src="oauth/oauth.js"></script>
+    <script src="js/preventreload.js"></script>
+    <script src="js/logupdate.js"></script>
+    <script src="js/hash_start.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var rememberuser = localStorage.getItem("rememberuser");
+
+            if (rememberuser == "Yes") {
+                
+                console.log("Remember user, go to start.");
+                document.location.href = "gotostart.html";
+                
+            } else {
+                
+                console.log("User not logged in, show splash screen.");
+                
+                // bring back start page elements that where hidden. Removed now because of issues
+                document.getElementById("start_hide").style.display = "block";
+                document.getElementById("connection_issue_start").style.display = "none";
+                
+            }
+        });
 
         function showindicator() {
             document.getElementById("loadingindicator").className = "animated fadeIn";
@@ -134,9 +130,6 @@
         }, false);
 
         $(document).ready(function () {
-
-
-
 
             location.href = "#start";
 
@@ -234,11 +227,7 @@
         function terms() {
             window.open('https://250taxi.com/termsandconditions.php', '_blank', 'location=no');
         }
-    </script>
 
-    <script src="js/hash_start.js"></script>
-
-    <script>
         $(document).ready(function () {
 
             var i = 0;
@@ -284,7 +273,7 @@
             font-family: Roboto, sans-serif;
             font-size: 18px;
             color: #000;
-            background-color: black;
+            background-color: white;
             text-align: center;
             margin: 0px;
             padding: 0px;
@@ -399,18 +388,13 @@
         }
         
         #start_hide {
-            display: none;
+            
         }
     </style>
 
 </head>
 
 <body onload="cordova_start();">
-    
-    <div class="animated fadeIn" style="-webkit-animation-delay: 3s;" onclick="location.reload();" id="connection_issue_start">
-        <strong>Not connecting?</strong>
-                <br>Try again
-    </div>
 
     <div id="start_hide">
 
