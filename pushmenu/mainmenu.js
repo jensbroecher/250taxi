@@ -1,5 +1,5 @@
 function menubtn_hit() {
-    $( "#menubutton" ).click();
+    document.getElementById("menubutton").click();
 }
 
 function close_account_overlay() {
