@@ -427,8 +427,10 @@ body,
     -webkit-filter: blur(3px);
     pointer-events: none;
 }
+
 #menubtn_hitzone {
     position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0px;
     left: 0px;
     width: 50px;
