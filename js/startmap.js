@@ -170,8 +170,12 @@ function displayPosition(position) {
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 			//	styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }]}]
 			};
+    
+    
 			var x = document.getElementById("map");
 			x.innerHTML = "";
+    
+    
 			var map = new google.maps.Map(document.getElementById("map"), options);
 			geocodeLatLng(geocoder, map);
 			//Script for getting distance from nearest landmark
