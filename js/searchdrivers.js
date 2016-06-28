@@ -17,6 +17,9 @@ $("#taxirequest_destination").keypress(function(e) {
 });
     
 $( "#ride_now_button" ).click(function() {
+    
+menubar_bottom_audio.play();
+    
 localStorage.setItem("ride_start","now");
     
 document.getElementById("taxi_go_text").innerHTML = "pick me up now";
@@ -38,6 +41,9 @@ mydetailedlocation_show();
 });
 	
 $( "#ride_later_button" ).click(function() {
+    
+menubar_bottom_audio.play();
+
 localStorage.setItem("ride_start","later");
     
 document.getElementById("taxi_go_text").innerHTML = "confirm booking"; 
@@ -53,6 +59,8 @@ mydetailedlocation_show();
 });
     
 $( "#call_now_button" ).click(function() {
+    
+menubar_bottom_audio.play();
     
 showindicator();
     
