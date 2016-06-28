@@ -37,6 +37,8 @@
         
         $(document).ready(function () {
             
+            window.location.href = "index.html#start";
+            
             loading_error_check = setTimeout(function(){
                 localStorage.setItem('toast','Loading...');toast();
                 app_restart();    
@@ -57,8 +59,6 @@
                 document.getElementById("start_hide").style.display = "block";
 
             }
-
-            location.href = "#start";
 
             var quick_tour_viewed = localStorage.getItem('quick_tour_viewed');
             if (quick_tour_viewed == 'Yes') {
