@@ -247,7 +247,7 @@
 
             window.plugins.OneSignal.getIds(function (ids) {
                 console.log('getIds: ' + JSON.stringify(ids));
-                alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+                // alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
                 localStorage.setItem("os_id","" + ids.userId + "");
             });
         }

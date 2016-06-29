@@ -26,6 +26,12 @@
         var os_id = localStorage.getItem("os_id");
         console.log("OS ID: " + os_id);
         
+        var userid = localstorage.getItem("userid");
+        
+        $.get( "https://250taxi.com/db/onesignal_id.php?userid="+userid+"&os_id="+os_id+"", function( data ) {
+        
+        });
+        
         dogpscheck();
         
         screen.lockOrientation('portrait');
