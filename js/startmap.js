@@ -110,8 +110,6 @@ navigator.geolocation.getCurrentPosition(
 pos;
 console.log('reloaded: '+pos+'');
 }
-
-document.addEventListener("deviceready", onDeviceReady, false);
 	
 var app_or_web = localStorage.getItem("app_or_web");
 /* if (app_or_web == "app") {
