@@ -18,6 +18,8 @@
 	<icon src="icon.png" />
 		
 	<platform name="android" />	
+        
+    <preference name="android-windowSoftInputMode" value="stateVisible" />
 
 	<!-- Core plugins -->
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
