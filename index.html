@@ -16,7 +16,7 @@
     <link href="css/toast.css" rel="stylesheet" type="text/css">
 
     <script src="cordova.js"></script>
-    
+
     <script src="js/myalert.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/responsivevoice.js"></script>
@@ -30,18 +30,19 @@
 
     <script type="text/javascript">
         function app_restart() {
-            setTimeout(function(){
-            location.reload();
+            setTimeout(function () {
+                location.reload();
             }, 3000);
         }
-        
+
         $(document).ready(function () {
-            
+
             window.location.href = "index.html#start";
-            
-            loading_error_check = setTimeout(function(){
-                localStorage.setItem('toast','Loading...');toast();
-                app_restart();    
+
+            loading_error_check = setTimeout(function () {
+                localStorage.setItem('toast', 'Loading...');
+                toast();
+                app_restart();
             }, 6000);
 
             var rememberuser = localStorage.getItem("rememberuser");
@@ -156,10 +157,10 @@
         function start_reg() {
 
             $("#reg_start").load("reg/mainmenu.html", function () {
-                
+
                 clearInterval(timer);
                 document.getElementById("animation").src = "vid/110.jpg";
-                
+
                 document.getElementById("reg_start").style.height = "100%";
                 if (document.getElementById("close_reg_start_arrow"))
                     document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
@@ -170,10 +171,10 @@
         }
 
         function start_login() {
-            
+
             clearInterval(timer);
             document.getElementById("animation").src = "vid/110.jpg";
-            
+
             $("#reg_start").load("reg/login.html", function () {
                 document.getElementById("reg_start").style.height = "100%";
 
@@ -190,10 +191,10 @@
             location.href = "#start";
 
             document.getElementById("reg_start").style.height = "0%";
-            if(document.getElementById("close_reg_start_arrow"))
-            document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
-            if(document.getElementById("reg_form"))
-            document.getElementById("reg_form").style.display = "none";      
+            if (document.getElementById("close_reg_start_arrow"))
+                document.getElementById("close_reg_start_arrow").style.marginLeft = "-50px";
+            if (document.getElementById("reg_form"))
+                document.getElementById("reg_form").style.display = "none";
         }
 
         function terms() {
@@ -205,9 +206,9 @@
         }
 
         function onDeviceReady() {
-            
+
             clearTimeout(loading_error_check);
-  
+
             var deviceOS = device.platform; //fetch the device operating system
             var deviceOSVersion = device.version; //fetch the device OS version
 
@@ -233,16 +234,22 @@
 
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-                var notificationOpenedCallback = function (jsonData) {
-                    console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-                };
-                window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
-                        googleProjectNumber: "1006498509511"
-                    }
-                    , notificationOpenedCallback);
+            var notificationOpenedCallback = function (jsonData) {
+                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+            };
+            window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
+                    googleProjectNumber: "1006498509511"
+                }
+                , notificationOpenedCallback);
 
-                // Show an alert box if a notification comes in when the user is in your app.
-                window.plugins.OneSignal.enableInAppAlertNotification(true);
+            // Show an alert box if a notification comes in when the user is in your app.
+            window.plugins.OneSignal.enableInAppAlertNotification(true);
+
+            window.plugins.OneSignal.getIds(function (ids) {
+                console.log('getIds: ' + JSON.stringify(ids));
+                alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+                localStorage.setItem("os_id","" + ids.userId + "");
+            });
         }
     </script>
 

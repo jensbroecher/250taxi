@@ -22,13 +22,24 @@
     //
     function onDeviceReady() {        
         document.addEventListener("resume", onResume, false);
+        
+        var os_id = localStorage.getItem("os_id");
+        console.log("OS ID: " + os_id);
+        
+        dogpscheck();
+        
+        screen.lockOrientation('portrait');
+        
+        document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+        }, false);
     }
 
     // Handle the resume event
     //
     function onResume() {
         reloadPositionStart();
-        localStorage.setItem('toast','resumed...');toast();
+        console.log("app was resumed");
     }
 
     </script>
@@ -87,15 +98,6 @@
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 
     <script>
-        document.addEventListener("deviceready", onDeviceReady, false);
-
-        function onDeviceReady() {
-            dogpscheck();
-            screen.lockOrientation('portrait');
-            document.addEventListener("backbutton", function (e) {
-                e.preventDefault();
-            }, false);
-        }
 
         function dogpscheck() {
             CheckGPS.check(function win() {
