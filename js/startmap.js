@@ -993,20 +993,22 @@ $( "#overlay" ).click(function() {
     
 $( "#locationfield" ).click(function() {
     
-    // document.getElementById("taxis_online_info").style.display = "none";
+    document.getElementById("locationfinderdialog").style.display = "block";
     
-    $( "#locationfinderdialog").slideDown( "slow", function() {
+    // $( "#locationfinderdialog").slideDown( "slow", function() {
         $("#searchbyaddress").focus();
-    });
+    // });
 });
 
 $( "#locationfinderdialog_x" ).click(function() {
     
     document.getElementById("taxis_online_info").style.display = "block";
     
-    $( "#locationfinderdialog").slideUp( "slow", function() {
+    
+    document.getElementById("locationfinderdialog").style.display = "none";
+    // $( "#locationfinderdialog").slideUp( "slow", function() {
 
-    });
+    // });
 });
 
 });
@@ -1017,7 +1019,9 @@ var address = document.getElementById('searchbyaddress').value;
 var addresslength = address.length;
     
 if (addresslength > 2) {
-    $( "#locationfinderdialog").slideUp( "slow", function() {});
+    
+    document.getElementById("locationfinderdialog").style.display = "block";
+    // $( "#locationfinderdialog").slideUp( "slow", function() {});
     
 }
 else {

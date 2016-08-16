@@ -112,7 +112,7 @@
 /* Transitions */
 
 .cbp-spmenu,
-.cbp-spmenu-push {
+.cbp-spmenu-push_OFF {
 	-webkit-transition: all 0.3s ease;
 	-moz-transition: all 0.3s ease;
 	transition: all 0.3s ease;
