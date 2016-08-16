@@ -102,6 +102,9 @@
 						}
 						if (data == "true") {
 							console.log(username);
+                            
+                            alert("Please set a 4-digit pin to use while logging into your account. Eg 1234.");
+                            
 							gotopin();
 						}
 
@@ -142,7 +145,7 @@
 
 	<div id="reg_personal_details" class="animated fadeIn">
 
-		<input onblur="convert_uc_first_name();" placeholder="First name" id="first_name">
+		<input onblur="convert_uc_first_name();" placeholder="First name(s)" id="first_name">
 		<input onblur="convert_uc_last_name();" placeholder="Last name" id="last_name">
 		<input placeholder="Phone" type="tel" id="phone">
 		<input placeholder="E-Mail" type="email" id="email">
@@ -238,10 +241,10 @@
 
 	$(document).ready(function() {
 		$('#first_name').keyup(function() {
-			this.value = this.value.replace(/ /g, "");
+			// this.value = this.value.replace(/ /g, "");
 		});
 		$('#last_name').keyup(function() {
-			this.value = this.value.replace(/ /g, "");
+			// this.value = this.value.replace(/ /g, "");
 		});
 		$('#email').keyup(function() {
 			this.value = this.value.toLowerCase();
