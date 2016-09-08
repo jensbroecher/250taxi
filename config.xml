@@ -39,10 +39,7 @@
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
         
-    <gap:plugin name="com.phonegap.plugins.facebookconnect">
-        <param name="APP_ID" value="287641408285720" />
-        <param name="APP_NAME" value="250 Taxi Rwanda" />
-    </gap:plugin>
+
         
     <allow-navigation href="*" />
     <allow-intent href="*" />
