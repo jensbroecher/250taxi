@@ -57,9 +57,9 @@ var input = document.getElementById('taxirequest_destination');
 var input2 = document.getElementById('searchbyaddress');
 var input3 = document.getElementById('taxirequest_pickup_estimate');
 
-var options = {
-  componentRestrictions: {country: 'rw'}
-};
+// var options = {
+//  componentRestrictions: {country: 'rw'}
+// };
 
 autocomplete = new google.maps.places.Autocomplete(input, options);    
 autocomplete = new google.maps.places.Autocomplete(input2, options); 
@@ -266,6 +266,8 @@ var polyline = null;
 }
 
 function set_position(angle2, taxi_id, taxiDatas){
+	console.log("====set position==plat===="+taxiDatas[taxi_id].previous_lat+"====taxi id==="+taxi_id);
+	console.log("===set position===plat===="+taxiDatas[taxi_id].previous_lat+"====taxi id==="+taxi_id);
 	imgUrl = replaceImage(taxiDatas[taxi_id].lng, taxiDatas[taxi_id].previous_lng, taxiDatas[taxi_id].lat, taxiDatas[taxi_id].previous_lat, angle2, taxi_id);
 	var iconimage1 = {
 		url: imgUrl, // url
@@ -374,7 +376,7 @@ function moveTaxi(taxi_id, list, taxiDatas){
 	}
 	if (window.move_count < (list.length-1)){
 		window.move_count +=1;
-		setTimeout( function() { moveTaxi(taxi_id, list, taxiDatas); }, 100);
+		setTimeout( function() { moveTaxi(taxi_id, list, taxiDatas); }, 1000);
 	}
 }	
 
@@ -395,10 +397,11 @@ function findPolylineCoords(legs, polyline_array, imgUrl, taxi_id, angle2, bound
 }
 
 function callDirectionApi(taxi_id, angle2, imgUrl, taxiDatas){
-	taxiDatas[taxi_id].previous_lat = markers[taxi_id].getPosition().lat();
-	taxiDatas[taxi_id].previous_lng = markers[taxi_id].getPosition().lng();
+	taxiDatas[taxi_id].previous_lat = 13.096540;// markers[taxi_id].getPosition().lat();
+	taxiDatas[taxi_id].previous_lng = 80.200161;//markers[taxi_id].getPosition().lng();
 	window.polyline_array = [];
-	
+	console.log("===calldirection==previous_lat==="+taxiDatas[taxi_id].previous_lat+"===taxi_id==="+taxi_id);
+	console.log("=calldirection==previous_lng==="+taxiDatas[taxi_id].previous_lng+"===taxi_id==="+taxi_id);
 	//Direction service api call to find the route and steps of coordinates between starting and destination point
 	directionsService.route({
     origin: new google.maps.LatLng(taxiDatas[taxi_id].previous_lat,taxiDatas[taxi_id].previous_lng),
@@ -409,12 +412,18 @@ function callDirectionApi(taxi_id, angle2, imgUrl, taxiDatas){
     }],
     travelMode: google.maps.TravelMode.DRIVING
   }, function(response, status) {
+  	console.log("=======google.maps.DirectionsStatus==",response);
+  	console.log("===plat===taxi_id==", taxi_id, "======plat===", taxiDatas[taxi_id].previous_lat, taxiDatas[taxi_id].previous_lng);
+  	console.log("===lat", taxiDatas[taxi_id].lat, taxiDatas[taxi_id].lng, "====taxi_id", taxi_id);
     if (status === google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
       var bounds = new google.maps.LatLngBounds();
       var legs = response.routes[0].legs;
       window.move_count = 0;
       findPolylineCoords(legs, window.polyline_array, imgUrl, taxi_id, angle2, bounds, taxiDatas);
+    }
+    else {
+    	console.log("=====failed======");
     }
   });
 }
@@ -437,10 +446,10 @@ function a(){
 				var dist;
 				var accurate_coords;
 				
-				lat = loc[0];
-				lng = loc[1];
+				lat = 13.096853;// loc[0];
+				lng = 80.200955;//loc[1];
 				status = loc[2];
-				taxi_id = loc[3];
+				taxi_id = 18;//loc[3];
 				accuracy = loc[4];
 				driverName = loc[5];
 				driverSurname = loc[6];
@@ -490,7 +499,7 @@ function a(){
 }
 
 // Start map updater
-map_updater = setInterval(a,3000); 
+map_updater = setInterval(a,5000); 
 			
             google.maps.event.addListener(marker, 'dragend', function (event) {
             document.getElementById("lat").value = event.latLng.lat();
@@ -925,7 +934,7 @@ swal({
         
     setTimeout(function(){
         location.replace('index.html');    
-    }, 15000);
+    }, 3000);
     
 });
 

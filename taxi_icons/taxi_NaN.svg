@@ -12,7 +12,7 @@
    id="svg3023"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="taxi_80.svg">
+   sodipodi:docname="taxi.svg">
   <metadata
      id="metadata3059">
     <rdf:RDF>
@@ -41,7 +41,7 @@
      id="namedview3055"
      showgrid="false"
      inkscape:zoom="4.1883752"
-     inkscape:cx="14.571406"
+     inkscape:cx="54.204914"
      inkscape:cy="46.728374"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -49,7 +49,7 @@
      inkscape:current-layer="svg3023" />
   <g
      id="g3067"
-     transform="matrix(0,-0.28992452,0.28992452,0,6.511322,107.98496)">
+     transform="matrix(0.28992452,0,0,0.28992452,-7.9849632,6.511322)">
     <path
        id="path3025"
        d="m 139.087,96 c 0,0 161.922,0 161.922,0 27.986,0 26.987,22.999 26.987,22.999 0,0 0,60.996 0,60.996 0,23.999 -26.987,22.999 -26.987,22.999 0,0 -161.922,0 -161.922,0 -72.9646,-3 -66.9675,-38.998 -66.9675,-38.998 0,0 0.9995,-31.998 0.9995,-31.998 0,0 -6.9966,-31.9982 65.968,-35.998 z"

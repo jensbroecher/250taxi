@@ -2,17 +2,17 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.twofiftytaxi.app"
-        versionCode = "38" 
-        version     = "2.2.0" >
+        versionCode = "39" 
+        version     = "2.2.1" >
 
-    <name>250 Taxi</name>
+    <name>afritaxi</name>
 
     <description>
 		Taxi Booking Service
     </description>
 
-    <author href="https://www.250taxi.com" email="info@250taxi.com">
-        Jens Bröcher / Afshon Group
+    <author href="https://afrionline.net" email="info@afrionline.net">
+        Jens Bröcher
     </author>
 	
 	<icon src="icon.png" />
@@ -38,8 +38,6 @@
     <gap:plugin name="onesignal-cordova-plugin-pgb-compat" source="npm" />
     <gap:plugin name="cordova-plugin-googleplayservices" source="npm" />
     <gap:plugin name="cordova-plugin-android-support-v4" source="npm" />
-        
-
         
     <allow-navigation href="*" />
     <allow-intent href="*" />
