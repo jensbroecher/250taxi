@@ -68,8 +68,6 @@
                 document.location.href = 'tour/swipe.html';
             }
 
-            $("#welcome_notice").load("https://250taxi.com/appcontent/welcome.php", function () {});
-
             $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
                 var currentversion = "34";
                 var serverversion = data;
@@ -256,7 +254,7 @@
         }
         
         body {
-            font-family: Roboto, sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 18px;
             color: #000;
             background-color: white;
@@ -264,6 +262,7 @@
             margin: 0px;
             padding: 0px;
             height: 100%;
+            overflow: hidden;
             background-image: url(css/rebranding.jpg),url(css/rebranding_cont.jpg);
             background-size: cover;
             background-repeat: no-repeat, repeat;
@@ -363,7 +362,11 @@
         
         #welcome_notice {
             position: fixed;
-            bottom: 20%;
+            bottom: 30%;
+        }
+        
+        #welcome_notice img {
+            width: 70%;
         }
         
         #start_hide {
@@ -398,9 +401,11 @@
 
             <br>
 
-            <div id="welcome_notice"></div>
+            <div id="welcome_notice">
+            <img src="css/we_take_you_there.gif">
+            </div>
 
-            <div id="loginregister" class="animated zoomIn" style="-webkit-animation-delay: 2s;">
+            <div id="loginregister" class="animated slideInUp" >
 
                 <div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
 
