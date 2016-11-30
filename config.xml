@@ -5,7 +5,7 @@
         versionCode = "39" 
         version     = "2.2.1" >
 
-    <name>afritaxi</name>
+    <name>Afritaxi</name>
 
     <description>
 		Taxi Booking Service
