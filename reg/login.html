@@ -1,128 +1,110 @@
 <div id="background_frame_login">
 
-<img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="ios_icons/Icon-arrow-left.png">
+    <img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="reg/arrow_back.svg">
 
-<script type="text/javascript">
-		
-$(document).ready(function() {
+    <div id="reg_form" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
 
-            $('#username').keyup(function() {
-                this.value = this.value.toLowerCase();
-                this.value = this.value.replace(/[^@a-z0-9.]/g, "");
-            });
-            $(function() {
-                $('#username').keypress(function(e) {
-                    var txt = String.fromCharCode(e.which);
-                    console.log(txt + ' : ' + e.which);
-                    if (!txt.match(/[@.A-Za-z0-9]/)) //+#-.
-                    {
-                        return false;
-                    }
-                });
-            });
+        <div class="row">
+            <div class="col s12">
 
-            if (localStorage.getItem('username') === null) {
-            var username = localStorage.getItem('username');
-            document.getElementById('username').value = username;
-            }
-           
-        });
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input required id="email" type="email" class="validate">
+                        <label for="email">E-Mail</label>
+                    </div>
 
-        function rot13(str) {
-            return str.replace(/[a-zA-Z]/g, function(chr) {
-                var start = chr <= 'Z' ? 65 : 97;
-                return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
-            });
-        }
+                    <div class="input-field col s12">
+                        <input required id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
 
-        
+                <center>
+                    <button onclick="logincheck();" class="waves-effect waves-light btn afri_btn">
+                        <i class="material-icons left">exit_to_app</i>Sign in
+                    </button>
+                    <br>
+                    <br>
+                    <div onclick="forgot_account();">Forgot password?</div>
+                </center>
 
-    </script>
+            </div>
+        </div>
 
-<div id="reg_form" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
-<br>
-
-            <input name="username" id="username" type="text" required placeholder="E-Mail">
-	
-			<br>
-
-           <input id="loginpin" style="width:100px;" class="pin" type="tel" placeholder="PIN" maxlength="4" pattern=".{4,}">
-	
-		<br>
-	
-			<button onclick="logincheck();">Sign in</button>
-			
-
-	
-			<button id="forgotpw" onClick="location.href = 'reg/forgot_password.html';">Forgot PIN?</button>
-
-</div>
 
         <script>
-			function logincheck() {
-				var username = document.getElementById('username').value;
-				
-				if(username.indexOf('@') === -1)
-				{
-					localStorage.setItem("username_check",username);
-					logincheckgo();
-				}
-				else {
-					$.get("https://250taxi.com/db/username_from_email.php?username=" + username + "", function(username) {
-						localStorage.setItem("username_check",username);
-						logincheckgo();
-					});
-				}
-			}
-            function logincheckgo() {
-				
-				showindicator();
+            function forgot_account() {
+                location.href = 'reg/forgot_password.html';
+            }
 
-                var username = localStorage.getItem("username_check");
-				
-                var loginpin = document.getElementById('loginpin').value;
-				
-				// alert(username);
+            function logincheck() {
 
-                $.get("https://250taxi.com/db/check-username-login.php?task=checkusername&username=" + username + "", function(data) {
+                var email = document.getElementById('email').value;
+
+                if (email.indexOf('@') != -1) {
                     
+                    localStorage.setItem("email", email);
+                    
+                    logincheckgo();
+                    
+                } else {
+                    
+                    swal("","Please make sure you enter your E-Mail correctly!","error");
+                    
+                }
+            }
+
+            function logincheckgo() {
+
+                showindicator();
+
+                var email = localStorage.getItem("email");
+
+                var password = document.getElementById('password').value;
+
+                // alert(username);
+
+                $.get("https://250taxi.com/db/check_user.php?task=check_email&email=" + email + "", function (data) {
+
                     // alert(data);
 
                     if (data == "account_found") {
 
-                        $.get("https://250taxi.com/db/check-username-login.php?task=getuserid&username=" + username + "", function(userid) {
+                        $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
 
-                            $.get("https://250taxi.com/db/check-pin.php?username=" + username + "&pin=" + loginpin + "", function(pindata) {
+                            $.get("https://250taxi.com/db/check_password.php?email=" + email + "&password=" + password + "", function (pindata) {
 
-                                if (pindata == "pin_found") {
-                                    localStorage.setItem("rememberuser", "Yes");
+                                if (pindata == "password_found") {
                                     
+                                    localStorage.setItem("rememberuser", "Yes");
+
                                     localStorage.removeItem("hotelcorporate");
-                                    localStorage.setItem("username", username);
+                                    
                                     localStorage.setItem("userid", userid);
 
                                     localStorage.setItem("logupdate", "" + userid + "*0*login*User" + userid + " logged in.");
                                     logupdate_v2();
 
                                     var randomclientid = Math.floor(Math.random() * 1000000000);
+                                    
                                     localStorage.setItem("randomclientid", randomclientid);
 
                                     console.log(randomclientid);
-                                    
-                                     var battery = navigator.battery || navigator.mozBattery;
-if (battery) {
-    // battery status for firefox 
-        var device_battery = (battery.level * 100);
-    localStorage.setItem("device_battery",device_battery);
-} else if (navigator.getBattery) {
-    //battery status for chrome
-    navigator.getBattery().then(function(battery) {
-        var device_battery = (battery.level * 100);
-        localStorage.setItem("device_battery",device_battery);
-    });
-}
-                                    
-                             
+
+                                    var battery = navigator.battery || navigator.mozBattery;
+                                    if (battery) {
+                                        // battery status for firefox 
+                                        var device_battery = (battery.level * 100);
+                                        localStorage.setItem("device_battery", device_battery);
+                                    } else if (navigator.getBattery) {
+                                        //battery status for chrome
+                                        navigator.getBattery().then(function (battery) {
+                                            var device_battery = (battery.level * 100);
+                                            localStorage.setItem("device_battery", device_battery);
+                                        });
+                                    }
+
+
 
                                     var device_model = localStorage.getItem("device_model");
                                     var device_platform = localStorage.getItem("device_platform");
@@ -130,31 +112,28 @@ if (battery) {
                                     var device_uuid = localStorage.getItem("device_uuid");
                                     var device_battery = localStorage.getItem("device_battery");
 
-
-
-                                    $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function(data) {
+ $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
                                         document.location.href = 'gotostart.html';
 
                                     });
 
 
-                                } else if (pindata == "pin_not_found") {
-                                    alert("Sorry, your PIN was incorrect. Please check your PIN or contact support.");
-									hideindicator();
+                                } else if (pindata == "password_not_found") {
+                                    swal("","Sorry, your password is incorrect. Please check your password or contact support.","error");
+                                    hideindicator();
                                 }
 
                             });
                         });
 
                     } else if (data == "account_not_found") {
-						
-						hideindicator();
-						
-                        alert("Sorry, account not found.<br>Please try again or contact support.");
+
+                        hideindicator();
+
+                        swal("","Sorry, account not found. Please try again or contact support.","error");
                     }
                 });
             }
-
         </script>
-	
-</div>
+
+    </div>

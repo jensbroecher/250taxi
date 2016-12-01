@@ -2,6 +2,11 @@ body.stop-scrolling {
 	height: 100%;
 	overflow: hidden;
 }
+
+.sa-button-container button {
+    background-color: indianred !important;
+}
+
 .sweet-overlay {
 	background-color: black;
 	/* IE8 */

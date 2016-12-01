@@ -18,7 +18,12 @@ function processHash(hash) {
 			reg_start_open = localStorage.getItem("reg_start_open");
         
             if (reg_start_open == "Yes") {
-                close_reg_start();
+                try {
+                   close_reg_start(); 
+                }
+                catch(err) {
+                    console.log(err.message);
+                }
                 localStorage.setItem("reg_start_open","No");
             }
 	}

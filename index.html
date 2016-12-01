@@ -5,20 +5,26 @@
 
     <meta charset="utf-8">
 
-    <title>afritaxi</title>
+    <title>Afritaxi</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link href="css/animate.min.css" rel="stylesheet" type="text/css">
 
-    <link href="reg/ios.css" rel="stylesheet" type="text/css">
-    <link href="reg/ios_reg.css" rel="stylesheet" type="text/css">
     <link href="css/toast.css" rel="stylesheet" type="text/css">
+    <link href="css/materialize.css" rel="stylesheet" type="text/css">
+    <link href="reg/reg.css" rel="stylesheet" type="text/css">
+    <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
 
     <script src="cordova.js"></script>
 
     <script src="js/myalert.js"></script>
+
     <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    
+    <script src="js/sweetalert.min.js"></script>
+
     <script src="js/responsivevoice.js"></script>
     <script src="reg/logic.js"></script>
     <script src="oauth/oauth.js"></script>
@@ -227,12 +233,18 @@
             window.plugins.OneSignal.getIds(function (ids) {
                 console.log('getIds: ' + JSON.stringify(ids));
                 // alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
-                localStorage.setItem("os_id","" + ids.userId + "");
+                localStorage.setItem("os_id", "" + ids.userId + "");
             });
         }
     </script>
 
     <style>
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+        
         #background_frame_login {
             background-image: url(css/arrive.jpg);
             height: 100%;
@@ -255,15 +267,13 @@
         
         body {
             font-family: 'Roboto', sans-serif;
-            font-size: 18px;
             color: #000;
             background-color: white;
-            text-align: center;
             margin: 0px;
             padding: 0px;
             height: 100%;
             overflow: hidden;
-            background-image: url(css/rebranding.jpg),url(css/rebranding_cont.jpg);
+            background-image: url(css/rebranding.jpg), url(css/rebranding_cont.jpg);
             background-size: cover;
             background-repeat: no-repeat, repeat;
         }
@@ -331,7 +341,7 @@
         }
         
         #loadingindicator {
-            background-color: black;
+            background-color: white;
             position: absolute;
             z-index: 10000000000000000;
             height: 100%;
@@ -342,9 +352,8 @@
             display: none;
         }
         
-        #loadingindicator img {
-            margin-top: 100px;
-            width: 160px;
+        #loadingindicator .preloader-wrapper {
+            margin-top: 45%;
         }
         
         #animation {
@@ -388,12 +397,47 @@
 
         <div id="loadingindicator">
 
-            <img style="width: 60px !important;" src="css/282.gif">
+           <div class="preloader-wrapper medium active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
 
-            <div onclick="location.reload();" id="loading_reset">
-                <strong>Not connecting?</strong>
-                <br>Try again
-            </div>
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
 
         </div>
 
@@ -402,10 +446,10 @@
             <br>
 
             <div id="welcome_notice">
-            <img src="css/we_take_you_there.gif">
+                <img src="css/we_take_you_there.gif">
             </div>
 
-            <div id="loginregister" class="animated slideInUp" >
+            <div id="loginregister" class="animated slideInUp">
 
                 <div onclick="start_login();" class="left notextselect" style="-webkit-animation-delay: 2s;">Login</div>
 

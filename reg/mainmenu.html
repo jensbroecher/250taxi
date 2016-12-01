@@ -1,295 +1,367 @@
 <div id="background_frame_register">
 
-<style>
-	.reg_check_img {
-		width: 16px;
-		margin-right: 5px;
-		margin-bottom: 5px;
-		vertical-align: middle;
-	}
+    <style>
+        .reg_check_img {
+            width: 16px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            vertical-align: middle;
+        }
+    </style>
 
-</style>
+    <script>
+        function register() {
 
-<script>
-	function register() {
+            check_name = "No";
+            check_phone = "No";
+            check_email = "No";
 
-		check_name = "No";
-		check_phone = "No";
-		check_email = "No";
+            first_name = document.getElementById("first_name").value;
+            last_name = document.getElementById("last_name").value;
+            phone = document.getElementById("phone").value;
+            email = document.getElementById("email").value;
 
-		first_name = document.getElementById("first_name").value;
-		last_name = document.getElementById("last_name").value;
-		phone = document.getElementById("phone").value;
-		email = document.getElementById("email").value;
+            var check_phone_is_number = isNaN(phone);
 
-		var check_phone_is_number = isNaN(phone);
+            if (check_phone_is_number == true || phone.length < 1) {
+                phone = "Please check";
+                check_phone_img = "bad.png";
+            } else {
+                check_phone = "OK";
+                check_phone_img = "ok.png";
+            }
 
-		if (check_phone_is_number == true || phone.length < 1) {
-			phone = "Invalid";
-			check_phone_img = "bad.png";
-		} else {
-			check_phone = "OK";
-			check_phone_img = "ok.png";
-		}
-
-		if (first_name.length < 1 || last_name.length < 1) {
-			first_name = "Invalid";
-			check_name_img = "bad.png";
-		} else {
-			check_name = "OK";
-			check_name_img = "ok.png";
-		}
-
-
-		function validateEmail(email) {
-			var re = /\S+@\S+\.\S+/;
-			return re.test(email);
-		}
-
-		var check_email_format = validateEmail(email);
-
-		if (check_email_format == false || email.length < 1) {
-			email = "Invalid";
-			check_email_img = "bad.png";
-		} else {
-			check_email = "OK";
-			check_email_img = "ok.png";
-		}
+            if (first_name.length < 2 || last_name.length < 2) {
+                first_name = "Please check";
+                check_name_img = "bad.png";
+            } else {
+                check_name = "OK";
+                check_name_img = "ok.png";
+            }
 
 
-		alert("<img width='16px' class='reg_check_img' src=reg/" + check_name_img + ">Name: " + first_name + " " + last_name + "<br><img width='16px' class='reg_check_img' src=reg/" + check_phone_img + ">Phone: " + phone + "<br><img width='16px' class='reg_check_img' src=reg/" + check_email_img + ">E-Mail: " + email + "");
+            function validateEmail(email) {
+                var re = /\S+@\S+\.\S+/;
+                return re.test(email);
+            }
 
-		if (check_name == "OK" && check_email == "OK" && check_phone == "OK") {
+            var check_email_format = validateEmail(email);
 
-			$.get("https://250taxi.com/db/check-email.php", {
-				email: email
-			}).done(function(data) {
+            if (check_email_format == false || email.length < 1) {
+                email = "Please check";
+                check_email_img = "bad.png";
+            } else {
+                check_email = "OK";
+                check_email_img = "ok.png";
+            }
 
-				if (data == "false") {
-					alert("Account is in use.");
-				}
-				if (data == "true") {
-					
-					username = first_name;
-					username = username.toLowerCase();
-					
-					check_username();
-				}
+            swal({
+                title: ""
+                , text: "<img width='16px' class='reg_check_img' src=reg/" + check_name_img + ">Name: " + first_name + " " + last_name + "<br><img width='16px' class='reg_check_img' src=reg/" + check_phone_img + ">Phone: " + phone + "<br><img width='16px' class='reg_check_img' src=reg/" + check_email_img + ">E-Mail: " + email + ""
+                , html: true
+            });
 
-			});
+            if (check_name == "OK" && check_email == "OK" && check_phone == "OK") {
+
+                $.get("https://250taxi.com/db/check_email.php", {
+                    email: email
+                }).done(function (data) {
+
+                    if (data == "true") {
+                        swal("", "Account is in use.", "error");
+                    }
+                    if (data == "false") {
+                        reg_check_next();
+                    }
+
+                });
 
 
-		} else {
-			return;
-		}
+            } else {
+                return;
+            }
 
-	}
-	function check_username() {
-		
-		console.log("check_username");
-		
-		
-		
-		$.get("https://250taxi.com/db/check-username.php", {
-						username: username
-					}).done(function(data) {
+        }
 
-						if (data == "false") {
-							
-							username_random_number = Math.floor(Math.random() * 90 + 10);
-							username = username + username_random_number;
-							check_username();
-						}
-						if (data == "true") {
-							console.log(username);
+        function convert_uc_first_name() {
+            var data_new = document.getElementById("first_name").value;
+            var data_new_first = data_new.toUpperCase();
+            var data_new_first = data_new_first.substring(0, 1);
+            var data_new = data_new.substring(1);
+            document.getElementById("first_name").value = data_new_first + data_new;
+        }
+
+        function convert_uc_last_name() {
+            var data_new = document.getElementById("last_name").value;
+            var data_new_first = data_new.toUpperCase();
+            var data_new_first = data_new_first.substring(0, 1);
+            var data_new = data_new.substring(1);
+            document.getElementById("last_name").value = data_new_first + data_new;
+        }
+
+
+        function reg_check_next() {
+            document.getElementById("reg_personal_details").style.display = "none";
+            document.getElementById("reg_pin").style.display = "block";
+        }
+    </script>
+
+
+
+    <img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="reg/arrow_back.svg">
+
+    <div id="reg_form" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
+
+        <div id="reg_personal_details" class="animated fadeIn">
+
+            <div class="row">
+                <div class="col s12">
+
+                    <div class="row">
+                        <div class="input-field col s6">
+
+                            <input type="text" onblur="convert_uc_first_name();" id="first_name">
+
+                            <label for="first_name">First name</label>
+
+                        </div>
+
+                        <div class="input-field col s6">
+
+                            <input type="text" onblur="convert_uc_last_name();" id="last_name">
+
+                            <label for="last_name">Last name</label>
+
+                        </div>
+
+                        <div class="input-field col s12">
+
+                            <input type="tel" id="phone">
+
+                            <label for="phone">Phone</label>
+
+                        </div>
+
+                        <div class="input-field col s12">
+
+                            <input type="email" id="email">
+
+                            <label for="email">E-Mail</label>
+
+                        </div>
+
+                        <center>
+                            <button onclick="register();" class="waves-effect waves-light btn afri_btn">
+                                <i class="material-icons right">account_box</i>Next
+                            </button>
+                        </center>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reg_pin" style="display:none;" class="animated fadeIn">
+
+            <div class="row">
+                <div class="col s12">
+
+                    <div class="row">
+                        <div class="input-field col s12">
+
+                            <input type="text" id="password">
+                            <label for="password">Password</label>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
                             
-                            alert("Please set a 4-digit pin to use while logging into your account. Eg 1234.");
-                            
-							gotopin();
-						}
+                            <center>
+                            <p>
+                                <input id="terms_checkbox" type="checkbox">
+                                <label for="terms_checkbox"><span onclick="terms();" id="terms_text">
+
+                            I accept the terms & conditions</span></label>
+
+                            </p>
+                            </center>
 
 
-					});
-		
-	}
+                        </div>
+                    </div>
 
-	function convert_uc_first_name() {
-		var data_new = document.getElementById("first_name").value;
-		var data_new_first = data_new.toUpperCase();
-		var data_new_first = data_new_first.substring(0, 1);
-		var data_new = data_new.substring(1);
-		document.getElementById("first_name").value = data_new_first + data_new;
-	}
+                    <center>
+                        <button onclick="check_pin_and_register();" class="waves-effect waves-light btn afri_btn">
+                            <i class="material-icons right">account_box</i>Next
+                        </button>
+                    </center>
 
-	function convert_uc_last_name() {
-		var data_new = document.getElementById("last_name").value;
-		var data_new_first = data_new.toUpperCase();
-		var data_new_first = data_new_first.substring(0, 1);
-		var data_new = data_new.substring(1);
-		document.getElementById("last_name").value = data_new_first + data_new;
-	}
+                </div>
+            </div>
 
-
-	function gotopin() {
-		document.getElementById("reg_personal_details").style.display = "none";
-		document.getElementById("reg_pin").style.display = "block";
-	}
-
-</script>
+        </div>
 
 
 
-<img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="ios_icons/Icon-arrow-left.png">
+        <div id="reg_how_found" style="display:none;" class="animated fadeIn">
 
-<div id="reg_form" class="animated fadeIn" style="-webkit-animation-delay: 2s;">
+            <div class="row">
+                <div class="col s12">
 
-	<div id="reg_personal_details" class="animated fadeIn">
+                    <div class="row">
 
-		<input onblur="convert_uc_first_name();" placeholder="First name(s)" id="first_name">
-		<input onblur="convert_uc_last_name();" placeholder="Last name" id="last_name">
-		<input placeholder="Phone" type="tel" id="phone">
-		<input placeholder="E-Mail" type="email" id="email">
+                        <div class="input-field col s12">
+                            <select id="reg_how_found_select">
+                                <option disabled value="">How did you hear about us?</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Google">Google</option>
+                                <option value="From a friend">From a friend</option>
+                                <option value="TV/Newspaper">TV/Newspaper</option>
+                                <option value="Flier">Flier</option>
+                            </select>
+                            <label>How did you hear about us?</label>
+                        </div>
 
-		<button onclick="register();">Next</button>
+                    </div>
+                </div>
+            </div>
 
-	</div>
-
-	<div id="reg_pin" style="display:none;" class="animated fadeIn">
-
-		<input type="tel" maxlength="4" placeholder="PIN" id="pin">
-		
-		<br>
-		<input id="terms_checkbox" type="checkbox"> <span onclick="terms();" id="terms_text">I accept the terms & conditions.</span>
-
-		<button onclick="check_pin_and_register();">Next</button>
-
-
-	</div>
-    
-    <div id="reg_how_found" style="display:none;" class="animated fadeIn">
-
-		<select id="reg_how_found_select">
-        <option value="">How did you hear about us?</option>
-        <option value="Social Media">Social Media</option>
-        <option value="Google">Google</option>
-        <option value="From a friend">From a friend</option>
-        <option value="TV/Newspaper">TV/Newspaper</option>
-        <option value="Flier">Flier</option>
-        </select>
-		
-		<br>
-
-		<button onclick="how_did_you_find_us_complete()">Complete</button>
+            <script>
+                $(document).ready(function () {
+                    $('select').material_select();
+                });
+            </script>
 
 
-	</div>
-    
-</div>
-
-<script>
-    function check_pin_and_register() {
-
-		var pin = document.getElementById("pin").value;
-
-		var pin_is_number = /^\d{4}$/.test(pin);
-
-		if (pin_is_number == false) {
-			document.getElementById("pin").value = "";
-			alert("PIN format incorrect.<br>Please enter a 4-digit number.");
-		} else {
-			
-			var terms_checkbox = $('#terms_checkbox:checked').val();
-			
-			if(terms_checkbox == "on") {
-				showindicator();
-				how_did_you_find_us();
-			}
-			else {
-				alert("Please accept our<br>terms & conditions!");
-			}
-			
-		}
-	}
+            <center>
+                <button onclick="how_did_you_find_us_complete();" class="waves-effect waves-light btn afri_btn">
+                    <i class="material-icons left">account_box</i>Next
+                </button>
+            </center>
 
 
-    function how_did_you_find_us() {
-        
-    hideindicator();
-        
-    document.getElementById("reg_how_found").style.display = "block";
-    document.getElementById("reg_pin").style.display = "none";
-    
-    }
-    
-    function how_did_you_find_us_complete() {
-    
-    reg_how_found_select = document.getElementById("reg_how_found_select").value;
-        
-    showindicator();
-        
-    if (reg_how_found_select == "") {
-        alert("Please let us know how you heard about us.");
-        
-        hideindicator();
-        
-        return;
-    }
-        
-    complete_registration();
 
-    }
+        </div>
 
-	$(document).ready(function() {
-		$('#first_name').keyup(function() {
-			// this.value = this.value.replace(/ /g, "");
-		});
-		$('#last_name').keyup(function() {
-			// this.value = this.value.replace(/ /g, "");
-		});
-		$('#email').keyup(function() {
-			this.value = this.value.toLowerCase();
-			this.value = this.value.replace(/ /g, "");
-		});
-		$(function() {
-			$('#first_name').keypress(function(e) {
-				var txt = String.fromCharCode(e.which);
-				console.log(txt + ' : ' + e.which);
-				if (!txt.match(/[A-Za-z0-9]/)) //+#-.
-				{
-					return false;
-				}
-			});
-		});
-		$(function() {
-			$('#last_name').keypress(function(e) {
-				var txt = String.fromCharCode(e.which);
-				console.log(txt + ' : ' + e.which);
-				if (!txt.match(/[A-Za-z0-9]/)) //+#-.
-				{
-					return false;
-				}
-			});
-		});
-		$(function() {
-			$('#email').keypress(function(e) {
-				var txt = String.fromCharCode(e.which);
-				console.log(txt + ' : ' + e.which);
-				if (!txt.match(/[A-Za-z0-9@.]/)) //+#-.
-				{
-					return false;
-				}
-			});
-		});
-	});
+    </div>
 
-</script>
+    <script>
+        function check_pin_and_register() {
 
-<style>
-	#pin {
-		-webkit-text-security: circle;
-		text-security: circle;
-	}
+            var password = document.getElementById("password").value;
+            
+            if (password == "") {
+                swal("","Please enter a password!","error");
+                return;
+            }
+            
+            if (password.length < 5) {
+                swal("","Password is too short!","error");
+                return;
+            }
 
-</style>
+            // var pin_is_number = /^\d{4}$/.test(pin);
+
+            var terms_checkbox = $('#terms_checkbox:checked').val();
+
+            if (terms_checkbox == "on") {
+
+                showindicator();
+                how_did_you_find_us();
+
+            } else {
+
+                swal("", "Please accept our terms & conditions!", "info");
+
+            }
+
+        }
+
+
+        function how_did_you_find_us() {
+
+            hideindicator();
+
+            document.getElementById("reg_how_found").style.display = "block";
+            document.getElementById("reg_pin").style.display = "none";
+
+        }
+
+        function how_did_you_find_us_complete() {
+
+            reg_how_found_select = document.getElementById("reg_how_found_select").value;
+
+            showindicator();
+
+            if (reg_how_found_select == "") {
+                swal("", "Please let us know how you heard about us.", "");
+
+                hideindicator();
+
+                return;
+            }
+
+            complete_registration();
+
+        }
+
+        $(document).ready(function () {
+            $('#first_name').keyup(function () {
+                // this.value = this.value.replace(/ /g, "");
+            });
+            $('#last_name').keyup(function () {
+                // this.value = this.value.replace(/ /g, "");
+            });
+            $('#email').keyup(function () {
+                this.value = this.value.toLowerCase();
+                this.value = this.value.replace(/ /g, "");
+            });
+            $(function () {
+                /*
+                $('#first_name').keypress(function (e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[A-Za-z0-9]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+                */
+            });
+            $(function () {
+                /*
+                $('#last_name').keypress(function (e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[A-Za-z0-9]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+                */
+            });
+            $(function () {
+                /*
+                $('#email').keypress(function (e) {
+                    var txt = String.fromCharCode(e.which);
+                    console.log(txt + ' : ' + e.which);
+                    if (!txt.match(/[A-Za-z0-9@.]/)) //+#-.
+                    {
+                        return false;
+                    }
+                });
+                */
+            });
+        });
+    </script>
+
+    <style>
+        #pin {
+            -webkit-text-security: circle;
+            text-security: circle;
+        }
+    </style>
 
 </div>
