@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.twofiftytaxi.app"
-        versionCode = "39" 
-        version     = "2.2.1" >
+    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="39" version="2.2.1">
 
-    <name>Afritaxi</name>
+        <name>Afritaxi</name>
 
-    <description>
-		Taxi Booking Service
-    </description>
+        <description>
+            Taxi Booking Service
+        </description>
 
-    <author href="https://afrionline.net" email="info@afrionline.net">
-        Jens Bröcher
-    </author>
-	
-	<icon src="icon.png" />
-		
-	<platform name="android" />
+        <author href="https://afrionline.net" email="info@afrionline.net">
+            Jens Bröcher
+        </author>
 
-	<!-- Core plugins -->
-        
-	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-device" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+        <icon src="icon.png" />
 
-    <gap:plugin name="cordova-plugin-file" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-media" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+        <platform name="android"></platform>
 
-    <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+        <preference name="android-minSdkVersion" value="15" />
+        <preference name="android-targetSdkVersion" value="20" />
         
-    <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
-        
-    <gap:plugin name="onesignal-cordova-plugin" source="npm" />
-        
-    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+        <preference name="android-build-tool" value="gradle" />
+
+        <!-- Core plugins -->
+
+        <gap:plugin name="cordova-plugin-statusbar" source="npm" />
+
+        <gap:plugin name="cordova-plugin-device" source="npm" />
+
+        <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+
+        <gap:plugin name="cordova-plugin-file" source="npm" />
+
+        <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
+
+        <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+
+        <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+
+        <gap:plugin name="cordova-plugin-media" source="npm" />
+
+        <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+
+        <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+
+        <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
+
+        <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
+
+        <gap:plugin name="onesignal-cordova-plugin" source="npm" />
+
+        <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
         <gap:plugin name="cordova-plugin-facebook4" source="npm">
             <param name="APP_ID" value="1862748810611888" />
             <param name="APP_NAME" value="UB-Dream" />
         </gap:plugin>
 
-</widget>
+    </widget>
