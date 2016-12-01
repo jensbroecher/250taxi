@@ -13,7 +13,7 @@ function complete_social_login() {
 
     // Check if account with that E-Mail exists already
 
-    $.get("https://250taxi.com/db/check_user.php?task=check_email&email=" + email + "", function (result) {
+    $.get("https://250taxi.com/db/check_user.php?task=check_email&email=" + sign_in_email + "", function (result) {
 
         console.log("Social Login - E-Mail registered?");
         console.log(result);
@@ -84,7 +84,6 @@ function social_register_go() {
 
     var login_type = localStorage.getItem("login_type");
 
-
     if (login_type == "facebook") {
         var sign_in_email = localStorage.getItem("facebook_email");
         var sign_in_name = localStorage.getItem("facebook_name");
@@ -94,7 +93,7 @@ function social_register_go() {
         var sign_in_name = localStorage.getItem("google_name");
     }
 
-    swal("", "" + sign_in_name + ", your account is not yet registered with Afritaxi. \n\nPlease tell as your phone number and pick a password.");
+    swal("", "" + sign_in_name + ", " + sign_in_email + " is not yet registered with Afritaxi. \n\nPlease tell as your phone number and pick a password.");
 
     $("#reg_start").load("reg/mainmenu.html", function () {
 
