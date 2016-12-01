@@ -51,8 +51,8 @@
         <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
 
         <gap:plugin name="cordova-plugin-facebook4" source="npm">
-            <param name="APP_ID" value="1862748810611888" />
-            <param name="APP_NAME" value="UB-Dream" />
+            <param name="APP_ID" value="287641408285720" />
+            <param name="APP_NAME" value="AFRITAXI" />
         </gap:plugin>
 
     </widget>
