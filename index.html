@@ -22,7 +22,7 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/materialize.min.js"></script>
-    
+
     <script src="js/sweetalert.min.js"></script>
 
     <script src="js/responsivevoice.js"></script>
@@ -37,7 +37,7 @@
     <script type="text/javascript">
         function app_restart() {
             setTimeout(function () {
-                // location.reload();
+                location.reload();
             }, 3000);
         }
 
@@ -45,11 +45,13 @@
 
             window.location.href = "index.html#start";
 
-            loading_error_check = setTimeout(function () {
-                localStorage.setItem('toast', 'Loading...');
-                toast();
-                app_restart();
-            }, 6000);
+            if (window.cordova) {
+                loading_error_check = setTimeout(function () {
+                    localStorage.setItem('toast', 'Loading...');
+                    toast();
+                    app_restart();
+                }, 6000);
+            }
 
             var rememberuser = localStorage.getItem("rememberuser");
 
@@ -379,65 +381,75 @@
         }
         
         #start_hide {
-            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
         }
     </style>
 
 </head>
 
 <body onload="cordova_start();">
+    
+    <div id="reg_start"></div>
 
     <div id="start_hide">
-
-        <div id="reg_start"></div>
-
-
 
         <div id="logo_white"></div>
 
         <div id="loadingindicator">
 
-           <div class="preloader-wrapper medium active">
-      <div class="spinner-layer spinner-blue">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
+            <div class="preloader-wrapper medium active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
 
-      <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
 
-      <div class="spinner-layer spinner-yellow">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
 
-      <div class="spinner-layer spinner-green">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-      </div>
-    </div>
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

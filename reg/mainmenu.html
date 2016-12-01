@@ -159,7 +159,7 @@
             </div>
         </div>
 
-        <div id="reg_pin" style="display:none;" class="animated fadeIn">
+        <div id="reg_pin" style="display:none;">
 
             <div class="row">
                 <div class="col s12">
@@ -185,16 +185,15 @@
 
                             </p>
                             </center>
-
-
-                        </div>
-                    </div>
-
-                    <center>
+                            
+                            <center>
                         <button onclick="check_pin_and_register();" class="waves-effect waves-light btn afri_btn">
                             <i class="material-icons right">account_box</i>Next
                         </button>
                     </center>
+
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -221,6 +220,12 @@
                             </select>
                             <label>How did you hear about us?</label>
                         </div>
+                        
+            <center>
+                <button onclick="how_did_you_find_us_complete();" class="waves-effect waves-light btn afri_btn">
+                    <i class="material-icons left">account_box</i>Next
+                </button>
+            </center>
 
                     </div>
                 </div>
@@ -231,15 +236,6 @@
                     $('select').material_select();
                 });
             </script>
-
-
-            <center>
-                <button onclick="how_did_you_find_us_complete();" class="waves-effect waves-light btn afri_btn">
-                    <i class="material-icons left">account_box</i>Next
-                </button>
-            </center>
-
-
 
         </div>
 

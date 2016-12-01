@@ -24,9 +24,9 @@ function toast_circle() {
 document.getElementById("toast").style.display = "block";
 document.getElementById("toast").className = "animated zoomIn";
 
-setTimeout(function(){ 
-window.navigator.vibrate([100,30,100,30,100]);
-}, 1000);
+// setTimeout(function(){ 
+// window.navigator.vibrate([100,30,100,30,100]);
+// }, 1000);
 	
 var toast_text = localStorage.getItem("toast");
 	
@@ -68,9 +68,9 @@ function toast_big_circle() {
 document.getElementById("toast_big").style.display = "block";
 document.getElementById("toast_big").className = "animated zoomIn";
 
-setTimeout(function(){ 
-window.navigator.vibrate([100,30,100,30,100]);
-}, 1000);
+// etTimeout(function(){ 
+// window.navigator.vibrate([100,30,100,30,100]);
+// }, 1000);
 
 var toast_text = localStorage.getItem("toast");
 	
