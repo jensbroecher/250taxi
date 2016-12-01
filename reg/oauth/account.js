@@ -68,15 +68,15 @@ function social_login_go() {
 
         localStorage.setItem("userid", userid);
         localStorage.setItem("rememberuser", "Yes");
-        
+
         localStorage.setItem("rememberuser", "Yes");
 
         localStorage.removeItem("hotelcorporate");
 
-        localStorage.setItem("logupdate", "" + userid + "*0*login*User" + userid + " logged in trough social.");
+        localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
         logupdate_v2();
 
-        $.get("https://enunua.com/ubdream/db/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
+        $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
 
             document.location.href = 'gotostart.html';
 
