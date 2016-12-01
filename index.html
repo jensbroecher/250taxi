@@ -27,7 +27,10 @@
 
     <script src="js/responsivevoice.js"></script>
     <script src="reg/logic.js"></script>
-    <script src="oauth/oauth.js"></script>
+
+    <script src="reg/oauth/oauth_google.js"></script>
+    <script src="reg/oauth/oauth_facebook.js"></script>
+
     <script src="js/preventreload.js"></script>
     <script src="js/logupdate.js"></script>
     <script src="js/audio_definitions.js"></script>
@@ -146,10 +149,29 @@
             localStorage.setItem("device_version", device_version);
             localStorage.setItem("device_uuid", device_uuid);
         }
+        
+        function social_login_btn() {
+            $('#google_sign_in').on('click', function () {
+                localStorage.setItem("google_login_button_clicked", "Yes");
+                app.onLoginButtonClick();
+            });
+
+            $('#facebook_sign_in').on('click', function () {
+                localStorage.setItem("facebook_login_button_clicked", "Yes");
+                facebook_login_start();
+            });
+        }
 
         function start_reg() {
 
             $("#reg_start").load("reg/mainmenu.html", function () {
+
+                $.get('reg/social_login.html', function (data) {
+                    $('#reg_form').prepend(data);
+
+                    social_login_btn();
+
+                });
 
                 document.getElementById("reg_start").style.height = "100%";
                 if (document.getElementById("close_reg_start_arrow"))
@@ -163,6 +185,14 @@
         function start_login() {
 
             $("#reg_start").load("reg/login.html", function () {
+
+                $.get('reg/social_login.html', function (data) {
+                    $('#reg_form').prepend(data);
+
+                    social_login_btn();
+
+                });
+
                 document.getElementById("reg_start").style.height = "100%";
 
                 if (document.getElementById("close_reg_start_arrow"))
@@ -238,161 +268,46 @@
                 localStorage.setItem("os_id", "" + ids.userId + "");
             });
         }
-    </script>
 
-    <style>
-        * {
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
+        function forgot_password() {
+
+            var randomclientid = Math.floor(Math.random() * 1000000000);
+
+            swal({
+                    title: ""
+                    , text: ""
+                    , type: "input"
+                    , showCancelButton: true
+                    , closeOnConfirm: false
+                    , animation: "slide-from-top"
+                    , inputPlaceholder: "E-Mail"
+                }
+                , function (inputValue) {
+                    if (inputValue === false) return false;
+
+                    if (inputValue === "") {
+                        swal.showInputError("Please enter your E-Mail!");
+                        return false
+                    }
+
+                    $.get("https://250taxi.com/db/password_recovery.php?task=start&email=" + inputValue + "&randomclientid=" + randomclientid, function (data) {
+
+                        swal("", "Please check your E-Mail for instructions!", "info");
+
+                    });
+                
+
+            });
+
+
+
         }
-        
-        #background_frame_login {
-            background-image: url(css/arrive.jpg);
-            height: 100%;
-            width: 100%;
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-        
-        #background_frame_register {
-            background-image: url(css/11.jpg);
-            height: 100%;
-            width: 100%;
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-        
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #000;
-            background-color: white;
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            overflow: hidden;
-            background-image: url(css/rebranding.jpg), url(css/rebranding_cont.jpg);
-            background-size: cover;
-            background-repeat: no-repeat, repeat;
-        }
-        
-        #loginregister {
-            padding-top: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            box-sizing: border-box;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.8);
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        #loginregister div {
-            width: 47%;
-            display: block;
-            font-family: 'Roboto', sans-serif;
-            font-style: normal;
-            font-size: 16px;
-            font-weight: normal;
-            border-radius: 0px;
-            line-height: 300%;
-            border: solid 2px #AF2326;
-            color: #AF2326;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-        
-        .left {
-            float: left;
-        }
-        
-        .right {
-            float: right;
-        }
-        
-        #loginregister div:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-            transition_OFF: all 0.5s;
-        }
-        
-        #claim {
-            font-size: 25px;
-            font-style: italic;
-            font-weight: 700;
-            position: absolute;
-            text-align: center;
-            z-index: 100;
-            width: 100%;
-            height: 100%;
-            color: #FFFFFF;
-        }
-        
-        #copyright {
-            color: #CD5928;
-            font-size: 12px;
-            position: fixed;
-            text-align: center;
-            z-index: 100;
-            width: 100%;
-            bottom: 11px;
-        }
-        
-        #loadingindicator {
-            background-color: white;
-            position: absolute;
-            z-index: 10000000000000000;
-            height: 100%;
-            width: 100%;
-            left: 0px;
-            top: 0px;
-            text-align: center;
-            display: none;
-        }
-        
-        #loadingindicator .preloader-wrapper {
-            margin-top: 45%;
-        }
-        
-        #animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            left: 0px;
-            z-index: -100;
-            object-fit: fill;
-        }
-        
-        #video_placeholder {
-            height: 50%;
-        }
-        
-        #welcome_notice {
-            position: fixed;
-            bottom: 30%;
-        }
-        
-        #welcome_notice img {
-            width: 70%;
-        }
-        
-        #start_hide {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+    </script>
 
 </head>
 
 <body onload="cordova_start();">
-    
+
     <div id="reg_start"></div>
 
     <div id="start_hide">

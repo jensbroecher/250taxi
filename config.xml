@@ -19,28 +19,39 @@
 		
 	<platform name="android" />
 
-    <preference name="android-build-tool" value="gradle" />
-
 	<!-- Core plugins -->
+        
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
+        
     <gap:plugin name="cordova-plugin-device" source="npm" />
+        
     <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
-    <gap:plugin name="cordova-plugin-dialogs" source="npm" />
+
     <gap:plugin name="cordova-plugin-file" source="npm" />
+        
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
+        
     <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+        
     <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+        
     <gap:plugin name="cordova-plugin-media" source="npm" />
+        
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 
     <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+        
     <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
+        
     <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
     <gap:plugin name="onesignal-cordova-plugin" source="npm" />
-              
-    <allow-navigation href="*" />
-    <allow-intent href="*" />
-    <access origin="*" />
+        
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+
+        <gap:plugin name="cordova-plugin-facebook4" source="npm">
+            <param name="APP_ID" value="1862748810611888" />
+            <param name="APP_NAME" value="UB-Dream" />
+        </gap:plugin>
 
 </widget>

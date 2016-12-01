@@ -5,6 +5,201 @@
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/material/MaterialIcons-Regular.woff2) format('woff2'), url(../fonts/material/MaterialIcons-Regular.woff) format('woff'), url(../fonts/material/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+#background_frame_login {
+    background-image: url(arrive.jpg);
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#background_frame_register {
+    background-image: url(11.jpg);
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    overflow: hidden;
+    background-image: url(../css/rebranding.jpg), url(../css/rebranding_cont.jpg);
+    background-size: cover;
+    background-repeat: no-repeat, repeat;
+}
+
+#loginregister {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#loginregister div {
+    width: 47%;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: normal;
+    border-radius: 0px;
+    line-height: 300%;
+    border: solid 2px #AF2326;
+    color: #AF2326;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+#loginregister div:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transition_OFF: all 0.5s;
+}
+
+#claim {
+    font-size: 25px;
+    font-style: italic;
+    font-weight: 700;
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+}
+
+#copyright {
+    color: #CD5928;
+    font-size: 12px;
+    position: fixed;
+    text-align: center;
+    z-index: 100;
+    width: 100%;
+    bottom: 11px;
+}
+
+#loadingindicator {
+    background-color: white;
+    position: absolute;
+    z-index: 10000000000000000;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    text-align: center;
+    display: none;
+}
+
+#loadingindicator .preloader-wrapper {
+    margin-top: 45%;
+}
+
+#animation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    z-index: -100;
+    object-fit: fill;
+}
+
+#video_placeholder {
+    height: 50%;
+}
+
+#welcome_notice {
+    position: fixed;
+    bottom: 30%;
+}
+
+#welcome_notice img {
+    width: 70%;
+}
+
+#start_hide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.social_sign_in {
+    display: block;
+    width: 130px;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.social_sign_in div {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 3%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    float: left;
+    overflow: hidden;
+}
+
+#facebook_sign_in {
+    background-color: #3b5998;
+    color: white;
+}
+
+#facebook_sign_in div {
+    background-image: url(facebook.png);
+    border-right: solid 1px rgba(255, 255, 255, 0.5);
+}
+
+#google_sign_in {
+    color: grey;
+}
+
+#google_sign_in div {
+    background-image: url(google.png);
+    border-right: solid 1px lightgrey;
+}
+
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -82,6 +277,9 @@ select {
         padding-top: 15px;
         box-sizing: border-box;
         overflow: auto;
+    }
+    #social_login {
+        display: none;
     }
 }
 
