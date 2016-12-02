@@ -18,8 +18,6 @@ $("#taxirequest_destination").keypress(function(e) {
     
 $( "#ride_now_button" ).click(function() {
     
-menubar_bottom_audio.play();
-    
 localStorage.setItem("ride_start","now");
     
 document.getElementById("taxi_go_text").innerHTML = "pick me up now";
@@ -41,8 +39,6 @@ mydetailedlocation_show();
 });
 	
 $( "#ride_later_button" ).click(function() {
-    
-menubar_bottom_audio.play();
 
 localStorage.setItem("ride_start","later");
     
@@ -60,10 +56,6 @@ mydetailedlocation_show();
     
 $( "#call_now_button" ).click(function() {
     
-menubar_bottom_audio.play();
-    
-showindicator();
-    
 document.getElementById("call_now_button").style.pointerEvents = "none";
     
 console.log("Dial a 250 Taxi");
@@ -71,8 +63,11 @@ console.log("Dial a 250 Taxi");
 var userid = localStorage.getItem('userid');
     
 var voice_enabled = localStorage.getItem("voice_enabled");
-if (voice_enabled == "On") {responsiveVoice.speak("Call our customer care to send you a taxi. Please mention reference number 250" + userid+".");}
+if (voice_enabled == "On") {responsiveVoice.speak("Call our customer care");}
+    
+location.href = "tel:+250783000096";
 
+/*
 $.get( "dialataxi/dialataxi.html", function( data ) {
     
     hideindicator();
@@ -90,6 +85,7 @@ $.get( "dialataxi/dialataxi.html", function( data ) {
     document.getElementById("dialataxi_pickup").innerHTML = pickup;
     
 });
+*/
     
 });
 

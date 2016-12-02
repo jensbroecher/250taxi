@@ -15,7 +15,7 @@
 }
 
 .sdbutton_booklater {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: black;
     text-align: center;
@@ -31,7 +31,7 @@
 }
 
 .sdbutton_booklater_gray {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     background-color: black;
     text-align: center;
@@ -99,7 +99,7 @@
 }
 
 #mydetailedlocation_dialog {
-    background-color: #148AAE;
+    background-color: #C3542C;
     position: fixed;
     bottom: 0px;
     height: 0px;

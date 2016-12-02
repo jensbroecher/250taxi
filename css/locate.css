@@ -235,9 +235,11 @@ body,
     z-index: 100;
     display: block;
     transition: all 0.5s;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: white;
     height: 70px;
+    opacity: 0;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 #calltaxiui #ride_now_button {
@@ -269,23 +271,12 @@ body,
 
 .start_buttons {
     height: 50px;
-    border-radius: 6px;
-    background-color: rgba(45, 150, 182, 1);
+    background-color: #C3552D;
+    border: none;
     text-align: center;
     color: white;
     margin-top: 10px;
-    transition: all 0.5s;
     cursor: pointer;
-}
-
-.start_buttons:focus {
-    height: 50px;
-    border-radius: 6px;
-    background-color: rgb(52, 179, 217);
-    text-align: center;
-    color: white;
-    margin-top: 10px;
-    transition: all 0.5s;
 }
 
 .start_button_pick {
@@ -342,11 +333,11 @@ body,
     left: 0;
     position: fixed;
     z-index: 102;
-    background-color: black;
+    background-color: white;
     display: none;
     padding-left: 2%;
     padding-right: 2%;
-    background-image: url(../reg/kigali_blur.jpg);
+    background-image: url(splash_day.jpg);
     background-size: cover;
 }
 
@@ -376,7 +367,7 @@ body,
     top: 0%;
     margin-left: 0%;
     margin-right: 0%;
-    background-color: rgba(44, 148, 179, 0.8);
+    background-color: #C2542C;
     height: 160px;
     display: none;
     position: absolute;
@@ -385,17 +376,17 @@ body,
 }
 
 #gosearchbyaddress {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    border: solid 2px white;
     font-size: 14px;
-    background-color: black;
+    background-color: transparent;
     text-align: center;
     color: white;
     margin-left: 25%;
     width: 50%;
-    padding-top: 10px;
-    padding-bottom: 8px;
+    line-height: 250%;
     text-transform: uppercase;
-    border-radius: 15px;
+    border-radius: 0px;
 }
 
 #searchbyaddress_clear {
@@ -530,5 +521,5 @@ body,
 }
 
 #account_button_phone {
-    display: none;
+
 }

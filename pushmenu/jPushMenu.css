@@ -1,5 +1,14 @@
+#afri_logo_menu {
+    display: block;
+    width: 80%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .cbp-spmenu {
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(255, 255, 255, 1);
 	position: fixed;
 	
 	-webkit-transform: translateZ(0);
@@ -11,28 +20,28 @@
 
 .cbp-spmenu div {
 	display: block;
-	color: #fff;
+	color: darkslategray;
 	font-size: 0.9em;
 	font-weight: 300;
     text-decoration: none;
-    font-family: Roboto;
+    font-family: sans-serif;
     text-transform: uppercase;
 }
 
 .cbp-spmenu div:hover {
-	background: #148AAF;
+	background: #C3562D;
     color: #FFFFFF;
 }
 
 .cbp-spmenu div:active {
-	background: #148AAF;
+	background: #C3562D;
 	color: #FFFFFF;
 }
 
 /* Orientation-dependent styles for the content of the menu */
 
 .cbp-spmenu-vertical {
-	width: 240px;
+	width: 75%;
 	height: 100%;
 	top: 0;
 	z-index: 1000;
@@ -60,11 +69,11 @@
 /* Vertical menu that slides from the left or right */
 
 .cbp-spmenu-left {
-	left: -240px;
+	left: -75%;
 }
 
 .cbp-spmenu-right {
-	right: -240px;
+	right: -75%;
 }
 
 .cbp-spmenu-left.cbp-spmenu-open {
@@ -112,10 +121,8 @@
 /* Transitions */
 
 .cbp-spmenu,
-.cbp-spmenu-push_OFF {
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	transition: all 0.3s ease;
+.cbp-spmenu-push {
+	transition: all 0.3s cubic-bezier(1, 0.06, 0.58, 1);
 }
 
 /* Example media queries */

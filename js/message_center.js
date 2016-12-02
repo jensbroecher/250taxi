@@ -92,3 +92,25 @@ function show_message(text) {
     };
 
 }
+
+function send_message_to_customer_care() {
+    
+    var userid = localStorage.getItem("userid");
+	
+	swal({
+		title: "",
+		text: "",
+        inputPlaceholder: "",
+		type: "input",
+		showCancelButton: true,
+		confirmButtonColor: "#148AAE",
+		confirmButtonText: "Send",
+		closeOnConfirm: true
+    }, function(inputValue){   
+		
+		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"", function( data ) {	
+		
+		});
+	
+    });
+}

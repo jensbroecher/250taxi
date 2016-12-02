@@ -100,7 +100,7 @@ function social_register_go() {
         var sign_in_name = localStorage.getItem("google_name");
     }
 
-    swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell as your phone number and pick a password.");
+    swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell us your phone number and pick a password.");
 
     $("#reg_start").load("reg/mainmenu.html", function () {
 

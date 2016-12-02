@@ -490,7 +490,7 @@ function a(){
 }
 
 // Start map updater
-map_updater = setInterval(a,3000); 
+map_updater = setInterval(a,20000); 
 			
             google.maps.event.addListener(marker, 'dragend', function (event) {
             document.getElementById("lat").value = event.latLng.lat();
@@ -904,8 +904,8 @@ localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User
 function logout() {
     
 swal({   
-    title: "Logout?",   
-    text: "",
+    title: "",   
+    text: "Are you sure you want to sign out?",
     type: "",
     showCancelButton: true,
     confirmButtonColor: "#DD6B55",
@@ -914,14 +914,9 @@ swal({
 }, function(){
     
     showindicator();
-        
-    var userid = localStorage.getItem('userid');     
-    localStorage.setItem("logupdate",""+userid+"*0*logout*User"+userid+" logged out.");logupdate_v2();
 
-    localStorage.removeItem('rememberuser');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userid');
-    localStorage.removeItem('randomclientid');
+    localStorage.clear();
+    sessionStorage.clear();
         
     setTimeout(function(){
         location.replace('index.html');    
