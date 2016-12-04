@@ -1,3 +1,35 @@
+function forgot_password() {
+
+    var randomclientid = Math.floor(Math.random() * 1000000000);
+
+    swal({
+            title: ""
+            , text: ""
+            , type: "input"
+            , showCancelButton: true
+            , closeOnConfirm: false
+            , animation: "slide-from-top"
+            , inputPlaceholder: "E-Mail"
+        }
+        , function (inputValue) {
+            if (inputValue === false) return false;
+
+            if (inputValue === "") {
+                swal.showInputError("Please enter your E-Mail!");
+                return false
+            }
+
+            $.get("https://250taxi.com/db/password_recovery.php?task=start&email=" + inputValue + "&randomclientid=" + randomclientid, function (data) {
+
+                swal("", "Please check your E-Mail for instructions!", "info");
+
+            });
+
+
+        });
+
+}
+
 function complete_social_login() {
 
     var login_type = localStorage.getItem("login_type");

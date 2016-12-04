@@ -84,6 +84,8 @@
     <script src="js/summary.js"></script>
     <script src="js/locate.js"></script>
 
+    <script src="reg/oauth/account.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
     <link rel="stylesheet" type="text/css" href="css/waves.css">
@@ -100,6 +102,8 @@
     <link rel="stylesheet" type="text/css" href="css/detailed_pickup_location.css">
     <link rel="stylesheet" type="text/css" href="css/functions.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/user_pin.css">
 
     <script>
         function dogpscheck() {
@@ -195,7 +199,13 @@
 
                 Wallet</div>
 
-            <div id="wallet_balance">Balance: <span id="wallet_balance_amount">
+            <div id="wallet_balance"> 
+                
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="white" d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z" />
+</svg> 
+                
+<span id="wallet_balance_amount">
     
 <div style="display:inline;" class="la-ball-pulse">
 	<div></div>
@@ -203,7 +213,7 @@
     <div></div>
 </div>
     
-    </span> <span id="wallet_balance_currency"></span></div>
+</span> <span id="wallet_balance_currency"></span></div>
 
         </div>
 
@@ -255,7 +265,7 @@
 
             <div id="account_button_phone" onclick="send_message_to_customer_care();" class="account_button waves-effect waves-light">Update Phone</div>
 
-            <div id="account_button_pin" onclick="send_message_to_customer_care();" class="account_button waves-effect waves-light">Change Password</div>
+            <div id="account_button_pin" onclick="forgot_password();" class="account_button waves-effect waves-light">Change Password</div>
         
             <div id="account_button_pin" onclick="logout();" class="account_button waves-effect waves-light">Sign out</div>
 
@@ -435,7 +445,7 @@
         <div class='noSwipe' id='mainmenu_account'>Account</div>
         <div class='noSwipe' id='mainmenu_wallet'>Wallet</div>
         <div class='noSwipe' id='mainmenu_bookings'>Bookings</div>
-        <div class='noSwipe' id='mainmenu_history'>Trips</div>
+        <div class='noSwipe' id='mainmenu_history'>History</div>
         <div class='noSwipe' id='mainmenu_becomedriver'>Partner with Afritaxi</div>
         <div class='noSwipe' id='mainmenu_corporate'>Afritaxi CORPORATE</div>
 
@@ -459,19 +469,16 @@
             </svg>
         </div>
 
-        <input style="display:none" id="lat" name="lat" val="40.713956">
-        <input style="display:none" id="long" name="long" val="74.006653">
+        <input id="lat" name="lat" val="40.713956">
+        <input id="long" name="long" val="74.006653">
 
-        <input placeholder="Landmark / Street" id="searchbyaddress" value="">
+        <input placeholder="Pickup (Landmark/Street/Address)" id="searchbyaddress">
 
         <button id="searchbyaddress_clear">
         </button>
-
-
-
-
-
-
+        
+        <button id="searchbyaddress_back">
+        </button>
 
         <div class="waves-effect waves-light" id="gosearchbyaddress" onclick="codeAddress();">
 
@@ -581,32 +588,22 @@
             <div class="start_buttons">
 
                 <div class="start_button_pick">
-                    Call
+                    Call or Chat
                 </div>
 
                 <div class="start_button_time">
-                    Afritaxi
+                    Support
                 </div>
 
             </div>
 
         </div>
-
-
-
-
-
-
-
+    
     </div>
 
-
+    <div id="user_location_pin"></div>
 
     <div id="map"></div>
-
-    <script>
-    </script>
-
 
     <div id="journey_status_dialog">
 

@@ -1,5 +1,9 @@
 $(document).ready(function () {
     
+$.get( "journey/user_pin.html", function( data ) {
+  $("#user_location_pin").html(data);
+});
+    
 $("#ride_later_button .start_button_pick").html("Pick me up");
 $("#ride_later_button .start_button_time").html("Later");
 

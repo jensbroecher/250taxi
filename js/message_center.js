@@ -107,10 +107,14 @@ function send_message_to_customer_care() {
 		confirmButtonText: "Send",
 		closeOnConfirm: true
     }, function(inputValue){   
+        
+        if(inputValue != "" || inputValue != false) {
 		
 		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"", function( data ) {	
 		
 		});
+            
+        }
 	
     });
 }

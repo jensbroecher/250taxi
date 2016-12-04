@@ -56,16 +56,30 @@ mydetailedlocation_show();
     
 $( "#call_now_button" ).click(function() {
     
-document.getElementById("call_now_button").style.pointerEvents = "none";
-    
-console.log("Dial a 250 Taxi");
-    
 var userid = localStorage.getItem('userid');
     
 var voice_enabled = localStorage.getItem("voice_enabled");
 if (voice_enabled == "On") {responsiveVoice.speak("Call our customer care");}
     
-location.href = "tel:+250783000096";
+swal({
+  title: "",
+  text: "Call or send chat message?",
+  type: "",
+  showCancelButton: true,
+  confirmButtonText: "Call",
+  cancelButtonText: "Message",
+  closeOnConfirm: true,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    location.href = "tel:+250783000096";
+  } else {
+    send_message_to_customer_care();
+  }
+});
+    
+
 
 /*
 $.get( "dialataxi/dialataxi.html", function( data ) {
@@ -374,9 +388,6 @@ if (voice_enabled == "On") {responsiveVoice.speak("We are notifying this taxi!")
     $( "#driveroverlay" ).fadeIn( "slow", function() {
         
         var pickdriver_id = localStorage.getItem("pickdriver_id");
-		
-		
-        
         
 $( "#driveroverlay_show_details" ).load( "https://250taxi.com/db/partner/taxi_comlink_driver_details.php?pickdriver_id="+pickdriver_id+"", function() {
 journey_start_map();
@@ -398,7 +409,7 @@ function pickdriver_request_start () {
     
 var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
-localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request*User"+userid+" is waiting for Driver"+driverid+" to accept.");logupdate_v2();
+localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request*User"+userid+" is waiting for driver"+driverid+" to accept.");logupdate_v2();
     
 // Update new request system
     
@@ -445,12 +456,10 @@ if (voice_enabled == "On") {responsiveVoice.speak("Contacting driver, please wai
     
     var pickdriver_id = localStorage.getItem("pickdriver_id");
     
-    if (localStorage.getItem("username") === null) {
-        alert("An error occured. Please log in again.")
-        logout();
+    if (localStorage.getItem("userid") === null) {
+        swal("","There is a problem with your account. Please contact Afritaxi support.");
     }
     
-    var username = localStorage.getItem("username");
     var destination = localStorage.getItem("destination");
     var destination_type = localStorage.getItem("destination_type");
     
@@ -462,8 +471,9 @@ if (voice_enabled == "On") {responsiveVoice.speak("Contacting driver, please wai
     // alert(pickdriver_id);
     
 	var pickup = localStorage.getItem("pickup");
+    var userid = localStorage.getItem("userid");
     
-    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey_v2.php?task=start&username="+username+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"&pickup="+pickup+"",  function( data ) {
+    $.get( "https://250taxi.com/db/partner/taxi_comlink_journey_v3.php?task=start&userid="+userid+"&pickdriver_id="+pickdriver_id+"&destination="+destination+"&destination_type="+destination_type+"&destination_lat="+destination_lat+"&destination_long="+destination_long+"&pickup="+pickup+"",  function( data ) {
         
     });
 
@@ -513,11 +523,10 @@ var pickup_name = localStorage.getItem("pickup");
 var pickup_lat = localStorage.getItem("pickup_lat");
 var pickup_lng = localStorage.getItem("pickup_lng");
     
-var username = localStorage.getItem("username");
+var userid = localStorage.getItem("userid");
 
 var detailedlocation = document.getElementById("taxirequest_detailedlocation").value;
 var landmark = document.getElementById("list_of_nearby_places").value;
-var userid = localStorage.getItem("userid");
     
 var detailedlocation_length = detailedlocation.length;
     
@@ -525,7 +534,7 @@ if (detailedlocation_length > 2) {
     
 localStorage.setItem("detailedlocation",detailedlocation);
 
-$.get( "https://250taxi.com/db/partner/taxi_comlink_journey.php?task=detailedlocation&pickup_name="+pickup_name+"&pickup_lat="+pickup_lat+"&pickup_lng="+pickup_lng+"&username="+username+"&userid="+userid+"&detailedlocation="+detailedlocation+"&landmark="+landmark+"",  function( data ) {
+$.get( "https://250taxi.com/db/partner/taxi_comlink_journey_v3.php?task=detailedlocation&pickup_name="+pickup_name+"&pickup_lat="+pickup_lat+"&pickup_lng="+pickup_lng+"&userid="+userid+"&userid="+userid+"&detailedlocation="+detailedlocation+"&landmark="+landmark+"",  function( data ) {
     
 hideindicator();
 calltaxigo();
@@ -621,6 +630,8 @@ function call_customer_care() {
 }
 
 function start5mintimer() {
+    
+$("#user_pin").hide();
 
 localStorage.setItem('activity','customer_care_waiting');
 document.getElementById("instantscreen").style.display = "block";

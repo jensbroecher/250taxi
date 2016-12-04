@@ -32,7 +32,7 @@ body {
 }
 
 .account_button {
-    background-color: #transparent;
+    background-color: transparent;
     border: solid 2px white;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -41,7 +41,7 @@ body {
     padding-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 80%;
     max-width: 200px;
     display: block;
     text-align: center;
@@ -90,20 +90,28 @@ body {
     margin-right: auto;
 }
 
-#account_overlay_x {}
+#account_overlay_x {
 
+}
+
+#bonus_miles,
 #wallet_balance {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     padding: 10px;
     margin-bottom: 10px;
-    font-size: 150%;
-    font-weight: 200;
+    font-size: 16px;
+    font-weight: normal;
     max-width: 300px;
     min-width: 200px;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 80%;
+}
+
+#bonus_miles svg,
+#wallet_balance svg {
+    margin-right: 10px;
 }
 
 .col-centered {

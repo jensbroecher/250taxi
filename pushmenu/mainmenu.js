@@ -169,10 +169,9 @@ $( "#mainmenu_history" ).click(function() {
 
 close_mainmenu();
 	
-var username = localStorage.getItem("username");
-username = btoa(username);
+var userid = localStorage.getItem("userid");
 	
-$( "#pagestarget" ).load( "https://250taxi.com/appcontent/history.php?username="+username+"", function() {
+$( "#pagestarget" ).load( "https://250taxi.com/appcontent/history_v2.php?userid="+userid+"", function() {
   $( "#pages" ).fadeIn( "slow", function() {
     overlay_open = "mainmenu_history";
   });

@@ -39,7 +39,7 @@ body {
 
 #search_animation {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: white;
     top: 0px;
     left: 0px;
     width: 100%;
@@ -48,16 +48,17 @@ body {
     z-index: 100000000000000000000000000000000000000;
     display: none;
 }
+
 #search_animation .searcher {
     margin-top: 27%;
     padding: 10px;
     border-radius: 6px;
     background-color: white;
-    box-shadow: 1px 1px 20px 0.7px rgba(0, 0, 0, 0.5);
 }
+
 #search_animation .searcher_logo {
     margin-top: 10%;
-    width: 100px;
+    width: 250px;
 }
 
 #loading_reset {
@@ -103,6 +104,10 @@ body,
     height: 100%;
 }
 
+#map {
+
+}
+
 #ios_titlebar {
     width: 100%;
     position: absolute;
@@ -116,16 +121,12 @@ body,
 
 #locationfieldholder {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #4A4A4A;
     width: 84%;
     left: 14%;
     height: 15%;
     z-index: 100;
     top: 22px;
-    border-left: 1px solid rgba(255, 255, 255, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-    border-right: 0px solid rgba(255, 255, 255, 0.9);
     max-height: 30px;
     display: table;
     border-radius: 15px;
@@ -133,23 +134,26 @@ body,
 
 #locationfield {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: transparent;
     width: 100%;
     height: 100%;
     background-image: url(magnify.svg);
-    background-size: contain;
+    background-size: 24px 24px;
+    background-position: 5px center;
     background-repeat: no-repeat;
 }
 
 #inlocationfield {
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 14px;
     width: 100%;
     border: none;
     height: 100%;
-    text-indent: 5px;
     background-color: transparent;
-    text-indent: 28px;
+    padding-left: 33px;
+    padding-right: 5px;
+    box-sizing: border-box;
 }
 
 #menubutton {
@@ -240,6 +244,7 @@ body,
     opacity: 0;
     padding: 5px;
     box-sizing: border-box;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
 }
 
 #calltaxiui #ride_now_button {
@@ -249,8 +254,9 @@ body,
     height: 70px;
     bottom: 0px;
     left: 0px;
-	margin-left: 1%;
+    margin-left: 1%;
 }
+
 #calltaxiui #ride_later_button {
     position: fixed;
     z-index: 9;
@@ -259,14 +265,15 @@ body,
     bottom: 0px;
     right: 35%;
 }
+
 #calltaxiui #call_now_button {
     position: fixed;
     z-index: 11;
-   	width: 33.3%;
+    width: 33.3%;
     height: 70px;
     bottom: 0px;
     right: 0px;
-	margin-right: 1%;
+    margin-right: 1%;
 }
 
 .start_buttons {
@@ -277,6 +284,7 @@ body,
     color: white;
     margin-top: 10px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .start_button_pick {
@@ -363,16 +371,13 @@ body,
 }
 
 #locationfinderdialog {
+    position: fixed;
     width: 100%;
+    height: 100%;
     top: 0%;
-    margin-left: 0%;
-    margin-right: 0%;
-    background-color: #C2542C;
-    height: 160px;
+    background-color_: #ededed;
     display: none;
-    position: absolute;
     z-index: 300;
-    box-shadow: 2px 2px 6px 0.7px rgba(0, 0, 0, 0.5);
 }
 
 #gosearchbyaddress {
@@ -387,44 +392,57 @@ body,
     line-height: 250%;
     text-transform: uppercase;
     border-radius: 0px;
+    display: none;
 }
 
 #searchbyaddress_clear {
     position: absolute;
-    width: 10%;
-    right: 10%;
-    top: 40px;
-    height: 37px;
-    text-align: center;
-    border: none !important;
+    width: 48px;
+    height: 48px;
+    right: 0px;
+    top: 0px;
     background-image: url(close.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-color: transparent;
-    z-index: 100;
+    border: none;
+}
+
+#searchbyaddress_back {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: 0px;
+    top: 0px;
+    background-image: url(arrow-left.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+    border: none;
 }
 
 #searchbyaddress {
-    padding-top: 9px;
-    padding-bottom: 9px;
-    font-size: 15px;
-    border: none !important;
+    font-size: 14px;
+    border: none;
     color: black;
     background-color: white;
-    text-indent: 6px;
-    width: 80%;
-    padding-right: 10%;
-    margin-left: 10%;
-    margin-bottom: 15px;
-    margin-top: 40px;
-    float: left;
-    border-radius: 6px;
+    width: 100%;
+    padding-left: 48px;
+    padding-right: 48px;
+    height: 48px;
+    box-sizing: border-box;
     -webkit-appearance: none;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
 }
 
 #searchbyaddress:focus,
 #searchbyaddress_clear:focus {
     outline: none;
+}
+
+#lat,
+#long {
+    display: none;
 }
 
 .blur {
@@ -440,6 +458,7 @@ body,
     height: 70px;
     z-index: 2;
 }
+
 #loading_map_indicator {
     opacity: 0.9;
     font-family: sans-serif;
@@ -460,8 +479,6 @@ body,
     pointer-events: none;
     cursor: default;
 }
-
-
 
 #expanded_customer_care_close {
     background-image: url(swiperight.png);
@@ -520,6 +537,4 @@ body,
     margin-left: 87px;
 }
 
-#account_button_phone {
-
-}
+#account_button_phone {}
