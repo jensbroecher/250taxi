@@ -19,8 +19,8 @@
         <preference name="android-targetSdkVersion" value="20" />
         
         <preference name="android-build-tool" value="gradle" />
-        
-        <gap:plugin name="ionic-plugin-keyboard" source="npm" />
+
+        <!-- Core plugins -->
 
         <gap:plugin name="cordova-plugin-statusbar" source="npm" />
 

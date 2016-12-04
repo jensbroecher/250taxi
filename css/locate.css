@@ -166,7 +166,7 @@ body,
     width: 10%;
     z-index: 102;
     max-width: 30px;
-    top: 22px;
+    top: 21px;
     left: 2%;
     max-height: 32px;
 }
@@ -285,6 +285,8 @@ body,
     margin-top: 10px;
     cursor: pointer;
     text-transform: uppercase;
+    border-radius: 6px;
+    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
 }
 
 .start_button_pick {

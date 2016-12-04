@@ -3,10 +3,12 @@ function menubtn_hit() {
 }
 
 function close_account_overlay() {
+show_main_elements();
 $( "#account_overlay" ).fadeOut( "slow", function() {
 });
 }
 function close_wallet_overlay() {
+show_main_elements();
 $( "#wallet_overlay" ).fadeOut( "slow", function() {
 });
 }
@@ -39,9 +41,11 @@ function load_mainmenu() {
             document.getElementById("account_details_info").style.display = "none";
     }
     
+hide_main_elements();
+        
 $( "#account_overlay" ).fadeIn( "slow", function() {
          
-        close_mainmenu();
+close_mainmenu();
     
 var userid = localStorage.getItem("userid");
          
@@ -181,4 +185,26 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/history_v2.php?userid=
 $( "#mainmenu_about" ).click(function() {    
 window.open('https://www.facebook.com/250taxi', '_system');
 });
+}
+
+function hide_main_elements() {
+    $("#map").hide();
+    $("#calltaxiui").hide();
+    $("#user_pin").hide();
+    $("#locationbutton").hide();
+    $("#locationfieldholder").hide();
+    $("#menubutton").hide();
+    
+    $("body").css('background-color', '#AF2426');
+}
+
+function show_main_elements() {
+    $("#map").show();
+    $("#calltaxiui").show();
+    $("#user_pin").show();
+    $("#locationbutton").show();
+    $("#locationfieldholder").show();
+    $("#menubutton").show();
+    
+    $("body").css('background-color', 'white');
 }

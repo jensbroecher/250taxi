@@ -1,17 +1,25 @@
+#user_pin {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin: auto;
+    pointer-events: none;
+}
 #user_pin_eta {
     position: absolute;
     background-color: #B43639;
     width: 160px;
     height: 32px;
     border-radius: 100px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     z-index: 11;
-    margin: auto;
     pointer-events: none;
-    transform: translate(0px, -10px);
+    margin-left: -55px;
+    margin-top: -7px;
     transition: all 0.2s;
     background-image: url(../scanner/ring.svg);
     background-size: contain;
@@ -43,17 +51,4 @@
     color: greenyellow;
     font-size: 11px;
     text-transform: uppercase;
-}
-
-#user_pin {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    margin: auto;
-    pointer-events: none;
 }
