@@ -1,15 +1,14 @@
 #user_pin {
-    position: absolute;
     width: 48px;
     height: 48px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
-    margin: auto;
     pointer-events: none;
 }
+
 #user_pin_eta {
     position: absolute;
     background-color: #B43639;
@@ -19,7 +18,7 @@
     z-index: 11;
     pointer-events: none;
     margin-left: -55px;
-    margin-top: -7px;
+    margin-top: -4px;
     transition: all 0.2s;
     background-image: url(../scanner/ring.svg);
     background-size: contain;
@@ -35,6 +34,7 @@
     font-size: 12px;
     width: 32px;
 }
+
 #user_pin_eta #eta_min {
     position: absolute;
     color: white;

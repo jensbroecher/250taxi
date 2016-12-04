@@ -572,7 +572,7 @@ function displayPosition(position) {
 
         document.getElementById("user_pin_eta").style.width = "160px";
         document.getElementById("user_pin_eta").style.height = "32px";
-        document.getElementById("user_pin_eta").style.marginTop = "-7px";
+        document.getElementById("user_pin_eta").style.marginTop = "-4px";
         document.getElementById("user_pin_eta").style.marginLeft = "-55px";
         document.getElementById("user_pin_eta").style.zIndex = "11";
         // document.getElementById("user_pin_eta").style.opacity = "1";
