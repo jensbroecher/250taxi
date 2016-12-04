@@ -8,7 +8,7 @@ $(".second").val(counter).trigger("change");
     counter--;
     if(counter === 0) {
         clearInterval(itimer);
-		alert("We are still searching for drivers near you. Please stand by.");
+		swal("","We are still searching for drivers near you. Please stand by.","info");
         
         search_alternatives();
         

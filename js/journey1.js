@@ -496,7 +496,7 @@ localStorage.setItem("logupdate",""+userid+"*"+driverid+"*phone missing*No phone
     
 }
 else {
-alert("Trying to call: "+phonenumber+"");
+swal("","Trying to call: "+phonenumber+"","");
 window.open("tel:"+phonenumber+"","_self");
 }
   

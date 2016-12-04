@@ -15,6 +15,14 @@
     display: none;
 }
 
+.pac-item {
+    line-height: 50px !important;
+}
+
+.pac-icon {
+    display: none;
+}
+
 input,
 textarea,
 select {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="39" version="2.2.1">
+    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="40" version="2.3">
 
         <name>Afritaxi</name>
 
@@ -20,7 +20,7 @@
         
         <preference name="android-build-tool" value="gradle" />
 
-        <!-- Core plugins -->
+        <!-- Plugins -->
 
         <gap:plugin name="cordova-plugin-statusbar" source="npm" />
 

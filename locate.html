@@ -441,11 +441,11 @@
         <img id="afri_logo_menu" src="css/menu_afri_logo.png">
 
         <span id="mainmenu">
-        
-        <div class='noSwipe' id='mainmenu_account'>Account</div>
+
         <div class='noSwipe' id='mainmenu_wallet'>Wallet</div>
         <div class='noSwipe' id='mainmenu_bookings'>Bookings</div>
         <div class='noSwipe' id='mainmenu_history'>History</div>
+        <div class='noSwipe' id='mainmenu_account'>Settings</div>
         <div class='noSwipe' id='mainmenu_becomedriver'>Partner with Afritaxi</div>
         <div class='noSwipe' id='mainmenu_corporate'>Afritaxi CORPORATE</div>
 
@@ -640,16 +640,14 @@
                 <span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
             </div>
 
-
-
-            <div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ getdrivers(); }, 1000);">
+            <div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
 
                 <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
                 </svg>
 
                 <span id="search_launch">
-				pick me up now
+				pick me now
                 </span></div>
 
         </div>
@@ -919,16 +917,15 @@
 
 
 
-                <div id="detailedlocation_date_time_button" class="waves-effect waves-light sdbutton_booklater_gray">Set date/time</div>
+                <div id="detailedlocation_date_time_button" class="waves-effect waves-dark">Set date/time</div>
 
 
                 <div class="sdtitle">My destination</div>
 
 
-                <input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination">
+                <input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination" maxlength="30">
 
-
-                <div class="waves-effect waves-light sdbutton_booklater" onclick="setTimeout(function(){ detailedlocation_complete('estimate'); }, 1000);">Fare estimate</div>
+                <div id="fare_estimate_go" class="waves-effect waves-dark" onclick="setTimeout(function(){ detailedlocation_complete('estimate'); }, 1000);">Fare estimate</div>
 
                 <div id="taxi_go" style="margin-top: 0px;" class="waves-effect waves-dark" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
 

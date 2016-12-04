@@ -24,7 +24,7 @@ function get_fare_estimate() {
 	taxirequest_destination_length = taxirequest_destination.length;
 	
 	if (taxirequest_destination_length < 6) {
-		alert("Please enter a destination!");
+		swal("","Please enter a destination!","");
 		hideindicator();
 		return;
 	}
@@ -55,6 +55,11 @@ var googledistancexml = data;
 		
 	var newtime = xmlout2.substring(xmlout2.lastIndexOf(">")+1,xmlout2.lastIndexOf("mins"));
 	var newtime = newtime.trim();
+        
+    if (newtext == "") {
+        $("#getfareestimate").hide();
+        swal("","We could not calculate the fare for this route. Please change pickup or destination locations.","");
+    }
 	
 	localStorage.setItem("gestimatedistance", newtext);
 		
@@ -64,8 +69,17 @@ var googledistancexml = data;
 	console.log("New Time: " + newtime);
 		
 	document.getElementById("getfareestimate_pickup").innerHTML = pickup_location;
+        
 	document.getElementById("getfareestimate_destination").innerHTML = taxirequest_destination;
+
+    $("#airport_parking_notice").remove();
+
+    if( (taxirequest_destination.indexOf("Airport") !== -1) ||  (pickup_location.indexOf("Airport") !== -1) ) {
+        $( "#getfareestimate_distance_holder" ).append( "<div id='airport_parking_notice'><br><b>Please note:</b> Airport parking ticket<br>fee not included.</div>" );
+    }
+        
 	document.getElementById("getfareestimate_distance").innerHTML = newtext;
+        
 	document.getElementById("getfareestimate_time").innerHTML = newtime;
 		
 	console.log("Pickup location: "+pickup_location+"\nDestination: "+taxirequest_destination+"\nDistance:  "+newtext+"km\nTime:  "+newtime+" min");
@@ -82,7 +96,7 @@ gestimatedistance = localStorage.getItem("gestimatedistance");
 	
 // alert("gestimatedistance: " +gestimatedistance);
 	
-gcostestimate = gestimatedistance * fare_setting + 1000;
+gcostestimate = gestimatedistance * fare_setting + 1500;
 
 // total = Math.ceil(total);
 gcostestimate = Math.ceil(gcostestimate/100)*100;
@@ -93,7 +107,7 @@ if (gcostestimate < 1500) {
     gcostestimate = 1500;
 }
 if (isNaN(gcostestimate)) {
-    alert("Sorry, we could not calculate the fare for this route. Please change pickup or destination locations.");
+    swal("","We could not calculate the fare for this route. Please change pickup or destination locations.","");
     
     document.getElementById("taxirequest_destination").value = "";
     
@@ -105,6 +119,7 @@ var gcostestimate_plus1000 = gcostestimate + 1000;
 document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF";
     
 localStorage.setItem("destination_fare_estimate","" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF");
+
 localStorage.setItem("destination_distance_estimate",gestimatedistance);
 
 	

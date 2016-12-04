@@ -78,9 +78,9 @@
     
 }
 .jd_button {
-        font-family: Roboto, sans-serif;
+        font-family: 'Roboto', sans-serif;
 	    font-size: 14px;
-        background-color: lightgray;
+        background-color: white;
         text-align: center;
         color: black;
         margin-left: auto;
@@ -92,7 +92,7 @@
         width: 50%;
         max-width: 200px;
         white-space: nowrap;
-        border-radius: 15px;
+        border-radius: 0px;
 }
 
 
@@ -178,6 +178,7 @@
     background-repeat: no-repeat;
     background-position: 5px 5px;
     word-break: break-all;
+    border-radius: 6px;
 }
 .chat_message_driver {
     font-family: sans-serif;
@@ -192,6 +193,7 @@
     background-repeat: no-repeat;
     background-position: 5px 5px;
     word-break: break-all;
+    border-radius: 6px;
 }
 .chat_message_driver .chat_arrow_right {
     display: none;
@@ -218,14 +220,12 @@
 }
 #journey_fare_notice {
 	margin-top: 20px;
-    font-size: 160%;
-    font-weight: 200;
+    font-size: 120%;
     text-align: center;
 }
 #journey_fare_display_destination {
     font-size: 100%;
-    font-weight: 400;
-    margin-top: 25px;
+    margin-top: 10px;
     text-align: center;
 }
 #journey_fare_display_fare span, #journey_fare_display_km span {

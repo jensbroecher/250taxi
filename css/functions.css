@@ -72,6 +72,9 @@ body {
     display: none;
     font-family: sans-serif;
     color: white;
+    background-image: url(afritaxi.png);
+    background-size: cover;
+    background-position: center center;
 }
 
 .account_option {
@@ -90,9 +93,7 @@ body {
     margin-right: auto;
 }
 
-#account_overlay_x {
-
-}
+#account_overlay_x {}
 
 #bonus_miles,
 #wallet_balance {

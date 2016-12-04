@@ -10,6 +10,21 @@ function getfareestimate_close() {
 }
 $(document).ready( function() {
     
+$( "#taxirequest_detailedlocation" ).focus(function() {
+  $("#fare_estimate_go").hide();
+  $("#taxi_go").hide();  
+});
+    
+$( "#taxirequest_detailedlocation" ).blur(function() {
+  $("#fare_estimate_go").show();
+  $("#taxi_go").show();  
+});
+    
+    
+$( "#taxirequest_destination" ).focus(function() {
+   $("#taxirequest_destination").val("");
+});
+    
 $("#taxirequest_destination").keypress(function(e) {
     if(e.which == 13) {
         detailedlocation_complete();
@@ -20,7 +35,7 @@ $( "#ride_now_button" ).click(function() {
     
 localStorage.setItem("ride_start","now");
     
-document.getElementById("taxi_go_text").innerHTML = "pick me up now";
+document.getElementById("taxi_go_text").innerHTML = "pick me now";
     
 document.getElementById("detailedlocation_date_time_button").style.display = "none";
     
@@ -41,8 +56,8 @@ mydetailedlocation_show();
 $( "#ride_later_button" ).click(function() {
 
 localStorage.setItem("ride_start","later");
-    
-document.getElementById("taxi_go_text").innerHTML = "confirm booking"; 
+
+document.getElementById("taxi_go_text").innerHTML = "book now"; 
     
 document.getElementById("detailedlocation_date_time_button").style.display = "block";
     
@@ -125,10 +140,10 @@ function calltaxigo() {
 var ride_start = localStorage.getItem("ride_start");
 
 if (ride_start == "now") {
-    document.getElementById("search_launch").innerHTML = "pick me up now";
+    document.getElementById("search_launch").innerHTML = "pick me now";
 }
 if (ride_start == "later") {
-   document.getElementById("search_launch").innerHTML = "confirm booking"; 
+   document.getElementById("search_launch").innerHTML = "book now"; 
 }
     
 if (typeof getdriverslist_updater !== 'undefined') {
@@ -146,6 +161,7 @@ var get_estimate = localStorage.getItem("get_estimate");
 if (get_estimate == "Yes") {
 localStorage.setItem("activity","fare_estimate");
 get_fare_estimate();
+return;
 }
 if (get_estimate == "No") {
 getdrivers();  
@@ -222,17 +238,21 @@ document.getElementById("citynavigator_start").style.display = "none";
 }
 function getdrivers() {
     
+$("#user_location_pin").hide();
+console.log("User location pin removed");
+    
 clearInterval(map_updater);
 console.log("map updater stopped");
 
-// document.getElementById("getfareestimate").style.display = "none";
+$("#getfareestimate").hide();
+console.log("Get fare estimate dialog hidden");
     
 localStorage.setItem('activity','driver_automatic_search');
 
 var taxirequest_destination = document.getElementById('taxirequest_destination').value;
 localStorage.setItem("destination_name",taxirequest_destination);
 
-var taxirequest_destination = taxirequest_destination.split(', Kigali')[0]+'';
+// var taxirequest_destination = taxirequest_destination.split(', Kigali')[0]+'';
 
 localStorage.setItem("destination",taxirequest_destination);
 localStorage.setItem("taxirequest_destination",taxirequest_destination);
@@ -255,7 +275,7 @@ document.getElementById("search_animation").style.display = "block";
  
 setTimeout(function(){
     document.getElementById("search_animation_timeout").style.display = "block";
-}, 20000);
+}, 40000);
 
 // alert("Please select a driver from the list to take you to "+taxirequest_destination+". If the driver is not available, we will find a different one for you.");
     
@@ -271,7 +291,7 @@ return;
 
 }
 else {
-    alert("Please enter a destination!");
+    swal("","Please enter a destination!","");
     return;
 }
    
@@ -497,7 +517,7 @@ if (estimate_or_go == "go") {
     console.log("type: go");
     localStorage.setItem("get_estimate","No");
 }
-    if (estimate_or_go == "estimate") {
+if (estimate_or_go == "estimate") {
     console.log("type: estimate");
     localStorage.setItem("get_estimate","Yes");
 }
@@ -509,9 +529,10 @@ var detailedlocation_date_time_button_content = document.getElementById("detaile
 console.log(detailedlocation_date_time_button_content);
     
 var ride_start = localStorage.getItem("ride_start");
+    
 if (ride_start == "later") {
 if (detailedlocation_date_time_button_content == "Set date/time") {
-    alert("Please set a pickup date and time.");
+    swal("","Please set a pickup date and time.","");
     
     hideindicator();
     
@@ -537,13 +558,13 @@ localStorage.setItem("detailedlocation",detailedlocation);
 $.get( "https://250taxi.com/db/partner/taxi_comlink_journey_v3.php?task=detailedlocation&pickup_name="+pickup_name+"&pickup_lat="+pickup_lat+"&pickup_lng="+pickup_lng+"&userid="+userid+"&userid="+userid+"&detailedlocation="+detailedlocation+"&landmark="+landmark+"",  function( data ) {
     
 hideindicator();
+
 calltaxigo();
-// mydetailedlocation_close();
     
 });
 }
 else {
-    alert('Please describe where you are standing, so the driver can easily locate you.');
+    swal('','Please describe where you are standing, so the driver can easily locate you.','');
     
     hideindicator();
     
@@ -565,7 +586,7 @@ var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
 localStorage.setItem("logupdate",""+userid+"*"+driverid+"*request cancelled*User"+userid+" cancelled journey with Driver"+driverid+".");logupdate_v2();
 
-alert("Request for driver cancelled!");
+swal("","Request for driver cancelled!","");
 
 setTimeout(function(){ 
     location.reload();
@@ -656,7 +677,7 @@ if (voice_enabled == "On") {responsiveVoice.speak("Where should we pick you up "
     
     mydetailedlocation.style.display = "block";
     mydetailedlocation.className = "animated fadeIn";
-    mydetailedlocation_dialog.style.height = "100%";
+    mydetailedlocation_dialog.style.height = "65%";
     
     setTimeout(function(){ 
     mydetailedlocation_content.style.display = "block";
@@ -729,7 +750,7 @@ showindicator();
         
         document.getElementById("searchdrivers").style.display = "none";
         document.getElementById("calltaxiui").style.display = "block";
-        alert("We received your booking, customer care is about to call you in a few for a follow up. You can check the status in the bookings tab.");
+        swal("","We received your booking, customer care is about to call you in a few for a follow up. You can check the status in the bookings tab.","");
         
         hideindicator(); 
         

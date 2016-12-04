@@ -17,7 +17,7 @@
 .sdbutton_booklater {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    background-color: black;
+    background-color: #C3552D;
     text-align: center;
     color: white;
     margin-left: 15%;
@@ -27,22 +27,7 @@
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.sdbutton_booklater_gray {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    background-color: black;
-    text-align: center;
-    color: white;
-    margin-left: 15%;
-    width: 70%;
-    padding-top: 10px;
-    padding-bottom: 8px;
-    text-transform: uppercase;
-    margin-top: 15px;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #pickup_booking_date {
@@ -66,31 +51,47 @@
 }
 
 .pickup_card {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 6px;
     padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: white;
     font-size: 14px;
     font-family: sans-serif;
 }
 
 .pickup_card input {
-    width: 100%;
+    display: block;
+    width: 95%;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: black;
+    background-color: transparent;
     color: white;
-    border: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
     margin-bottom: 10px;
-    text-indent: 5px;
     font-size: 14px;
+}
+
+.pickup_card input::-webkit-input-placeholder {
+    color: white;
+}
+
+.pickup_card input::-moz-placeholder {
+    color: white;
 }
 
 #pickup_location_details #list_of_nearby_places {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: black;
+    background-color: transparent;
     color: white;
     border: none;
     margin-bottom: 10px;
@@ -99,12 +100,15 @@
 }
 
 #mydetailedlocation_dialog {
-    background-color: #C3542C;
+    background-color: #C3552D;
     position: fixed;
     bottom: 0px;
     height: 0px;
     width: 100%;
     transition: all 0.5s;
+    background-image: url(afritaxi.png);
+    background-size: cover;
+    background-position: center center;
 }
 
 #mydetailedlocation_dialog .sdtitle {
@@ -112,7 +116,8 @@
 }
 
 #mydetailedlocation_dialog .sdinput {
-    border-radius: 6px;
+    border-radius: 0px;
+    color: white;
 }
 
 #mydetailedlocation_content {
