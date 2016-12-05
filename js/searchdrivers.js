@@ -10,6 +10,21 @@ function getfareestimate_close() {
 }
 $(document).ready( function() {
     
+
+
+$( "#taxirequest_destination" ).focus(function() {
+  $("#fare_estimate_go").hide();
+  $("#taxi_go").hide();  
+});
+    
+$( "#taxirequest_destination" ).blur(function() {
+  $("#fare_estimate_go").show();
+  $("#taxi_go").show();  
+});
+    
+    
+
+    
 $( "#taxirequest_detailedlocation" ).focus(function() {
   $("#fare_estimate_go").hide();
   $("#taxi_go").hide();  
