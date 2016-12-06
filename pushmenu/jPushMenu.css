@@ -15,9 +15,14 @@
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+    will-change: left;
 }
 .cbp-spmenu-open {
-    box-shadow: 0 50px 200px 0 rgba(0, 0, 0, 0.7);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
 }
 .cbp-spmenu div {
     display: block;

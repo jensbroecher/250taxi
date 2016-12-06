@@ -15,6 +15,10 @@
     display: none;
 }
 
+#payment_method_on_button {
+    vertical-align: middle;
+}
+
 .pac-item {
     line-height: 50px !important;
 }
@@ -173,7 +177,7 @@ body,
     position: absolute;
     height: 15%;
     width: 10%;
-    z-index: 2;
+    z-index: 1;
     max-width: 30px;
     top: 21px;
     left: 2%;
@@ -230,7 +234,6 @@ body,
     border-bottom-left-radius: 10px;
     background-color: rgba(45, 150, 182, 0.8);
     z-index: 10000000000000000;
-    background-image: url(headset.png);
     background-repeat: no-repeat;
     background-size: 50% auto;
     background-position: 32px center;

@@ -8,31 +8,27 @@ function getfareestimate_close() {
     document.getElementById("mydestination").style.display = "block";
     document.getElementById("citynavigator_start").style.display = "block";
 }
-$(document).ready(function () {
 
-
+function init_call_taxi_ui() {
 
     $("#taxirequest_destination").focus(function () {
-        $("#fare_estimate_go").hide();
-        $("#taxi_go").hide();
+        // $("#fare_estimate_go").hide();
+        // $("#taxi_go").hide();
     });
 
     $("#taxirequest_destination").blur(function () {
-        $("#fare_estimate_go").show();
-        $("#taxi_go").show();
+        // $("#fare_estimate_go").show();
+        // $("#taxi_go").show();
     });
 
-
-
-
     $("#taxirequest_detailedlocation").focus(function () {
-        $("#fare_estimate_go").hide();
-        $("#taxi_go").hide();
+        // $("#fare_estimate_go").hide();
+        // $("#taxi_go").hide();
     });
 
     $("#taxirequest_detailedlocation").blur(function () {
-        $("#fare_estimate_go").show();
-        $("#taxi_go").show();
+        // $("#fare_estimate_go").show();
+        // $("#taxi_go").show();
     });
 
 
@@ -135,8 +131,7 @@ $(document).ready(function () {
 
     });
 
-
-});
+}
 
 function close_dialataxi() {
 
@@ -667,7 +662,7 @@ function start5mintimer() {
 
 
 function mydetailedlocation_show() {
-    
+
     $("#user_pin").hide();
 
     var ride_start = localStorage.getItem("ride_start");
@@ -701,7 +696,7 @@ function mydetailedlocation_show() {
 }
 
 function mydetailedlocation_close() {
-    
+
     $("#user_pin").show();
 
     var mydetailedlocation = document.getElementById("mydetailedlocation");

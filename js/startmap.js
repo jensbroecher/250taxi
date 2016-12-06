@@ -1,5 +1,6 @@
-var ang;
-$(document).ready(function () {
+function init_main_map() {
+    
+    var ang;
 
     trigger_check_if_map_loaded();
 
@@ -69,7 +70,7 @@ $(document).ready(function () {
 
     autocomplete3 = new google.maps.places.Autocomplete(input3, options);
 
-});
+}
 
 function showindicator() {
     document.getElementById("loadingindicator").className = "animated fadeIn";

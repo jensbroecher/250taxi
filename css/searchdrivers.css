@@ -230,7 +230,8 @@
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 10px;
-    border-radius: 6px;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2);
 }
 
 .sdbutton_gray {

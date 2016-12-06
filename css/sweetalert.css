@@ -3,8 +3,10 @@ body.stop-scrolling {
     overflow: hidden;
 }
 
-.sa-button-container button {
-    background-color: indianred !important;
+.sa-button-container button, .sa-confirm-button-container button {
+    background-color: #C3552D !important;
+    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2) !important;
+    border-radius: 0px !important;
 }
 
 .sweet-overlay {
@@ -27,7 +29,7 @@ body.stop-scrolling {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     width: 478px;
     padding: 17px;
-    border-radius: 5px;
+    border-radius: 0px;
     text-align: center;
     position: fixed;
     left: 50%;
@@ -292,7 +294,7 @@ body.stop-scrolling {
 }
 
 .sweet-alert[data-has-cancel-button=false] button {
-    box-shadow: none !important;
+
 }
 
 .sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {

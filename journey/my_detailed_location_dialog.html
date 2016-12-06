@@ -1,0 +1,75 @@
+   <div id="mydetailedlocation_dialog">
+
+            <div id="mydetailedlocation_content">
+
+                <div class="pickup_card">
+
+                    <div id="mydetailedlocation_street" onclick="mydetailedlocation_close();"></div>
+
+                    <div id="pickup_location_details">
+                        <select name="list_of_nearby_places" id="list_of_nearby_places"></select>
+                    </div>
+
+                    <input placeholder="Where are you standing?" id="taxirequest_detailedlocation">
+
+                </div>
+
+
+
+                <input onchange="pickup_booking_date_check();" onblur="pickup_booking_date_check();" id="pickup_booking_date" type="datetime-local">
+
+
+
+
+
+                <div id="detailedlocation_date_time_button">Set date/time</div>
+
+
+
+                <input placeholder="Destination" id="taxirequest_destination" maxlength="30">
+
+
+                <div id="coupon_go" class="waves-effect waves-light" onclick="setTimeout(function(){ enter_coupon(); }, 1000);">
+                    
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="white" d="M4,4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4M15.5,7L17,8.5L8.5,17L7,15.5L15.5,7M8.81,7.04C9.79,7.04 10.58,7.83 10.58,8.81A1.77,1.77 0 0,1 8.81,10.58C7.83,10.58 7.04,9.79 7.04,8.81A1.77,1.77 0 0,1 8.81,7.04M15.19,13.42C16.17,13.42 16.96,14.21 16.96,15.19A1.77,1.77 0 0,1 15.19,16.96C14.21,16.96 13.42,16.17 13.42,15.19A1.77,1.77 0 0,1 15.19,13.42Z" />
+</svg>    
+                    
+                Coupon</div>
+
+
+                <div id="payment_go" class="waves-effect waves-light">
+
+                    <img id="payment_method_on_button" src="css/payment/white/cash-multiple.svg">
+
+                    <span id="payment_method_on_button_text">Cash</span>
+                
+                </div>
+
+
+                <div id="fare_estimate_go" class="waves-effect waves-light" onclick="setTimeout(function(){ detailedlocation_complete('estimate'); }, 1000);">
+
+                    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                        <path fill="white" d="M7,2H17A2,2 0 0,1 19,4V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V4A2,2 0 0,1 7,2M7,4V8H17V4H7M7,10V12H9V10H7M11,10V12H13V10H11M15,10V12H17V10H15M7,14V16H9V14H7M11,14V16H13V14H11M15,14V16H17V14H15M7,18V20H9V18H7M11,18V20H13V18H11M15,18V20H17V18H15Z" />
+                    </svg> 
+
+                    Estimate</div>
+
+                <div id="taxi_go" style="margin-top: 0px;" class="waves-effect waves-light" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
+
+                    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                        <path fill="white" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+                    </svg>
+
+                    <span id="taxi_go_text"></span>
+
+                </div>
+
+                <input id="ddtest">
+
+
+            </div>
+        </div>
+
+
+    <div id="mydetailedlocation" class="animated fadeIn" onclick="mydetailedlocation_close();"></div>
