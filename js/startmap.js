@@ -358,11 +358,11 @@ function displayPosition(position) {
         , padding: 5
         , minHeight: 48
         , color: '#ffffff'
-        , backgroundColor: '#3f9eb9'
+        , backgroundColor: '#C3552D'
         , borderRadius: 5
         , arrowSize: 10
         , borderWidth: 1
-        , borderColor: '#3f9eb9'
+        , borderColor: '#C3552D'
         , disableAutoPan: true
         , hideCloseButton: false
         , arrowPosition: 30
@@ -751,9 +751,9 @@ jQuery(document).ready(function ($) {
     localStorage.setItem('activity', 'searching_address');
 
     $('#searchbyaddress').blur(function () {
-            document.getElementById("calltaxiui").style.display = "block";
+            
         }).focus(function () {
-            document.getElementById("calltaxiui").style.display = "none";
+            
         })
         .keypress(function (e) {
             if (e.which == 13) {
@@ -1101,6 +1101,8 @@ function hide_top_ui() {
     $("#locationfieldholder").hide();
     $("#menubutton").hide();
     $("#menubtn_hitzone").hide();
+    $("#user_pin").hide();
+    $("#calltaxiui").hide();
 }
 
 function show_top_ui() {
@@ -1108,6 +1110,8 @@ function show_top_ui() {
     $("#locationfieldholder").show();
     $("#menubutton").show();
     $("#menubtn_hitzone").show();
+    $("#user_pin").show();
+     $("#calltaxiui").show();
 }
 
 function codeAddress() {

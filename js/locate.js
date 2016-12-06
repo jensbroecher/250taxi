@@ -263,3 +263,7 @@ $(document).ready(function () {
                 alert(data);
             });
         }
+
+function reset_loading() {
+    $("#loadingindicator").fadeOut();
+}

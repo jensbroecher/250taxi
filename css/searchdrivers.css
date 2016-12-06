@@ -9,15 +9,15 @@
     display: none;
 }
 
-#taxi_go {
+#coupon_go {
     position: absolute;
-    bottom: 0px;
+    bottom: 40px;
     right: 0px;
     font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    background-color: white;
-    color: black;
+    font-weight: normal;
+    font-size: 13px;
+    background-color: #C3552D;
+    color: white;
     text-align: center;
     margin-right: 3%;
     width: 46%;
@@ -25,20 +25,43 @@
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 10px;
-    border-radius: 6px;
+    border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
+    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
 }
 
-#fare_estimate_go {
+#taxi_go {
     position: absolute;
     bottom: 0px;
+    right: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    background-color: #C3552D;
+    color: white;
+    text-align: center;
+    margin-right: 3%;
+    width: 46%;
+    line-height: 250%;
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+}
+
+#payment_go {
+    position: absolute;
+    bottom: 40px;
     left: 0px;
     font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    background-color: white;
-    color: black;
+    font-weight: normal;
+    font-size: 13px;
+    background-color: #C3552D;
+    color: white;
     text-align: center;
     margin-left: 3%;
     width: 46%;
@@ -46,37 +69,55 @@
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 10px;
-    border-radius: 6px;
+    border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
+    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
 }
 
-#detailedlocation_date_time_button {
+#fare_estimate_go {
     position: absolute;
     bottom: 0px;
     left: 0px;
     font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    background-color: white;
-    color: black;
+    font-weight: normal;
+    font-size: 13px;
+    background-color: #C3552D;
+    color: white;
     text-align: center;
-    margin-left: 27%;
+    margin-left: 3%;
     width: 46%;
     line-height: 250%;
     text-transform: uppercase;
     margin-top: 15px;
     margin-bottom: 10px;
-    border-radius: 6px;
+    border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
+    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+}
+
+#detailedlocation_date_time_button {
+    background-image: url(timetable.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    background-color: white;
+    color: darkslategray;
+    padding-left: 40px;
+    padding-right: 15px;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: solid 1px lightgray;
 }
 
 #search_animation_timeout {
     position: fixed;
     bottom: 5px;
     left: 0px;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 14px;
     background-color: white;
@@ -99,7 +140,32 @@
     color: white;
 }
 
+#taxirequest_destination {
+    background-image: url(flag-checkered.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    color: darkslategray;
+    padding-left: 40px;
+    padding-right: 15px;
+    border: none;
+    border-bottom: solid 1px lightgray;
+    box-sizing: border-box;
+}
+
+
+#taxirequest_destination::-webkit-input-placeholder {
+    color: darkslategray;
+}
+
+#taxirequest_detailedlocation::-webkit-input-placeholder {
+    color: darkslategray;
+}
+
 #taxirequest_destination:focus {
+    background-image: none;
     position: fixed;
     overflow: hidden;
     white-space: nowrap;
@@ -109,7 +175,7 @@
     margin: 0 !important;
     font-size: 14px;
     border: none;
-    color: black !important;
+    color: darkslategray;
     background-color: white;
     padding-left: 15px;
     padding-right: 15px;
@@ -201,20 +267,12 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid black;
     color: black;
     margin-left: 5%;
     width: 90%;
     padding-top: 8px;
     padding-bottom: 8px;
-}
-
-.sdinput::-webkit-input-placeholder {
-    color: white;
-}
-
-.sdinput::-moz-placeholder {
-   color: white;  
 }
 
 .sdtitle {

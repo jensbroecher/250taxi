@@ -85,7 +85,7 @@
     <script src="js/locate.js"></script>
 
     <script src="reg/oauth/account.js"></script>
-    
+
     <link rel="stylesheet" type="text/css" href="css/animate.min.css">
     <link rel="stylesheet" type="text/css" href="pushmenu/jPushMenu.css">
     <link rel="stylesheet" type="text/css" href="css/waves.css">
@@ -102,7 +102,7 @@
     <link rel="stylesheet" type="text/css" href="css/detailed_pickup_location.css">
     <link rel="stylesheet" type="text/css" href="css/functions.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
-    
+
     <link rel="stylesheet" type="text/css" href="css/user_pin.css">
 
     <script>
@@ -199,13 +199,13 @@
 
                 Wallet</div>
 
-            <div id="wallet_balance"> 
-                
-<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
-    <path fill="white" d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z" />
-</svg> 
-                
-<span id="wallet_balance_amount">
+            <div id="wallet_balance">
+
+                <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                    <path fill="white" d="M5,6H23V18H5V6M14,9A3,3 0 0,1 17,12A3,3 0 0,1 14,15A3,3 0 0,1 11,12A3,3 0 0,1 14,9M9,8A2,2 0 0,1 7,10V14A2,2 0 0,1 9,16H19A2,2 0 0,1 21,14V10A2,2 0 0,1 19,8H9M1,10H3V20H19V22H1V10Z" />
+                </svg>
+
+                <span id="wallet_balance_amount">
     
 <div style="display:inline;" class="la-ball-pulse">
 	<div></div>
@@ -266,7 +266,7 @@
             <div id="account_button_phone" onclick="send_message_to_customer_care();" class="account_button waves-effect waves-light">Update Phone</div>
 
             <div id="account_button_pin" onclick="forgot_password();" class="account_button waves-effect waves-light">Change Password</div>
-        
+
             <div id="account_button_pin" onclick="logout();" class="account_button waves-effect waves-light">Sign out</div>
 
             <div style="clear:both;"></div>
@@ -426,9 +426,8 @@
 
         <img style="width: 60px !important;" src="css/282.gif">
 
-        <div onclick="location.reload();" id="loading_reset" class="animated fadeIn">
+        <div onclick="reset_loading();" id="loading_reset" class="animated fadeIn">
             <b>Not connecting?</b>
-            <br>Try again
         </div>
 
     </div>
@@ -437,7 +436,7 @@
     </script>
 
     <nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
-        
+
         <img id="afri_logo_menu" src="css/menu_afri_logo.png">
 
         <span id="mainmenu">
@@ -476,7 +475,7 @@
 
         <button id="searchbyaddress_clear">
         </button>
-        
+
         <button id="searchbyaddress_back">
         </button>
 
@@ -598,7 +597,7 @@
             </div>
 
         </div>
-    
+
     </div>
 
     <div id="user_location_pin"></div>
@@ -675,7 +674,7 @@
             </div>
 
 
-            <div class="sdtitle">My Destination</div>
+
 
             <div class="fromto">
                 from
@@ -882,24 +881,16 @@
 
 
 
-    <div id="mydetailedlocation" class="animated fadeIn">
 
-        <div id="mydetailedlocation_dialog">
+
+
+            <div id="mydetailedlocation_dialog">
 
             <div id="mydetailedlocation_content">
-                <svg onclick="mydetailedlocation_close();" style="width:24px;height:24px;padding:10px;right:0px;position:absolute;margin-top:-10px;" viewBox="0 0 24 24">
-                    <path fill="white" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
-                </svg>
-
-                <div class="sdtitle">My pickup location</div>
-
-
 
                 <div class="pickup_card">
 
-                    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-                        <path fill="white" d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                    </svg><span id="mydetailedlocation_street"></span>
+                    <div id="mydetailedlocation_street" onclick="mydetailedlocation_close();"></div>
 
                     <div id="pickup_location_details">
                         <select name="list_of_nearby_places" id="list_of_nearby_places"></select>
@@ -917,20 +908,45 @@
 
 
 
-                <div id="detailedlocation_date_time_button" class="waves-effect waves-dark">Set date/time</div>
+                <div id="detailedlocation_date_time_button">Set date/time</div>
 
 
-                <div class="sdtitle">My destination</div>
+
+                <input placeholder="Destination" id="taxirequest_destination" maxlength="30">
 
 
-                <input class="sdinput minus2px" placeholder="Let's go to..." id="taxirequest_destination" maxlength="30">
+                <div id="coupon_go" class="waves-effect waves-light" onclick="setTimeout(function(){ enter_coupon(); }, 1000);">
+                    
+<svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+    <path fill="white" d="M4,4A2,2 0 0,0 2,6V10C3.11,10 4,10.9 4,12A2,2 0 0,1 2,14V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V14A2,2 0 0,1 20,12C20,10.89 20.9,10 22,10V6C22,4.89 21.1,4 20,4H4M15.5,7L17,8.5L8.5,17L7,15.5L15.5,7M8.81,7.04C9.79,7.04 10.58,7.83 10.58,8.81A1.77,1.77 0 0,1 8.81,10.58C7.83,10.58 7.04,9.79 7.04,8.81A1.77,1.77 0 0,1 8.81,7.04M15.19,13.42C16.17,13.42 16.96,14.21 16.96,15.19A1.77,1.77 0 0,1 15.19,16.96C14.21,16.96 13.42,16.17 13.42,15.19A1.77,1.77 0 0,1 15.19,13.42Z" />
+</svg>    
+                    
+                Coupon</div>
 
-                <div id="fare_estimate_go" class="waves-effect waves-dark" onclick="setTimeout(function(){ detailedlocation_complete('estimate'); }, 1000);">Fare estimate</div>
 
-                <div id="taxi_go" style="margin-top: 0px;" class="waves-effect waves-dark" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
+                <div id="payment_go" class="waves-effect waves-light" onclick="setTimeout(function(){ select_payment(); }, 1000);">
+
 
                     <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
-                        <path fill="black" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
+                        <path fill="white" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
+                    </svg>
+
+
+                    Cash</div>
+
+
+                <div id="fare_estimate_go" class="waves-effect waves-light" onclick="setTimeout(function(){ detailedlocation_complete('estimate'); }, 1000);">
+
+                    <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
+                        <path fill="white" d="M7,2H17A2,2 0 0,1 19,4V20A2,2 0 0,1 17,22H7A2,2 0 0,1 5,20V4A2,2 0 0,1 7,2M7,4V8H17V4H7M7,10V12H9V10H7M11,10V12H13V10H11M15,10V12H17V10H15M7,14V16H9V14H7M11,14V16H13V14H11M15,14V16H17V14H15M7,18V20H9V18H7M11,18V20H13V18H11M15,18V20H17V18H15Z" />
+                    </svg> 
+
+                    Estimate</div>
+
+                <div id="taxi_go" style="margin-top: 0px;" class="waves-effect waves-light" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
+
+                    <svg style="width:24px; height:24px; vertical-align:middle;" viewBox="0 0 24 24">
+                        <path fill="white" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
                     </svg>
 
                     <span id="taxi_go_text"></span>
@@ -942,13 +958,9 @@
 
             </div>
         </div>
-    </div>
 
 
-
-
-
-
+    <div id="mydetailedlocation" class="animated fadeIn" onclick="mydetailedlocation_close();"></div>
 
 
 

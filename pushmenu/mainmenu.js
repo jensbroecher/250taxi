@@ -3,7 +3,9 @@ function menubtn_hit() {
 }
 
 function close_account_overlay() {
+
 show_main_elements();
+
 $( "#account_overlay" ).fadeOut( "slow", function() {
 });
 }
@@ -55,6 +57,8 @@ document.getElementById("account_phone").innerHTML = data;
 overlay_open = "mainmenu_account";
     
 });
+    
+$( "#pages" ).hide();
 
 $.get( "https://250taxi.com/db/account/get_details_v2.php?task=name&userid=" + userid + "", function( data ) {
 document.getElementById("account_name").innerHTML = data;
@@ -92,6 +96,8 @@ $( "#mainmenu_wallet" ).click(function() {
     
 close_mainmenu();
 
+$( "#pages" ).hide();
+    
 $( "#wallet_overlay" ).fadeIn( "slow", function() {
         
 var balance_clientid = localStorage.getItem("userid");   
@@ -132,6 +138,8 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/bookings.php?userid="+
     
 $( "#mainmenu_messages" ).click(function() {
     
+$( "#pages" ).hide();
+    
 close_mainmenu();
     
 var userid = localStorage.getItem("userid");
@@ -170,6 +178,8 @@ $( "#pagestarget" ).load( "https://250taxi.com/appcontent/corporate.php", functi
 });
 	
 $( "#mainmenu_history" ).click(function() {
+    
+$( "#pages" ).hide();
 
 close_mainmenu();
 	
