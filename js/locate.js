@@ -314,6 +314,14 @@ function init_detailed_location_dialog() {
 function payment_method(choice) {
     localStorage.setItem("payment_method", choice);
     document.getElementById("at_modal").style.display = "none";
+    
+    var userid = localStorage.getItem("userid");
+    
+    /*
+    $.get("https://250taxi.com/db/stripe-payment/stripe_payment.php?a=" + a, function (data) {
+        alert(data);
+    });
+    */
 
     if (choice == "wallet") {
         var payment_method_on_button = "css/payment/white/wallet.svg";
