@@ -91,15 +91,6 @@ $(document).ready(function () {
 
     });
 
-    $("#mydetailedlocation").swipe({
-        swipeDown: function () {
-            mydetailedlocation_close();
-        }
-
-    });
-
-
-
 });
 
 $(function () {
@@ -291,6 +282,13 @@ function reset_loading() {
 }
 
 function init_detailed_location_dialog() {
+
+    $("#mydetailedlocation").swipe({
+        swipeDown: function () {
+            mydetailedlocation_close();
+        }
+
+    });
 
     $("#payment_go").click(function () {
 

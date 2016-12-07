@@ -117,7 +117,7 @@
         }
 
         function opensettings() {
-            alert("GPS is not enabled. Please turn it on in your device settings. 250 Taxi needs GPS to find your pickup location.")
+            swal("","GPS/Location is not enabled. Please turn it on in your settings. Afritaxi needs GPS to find your pickup location.","")
         }
     </script>
 
@@ -438,12 +438,32 @@
 
         <span id="mainmenu">
 
-        <div class='noSwipe' id='mainmenu_wallet'>Wallet</div>
-        <div class='noSwipe' id='mainmenu_bookings'>Bookings</div>
-        <div class='noSwipe' id='mainmenu_history'>History</div>
-        <div class='noSwipe' id='mainmenu_account'>Settings</div>
-        <div class='noSwipe' id='mainmenu_becomedriver'>Partner with Afritaxi</div>
-        <div class='noSwipe' id='mainmenu_corporate'>Afritaxi CORPORATE</div>
+        <div class='noSwipe' id='mainmenu_wallet'>
+        <img src="css/payment/wallet.svg">
+            Wallet</div>
+        <div class='noSwipe' id='mainmenu_bookings'>
+            <img src="css/timetable.svg">
+            Bookings</div>
+        <div class='noSwipe' id='mainmenu_history'>
+            
+            <img src="css/taxi.svg">
+            
+            History</div>
+        <div class='noSwipe' id='mainmenu_account'>
+            
+            <img src="css/settings.svg">
+            
+            Settings</div>
+        <div class='noSwipe' id='mainmenu_becomedriver'>
+            
+            <img src="css/car-connected.svg">
+            
+            Partner with Afritaxi</div>
+        <div class='noSwipe' id='mainmenu_corporate'>
+            
+            <img src="css/payment/briefcase.svg">
+            
+            Afritaxi CORPORATE</div>
 
         </span>
 

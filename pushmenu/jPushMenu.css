@@ -7,6 +7,13 @@
     margin-right: auto;
 }
 
+#mainmenu img {
+    vertical-align: middle;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
 .cbp-spmenu {
     position: fixed;
     background: rgba(255, 255, 255, 1);
@@ -32,17 +39,27 @@
     text-decoration: none;
     font-family: sans-serif;
     text-transform: uppercase;
+    transition: all 0.3s;
 }
 
 .cbp-spmenu div:hover {
     background: #C3562D;
     color: #FFFFFF;
+    transition: all 0.3s;
 }
 
 .cbp-spmenu div:active {
     background: #C3562D;
     color: #FFFFFF;
+    transition: all 0.3s;
 }
+
+.cbp-spmenu div:hover img, .cbp-spmenu div:active img {
+    opacity: 1 !important;
+    filter: invert(100%);
+    transition: all 0.3s;
+}
+
 
 
 /* Orientation-dependent styles for the content of the menu */
