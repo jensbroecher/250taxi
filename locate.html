@@ -242,27 +242,25 @@
             <div id="account_simple_table" class="simple_table">
 
                 <div class="simple_table_desc">Name</div>
-                <div id="account_name" class="simple_table_content">Loading...</div>
-
-                <div class="simple_table_desc" style="display:none;">Username</div>
-                <div id="account_username" class="simple_table_content" style="display:none;">Loading...</div>
+                <div id="account_name" class="simple_table_content">...</div>
 
                 <div class="simple_table_desc">E-Mail</div>
-                <div id="account_email" class="simple_table_content">Loading...</div>
+                <div id="account_email" class="simple_table_content">...</div>
 
                 <div class="simple_table_desc">Phone</div>
-                <div id="account_phone" class="simple_table_content">Loading...</div>
+                <div id="account_phone" class="simple_table_content">...</div>
+                
+                <div class="simple_table_desc">Country</div>
+                <div id="account_country" class="simple_table_content">...</div>
 
+                <span onclick="forgot_password();">
                 <div class="simple_table_desc">Password</div>
                 <div class="simple_table_content">******</div>
+                </span>
 
             </div>
 
             <div style="clear:both;"></div>
-
-            <div id="account_button_phone" onclick="send_message_to_customer_care();" class="account_button waves-effect waves-light">Update Phone</div>
-
-            <div id="account_button_pin" onclick="forgot_password();" class="account_button waves-effect waves-light">Change Password</div>
 
             <div id="account_button_pin" onclick="logout();" class="account_button waves-effect waves-light">Sign out</div>
 
@@ -529,7 +527,8 @@
 
 
     <div id="user_location_pin"></div>
-
+    
+    <img id="map_glogo" src="https://maps.gstatic.com/mapfiles/api-3/images/google4_hdpi.png">
     <div id="map"></div>
 
     <div id="journey_status_dialog">
@@ -549,22 +548,30 @@
 
         <div class="sdbox">
 
-            <img id="getfareestimate_back" class="arrow_back_grey" src="reg/arrow_back_grey.svg" onclick="getfareestimate_close();">
-
-            <div class="sdtitle">Fare Estimate</div>
+            <img id="getfareestimate_back" class="arrow_back_grey" src="reg/arrow_back.svg" onclick="getfareestimate_close();">
 
             <div id="getfareestimate_price"></div>
 
-            <div id="getfareestimate_pickup_holder">Pickup:
+            <div id="getfareestimate_pickup_holder">
+            
+                 <div class="sdtitle">Pickup</div>
+
                 <span id="getfareestimate_pickup"></span>
             </div>
 
-            <div id="getfareestimate_destination_holder">Destination:
+            <div id="getfareestimate_destination_holder">
+                
+                <div class="sdtitle">Destination</div>
+                
                 <span id="getfareestimate_destination"></span>
             </div>
 
-            <div id="getfareestimate_distance_holder">Distance:
-                <span id="getfareestimate_distance"></span> km (<span id="getfareestimate_time"></span> min)
+            <div id="getfareestimate_distance_holder">
+                
+                <div class="sdtitle">Distance</div>
+                
+                <span id="getfareestimate_distance"></span>
+                
             </div>
 
             <div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
@@ -835,7 +842,7 @@
             <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
                 <path fill="black" d="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M15.5,8C16.3,8 17,8.7 17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M12,14C13.75,14 15.29,14.72 16.19,15.81L14.77,17.23C14.32,16.5 13.25,16 12,16C10.75,16 9.68,16.5 9.23,17.23L7.81,15.81C8.71,14.72 10.25,14 12,14Z" />
             </svg> No online driver
-            <br>in range. Tab here for our offline service.
+            <br>in range. Tab here to call Customer Care.
 
         </div>
     </div>

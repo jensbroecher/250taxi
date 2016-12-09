@@ -5,6 +5,31 @@
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/material/MaterialIcons-Regular.woff2) format('woff2'), url(../fonts/material/MaterialIcons-Regular.woff) format('woff'), url(../fonts/material/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+.gmnoprint a, .gmnoprint span {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+#map div div a div img {
+    display:none !important;
+    pointer-events: none !important;
+}
+
+#map div div a {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+#map_glogo {
+    width: 18%;
+    max-width: 70px;
+    position: fixed;
+    bottom: 50px;
+    left: 0px;
+    z-index: 1;
+}
+
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
@@ -114,7 +139,6 @@ body,
 #map {
     margin: 0;
     padding: 0;
-    height: 100%;
 }
 
 #map {
@@ -355,7 +379,7 @@ body,
     display: none;
     padding-left: 2%;
     padding-right: 2%;
-    background-image: url(splash_day.jpg);
+    background-image: url(kigali_blur.jpg);
     background-size: cover;
 }
 

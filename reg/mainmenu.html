@@ -1,110 +1,110 @@
-    <style>
-        .reg_check_img {
-            width: 16px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            vertical-align: middle;
+<style>
+    .reg_check_img {
+        width: 16px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+    function register() {
+
+        check_name = "No";
+        check_phone = "No";
+        check_email = "No";
+
+        first_name = document.getElementById("first_name").value;
+        last_name = document.getElementById("last_name").value;
+        phone = document.getElementById("phone").value;
+        email = document.getElementById("email").value;
+
+        var check_phone_is_number = isNaN(phone);
+
+        if (check_phone_is_number == true || phone.length < 1) {
+            phone = "Please check";
+            check_phone_img = "bad.png";
+        } else {
+            check_phone = "OK";
+            check_phone_img = "ok.png";
         }
-    </style>
 
-    <script>
-        function register() {
-
-            check_name = "No";
-            check_phone = "No";
-            check_email = "No";
-
-            first_name = document.getElementById("first_name").value;
-            last_name = document.getElementById("last_name").value;
-            phone = document.getElementById("phone").value;
-            email = document.getElementById("email").value;
-
-            var check_phone_is_number = isNaN(phone);
-
-            if (check_phone_is_number == true || phone.length < 1) {
-                phone = "Please check";
-                check_phone_img = "bad.png";
-            } else {
-                check_phone = "OK";
-                check_phone_img = "ok.png";
-            }
-
-            if (first_name.length < 2 || last_name.length < 2) {
-                first_name = "Please check";
-                check_name_img = "bad.png";
-            } else {
-                check_name = "OK";
-                check_name_img = "ok.png";
-            }
+        if (first_name.length < 2 || last_name.length < 2) {
+            first_name = "Please check";
+            check_name_img = "bad.png";
+        } else {
+            check_name = "OK";
+            check_name_img = "ok.png";
+        }
 
 
-            function validateEmail(email) {
-                var re = /\S+@\S+\.\S+/;
-                return re.test(email);
-            }
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
 
-            var check_email_format = validateEmail(email);
+        var check_email_format = validateEmail(email);
 
-            if (check_email_format == false || email.length < 1) {
-                email = "Please check";
-                check_email_img = "bad.png";
-            } else {
-                check_email = "OK";
-                check_email_img = "ok.png";
-            }
+        if (check_email_format == false || email.length < 1) {
+            email = "Please check";
+            check_email_img = "bad.png";
+        } else {
+            check_email = "OK";
+            check_email_img = "ok.png";
+        }
 
-            swal({
-                title: ""
-                , text: "<img width='16px' class='reg_check_img' src=reg/" + check_name_img + ">Name: " + first_name + " " + last_name + "<br><img width='16px' class='reg_check_img' src=reg/" + check_phone_img + ">Phone: " + phone + "<br><img width='16px' class='reg_check_img' src=reg/" + check_email_img + ">E-Mail: " + email + ""
-                , html: true
+        swal({
+            title: ""
+            , text: "<img width='16px' class='reg_check_img' src=reg/" + check_name_img + ">Name: " + first_name + " " + last_name + "<br><img width='16px' class='reg_check_img' src=reg/" + check_phone_img + ">Phone: " + phone + "<br><img width='16px' class='reg_check_img' src=reg/" + check_email_img + ">E-Mail: " + email + ""
+            , html: true
+        });
+
+        if (check_name == "OK" && check_email == "OK" && check_phone == "OK") {
+
+            $.get("https://250taxi.com/db/check_email.php", {
+                email: email
+            }).done(function (data) {
+
+                if (data == "true") {
+                    swal("", "Account is in use.", "error");
+                }
+                if (data == "false") {
+                    reg_check_next();
+                }
+
             });
 
-            if (check_name == "OK" && check_email == "OK" && check_phone == "OK") {
 
-                $.get("https://250taxi.com/db/check_email.php", {
-                    email: email
-                }).done(function (data) {
-
-                    if (data == "true") {
-                        swal("", "Account is in use.", "error");
-                    }
-                    if (data == "false") {
-                        reg_check_next();
-                    }
-
-                });
-
-
-            } else {
-                return;
-            }
-
+        } else {
+            return;
         }
 
-        function convert_uc_first_name() {
-            var data_new = document.getElementById("first_name").value;
-            var data_new_first = data_new.toUpperCase();
-            var data_new_first = data_new_first.substring(0, 1);
-            var data_new = data_new.substring(1);
-            document.getElementById("first_name").value = data_new_first + data_new;
-        }
+    }
 
-        function convert_uc_last_name() {
-            var data_new = document.getElementById("last_name").value;
-            var data_new_first = data_new.toUpperCase();
-            var data_new_first = data_new_first.substring(0, 1);
-            var data_new = data_new.substring(1);
-            document.getElementById("last_name").value = data_new_first + data_new;
-        }
+    function convert_uc_first_name() {
+        var data_new = document.getElementById("first_name").value;
+        var data_new_first = data_new.toUpperCase();
+        var data_new_first = data_new_first.substring(0, 1);
+        var data_new = data_new.substring(1);
+        document.getElementById("first_name").value = data_new_first + data_new;
+    }
+
+    function convert_uc_last_name() {
+        var data_new = document.getElementById("last_name").value;
+        var data_new_first = data_new.toUpperCase();
+        var data_new_first = data_new_first.substring(0, 1);
+        var data_new = data_new.substring(1);
+        document.getElementById("last_name").value = data_new_first + data_new;
+    }
 
 
-        function reg_check_next() {
-            document.getElementById("reg_personal_details").style.display = "none";
-            document.getElementById("reg_pin").style.display = "block";
-        }
-    </script>
+    function reg_check_next() {
+        document.getElementById("reg_personal_details").style.display = "none";
+        document.getElementById("reg_pin").style.display = "block";
+    }
+</script>
 
-    <div id="background_frame_register">
+<div id="background_frame_register">
 
     <img id="close_reg_start_arrow" onclick="close_reg_start();" class="ios_back_arrow" src="reg/arrow_back.svg">
 
@@ -132,7 +132,15 @@
 
                         </div>
 
-                        <div class="input-field col s12">
+                        <div class="input-field col s4">
+    <select id="phone_country_select">
+      <option value="Rwanda" selected>Rwanda</option>
+      <option value="Zambia">Zambia</option>
+      <option value="Other">Other</option>
+    </select>
+  </div>
+
+                        <div class="input-field col s8">
 
                             <input type="tel" id="phone">
 
@@ -175,22 +183,22 @@
 
                     <div class="row">
                         <div class="col s12">
-                            
+
                             <center>
-                            <p>
-                                <input id="terms_checkbox" type="checkbox">
-                                <label for="terms_checkbox"><span onclick="terms();" id="terms_text">
+                                <p>
+                                    <input id="terms_checkbox" type="checkbox">
+                                    <label for="terms_checkbox"><span onclick="terms();" id="terms_text">
 
                             I accept the terms & conditions</span></label>
 
-                            </p>
+                                </p>
                             </center>
-                            
+
                             <center>
-                        <button onclick="check_pin_and_register();" class="waves-effect waves-light btn afri_btn">
-                            <i class="material-icons right">account_box</i>Next
-                        </button>
-                    </center>
+                                <button onclick="check_pin_and_register();" class="waves-effect waves-light btn afri_btn">
+                                    <i class="material-icons right">account_box</i>Next
+                                </button>
+                            </center>
 
                         </div>
                     </div>
@@ -220,12 +228,12 @@
                             </select>
                             <label>How did you hear about us?</label>
                         </div>
-                        
-            <center>
-                <button onclick="how_did_you_find_us_complete();" class="waves-effect waves-light btn afri_btn">
-                    <i class="material-icons left">account_box</i>Next
-                </button>
-            </center>
+
+                        <center>
+                            <button onclick="how_did_you_find_us_complete();" class="waves-effect waves-light btn afri_btn">
+                                <i class="material-icons left">account_box</i>Next
+                            </button>
+                        </center>
 
                     </div>
                 </div>
@@ -245,14 +253,14 @@
         function check_pin_and_register() {
 
             var password = document.getElementById("password").value;
-            
+
             if (password == "") {
-                swal("","Please enter a password!","error");
+                swal("", "Please enter a password!", "error");
                 return;
             }
-            
+
             if (password.length < 5) {
-                swal("","Password is too short!","error");
+                swal("", "Password is too short!", "error");
                 return;
             }
 

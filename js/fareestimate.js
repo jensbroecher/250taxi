@@ -78,10 +78,9 @@ var googledistancexml = data;
         $( "#getfareestimate_distance_holder" ).append( "<div id='airport_parking_notice'><br><b>Please note:</b> Airport parking ticket<br>fee not included.</div>" );
     }
         
-	document.getElementById("getfareestimate_distance").innerHTML = newtext;
+	document.getElementById("getfareestimate_distance").innerHTML = "" + newtext + " km - Aprox. " + newtime + " Min.";
         
-	document.getElementById("getfareestimate_time").innerHTML = newtime;
-		
+	
 	console.log("Pickup location: "+pickup_location+"\nDestination: "+taxirequest_destination+"\nDistance:  "+newtext+"km\nTime:  "+newtime+" min");
 	
 });
@@ -89,14 +88,27 @@ var googledistancexml = data;
 }
 
 function getgooglefareestimate() {
+    
+var userid = localStorage.getItem("userid");
 	
-$.get( "https://250taxi.com/db/partner/get_fare_setting.php", function( fare_setting ) {
+$.get( "https://250taxi.com/db/partner/fare_setting_v2.php?task=&userid="+userid+"", function( fare_setting ) {
+    
+var fare_setting_db = fare_setting.split("/");
+
+var fare_setting = fare_setting_db[0];
+var fare_setting_first_km = fare_setting_db[1];
+var fare_setting_currency = fare_setting_db[2];
+var fare_price_range = fare_setting_db[3];
+    
+var fare_setting = parseFloat(fare_setting);
+var fare_setting_first_km = parseFloat(fare_setting_first_km);
+var fare_price_range = parseFloat(fare_price_range);
 	
 gestimatedistance = localStorage.getItem("gestimatedistance");
 	
 // alert("gestimatedistance: " +gestimatedistance);
 	
-gcostestimate = gestimatedistance * fare_setting + 1500;
+gcostestimate = gestimatedistance * fare_setting + fare_setting_first_km;
 
 // total = Math.ceil(total);
 gcostestimate = Math.ceil(gcostestimate/100)*100;
@@ -104,7 +116,7 @@ gcostestimate = Math.ceil(gcostestimate/100)*100;
 // alert("gcostestimate: " + gcostestimate);
     
 if (gcostestimate < 1500) {
-    gcostestimate = 1500;
+    // gcostestimate = 1500;
 }
 if (isNaN(gcostestimate)) {
     swal("","We could not calculate the fare for this route. Please change pickup or destination locations.","");
@@ -114,15 +126,14 @@ if (isNaN(gcostestimate)) {
 	getfareestimate_close();
 }
     
-var gcostestimate_plus1000 = gcostestimate + 1000;
+var gcostestimate_plus1000 = gcostestimate + fare_price_range;
 	
-document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF";
+document.getElementById("getfareestimate_price").innerHTML = "" + gcostestimate +" - " + gcostestimate_plus1000 +" "+fare_setting_currency+"";
     
-localStorage.setItem("destination_fare_estimate","" + gcostestimate +" - " + gcostestimate_plus1000 +" RWF");
+localStorage.setItem("destination_fare_estimate","" + gcostestimate +" - " + gcostestimate_plus1000 +" "+fare_setting_currency+"");
 
 localStorage.setItem("destination_distance_estimate",gestimatedistance);
 
-	
 });
 	
 }

@@ -1,6 +1,7 @@
 function open_dial_service() {
     document.getElementById("search_animation").style.display = "none";
     $("#call_now_button").click();
+    $("#user_pin").show();
 }
 
 function getfareestimate_close() {
@@ -254,6 +255,10 @@ function getdrivers() {
 
     $("#user_location_pin").hide();
     console.log("User location pin removed");
+    
+    $("#mydetailedlocation").hide();
+    $("#mydetailedlocation_dialog").hide();
+    console.log("mydetailedlocation removed");
 
     clearInterval(map_updater);
     console.log("map updater stopped");

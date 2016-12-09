@@ -1,5 +1,5 @@
 function init_main_map() {
-    
+
     var ang;
 
     trigger_check_if_map_loaded();
@@ -218,7 +218,10 @@ function displayPosition(position) {
     var map = new google.maps.Map(document.getElementById("map"), options);
     geocodeLatLng(geocoder, map);
 
-
+    console.log("find google shit");
+    var google_shit = $('#map').find('img[src$="/google4_hdpi.png"]').css( "background-color", "red" );
+    
+    console.log(google_shit);
 
     //Add listener to detect autocomplete selection
     google.maps.event.addListener(autocomplete2, 'place_changed', function () {
@@ -226,13 +229,22 @@ function displayPosition(position) {
         place = autocomplete2.getPlace();
         console.log(place);
 
-        var newlatlong = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+        try {
+            var newlatlong = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
 
-        map.setCenter(newlatlong);
+            map.setCenter(newlatlong);
 
-        $("#locationfinderdialog").slideUp();
+            geocodeLatLng(geocoder, map);
 
-        show_top_ui();
+            $("#locationfinderdialog").slideUp();
+
+            show_top_ui();
+
+        } catch (error) {
+            console.log(error.message);
+            
+            
+        }
 
     });
 
@@ -253,13 +265,13 @@ function displayPosition(position) {
     function callback(results, status) {
         document.getElementById('list_of_nearby_places').innerHTML = "";
         $.each(results, function (index, value) {
-            
+
             placeLat = results[index].geometry.location.lat();
             placeLng = results[index].geometry.location.lng();
-            
+
             distanceFromPlaceInKm = distance(lat, lng, placeLat, placeLng, 'k');
-            
-            distanceFromPlace = "<option value='" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "  " + results[index].name + "'>" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + ")</option>";
+
+            distanceFromPlace = "<option value='" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "  " + results[index].name + "'>" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + " Metres)</option>";
             $('#list_of_nearby_places').append(distanceFromPlace);
         });
 
@@ -709,30 +721,39 @@ function geocodeLatLng(geocoder, map) {
                     $("#inlocationfield").val(currentLoc); */
 
                     document.getElementById('list_of_nearby_places').innerHTML = "";
-                    $.each(results, function (index, value) {
-                        //alert( index + ": " + value );
 
-                        placeLat = results[index].geometry.location.lat();
-                        placeLng = results[index].geometry.location.lng();
-                        
-                        distanceFromPlaceInKm = distance(lat, lng, placeLat, placeLng, 'k');
-                        
-                        distanceFromPlace = "<option value='" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + ")'>" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + " Metres)</option>";
-                        
-                        // console.log(distanceFromPlace);	
-                        
-                        $('#list_of_nearby_places').append(distanceFromPlace);
-                        //console.log(currentLoc);
-                        
-                    });
+                    if (results.length === 0) {
+                        console.log("No result for nearby places search");
+                                       
+                        $("#list_of_nearby_places").append("<option val='' disabled selected>No nearby place found</option>");
+                                           
+                    } else {
+                        $.each(results, function (index, value) {
+                            //alert( index + ": " + value );
+
+                            placeLat = results[index].geometry.location.lat();
+                            placeLng = results[index].geometry.location.lng();
+
+                            distanceFromPlaceInKm = distance(lat, lng, placeLat, placeLng, 'k');
+
+                            distanceFromPlace = "<option value='" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + ")'>" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + " Metres)</option>";
+
+                            // console.log(distanceFromPlace);	
+
+                            $('#list_of_nearby_places').append(distanceFromPlace);
+                            //console.log(currentLoc);
+
+                        });
+                    }
+
                 }
 
                 // pickup = results[0].formatted_address;
-                
+
                 var pickup = $("#inlocationfield").val();
                 localStorage.setItem("pickup", pickup);
                 console.log("Pickup:" + pickup);
-                
+
             } else {
                 // window.alert('No results found');
             }
@@ -752,13 +773,13 @@ jQuery(document).ready(function ($) {
     localStorage.setItem('activity', 'searching_address');
 
     $('#searchbyaddress').blur(function () {
-            
+
         }).focus(function () {
-            
+
         })
         .keypress(function (e) {
             if (e.which == 13) {
-                codeAddress();
+                // codeAddress();
             }
         });
 
@@ -940,15 +961,13 @@ function taxis_online_info_load() {
 
         var drivers_online = taxi_drivers_online_data[0];
         var eta = taxi_drivers_online_data[1];
-        
+
         if (drivers_online == "0") {
-            var content = "<div id='dro'>No drivers</div>";  
-        }
-        else if (drivers_online == "1") {
+            var content = "<div id='dro'>No drivers</div>";
+        } else if (drivers_online == "1") {
             var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>" + drivers_online + " driver  online</div>";
-        }
-        else {
-           var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>" + drivers_online + " drivers online</div>";  
+        } else {
+            var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>" + drivers_online + " drivers online</div>";
         }
 
         $("#user_pin_eta").html(content);
@@ -1104,6 +1123,8 @@ function hide_top_ui() {
     $("#menubtn_hitzone").hide();
     $("#user_pin").hide();
     $("#calltaxiui").hide();
+    
+    document.getElementById("map_glogo").style.bottom = "0px";
 }
 
 function show_top_ui() {
@@ -1112,7 +1133,9 @@ function show_top_ui() {
     $("#menubutton").show();
     $("#menubtn_hitzone").show();
     $("#user_pin").show();
-     $("#calltaxiui").show();
+    $("#calltaxiui").show();
+    
+    document.getElementById("map_glogo").style.bottom = "50px";
 }
 
 function codeAddress() {

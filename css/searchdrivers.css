@@ -28,7 +28,7 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #taxi_go {
@@ -50,7 +50,7 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #payment_go {
@@ -72,7 +72,7 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #fare_estimate_go {
@@ -94,7 +94,7 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #detailedlocation_date_time_button {
@@ -154,7 +154,6 @@
     border-bottom: solid 1px lightgray;
     box-sizing: border-box;
 }
-
 
 #taxirequest_destination::-webkit-input-placeholder {
     color: darkslategray;
@@ -231,7 +230,7 @@
     margin-top: 15px;
     margin-bottom: 10px;
     border-radius: 0px;
-    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 .sdbutton_gray {
@@ -296,13 +295,16 @@
 }
 
 .sdbox {
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     box-shadow: 2px 2px 6px 0.7px rgba(0, 0, 0, 0.5);
     background-color: white;
     width: 90%;
-    margin-left: 5%;
-    margin-top: 5%;
     border-radius: 0px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 15px;
 }
 
 .sdbox_inside {
@@ -396,7 +398,7 @@
     position: absolute;
     display: none;
     z-index: 100;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Roboto', sans-serif;
     box-shadow: 1px 1px 40px 0.7px rgba(0, 0, 0, 0.3);
     background-color: rgba(255, 255, 255, 0.7);
     height: 130px;
@@ -477,9 +479,11 @@
 }
 
 .arrow_back_grey {
+    position: absolute;
     padding: 5px;
     width: 24px;
     height: 24px;
+    z-index: 1101;
 }
 
 #no_driver_in_range {
@@ -563,9 +567,14 @@
 }
 
 #getfareestimate_price {
+    position: absolute;
+    width: 100%;
     text-align: center;
-    font-size: 22px;
-    margin-bottom: 10px;
+    background-color: #C3552D;
+    font-size: 20px;
+    line-height: 55px;
+    height: 55px;
+    color: white;
 }
 
 #getfareestimate_back {
@@ -575,17 +584,26 @@
 #getfareestimate_pickup,
 #getfareestimate_destination,
 #getfareestimate_distance {
-    text-align: left;
-    font-size: 16px;
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-#getfareestimate_pickup_holder,
 #getfareestimate_destination_holder,
 #getfareestimate_distance_holder {
-    font-size: 16px;
+    font-size: 15px;
     padding-left: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#getfareestimate_pickup_holder {
+    font-size: 15px;
+    padding-left: 15px;
+    margin-top: 65px;
+    margin-bottom: 10px;
 }
 
 #pickdriver_request_timer {

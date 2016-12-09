@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    
+    set_google_maps_size("start");
 
     $(window).on('resize', function () {
         if ($(document.activeElement).prop('type') === 'text') {
@@ -92,6 +94,25 @@ $(document).ready(function () {
     });
 
 });
+
+function set_google_maps_size(type) {
+    
+    document.getElementById("map").style.height = "100%";   
+    
+    return;
+    
+    var window_height = $(window).height();
+    
+    var window_height_without_calltaxiui = window_height - 50;
+    
+    if (type == "start") {
+        document.getElementById("map").style.height = ""+window_height_without_calltaxiui+"px";   
+    }
+    if (type == "calltaxiui_closed") {
+        document.getElementById("map").style.height = "100%";   
+    }
+    
+}
 
 $(function () {
 
@@ -298,9 +319,9 @@ function init_detailed_location_dialog() {
         
         <nav onclick="payment_method('wallet');"><img src="css/payment/wallet.svg">Wallet</nav>
         
-        <nav onclick="payment_method('creditcard');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav>
+        <nav style="display:non;" onclick="payment_method('creditcard');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav>
         
-        <nav onclick="payment_method('corporate');"><img src="css/payment/domain.svg">Corporate</nav>
+        <nav style="display:non;" onclick="payment_method('corporate');"><img src="css/payment/domain.svg">Corporate</nav>
 
         `;
 
@@ -314,14 +335,16 @@ function init_detailed_location_dialog() {
 function payment_method(choice) {
     localStorage.setItem("payment_method", choice);
     document.getElementById("at_modal").style.display = "none";
-    
+
     var userid = localStorage.getItem("userid");
-    
-    /*
-    $.get("https://250taxi.com/db/stripe-payment/stripe_payment.php?a=" + a, function (data) {
-        alert(data);
-    });
-    */
+    $.get("https://250taxi.com/db/account/account.php", {
+            task: "set_payment_method"
+            , userid: userid
+            , payment_method: choice
+        })
+        .done(function (data) {
+
+        });
 
     if (choice == "wallet") {
         var payment_method_on_button = "css/payment/white/wallet.svg";
@@ -363,6 +386,15 @@ function enter_coupon() {
                 return false
             }
 
-            swal("Nice!", "You wrote: " + inputValue, "success");
+            var userid = localStorage.getItem("userid");
+            $.get("https://250taxi.com/db/coupon/coupon.php", {
+                    task: "check_coupon"
+                    , userid: userid
+                    , code: inputValue
+                })
+                .done(function (data) {
+                    swal("", "" + data + "", "");
+                });
+
         });
 }

@@ -15,6 +15,7 @@
     <link href="css/materialize.css" rel="stylesheet" type="text/css">
     <link href="reg/reg.css" rel="stylesheet" type="text/css">
     <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="css/at_ol.css" rel="stylesheet" type="text/css">
 
     <script src="cordova.js"></script>
 
@@ -136,7 +137,7 @@
 
         function opensettings() {
             window.plugins.OneSignal.promptLocation();
-            swal("","Your GPS is not enabled. Please turn it on in your settings. Afritaxi needs GPS to find your pickup location.","error")
+            swal("", "Your GPS is not enabled. Please turn it on in your settings. Afritaxi needs GPS to find your pickup location.", "error")
         }
 
         function dodevicenamecheck() {
@@ -150,7 +151,7 @@
             localStorage.setItem("device_version", device_version);
             localStorage.setItem("device_uuid", device_uuid);
         }
-        
+
         function social_login_btn() {
             $('#google_sign_in').on('click', function () {
                 localStorage.setItem("google_login_button_clicked", "Yes");
@@ -171,6 +172,12 @@
                     $('#reg_form').prepend(data);
 
                     social_login_btn();
+
+                    var country = localStorage.getItem("country");
+
+                    $("#phone_country_select").val(country);
+
+                    $('select').material_select();
 
                 });
 
