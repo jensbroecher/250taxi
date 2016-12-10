@@ -31,6 +31,8 @@ function forgot_password() {
 }
 
 function complete_social_login() {
+    
+    showindicator();
 
     var login_type = localStorage.getItem("login_type");
 
@@ -52,9 +54,11 @@ function complete_social_login() {
 
         if (result == "account_found") {
             social_login_go();
+            hideindicator();
         }
         if (result == "account_not_found") {
             social_register_go();
+            hideindicator();
         }
 
     });
@@ -62,6 +66,8 @@ function complete_social_login() {
 }
 
 function social_login_go() {
+    
+    showindicator();
 
     var login_type = localStorage.getItem("login_type");
 
@@ -113,6 +119,7 @@ function social_login_go() {
             $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
 
                 document.location.href = 'gotostart.html';
+                hideindicator();
 
             });
 
@@ -123,6 +130,8 @@ function social_login_go() {
 }
 
 function social_register_go() {
+    
+    showindicator();
 
     var login_type = localStorage.getItem("login_type");
 
@@ -138,6 +147,8 @@ function social_register_go() {
     swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell us your phone number and pick a password.");
 
     $("#reg_start").load("reg/mainmenu.html", function () {
+        
+        hideindicator();
 
         var name_from_social_split = sign_in_name.split(" ");
 
