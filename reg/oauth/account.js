@@ -65,6 +65,13 @@ function complete_social_login() {
 
 }
 
+function fake_sl() {
+    localStorage.setItem("login_type","facebook");
+    localStorage.setItem("facebook_email","jensbroecher@gmail.com");
+    localStorage.setItem("sign_in_name","Jens Bröcher");
+    social_login_go();
+}
+
 function social_login_go() {
 
     showindicator();
@@ -129,7 +136,7 @@ function social_login_go() {
                     localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
                     logupdate_v2();
 
-                    location.replace = 'gotostart.html';
+                    location.href = 'gotostart.html';
 
                 }
 
