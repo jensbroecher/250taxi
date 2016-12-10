@@ -58,8 +58,6 @@
 
                 var password = document.getElementById('password').value;
 
-
-
                 $.get("https://250taxi.com/db/check_user.php?task=check_email&email=" + email + "", function (data) {
 
                     // alert(data);
@@ -67,14 +65,19 @@
                     if (data == "account_found") {
 
                         $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
+                            
                             $.get("https://250taxi.com/db/account/account.php?&task=get_country&userid=" + userid + "", function (countrydb) {
+                                
+                                hideindicator();
 
                                 var country = localStorage.getItem("country");
 
                                 if (country != countrydb) {
+                                    
                                     swal("", "Your account is registered in " + countrydb + ", but you selected " + country + ". Please contact us so we can assist you in migrating your account to " + country + ".");
-                                    localStorage.clear();
+
                                     return;
+                                    
                                 } else {
                                     $.get("https://250taxi.com/db/check_password.php?email=" + email + "&password=" + password + "", function (pindata) {
 

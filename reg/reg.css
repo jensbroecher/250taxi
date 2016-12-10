@@ -123,9 +123,9 @@
 }
 
 #loadingindicator {
+    position: fixed;
     background-color: white;
-    position: absolute;
-    z-index: 10000000000000000;
+    z-index: 1001;
     height: 100%;
     width: 100%;
     left: 0px;
