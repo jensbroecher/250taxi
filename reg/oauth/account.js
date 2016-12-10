@@ -31,7 +31,7 @@ function forgot_password() {
 }
 
 function complete_social_login() {
-    
+
     showindicator();
 
     var login_type = localStorage.getItem("login_type");
@@ -66,7 +66,7 @@ function complete_social_login() {
 }
 
 function social_login_go() {
-    
+
     showindicator();
 
     var login_type = localStorage.getItem("login_type");
@@ -104,22 +104,34 @@ function social_login_go() {
 
     $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + sign_in_email + "", function (userid) {
 
-        $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
+        localStorage.setItem("userid", userid);
 
-            localStorage.setItem("userid", userid);
-            localStorage.setItem("rememberuser", "Yes");
+        $.get("https://250taxi.com/db/account/set_randomclientid.php?userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
 
-            localStorage.setItem("rememberuser", "Yes");
+            $.get("https://250taxi.com/db/account/account.php?&task=get_country&userid=" + userid + "", function (countrydb) {
 
-            localStorage.removeItem("hotelcorporate");
-
-            localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
-            logupdate_v2();
-
-            $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
-
-                document.location.href = 'gotostart.html';
                 hideindicator();
+
+                var country = localStorage.getItem("country");
+
+                if (country != countrydb) {
+
+                    swal("", "Your account is registered in " + countrydb + ", but you selected " + country + ". Please contact us so we can assist you in migrating your account to " + country + ".");
+
+                    return;
+
+                } else {
+
+                    localStorage.setItem("rememberuser", "Yes");
+
+                    localStorage.removeItem("hotelcorporate");
+
+                    localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
+                    logupdate_v2();
+
+                    location.replace = 'gotostart.html';
+
+                }
 
             });
 
@@ -130,7 +142,7 @@ function social_login_go() {
 }
 
 function social_register_go() {
-    
+
     showindicator();
 
     var login_type = localStorage.getItem("login_type");
@@ -147,7 +159,7 @@ function social_register_go() {
     swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell us your phone number and pick a password.");
 
     $("#reg_start").load("reg/mainmenu.html", function () {
-        
+
         hideindicator();
 
         var name_from_social_split = sign_in_name.split(" ");
