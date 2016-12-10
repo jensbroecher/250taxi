@@ -98,62 +98,64 @@ function social_login_go() {
 
     $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + sign_in_email + "", function (userid) {
 
-                $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
+        $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
 
-                    localStorage.setItem("userid", userid);
-                    localStorage.setItem("rememberuser", "Yes");
+            localStorage.setItem("userid", userid);
+            localStorage.setItem("rememberuser", "Yes");
 
-                    localStorage.setItem("rememberuser", "Yes");
+            localStorage.setItem("rememberuser", "Yes");
 
-                    localStorage.removeItem("hotelcorporate");
+            localStorage.removeItem("hotelcorporate");
 
-                    localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
-                    logupdate_v2();
+            localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
+            logupdate_v2();
 
-                    $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
+            $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
 
-                        document.location.href = 'gotostart.html';
+                document.location.href = 'gotostart.html';
 
-                    });
+            });
 
-                });
+        });
 
-            }
+    });
 
-            function social_register_go() {
+}
 
-                var login_type = localStorage.getItem("login_type");
+function social_register_go() {
 
-                if (login_type == "facebook") {
-                    var sign_in_email = localStorage.getItem("facebook_email");
-                    var sign_in_name = localStorage.getItem("facebook_name");
-                }
-                if (login_type == "google") {
-                    var sign_in_email = localStorage.getItem("google_email");
-                    var sign_in_name = localStorage.getItem("google_name");
-                }
+    var login_type = localStorage.getItem("login_type");
 
-                swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell us your phone number and pick a password.");
+    if (login_type == "facebook") {
+        var sign_in_email = localStorage.getItem("facebook_email");
+        var sign_in_name = localStorage.getItem("facebook_name");
+    }
+    if (login_type == "google") {
+        var sign_in_email = localStorage.getItem("google_email");
+        var sign_in_name = localStorage.getItem("google_name");
+    }
 
-                $("#reg_start").load("reg/mainmenu.html", function () {
+    swal("", "" + sign_in_name + ", you're not yet registered with Afritaxi. \n\nPlease tell us your phone number and pick a password.");
 
-                    var name_from_social_split = sign_in_name.split(" ");
+    $("#reg_start").load("reg/mainmenu.html", function () {
 
-                    document.getElementById("first_name").value = name_from_social_split[0];
-                    document.getElementById("last_name").value = name_from_social_split[1];
+        var name_from_social_split = sign_in_name.split(" ");
 
-                    document.getElementById("email").value = sign_in_email;
+        document.getElementById("first_name").value = name_from_social_split[0];
+        document.getElementById("last_name").value = name_from_social_split[1];
 
-                    Materialize.updateTextFields();
+        document.getElementById("email").value = sign_in_email;
 
-                    document.getElementById("reg_start").style.height = "100%";
-                    if (document.getElementById("close_reg_start_arrow")) {
-                        document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
-                    }
+        Materialize.updateTextFields();
 
-                });
+        document.getElementById("reg_start").style.height = "100%";
+        if (document.getElementById("close_reg_start_arrow")) {
+            document.getElementById("close_reg_start_arrow").style.marginLeft = "10px";
+        }
 
-                location.href = "#registration";
-                localStorage.setItem("reg_start_open", "Yes");
+    });
 
-            }
+    location.href = "#registration";
+    localStorage.setItem("reg_start_open", "Yes");
+
+}
