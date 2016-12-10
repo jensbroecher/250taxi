@@ -99,33 +99,20 @@ function social_login_go() {
     $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + sign_in_email + "", function (userid) {
 
                 $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
-                    $.get("https://250taxi.com/db/account/account.php?&task=get_country&userid=" + userid + "", function (countrydb) {
 
-                        var country = localStorage.getItem("country");
+                    localStorage.setItem("userid", userid);
+                    localStorage.setItem("rememberuser", "Yes");
 
-                        if (country != countrydb) {
-                            swal("", "Your account is registered in " + countrydb + ", but you selected " + country + ". Please contact us so we can assist you in migrating your account to " + country + ".");
-                            localStorage.clear();
-                            return;
-                        } else {
+                    localStorage.setItem("rememberuser", "Yes");
 
-                            localStorage.setItem("userid", userid);
-                            localStorage.setItem("rememberuser", "Yes");
+                    localStorage.removeItem("hotelcorporate");
 
-                            localStorage.setItem("rememberuser", "Yes");
+                    localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
+                    logupdate_v2();
 
-                            localStorage.removeItem("hotelcorporate");
+                    $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
 
-                            localStorage.setItem("logupdate", "" + userid + "*0*login*User " + sign_in_email + " (" + userid + ") logged in trough social media.");
-                            logupdate_v2();
-
-                            $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
-
-                                document.location.href = 'gotostart.html';
-
-                            });
-
-                        }
+                        document.location.href = 'gotostart.html';
 
                     });
 
