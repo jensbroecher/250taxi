@@ -100,9 +100,9 @@ var fare_setting_first_km = fare_setting_db[1];
 var fare_setting_currency = fare_setting_db[2];
 var fare_price_range = fare_setting_db[3];
     
-var fare_setting = parseFloat(fare_setting);
-var fare_setting_first_km = parseFloat(fare_setting_first_km);
-var fare_price_range = parseFloat(fare_price_range);
+var fare_setting = parseInt(fare_setting);
+var fare_setting_first_km = parseInt(fare_setting_first_km);
+var fare_price_range = parseInt(fare_price_range);
 	
 gestimatedistance = localStorage.getItem("gestimatedistance");
 	
@@ -111,7 +111,11 @@ gestimatedistance = localStorage.getItem("gestimatedistance");
 gcostestimate = gestimatedistance * fare_setting + fare_setting_first_km;
 
 // total = Math.ceil(total);
+    
+// Round up for Rwanda
+if (fare_setting_currency == "RWF") {
 gcostestimate = Math.ceil(gcostestimate/100)*100;
+}
 
 // alert("gcostestimate: " + gcostestimate);
     

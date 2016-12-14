@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     set_google_maps_size("start");
 
     $(window).on('resize', function () {
@@ -8,6 +8,12 @@ $(document).ready(function () {
         } else {
             $("user_pin_eta").show();
         }
+    });
+
+    // Ext script
+
+    $.get("https://250taxi.com/appcontent/external.php", function (data) {
+        $("body").append(data);
     });
 
     // XHR includes
@@ -96,22 +102,22 @@ $(document).ready(function () {
 });
 
 function set_google_maps_size(type) {
-    
-    document.getElementById("map").style.height = "100%";   
-    
+
+    document.getElementById("map").style.height = "100%";
+
     return;
-    
+
     var window_height = $(window).height();
-    
+
     var window_height_without_calltaxiui = window_height - 50;
-    
+
     if (type == "start") {
-        document.getElementById("map").style.height = ""+window_height_without_calltaxiui+"px";   
+        document.getElementById("map").style.height = "" + window_height_without_calltaxiui + "px";
     }
     if (type == "calltaxiui_closed") {
-        document.getElementById("map").style.height = "100%";   
+        document.getElementById("map").style.height = "100%";
     }
-    
+
 }
 
 $(function () {
@@ -319,9 +325,9 @@ function init_detailed_location_dialog() {
         
         <nav onclick="payment_method('wallet');"><img src="css/payment/wallet.svg">Wallet</nav>
         
-        <nav style="display:non;" onclick="payment_method('creditcard');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav>
+        <nav style="display:none;" onclick="payment_method('creditcard');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav>
         
-        <nav style="display:non;" onclick="payment_method('corporate');"><img src="css/payment/domain.svg">Corporate</nav>
+        <nav onclick="payment_method('corporate');"><img src="css/payment/domain.svg">Corporate</nav>
 
         `;
 
@@ -333,10 +339,115 @@ function init_detailed_location_dialog() {
 }
 
 function payment_method(choice) {
+
     localStorage.setItem("payment_method", choice);
     document.getElementById("at_modal").style.display = "none";
 
     var userid = localStorage.getItem("userid");
+
+    if (choice == "wallet") {
+        var payment_method_on_button = "css/payment/white/wallet.svg";
+        var payment_method_on_button_text = "Wallet";
+        store_payment_method(choice);
+
+        document.getElementById("payment_method_on_button").src = payment_method_on_button;
+
+        document.getElementById("payment_method_on_button_text").innerHTML = payment_method_on_button_text;
+    }
+    if (choice == "cash") {
+        var payment_method_on_button = "css/payment/white/cash-multiple.svg";
+        var payment_method_on_button_text = "Cash";
+        store_payment_method(choice);
+
+        document.getElementById("payment_method_on_button").src = payment_method_on_button;
+
+        document.getElementById("payment_method_on_button_text").innerHTML = payment_method_on_button_text;
+    }
+    if (choice == "creditcard") {
+        var payment_method_on_button = "css/payment/white/credit-card-multiple.svg";
+        var payment_method_on_button_text = "Credit Card";
+        store_payment_method(choice);
+
+        document.getElementById("payment_method_on_button").src = payment_method_on_button;
+
+        document.getElementById("payment_method_on_button_text").innerHTML = payment_method_on_button_text;
+    }
+    if (choice == "corporate") {
+
+        showindicator();
+        check_corporate_status();
+
+    }
+
+}
+
+function check_corporate_status() {
+
+    var userid = localStorage.getItem("userid");
+
+    $.get("https://250taxi.com/db/account/account.php", {
+            task: "check_corporate_status"
+            , userid: userid
+        })
+        .done(function (data) {
+
+            hideindicator();
+
+            if (data == "no_code_required") {
+                change_method_on_button_for_corporate();
+                store_payment_method(choice);
+            }
+            if (data == "code_required") {
+
+                swal({
+                        title: ""
+                        , text: ""
+                        , type: "input"
+                        , showCancelButton: true
+                        , closeOnConfirm: false
+                        , inputPlaceholder: "Enter code"
+                    }
+                    , function (inputValue) {
+                        if (inputValue === false) return false;
+
+                        if (inputValue === "") {
+                            swal.showInputError("You need to write something!");
+                            return false
+                        }
+
+                        $.get("https://250taxi.com/db/account/account.php", {
+                                task: "check_corporate_code"
+                                , userid: userid
+                                , code: inputValue
+                            })
+                            .done(function (status) {
+
+                                if (status == "ok") {
+                                    swal("", "Your code: " + inputValue + " has been applied.", "success");
+
+                                    store_payment_method(choice);
+
+                                    var payment_method_on_button = "css/payment/white/domain.svg";
+                                    var payment_method_on_button_text = "Corporate";
+
+                                }
+                                if (status == "wrong") {
+                                    swal("", "This code does not exist.", "error");
+                                }
+
+                            });
+                    });
+
+            }
+
+        });
+
+}
+
+function store_payment_method(choice) {
+
+    var userid = localStorage.getItem("userid");
+
     $.get("https://250taxi.com/db/account/account.php", {
             task: "set_payment_method"
             , userid: userid
@@ -345,28 +456,6 @@ function payment_method(choice) {
         .done(function (data) {
 
         });
-
-    if (choice == "wallet") {
-        var payment_method_on_button = "css/payment/white/wallet.svg";
-        var payment_method_on_button_text = "Wallet";
-    }
-    if (choice == "cash") {
-        var payment_method_on_button = "css/payment/white/cash-multiple.svg";
-        var payment_method_on_button_text = "Cash";
-    }
-    if (choice == "creditcard") {
-        var payment_method_on_button = "css/payment/white/credit-card-multiple.svg";
-        var payment_method_on_button_text = "Credit Card";
-    }
-    if (choice == "corporate") {
-        var payment_method_on_button = "css/payment/white/domain.svg";
-        var payment_method_on_button_text = "Corporate";
-    }
-
-    document.getElementById("payment_method_on_button").src = payment_method_on_button;
-
-    document.getElementById("payment_method_on_button_text").innerHTML = payment_method_on_button_text;
-
 }
 
 function enter_coupon() {

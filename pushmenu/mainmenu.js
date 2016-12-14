@@ -5,12 +5,16 @@ function menubtn_hit() {
 function close_account_overlay() {
 
     show_main_elements();
+    $("#map_glogo").show();
 
     $("#account_overlay").fadeOut("slow", function () {});
 }
 
 function close_wallet_overlay() {
+    
     show_main_elements();
+    $("#map_glogo").show();
+    
     $("#wallet_overlay").fadeOut("slow", function () {});
 }
 
@@ -44,6 +48,7 @@ function load_mainmenu() {
         }
 
         hide_main_elements();
+        $("#map_glogo").hide();
 
         $("#account_overlay").fadeIn("slow", function () {
 
@@ -101,6 +106,7 @@ function load_mainmenu() {
         close_mainmenu();
 
         $("#pages").hide();
+        $("#map_glogo").hide();
 
         $("#wallet_overlay").fadeIn("slow", function () {
 

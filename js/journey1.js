@@ -438,7 +438,10 @@ var userid = localStorage.getItem('userid');
 var driverid = localStorage.getItem("pickdriver_id");
 localStorage.setItem("logupdate",""+userid+"*"+driverid+"*boarded*User"+clientid+" boarded with Driver"+driverid+"");logupdate_v2();
     
-console.log("Start Journey!"); 
+console.log("Start Journey!");
+    
+$("#journey_fare_display_km").fadeIn();
+$("#journey_status_dialog").fadeIn();
     
 $.get( "https://250taxi.com/db/journey/journey_mode.php?task=taxi_boarded&passenger_id="+clientid+"&pickdriver_id="+driverid+"",  function( journey_id ) {
     console.log("Journey ID: " + journey_id);

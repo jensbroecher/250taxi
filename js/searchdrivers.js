@@ -2,6 +2,7 @@ function open_dial_service() {
     document.getElementById("search_animation").style.display = "none";
     $("#call_now_button").click();
     $("#user_pin").show();
+    $("#mydetailedlocation_dialog").show();
 }
 
 function getfareestimate_close() {
@@ -291,6 +292,7 @@ function getdrivers() {
         if (ride_start == "now") {
 
             document.getElementById("search_animation").style.display = "block";
+            document.getElementById("map_glogo").style.bottom = "0px";
 
             setTimeout(function () {
                 document.getElementById("search_animation_timeout").style.display = "block";
