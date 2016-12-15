@@ -45,6 +45,8 @@
         <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
 
         <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
+        
+        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" />
 
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
