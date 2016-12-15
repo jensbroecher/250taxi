@@ -84,7 +84,7 @@
             }
 
             $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
-                var currentversion = "34";
+                var currentversion = "41";
                 var serverversion = data;
                 if (currentversion < serverversion) {
                     alert("Your app is outdated. Please install the update to ensure smooth operation.");
