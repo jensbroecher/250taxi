@@ -46,11 +46,9 @@
 
         <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
-        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" version="1.4.0-dev-5"/>
+        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" />
         
-        <preference name="xwalkVersion" value="org.xwalk:xwalk_core_library:14+" />
-        
-        <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
+        <gap:plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
 
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
