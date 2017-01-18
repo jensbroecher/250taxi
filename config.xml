@@ -50,11 +50,9 @@
         
         <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-patched" source="npm" />
         
-        <preference name="xwalkCommandLine" value="lite" />     
+        <preference name="xwalkCommandLine" value="lite" />
         
-        <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />  
-        
-        <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+        <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />
         
         <!--
         <preference name="xwalkCommandLine" value="--show-fps-counter" />  
