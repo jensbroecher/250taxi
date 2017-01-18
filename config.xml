@@ -54,11 +54,13 @@
         
         <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />
         
-        <!--
-        <preference name="xwalkCommandLine" value="--show-fps-counter" />  
-        -->
+        
+        
         
         <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
+        
+        
+        
 
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
