@@ -20,7 +20,7 @@
                 </div>
 
                 <center>
-                    <button onclick="logincheck();" class="waves-effect waves-light btn afri_btn">
+                    <button onclick="logincheck();" class="waves-effect waves-light  login_button">
                         <i class="material-icons left">exit_to_app</i>Sign in
                     </button>
                     <br>
@@ -65,76 +65,89 @@
                     if (data == "account_found") {
 
                         $.get("https://250taxi.com/db/check_user.php?task=getuserid&email=" + email + "", function (userid) {
-                            
+
                             $.get("https://250taxi.com/db/account/account.php?&task=get_country&userid=" + userid + "", function (countrydb) {
-                                
+
                                 hideindicator();
 
                                 var country = localStorage.getItem("country");
 
                                 if (country != countrydb) {
-                                    
-                                    swal("", "Your account is registered in " + countrydb + ", but you selected " + country + ". Please contact us so we can assist you in migrating your account to " + country + ".");
+
+                                    swal({
+                                            title: ""
+                                            , text: "Your account is registered in " + countrydb + ", but you selected " + country + ". Please contact us so we can assist you in migrating your account to " + country + "."
+                                            , type: "warning"
+                                            , showCancelButton: false
+                                            , confirmButtonText: "OK"
+                                            , closeOnConfirm: false
+                                        }
+                                        , function () {
+                                            localStorage.clear();
+                                            location.reload();
+                                        });
+
+
 
                                     return;
-                                    
+
                                 } else {
                                     $.get("https://250taxi.com/db/check_password.php?email=" + email + "&password=" + password + "", function (pindata) {
 
-                                            if (pindata == "password_found") {
+                                        if (pindata == "password_found") {
 
-                                                localStorage.setItem("rememberuser", "Yes");
+                                            localStorage.setItem("rememberuser", "Yes");
 
-                                                localStorage.removeItem("hotelcorporate");
+                                            localStorage.removeItem("hotelcorporate");
 
-                                                localStorage.setItem("userid", userid);
+                                            localStorage.setItem("userid", userid);
 
-                                                localStorage.setItem("logupdate", "" + userid + "*0*login*User " + email + " (" + userid + ")  logged in.");
-                                                logupdate_v2();
+                                            localStorage.setItem("logupdate", "" + userid + "*0*login*User " + email + " (" + userid + ")  logged in.");
+                                            logupdate_v2();
 
-                                                var randomclientid = Math.floor(Math.random() * 1000000000);
+                                            var randomclientid = Math.floor(Math.random() * 1000000000);
 
-                                                localStorage.setItem("randomclientid", randomclientid);
+                                            localStorage.setItem("randomclientid", randomclientid);
 
-                                                console.log(randomclientid);
+                                            console.log(randomclientid);
 
-                                                var battery = navigator.battery || navigator.mozBattery;
-                                                if (battery) {
-                                                    // battery status for firefox 
+                                            var battery = navigator.battery || navigator.mozBattery;
+                                            if (battery) {
+                                                // battery status for firefox 
+                                                var device_battery = (battery.level * 100);
+                                                localStorage.setItem("device_battery", device_battery);
+                                            } else if (navigator.getBattery) {
+                                                //battery status for chrome
+                                                navigator.getBattery().then(function (battery) {
                                                     var device_battery = (battery.level * 100);
                                                     localStorage.setItem("device_battery", device_battery);
-                                                } else if (navigator.getBattery) {
-                                                    //battery status for chrome
-                                                    navigator.getBattery().then(function (battery) {
-                                                        var device_battery = (battery.level * 100);
-                                                        localStorage.setItem("device_battery", device_battery);
-                                                    });
-                                                }
-
-
-
-                                                var device_model = localStorage.getItem("device_model");
-                                                var device_platform = localStorage.getItem("device_platform");
-                                                var device_version = localStorage.getItem("device_version");
-                                                var device_uuid = localStorage.getItem("device_uuid");
-                                                var device_battery = localStorage.getItem("device_battery");
-
-                                                $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
-                                                    document.location.href = 'gotostart.html';
-
                                                 });
-
-
-                                            } else if (pindata == "password_not_found") {
-                                                swal("", "Sorry, your password is incorrect. Please check your password or contact support.", "error");
-                                                hideindicator();
                                             }
-                                        
-                                        });
-                                    }
-                                });
 
+
+
+                                            var device_model = localStorage.getItem("device_model");
+                                            var device_platform = localStorage.getItem("device_platform");
+                                            var device_version = localStorage.getItem("device_version");
+                                            var device_uuid = localStorage.getItem("device_uuid");
+                                            var device_battery = localStorage.getItem("device_battery");
+
+                                            $.get("https://250taxi.com/db/account/set_randomclientid.php?&userid=" + userid + "&randomclientid=" + randomclientid + "&device_model=" + device_model + "&device_platform=" + device_platform + "&device_version=" + device_version + "&device_uuid=" + device_uuid + "&device_battery=" + device_battery + "", function (data) {
+                                                document.location.href = 'gotostart.html';
+
+                                            });
+
+
+                                        } else if (pindata == "password_not_found") {
+                                            swal("", "Sorry, your password is incorrect. Please check your password or contact support.", "error");
+                                            hideindicator();
+                                        }
+
+                                    });
+                                }
                             });
+
+                        });
 
 
                     } else if (data == "account_not_found") {

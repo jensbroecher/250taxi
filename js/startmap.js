@@ -5,18 +5,18 @@ function init_main_map() {
     trigger_check_if_map_loaded();
 
     // Disabled for new update
-    // document.getElementById("loading_map_indicator").className = "lmp_visible";
+    document.getElementById("loading_map_indicator").className = "lmp_visible";
 
     function trigger_check_if_map_loaded() {
         setTimeout(function () {
             check_if_map_loaded();
-        }, 2000);
+            console.log("location update triggered");
+        }, 10000);
     }
 
     function check_if_map_loaded() {
         if ($("#loading_map_indicator").hasClass("lmp_visible")) {
             reloadPositionStart();
-            audio_update_location();
             trigger_check_if_map_loaded();
         }
     }
@@ -218,11 +218,6 @@ function displayPosition(position) {
     var map = new google.maps.Map(document.getElementById("map"), options);
     geocodeLatLng(geocoder, map);
 
-    console.log("find google shit");
-    var google_shit = $('#map').find('img[src$="/google4_hdpi.png"]').css( "background-color", "red" );
-    
-    console.log(google_shit);
-
     //Add listener to detect autocomplete selection
     google.maps.event.addListener(autocomplete2, 'place_changed', function () {
 
@@ -264,6 +259,8 @@ function displayPosition(position) {
 
     function callback(results, status) {
         document.getElementById('list_of_nearby_places').innerHTML = "";
+        
+        
         $.each(results, function (index, value) {
 
             placeLat = results[index].geometry.location.lat();
@@ -271,8 +268,9 @@ function displayPosition(position) {
 
             distanceFromPlaceInKm = distance(lat, lng, placeLat, placeLng, 'k');
 
-            distanceFromPlace = "<option value='" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "  " + results[index].name + "'>" + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + " Metres)</option>";
+            distanceFromPlace = "<option value='" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "  " + results[index].name + "'>Landmark: " + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "m)</option>";
             $('#list_of_nearby_places').append(distanceFromPlace);
+            
         });
 
         /*placeLat =results[0].geometry.location.lat();
@@ -439,8 +437,13 @@ function displayPosition(position) {
         if (window.move_count < (list.length - 1)) {
             window.move_count += 1;
             setTimeout(function () {
+                try {
                 moveTaxi(taxi_id, list, taxiDatas);
-            }, 100);
+                }
+                catch(err) {
+                    console.log(err.message);
+                } 
+            }, 1000);
         }
     }
 

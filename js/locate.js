@@ -20,6 +20,7 @@ $(document).ready(function () {
 
     $.get("journey/at_modal.html", function (data) {
         $('body').append(data);
+        console.log("at_modal done");
     });
 
     $.get("journey/user_pin.html", function (data) {
@@ -319,17 +320,7 @@ function init_detailed_location_dialog() {
 
     $("#payment_go").click(function () {
 
-        var at_content = `
-
-        <nav onclick="payment_method('cash');"><img src="css/payment/cash-multiple.svg">Cash</nav>
-        
-        <nav onclick="payment_method('wallet');"><img src="css/payment/wallet.svg">Wallet</nav>
-        
-        <nav style="display:none;" onclick="payment_method('creditcard');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav>
-        
-        <nav onclick="payment_method('corporate');"><img src="css/payment/domain.svg">Corporate</nav>
-
-        `;
+        var at_content = '<nav onclick="payment_method(\'cash\');"><img src="css/payment/cash-multiple.svg">Cash</nav><nav onclick="payment_method(\'wallet\');"><img src="css/payment/wallet.svg">Wallet</nav><nav style="display:none;" onclick="payment_method(\'creditcard\');"><img src="css/payment/credit-card-multiple.svg">Credit Card</nav><nav onclick="payment_method(\'corporate\');"><img src="css/payment/domain.svg">Corporate</nav>';
 
         document.getElementById("at_modal_content").innerHTML = at_content;
         document.getElementById("at_modal").style.display = "block";

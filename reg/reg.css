@@ -343,8 +343,14 @@ select {
     transition: all 1s;
 }
 
-.afri_btn {
-    background-color: #779B2F !important;
+.login_button {
+    background-color: #C3552D;
+    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2) !important;
+    border-radius: 0px;
+    border: none;
+    color: white;
     font-size: 14px;
-    font-weight: normal;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
 }

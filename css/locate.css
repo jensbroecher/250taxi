@@ -5,14 +5,17 @@
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(../fonts/material/MaterialIcons-Regular.woff2) format('woff2'), url(../fonts/material/MaterialIcons-Regular.woff) format('woff'), url(../fonts/material/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-.gmnoprint a, .gmnoprint span {
-    display:none;
+.gmnoprint a,
+.gmnoprint span {
+    display: none;
 }
+
 .gmnoprint div {
-    background:none !important;
+    background: none !important;
 }
+
 #map div div a div img {
-    display:none !important;
+    display: none !important;
     pointer-events: none !important;
 }
 
@@ -26,6 +29,8 @@
     max-width: 70px;
     position: fixed;
     bottom: 50px;
+    padding-left: 5px;
+    padding-bottom: 5px;
     left: 0px;
     z-index: 1;
 }
@@ -141,9 +146,7 @@ body,
     padding: 0;
 }
 
-#map {
-
-}
+#map {}
 
 #ios_titlebar {
     width: 100%;
@@ -158,7 +161,7 @@ body,
 
 #locationfieldholder {
     position: absolute;
-    background-color: #4A4A4A;
+    background-color: white;
     width: 84%;
     left: 14%;
     height: 15%;
@@ -166,7 +169,7 @@ body,
     top: 22px;
     max-height: 30px;
     display: table;
-    border-radius: 15px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 #locationfield {
@@ -182,7 +185,7 @@ body,
 
 #inlocationfield {
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: black;
     font-size: 14px;
     width: 100%;
     border: none;
@@ -194,18 +197,20 @@ body,
 }
 
 #menubutton {
-    background-image: url(menu_icon.png);
-    background-size: 100% 100%;
+    background-image: url(menu.svg);
+    background-size: 24px 24px;
     background-position: center center;
+    background-color: white;
     background-repeat: no-repeat;
     position: absolute;
     height: 15%;
     width: 10%;
     z-index: 1;
     max-width: 30px;
-    top: 21px;
+    top: 22px;
     left: 2%;
-    max-height: 32px;
+    max-height: 30px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 #taxis_online_info {
@@ -213,21 +218,18 @@ body,
 }
 
 #locationbutton {
-    background-size: auto 80%;
+    background-size: 24px 24px;
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;
-    height: 15%;
-    width: 10%;
     z-index: 1;
-    max-width: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    width: 30px;
     top: 67px;
     right: 2%;
     margin-right: 0px;
-    background-color: rgba(255, 255, 255, 0.9);
-    max-height: 30px;
-    border-radius: 100%;
+    background-color: white;
+    height: 30px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 #customercarebutton {
@@ -318,7 +320,7 @@ body,
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 0px;
-    box-shadow:inset 0px 0px 2px 5px rgba(255,255,255,0.2);
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 .start_button_pick {

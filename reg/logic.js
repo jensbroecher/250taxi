@@ -19,19 +19,7 @@ $.get("journey/at_overlay.html", function (data) {
 
     } else {
 
-        var at_content = `
-
-        <img id="at_ol_logo" src="css/menu_afri_logo.png">
-
-        <div id="at_ol_country_display">
-    
-        <div class="at_ol_country_select" id="at_ol_rwanda">Rwanda</div>
-    
-        <div class="at_ol_country_select" id="at_ol_zambia">Zambia</div>
-    
-        </div>
-        
-        `;
+        var at_content = "<img id=\"at_ol_logo\" src=\"css/menu_afri_logo.png\"><div id=\"at_ol_country_display\"><div class=\"at_ol_country_select\" id=\"at_ol_rwanda\">Rwanda</div><div class=\"at_ol_country_select\" id=\"at_ol_zambia\">Zambia</div></div>";
 
         $("#at_ol").show();
         $("#at_ol_content").html(at_content);

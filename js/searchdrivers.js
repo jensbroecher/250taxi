@@ -84,54 +84,38 @@ function init_call_taxi_ui() {
 
     $("#call_now_button").click(function () {
 
-        var userid = localStorage.getItem('userid');
+        console.log("call button clicked");
+        document.getElementById("at_modal").style.display = "block";
 
-        var voice_enabled = localStorage.getItem("voice_enabled");
-        if (voice_enabled == "On") {
-            responsiveVoice.speak("Call our customer care");
-        }
+        var at_content = '<nav onclick="call_customer_care();"></div><img src="css/payment/cellphone-android.svg">Call us</nav>' +
+            '<nav onclick="message_to_customer_care();"><img src="css/message-text-outline.svg">Send Message</nav>' +
+            '<nav onclick="close_at_modal();"><img src="css/close.svg">Cancel</nav>';
 
-        swal({
-                title: ""
-                , text: "Call or send chat message?"
-                , type: ""
-                , showCancelButton: true
-                , confirmButtonText: "Call"
-                , cancelButtonText: "Message"
-                , closeOnConfirm: true
-                , closeOnCancel: false
-            }
-            , function (isConfirm) {
-                if (isConfirm) {
-                    location.href = "tel:+250783000096";
-                } else {
-                    send_message_to_customer_care();
-                }
-            });
-
-
-
-        /*
-        $.get( "dialataxi/dialataxi.html", function( data ) {
-            
-            hideindicator();
-            
-            var insert_node = document.createElement('div');
-            insert_node.id = 'pickup_ext_loader';
-            
-            insert_node.innerHTML = data;
-            document.body.appendChild(insert_node);
-            
-            var userid = localStorage.getItem("userid");
-            document.getElementById("dialataxi_reference_number").innerHTML = "250" + userid;
-            
-            var pickup = localStorage.getItem("pickup");
-            document.getElementById("dialataxi_pickup").innerHTML = pickup;
-            
-        });
-        */
+        document.getElementById("at_modal_content").innerHTML = at_content;
 
     });
+
+}
+
+function message_to_customer_care() {
+    close_at_modal();
+    send_message_to_customer_care();
+}
+
+function close_at_modal() {
+    document.getElementById("at_modal").style.display = "none";
+}
+
+function call_customer_care() {
+
+    var country = localStorage.getItem("country");
+
+    if (country == "Rwanda") {
+        window.open("tel:+250727500250", "_self");
+    }
+    if (country == "Zambia") {
+        window.open("tel:+263774382371", "_self");
+    }
 
 }
 
@@ -256,7 +240,7 @@ function getdrivers() {
 
     $("#user_location_pin").hide();
     console.log("User location pin removed");
-    
+
     $("#mydetailedlocation").hide();
     $("#mydetailedlocation_dialog").hide();
     console.log("mydetailedlocation removed");
@@ -649,10 +633,6 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-function call_customer_care() {
-    window.open("tel:+250727500250", "_self");
-}
-
 function start5mintimer() {
 
     $("#user_pin").hide();
@@ -687,10 +667,10 @@ function mydetailedlocation_show() {
     mydetailedlocation.opacity = "1";
 
     if (ride_start == "now") {
-        mydetailedlocation_dialog.style.height = "293px";
+        mydetailedlocation_dialog.style.height = "245px";
     }
     if (ride_start == "later") {
-        mydetailedlocation_dialog.style.height = "342px";
+        mydetailedlocation_dialog.style.height = "294px";
     }
 
     mydetailedlocation_content.style.display = "block";

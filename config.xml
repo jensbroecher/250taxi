@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="41" version="2.4">
+    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="42" version="2.5">
 
         <name>Afritaxi</name>
 
@@ -46,7 +46,9 @@
 
         <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
-        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" />
+        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" version="1.4.0-dev-5"/>
+        
+        <preference name="xwalkVersion" value="org.xwalk:xwalk_core_library:14+" />
 
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 

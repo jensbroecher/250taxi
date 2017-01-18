@@ -676,16 +676,10 @@
 
 #driver_details_portrait {
     position: absolute;
-    width: 80px;
-    right: 5px;
-    border: 3px solid white;
-    border-radius: 100%;
-    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.3);
-    transition: all 1s;
-}
-
-#driver_details_portrait:hover {
-    width: 120px;
+    width: 87px;
+    right: 7px;
+    border: 2px solid white;
+    box-shadow: 1px 1px 6px 1px rgba(0, 0, 0, 0.3);
     transition: all 1s;
 }
 
