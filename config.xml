@@ -44,15 +44,24 @@
 
         <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
 
-        <gap:plugin name="cordova-plugin-barcodescanner" source="npm" />
         
-        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" />
         
-        <gap:plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
-
+        
+        
+        <gap:plugin name="cordova-plugin-crosswalk-webview" source="npm" />
+        
+        <preference name="xwalkMode" value="lite" />
+  
+        
+        
+        
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
         <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+        
+        
+        
+        
 
         <gap:plugin name="cordova-plugin-facebook4" source="npm">
             <param name="APP_ID" value="287641408285720" />
