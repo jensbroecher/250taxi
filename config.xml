@@ -49,6 +49,8 @@
         <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-adapt" source="npm" version="1.4.0-dev-5"/>
         
         <preference name="xwalkVersion" value="org.xwalk:xwalk_core_library:14+" />
+        
+        <preference name="xwalkMode" value="lite" />
 
         <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
