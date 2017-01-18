@@ -48,10 +48,11 @@
         
         
         
-        <gap:plugin name="cordova-plugin-crosswalk-webview" source="npm" />
+        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-patched" source="npm" />
         
-
-  
+        <preference name="xwalkCommandLine" value="lite" />     
+        
+        <preference name="xwalkCommandLine" value="--show-fps-counter" />     
         
         
         
