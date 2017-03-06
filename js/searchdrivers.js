@@ -114,7 +114,7 @@ function call_customer_care() {
         window.open("tel:+250727500250", "_self");
     }
     if (country == "Zambia") {
-        window.open("tel:+263774382371", "_self");
+        window.open("tel:+260963085459", "_self");
     }
 
 }

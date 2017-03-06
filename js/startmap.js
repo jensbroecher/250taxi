@@ -965,6 +965,7 @@ function taxis_online_info_load() {
         var drivers_online = taxi_drivers_online_data[0];
         var eta = taxi_drivers_online_data[1];
 
+        /*
         if (drivers_online == "0") {
             var content = "<div id='dro'>No drivers</div>";
         } else if (drivers_online == "1") {
@@ -972,6 +973,9 @@ function taxis_online_info_load() {
         } else {
             var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>" + drivers_online + " drivers online</div>";
         }
+        */
+        
+        var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>Pickup Location</div>";
 
         $("#user_pin_eta").html(content);
 

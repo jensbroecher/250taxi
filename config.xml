@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="43" version="2.6">
+    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="44" version="2.7">
 
-        <name>Afritaxi</name>
+        <name>AfriTaxi</name>
 
         <description>
             Taxi Booking Service

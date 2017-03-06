@@ -31,18 +31,7 @@
     display: none;
 }
 
-.body_rwanda {
-    font-family: 'Roboto', sans-serif;
-    color: #000;
-    background-color: white;
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    overflow: hidden;
-    background-image: url(../css/rebranding.jpg), url(../css/rebranding_cont.jpg);
-    background-size: cover;
-    background-repeat: no-repeat, repeat;
-}
+
 .body_other {
     font-family: 'Roboto', sans-serif;
     color: #000;

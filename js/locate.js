@@ -1,8 +1,13 @@
 $(document).ready(function () {
 
     set_google_maps_size("start");
+    
+    location_field_box_size();
 
     $(window).on('resize', function () {
+        
+        location_field_box_size();
+        
         if ($(document.activeElement).prop('type') === 'text') {
             $("user_pin_eta").hide();
         } else {
@@ -101,6 +106,17 @@ $(document).ready(function () {
     });
 
 });
+
+function location_field_box_size() {
+    var document_width = $(document).width();
+    
+    var location_field_box_width = document_width - 68;
+    
+    var locationfieldholder_box = document.getElementById("locationfieldholder");
+    
+    locationfieldholder_box.style.width = ""+location_field_box_width+"px";
+    locationfieldholder_box.style.display = "block";
+}
 
 function set_google_maps_size(type) {
 
