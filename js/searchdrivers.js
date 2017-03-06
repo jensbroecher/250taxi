@@ -484,7 +484,7 @@ function pickdriver_request_start() {
     var pickdriver_id = localStorage.getItem("pickdriver_id");
 
     if (localStorage.getItem("userid") === null) {
-        swal("", "There is a problem with your account. Please contact Afritaxi support.");
+        swal("", "There is a problem with your account. Please contact AfriTaxi support.");
     }
 
     var destination = localStorage.getItem("destination");

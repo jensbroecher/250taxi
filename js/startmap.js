@@ -655,8 +655,8 @@ function moveMarker(map, marker, lat, lng) {
 
 function displayError(error) {
     var errors = {
-        1: 'Permission denied\n\nPlease allow Afritaxi to locate you. You can change this in your settings.'
-        , 2: 'Position unavailable. Afritaxi was not able to find your current location. Please check your settings and try again.'
+        1: 'Permission denied\n\nPlease allow AfriTaxi to locate you. You can change this in your settings.'
+        , 2: 'Position unavailable. AfriTaxi was not able to find your current location. Please check your settings and try again.'
         , 3: 'Request timeout. It took too long to locate you. Please try again.'
     };
     swal("","" + errors[error.code] + "","");
