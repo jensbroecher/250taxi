@@ -111,7 +111,7 @@ function call_customer_care() {
     var country = localStorage.getItem("country");
 
     if (country == "Rwanda") {
-        window.open("tel:+250727500250", "_self");
+        window.open("tel:+250783000096", "_self");
     }
     if (country == "Zambia") {
         window.open("tel:+260963085459", "_self");

@@ -69,6 +69,7 @@ function show_message(text) {
     message_layer_replay_button.onclick = function () {
        
         var userid = localStorage.getItem("userid");
+        var country = localStorage.getItem("country");
 	
 	swal({   
 		title: "",
@@ -81,7 +82,7 @@ function show_message(text) {
 		closeOnConfirm: true
     }, function(inputValue){   
 		
-		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"", function( data ) {
+		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"&app=taxi&country="+country+"", function( data ) {
 		
 		
 		
@@ -96,6 +97,7 @@ function show_message(text) {
 function send_message_to_customer_care() {
     
     var userid = localStorage.getItem("userid");
+    var country = localStorage.getItem("country");
 	
 	swal({
 		title: "",
@@ -110,7 +112,7 @@ function send_message_to_customer_care() {
         
         if(inputValue != "" || inputValue != false) {
 		
-		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"", function( data ) {	
+		$.get( "https://250taxi.com/db/message.php?task=addresponse&type=response&userid="+userid+"&text="+inputValue+"&app=taxi&country="+country+"", function( data ) {	
 		
 		});
             

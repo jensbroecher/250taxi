@@ -10,9 +10,9 @@ $.get("journey/at_overlay.html", function (data) {
     console.log("Selected Country: " + country);
 
     if (country == "Rwanda") {
-        document.body.className = "body_other";
+        // document.body.className = "body_other";
     } else {
-        document.body.className = "body_other";
+        // document.body.className = "body_other";
     }
 
     if (localStorage.getItem("country")) {
