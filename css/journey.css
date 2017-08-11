@@ -112,7 +112,7 @@
 #chat_overlay {
     position: absolute;
     display: none;
-    background-color: darkslategrey;
+    background-color: rgba(47, 79, 79, 0.85);
     height: 45%;
     width: 100%;
     z-index: 200;
@@ -123,11 +123,16 @@
 #chat_overlay_close {
     position: absolute;
     width: 100%;
-    height: 28px;
-    margin-top: -32px;
+    height: 32px;
+    margin-top: -36px;
     text-align: right;
     padding-top: 4px;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+#chat_overlay_close svg {
+    margin-right: 5px;
+    margin-top: 3px;
 }
 
 #chat_message_input {
@@ -146,7 +151,7 @@
 
 #chat_message_send_button {
     position: fixed;
-    background-color: #1389AE;
+    background-color: #2F4F4F;
     background-image: url(../journey/send.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -197,7 +202,7 @@
 
 .chat_message_driver {
     font-family: sans-serif;
-    background-color: #FFFF00;
+    background-color: silver;
     width: 70%;
     float: left;
     padding: 7px;
@@ -219,9 +224,7 @@
     display: none;
 }
 
-#journey_fare_display {
-    
-}
+#journey_fare_display {}
 
 #journey_fare_display_km {
     font-size: 130%;

@@ -83,7 +83,39 @@ function init_call_taxi_ui() {
     });
 
     $("#call_now_button").click(function () {
+        
+        if(window.cordova) {
+            luxury();
+        }
+        else {
+           luxury_web();
+        }
+        
+    });
 
+}
+
+
+function luxury() {
+    var userid = localStorage.getItem("userid");
+    
+    localStorage.setItem("logupdate", ""+userid+"*0*service*User"+userid+"selected luxury.");
+    logupdate_v2();
+    
+    window.open('https://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'', '_blank', 'location=no');
+}
+function luxury_web() {
+    
+     $("#loadingindicator").fadeIn();
+    
+    var userid = localStorage.getItem("userid");
+    
+    localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> selected luxury");logupdate();
+    
+   location.href = 'https://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'';
+}
+
+function call_now_button() {
         console.log("call button clicked");
         document.getElementById("at_modal").style.display = "block";
 
@@ -92,9 +124,6 @@ function init_call_taxi_ui() {
             '<nav onclick="close_at_modal();"><img src="css/close.svg">Cancel</nav>';
 
         document.getElementById("at_modal_content").innerHTML = at_content;
-
-    });
-
 }
 
 function message_to_customer_care() {

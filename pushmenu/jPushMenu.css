@@ -1,6 +1,6 @@
 #afri_logo_menu {
     width: 60%;
-    display: block;
+    display: none;
     margin-bottom: 5px;
     margin-top: 15px;
     margin-left: auto;
@@ -24,6 +24,7 @@
     transform: translateZ(0);
     will-change: left;
 }
+
 .cbp-spmenu-open {
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
@@ -31,6 +32,7 @@
     -o-transform: translateZ(0);
     transform: translateZ(0);
 }
+
 .cbp-spmenu div {
     display: block;
     color: darkslategray;
@@ -54,12 +56,12 @@
     transition: all 0.3s;
 }
 
-.cbp-spmenu div:hover img, .cbp-spmenu div:active img {
+.cbp-spmenu div:hover img,
+.cbp-spmenu div:active img {
     opacity: 1 !important;
     filter: invert(100%);
     transition: all 0.3s;
 }
-
 
 
 /* Orientation-dependent styles for the content of the menu */

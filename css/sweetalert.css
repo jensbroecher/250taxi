@@ -3,10 +3,13 @@ body.stop-scrolling {
     overflow: hidden;
 }
 
-.sa-button-container button, .sa-confirm-button-container button {
-    background-color: #C3552D !important;
-    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2) !important;
+.sa-button-container button,
+.sa-confirm-button-container button {
+    background-color: #A2332A !important;
     border-radius: 0px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: normal !important;
+    font-size: 13px !important;
 }
 
 .sweet-overlay {
@@ -283,7 +286,7 @@ body.stop-scrolling {
     color: transparent;
 }
 
-.sweet-alert button.confirm[disabled] ~ .la-ball-fall {
+.sweet-alert button.confirm[disabled]~.la-ball-fall {
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
@@ -293,9 +296,7 @@ body.stop-scrolling {
     border: 0;
 }
 
-.sweet-alert[data-has-cancel-button=false] button {
-
-}
+.sweet-alert[data-has-cancel-button=false] button {}
 
 .sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {
     padding-bottom: 40px;
@@ -1010,7 +1011,7 @@ body.stop-scrolling {
  */
 
 .la-ball-fall,
-.la-ball-fall > div {
+.la-ball-fall>div {
     position: relative;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1027,7 +1028,7 @@ body.stop-scrolling {
     color: #333;
 }
 
-.la-ball-fall > div {
+.la-ball-fall>div {
     display: inline-block;
     float: none;
     background-color: currentColor;
@@ -1039,7 +1040,7 @@ body.stop-scrolling {
     height: 18px;
 }
 
-.la-ball-fall > div {
+.la-ball-fall>div {
     width: 10px;
     height: 10px;
     margin: 4px;
@@ -1051,21 +1052,21 @@ body.stop-scrolling {
     animation: ball-fall 1s ease-in-out infinite;
 }
 
-.la-ball-fall > div:nth-child(1) {
+.la-ball-fall>div:nth-child(1) {
     -webkit-animation-delay: -200ms;
     -moz-animation-delay: -200ms;
     -o-animation-delay: -200ms;
     animation-delay: -200ms;
 }
 
-.la-ball-fall > div:nth-child(2) {
+.la-ball-fall>div:nth-child(2) {
     -webkit-animation-delay: -100ms;
     -moz-animation-delay: -100ms;
     -o-animation-delay: -100ms;
     animation-delay: -100ms;
 }
 
-.la-ball-fall > div:nth-child(3) {
+.la-ball-fall>div:nth-child(3) {
     -webkit-animation-delay: 0ms;
     -moz-animation-delay: 0ms;
     -o-animation-delay: 0ms;
@@ -1077,7 +1078,7 @@ body.stop-scrolling {
     height: 8px;
 }
 
-.la-ball-fall.la-sm > div {
+.la-ball-fall.la-sm>div {
     width: 4px;
     height: 4px;
     margin: 2px;
@@ -1088,7 +1089,7 @@ body.stop-scrolling {
     height: 36px;
 }
 
-.la-ball-fall.la-2x > div {
+.la-ball-fall.la-2x>div {
     width: 20px;
     height: 20px;
     margin: 8px;
@@ -1099,7 +1100,7 @@ body.stop-scrolling {
     height: 54px;
 }
 
-.la-ball-fall.la-3x > div {
+.la-ball-fall.la-3x>div {
     width: 30px;
     height: 30px;
     margin: 12px;

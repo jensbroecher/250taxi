@@ -230,21 +230,18 @@ body,
 }
 
 #customercarebutton {
-    background-size: auto 80%;
+    background-size: 24px 24px;
     background-position: center center;
     background-repeat: no-repeat;
     position: absolute;
-    height: 15%;
-    width: 10%;
-    z-index: 100;
-    max-width: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.9);
-    top: 86px;
-    right: 2%;
+    z-index: 1;
+    width: 44px;
+    top: 130px;
+    right: 8px;
     margin-right: 0px;
-    background-color: rgba(255, 255, 255, 0.9);
-    max-height: 30px;
-    display: none;
+    background-color: white;
+    height: 44px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 #customercarebuttonside {
@@ -310,14 +307,13 @@ body,
 .start_buttons {
     position: fixed;
     height: 40px;
-    background-color: #C3552D;
+    background-color: #A2332A;
     border: none;
     text-align: center;
     color: white;
     cursor: pointer;
     text-transform: uppercase;
     border-radius: 0px;
-    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 .start_button_pick {
@@ -378,8 +374,10 @@ body,
     display: none;
     padding-left: 2%;
     padding-right: 2%;
-    background-image: url(kigali_blur.jpg);
-    background-size: cover;
+}
+
+.gm-style-pbt {
+    padding-top: 100px !important;
 }
 
 .menugpsblue {
@@ -393,7 +391,7 @@ body,
 }
 
 .menucustomercare {
-    background-image: url(customercare.svg);
+    background-image: url(comment-multiple-outline.svg);
     background-size: 100% 100%;
 }
 

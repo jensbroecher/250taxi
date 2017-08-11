@@ -133,10 +133,9 @@ function reloadPositionStart() {
 
 function reloadPosition() {
     navigator.geolocation.getCurrentPosition(
-        displayPosition
-        , displayError, {
-            enableHighAccuracy: true
-            , maximumAge: 0
+        displayPosition, displayError, {
+            enableHighAccuracy: true,
+            maximumAge: 0
         }
     );
     pos;
@@ -158,10 +157,9 @@ var app_or_web = localStorage.getItem("app_or_web");
 */
 //if (app_or_web == "web") {
 navigator.geolocation.getCurrentPosition(
-    displayPosition
-    , displayError, {
-        enableHighAccuracy: false
-        , maximumAge: 0
+    displayPosition, displayError, {
+        enableHighAccuracy: false,
+        maximumAge: 0
     }
 );
 //}
@@ -203,12 +201,14 @@ function displayPosition(position) {
     pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
     var options = {
-        zoom: 18
-        , disableDefaultUI: true
-        , streetViewControl: false
-        , center: pos
-        , mapTypeId: google.maps.MapTypeId.ROADMAP
-    , };
+        zoom: 18,
+        disableDefaultUI: true,
+        streetViewControl: false,
+        gestureHandling: "greedy",
+        fullscreenControl: false,
+        center: pos,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+    };
 
 
     var x = document.getElementById("map");
@@ -237,8 +237,8 @@ function displayPosition(position) {
 
         } catch (error) {
             console.log(error.message);
-            
-            
+
+
         }
 
     });
@@ -251,16 +251,16 @@ function displayPosition(position) {
 
     var service1 = new google.maps.places.PlacesService(map);
     service1.nearbySearch({
-        location: pos
-        , radius: 100
-        , type: ['point_of_interest']
-    , }, callback);
+        location: pos,
+        radius: 100,
+        type: ['point_of_interest'],
+    }, callback);
     var distanceFromPlace;
 
     function callback(results, status) {
         document.getElementById('list_of_nearby_places').innerHTML = "";
-        
-        
+
+
         $.each(results, function (index, value) {
 
             placeLat = results[index].geometry.location.lat();
@@ -270,7 +270,7 @@ function displayPosition(position) {
 
             distanceFromPlace = "<option value='" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "  " + results[index].name + "'>Landmark: " + results[index].name + " (" + Number((distanceFromPlaceInKm * 1000).toFixed(1)) + "m)</option>";
             $('#list_of_nearby_places').append(distanceFromPlace);
-            
+
         });
 
         /*placeLat =results[0].geometry.location.lat();
@@ -363,22 +363,22 @@ function displayPosition(position) {
 
 
     var infobubble = new InfoBubble({
-        map: map
-        , position: new google.maps.LatLng(-32.0, 149.0)
-        , shadowStyle: 1
-        , padding: 5
-        , minHeight: 48
-        , color: '#ffffff'
-        , backgroundColor: '#C3552D'
-        , borderRadius: 5
-        , arrowSize: 10
-        , borderWidth: 1
-        , borderColor: '#C3552D'
-        , disableAutoPan: true
-        , hideCloseButton: false
-        , arrowPosition: 30
-        , backgroundClassName: 'transparent'
-        , arrowStyle: 2
+        map: map,
+        position: new google.maps.LatLng(-32.0, 149.0),
+        shadowStyle: 1,
+        padding: 5,
+        minHeight: 48,
+        color: '#ffffff',
+        backgroundColor: '#C3552D',
+        borderRadius: 5,
+        arrowSize: 10,
+        borderWidth: 1,
+        borderColor: '#C3552D',
+        disableAutoPan: true,
+        hideCloseButton: false,
+        arrowPosition: 30,
+        backgroundClassName: 'transparent',
+        arrowStyle: 2
     });
     var angle2;
 
@@ -438,11 +438,10 @@ function displayPosition(position) {
             window.move_count += 1;
             setTimeout(function () {
                 try {
-                moveTaxi(taxi_id, list, taxiDatas);
-                }
-                catch(err) {
+                    moveTaxi(taxi_id, list, taxiDatas);
+                } catch (err) {
                     console.log(err.message);
-                } 
+                }
             }, 1000);
         }
     }
@@ -470,13 +469,13 @@ function displayPosition(position) {
 
         //Direction service api call to find the route and steps of coordinates between starting and destination point
         directionsService.route({
-            origin: new google.maps.LatLng(taxiDatas[taxi_id].previous_lat, taxiDatas[taxi_id].previous_lng)
-            , destination: new google.maps.LatLng(taxiDatas[taxi_id].lat, taxiDatas[taxi_id].lng)
-            , waypoints: [{
-                stopover: false
-                , location: new google.maps.LatLng(taxiDatas[taxi_id].lat, taxiDatas[taxi_id].lng)
-    }]
-            , travelMode: google.maps.TravelMode.DRIVING
+            origin: new google.maps.LatLng(taxiDatas[taxi_id].previous_lat, taxiDatas[taxi_id].previous_lng),
+            destination: new google.maps.LatLng(taxiDatas[taxi_id].lat, taxiDatas[taxi_id].lng),
+            waypoints: [{
+                stopover: false,
+                location: new google.maps.LatLng(taxiDatas[taxi_id].lat, taxiDatas[taxi_id].lng)
+    }],
+            travelMode: google.maps.TravelMode.DRIVING
         }, function (response, status) {
             if (status === google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
@@ -518,8 +517,8 @@ function displayPosition(position) {
                     driverSurname = loc[6];
                     var taxiDatas = {};
                     taxiDatas[taxi_id] = {
-                        "lat": lat
-                        , "lng": lng
+                        "lat": lat,
+                        "lng": lng
                     };
                     if (typeof markers[taxi_id] !== 'undefined' && status == "online") {
                         callDirectionApi(taxi_id, angle2, imgUrl, taxiDatas);
@@ -535,11 +534,11 @@ function displayPosition(position) {
                             anchor: new google.maps.Point(30, 30), // anchor
                         };
                         markers[taxi_id] = new google.maps.Marker({
-                            position: pos
-                            , map: map
-                            , draggable: false
-                            , icon: iconimage1
-                            , id: taxi_id
+                            position: pos,
+                            map: map,
+                            draggable: false,
+                            icon: iconimage1,
+                            id: taxi_id
                         });
                     } else if (typeof markers[taxi_id] !== 'undefined' && status == "offline") {
                         markers[taxi_id].setMap(null);
@@ -655,11 +654,11 @@ function moveMarker(map, marker, lat, lng) {
 
 function displayError(error) {
     var errors = {
-        1: 'Permission denied\n\nPlease allow AfriTaxi to locate you. You can change this in your settings.'
-        , 2: 'Position unavailable. AfriTaxi was not able to find your current location. Please check your settings and try again.'
-        , 3: 'Request timeout. It took too long to locate you. Please try again.'
+        1: 'Permission denied\n\nPlease allow AfriTaxi to locate you. You can change this in your settings.',
+        2: 'Position unavailable. AfriTaxi was not able to find your current location. Please check your settings and try again.',
+        3: 'Request timeout. It took too long to locate you. Please try again.'
     };
-    swal("","" + errors[error.code] + "","");
+    swal("", "" + errors[error.code] + "", "");
 }
 
 function parseTimestamp(timestamp) {
@@ -707,10 +706,10 @@ function geocodeLatLng(geocoder, map) {
 
                 var place_service = new google.maps.places.PlacesService(map);
                 place_service.nearbySearch({
-                    location: position
-                    , radius: 100
-                    , type: ['point_of_interest']
-                , }, getPlace);
+                    location: position,
+                    radius: 100,
+                    type: ['point_of_interest'],
+                }, getPlace);
 
                 function getPlace(results, status) {
                     /*placeLat =results[0].geometry.location.lat();
@@ -727,9 +726,9 @@ function geocodeLatLng(geocoder, map) {
 
                     if (results.length === 0) {
                         console.log("No result for nearby places search");
-                                       
+
                         $("#list_of_nearby_places").append("<option val='' disabled selected>No nearby place found</option>");
-                                           
+
                     } else {
                         $.each(results, function (index, value) {
                             //alert( index + ": " + value );
@@ -869,11 +868,11 @@ function hi() {
     var pickup = localStorage.getItem("pickup");
 
     $.get("https://250taxi.com/db/status_user_v2.php", {
-        status_lat: status_lat
-        , status_long: status_long
-        , status_userid: status_userid
-        , status_activity: status_activity
-        , status_battery: status_battery
+        status_lat: status_lat,
+        status_long: status_long,
+        status_userid: status_userid,
+        status_activity: status_activity,
+        status_battery: status_battery
     }).done(function (data) {
 
         // console.log("Status: " + data);
@@ -974,7 +973,7 @@ function taxis_online_info_load() {
             var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>" + drivers_online + " drivers online</div>";
         }
         */
-        
+
         var content = "<div id='eta'>" + eta + "</div><div id='eta_min'>MIN</div><div id='dro'>Pickup Location</div>";
 
         $("#user_pin_eta").html(content);
@@ -1067,13 +1066,13 @@ function cancel_reason_close() {
 function logout() {
 
     swal({
-        title: ""
-        , text: "Are you sure you want to sign out?"
-        , type: ""
-        , showCancelButton: true
-        , confirmButtonColor: "#DD6B55"
-        , confirmButtonText: "Yes"
-        , closeOnConfirm: true
+        title: "",
+        text: "Are you sure you want to sign out?",
+        type: "",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes",
+        closeOnConfirm: true
     }, function () {
 
         showindicator();
@@ -1130,7 +1129,7 @@ function hide_top_ui() {
     $("#menubtn_hitzone").hide();
     $("#user_pin").hide();
     $("#calltaxiui").hide();
-    
+
     document.getElementById("map_glogo").style.bottom = "0px";
 }
 
@@ -1141,7 +1140,7 @@ function show_top_ui() {
     $("#menubtn_hitzone").show();
     $("#user_pin").show();
     $("#calltaxiui").show();
-    
+
     document.getElementById("map_glogo").style.bottom = "50px";
 }
 
@@ -1189,8 +1188,8 @@ function codeAddress() {
 
             position = {
                 coords: {
-                    latitude: search_lat
-                    , longitude: search_long
+                    latitude: search_lat,
+                    longitude: search_long
                 }
             };
             displayPosition(position);

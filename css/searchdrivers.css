@@ -16,7 +16,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 13px;
-    background-color: #C3552D;
+    background-color: #A2332A;
     color: white;
     text-align: center;
     margin-right: 3%;
@@ -28,7 +28,6 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #taxi_go {
@@ -38,7 +37,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 13px;
-    background-color: #C3552D;
+    background-color: #A2332A;
     color: white;
     text-align: center;
     margin-right: 3%;
@@ -50,7 +49,6 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #payment_go {
@@ -60,7 +58,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 13px;
-    background-color: #C3552D;
+    background-color: #A2332A;
     color: white;
     text-align: center;
     margin-left: 3%;
@@ -72,7 +70,6 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #fare_estimate_go {
@@ -82,7 +79,7 @@
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     font-size: 13px;
-    background-color: #C3552D;
+    background-color: #A2332A;
     color: white;
     text-align: center;
     margin-left: 3%;
@@ -94,7 +91,6 @@
     border-radius: 0px;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2);
 }
 
 #detailedlocation_date_time_button {
@@ -442,7 +438,7 @@
     z-index: 100px;
     display: none;
     background-color: #C3552D !important;
-    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2) !important;
+    box-shadow: inset 0px 0px 2px 5px rgba(255, 255, 255, 0.2) !important;
     border-radius: 0px !important;
 }
 
