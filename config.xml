@@ -46,24 +46,9 @@
 
     <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
 
-    <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
-
-
-
-
-
-
-
-
-
-
     <gap:plugin name="onesignal-cordova-plugin" source="npm" />
 
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
-
-
-
-
 
     <gap:plugin name="cordova-plugin-facebook4" source="npm">
         <param name="APP_ID" value="287641408285720" />
