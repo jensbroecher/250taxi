@@ -31,7 +31,6 @@
     display: none;
 }
 
-
 body {
     font-family: 'Roboto', sans-serif;
     color: #000;
@@ -333,8 +332,7 @@ select {
 }
 
 .login_button {
-    background-color: #C3552D;
-    box-shadow: inset 0px 0px 2px 5px rgba(255,255,255,0.2) !important;
+    background-color: indianred;
     border-radius: 0px;
     border: none;
     color: white;

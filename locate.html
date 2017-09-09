@@ -27,7 +27,7 @@
 
             var userid = localStorage.getItem("userid");
 
-            $.get("https://250taxi.com/db/onesignal_id.php?userid=" + userid + "&os_id=" + os_id + "", function (data) {
+            $.get("https://250taxi.com/db/onesignal_id.php?userid=" + userid + "&os_id=" + os_id + "", function(data) {
 
             });
 
@@ -35,7 +35,7 @@
 
             screen.lockOrientation('portrait');
 
-            document.addEventListener("backbutton", function (e) {
+            document.addEventListener("backbutton", function(e) {
                 e.preventDefault();
             }, false);
         }
@@ -46,6 +46,7 @@
             reloadPositionStart();
             console.log("app was resumed");
         }
+
     </script>
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6ITlvSSfU3yTQBEfTBHa5LF7zEa7WG0&libraries=geometry,places,drawing,visualization&type=restaurant"></script>
@@ -110,15 +111,15 @@
         function dogpscheck() {
             CheckGPS.check(function win() {
 
-                }
-                , function fail() {
-                    opensettings();
-                });
+            }, function fail() {
+                opensettings();
+            });
         }
 
         function opensettings() {
-            swal("","GPS/Location is not enabled. Please turn it on in your settings. AfriTaxi needs GPS to find your pickup location.","")
+            swal("", "GPS/Location is not enabled. Please turn it on in your settings. AfriTaxi needs GPS to find your pickup location.", "")
         }
+
     </script>
 
 
@@ -143,8 +144,7 @@
             <div onclick="call_customer_care();" id="call_customer_care_button" class="waves-effect waves-light">
                 <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-                </svg>
-                Call Customer Care
+                </svg> Call Customer Care
             </div>
         </div>
 
@@ -192,9 +192,9 @@
 
                 <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z" />
-                </svg>
+                </svg> Wallet
 
-                Wallet</div>
+            </div>
 
             <div id="wallet_balance">
 
@@ -233,9 +233,7 @@
 
                 <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                </svg>
-
-                Account details</div>
+                </svg> Account details</div>
 
 
 
@@ -249,7 +247,7 @@
 
                 <div class="simple_table_desc">Phone</div>
                 <div id="account_phone" class="simple_table_content">...</div>
-                
+
                 <div class="simple_table_desc">Country</div>
                 <div id="account_country" class="simple_table_content">...</div>
 
@@ -276,9 +274,7 @@
 
                 <svg style="width:24px;height:24px;vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M12,12A3,3 0 0,0 9,15A3,3 0 0,0 12,18A3,3 0 0,0 15,15A3,3 0 0,0 12,12M12,20A5,5 0 0,1 7,15A5,5 0 0,1 12,10A5,5 0 0,1 17,15A5,5 0 0,1 12,20M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8C10.89,8 10,7.1 10,6C10,4.89 10.89,4 12,4M17,2H7C5.89,2 5,2.89 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4C19,2.89 18.1,2 17,2Z" />
-                </svg>
-
-                Voice Guidance</div>
+                </svg> Voice Guidance</div>
 
             <div id="audio_choice" class="onoffswitch">
                 <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="audio_choice_onoffswitch">
@@ -317,7 +313,7 @@
         <div id="journey_fare_display">
             <div id="journey_fare_notice">MINIMUM FARE 1500</div>
             <div id="journey_fare_display_km">
-                <span id="journey_fare_display_km_count">0</span> km driven  (est)
+                <span id="journey_fare_display_km_count">0</span> km driven (est)
             </div>
             <div id="journey_fare_display_fare" style="display:none;">
                 Fare: <span id="journey_fare_display_fare_count">1500</span> RWF
@@ -334,6 +330,8 @@
     </div>
 
     <script>
+
+
     </script>
 
     <div id="pickdriver_request_timer" class="animated fadeIn">
@@ -353,15 +351,13 @@
     <div onclick="pickdriver_request_start();" id="driveroverlay_journey_start" class="waves-effect waves-dark">
         <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="#000000" d="M5,11L6.5,6.5H17.5L19,11M17.5,16A1.5,1.5 0 0,1 16,14.5A1.5,1.5 0 0,1 17.5,13A1.5,1.5 0 0,1 19,14.5A1.5,1.5 0 0,1 17.5,16M6.5,16A1.5,1.5 0 0,1 5,14.5A1.5,1.5 0 0,1 6.5,13A1.5,1.5 0 0,1 8,14.5A1.5,1.5 0 0,1 6.5,16M18.92,6C18.72,5.42 18.16,5 17.5,5H15V3H9V5H6.5C5.84,5 5.28,5.42 5.08,6L3,12V20A1,1 0 0,0 4,21H5A1,1 0 0,0 6,20V19H18V20A1,1 0 0,0 19,21H20A1,1 0 0,0 21,20V12L18.92,6Z" />
-        </svg>
-        Pick me now
+        </svg> Pick me now
     </div>
 
     <div onclick="pickdriver_request_cancel();" id="driveroverlay_journey_cancel" class="waves-effect waves-light">
         <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="#FFFFFF" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-        </svg>
-        Cancel Request
+        </svg> Cancel Request
     </div>
 
 
@@ -376,15 +372,13 @@
         <div onclick="chat();" id="chat_button" class="waves-effect waves-light">
             <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#FFFFFF" d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18" />
-            </svg>
-            Chat
+            </svg> Chat
         </div>
 
         <div onclick="call();" id="call_button" class="waves-effect waves-light">
             <svg style="vertical-align: middle; width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#FFFFFF" d="M4,3A1,1 0 0,0 3,4A17,17 0 0,0 20,21A1,1 0 0,0 21,20V16.5A1,1 0 0,0 20,15.5C18.75,15.5 17.55,15.3 16.43,14.93C16.08,14.82 15.69,14.9 15.41,15.17L13.21,17.37C10.38,15.93 8.06,13.62 6.62,10.78L8.82,8.57C9.1,8.31 9.18,7.92 9.07,7.57C8.7,6.45 8.5,5.25 8.5,4A1,1 0 0,0 7.5,3H4M15,3V4.5H18.5L13,10L14,11L19.5,5.5V9H21V3H15Z" />
-            </svg>
-            Call
+            </svg> Call
         </div>
 
     </div>
@@ -428,6 +422,8 @@
     </div>
 
     <script>
+
+
     </script>
 
     <nav id="pushmenu" class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left">
@@ -435,6 +431,12 @@
         <img id="afri_logo_menu" src="css/menu_afri_logo.png">
 
         <span id="mainmenu">
+            
+            <div class='noSwipe' id='mainmenu_account'>
+            
+            <img src="css/account-box.svg">
+            
+            Account</div>
 
         <div class='noSwipe' id='mainmenu_wallet'>
         <img src="css/payment/wallet.svg">
@@ -447,11 +449,7 @@
             <img src="css/taxi.svg">
             
             History</div>
-        <div class='noSwipe' id='mainmenu_account'>
-            
-            <img src="css/settings.svg">
-            
-            Settings</div>
+        
         <div class='noSwipe' id='mainmenu_becomedriver'>
             
             <img src="css/car-connected.svg">
@@ -527,7 +525,7 @@
 
 
     <div id="user_location_pin"></div>
-    
+
     <img id="map_glogo" src="https://maps.gstatic.com/mapfiles/api-3/images/google4_hdpi.png">
     <div id="map"></div>
 
@@ -553,25 +551,25 @@
             <div id="getfareestimate_price"></div>
 
             <div id="getfareestimate_pickup_holder">
-            
-                 <div class="sdtitle">Pickup</div>
+
+                <div class="sdtitle">Pickup</div>
 
                 <span id="getfareestimate_pickup"></span>
             </div>
 
             <div id="getfareestimate_destination_holder">
-                
+
                 <div class="sdtitle">Destination</div>
-                
+
                 <span id="getfareestimate_destination"></span>
             </div>
 
             <div id="getfareestimate_distance_holder">
-                
+
                 <div class="sdtitle">Distance</div>
-                
+
                 <span id="getfareestimate_distance"></span>
-                
+
             </div>
 
             <div class="waves-effect waves-light sdbutton" onclick="setTimeout(function(){ detailedlocation_complete('go'); }, 1000);">
@@ -632,18 +630,14 @@
 
                 <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M2,5H22V20H2V5M20,18V7H4V18H20M17,8A2,2 0 0,0 19,10V15A2,2 0 0,0 17,17H7A2,2 0 0,0 5,15V10A2,2 0 0,0 7,8H17M17,13V12C17,10.9 16.33,10 15.5,10C14.67,10 14,10.9 14,12V13C14,14.1 14.67,15 15.5,15C16.33,15 17,14.1 17,13M15.5,11A0.5,0.5 0 0,1 16,11.5V13.5A0.5,0.5 0 0,1 15.5,14A0.5,0.5 0 0,1 15,13.5V11.5A0.5,0.5 0 0,1 15.5,11M13,13V12C13,10.9 12.33,10 11.5,10C10.67,10 10,10.9 10,12V13C10,14.1 10.67,15 11.5,15C12.33,15 13,14.1 13,13M11.5,11A0.5,0.5 0 0,1 12,11.5V13.5A0.5,0.5 0 0,1 11.5,14A0.5,0.5 0 0,1 11,13.5V11.5A0.5,0.5 0 0,1 11.5,11M8,15H9V10H8L7,10.5V11.5L8,11V15Z" />
-                </svg>
-
-                Fare estimate
+                </svg> Fare estimate
             </div>
 
             <div style="margin-top: 0px; margin-bottom: 10px;" class="waves-effect waves-light sdbutton sdbutton_gray" onclick="getdrivers();">
 
                 <svg style="width:24px;height:24px; vertical-align:middle;" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-                </svg>
-
-                Skip estimate</div>
+                </svg> Skip estimate</div>
 
         </div>
 
@@ -695,6 +689,7 @@
                     var elmnt = document.getElementById("driverlist_scanner");
                     elmnt.scrollTop -= 200;
                 }
+
             </script>
 
             <div id="driverlist_scanner">
@@ -819,7 +814,7 @@
 
 
 
-         
+
 
 
 

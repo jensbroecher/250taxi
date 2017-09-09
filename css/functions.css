@@ -165,7 +165,9 @@ body {
     margin-right: auto;
 }
 
-#account_overlay_x {}
+#wallet_balance {
+    margin-top: 30px;
+}
 
 #bonus_miles,
 #wallet_balance {

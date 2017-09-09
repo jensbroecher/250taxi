@@ -83,14 +83,13 @@ function init_call_taxi_ui() {
     });
 
     $("#call_now_button").click(function () {
-        
-        if(window.cordova) {
+
+        if (window.cordova) {
             luxury();
+        } else {
+            luxury_web();
         }
-        else {
-           luxury_web();
-        }
-        
+
     });
 
 }
@@ -98,32 +97,36 @@ function init_call_taxi_ui() {
 
 function luxury() {
     var userid = localStorage.getItem("userid");
-    
-    localStorage.setItem("logupdate", ""+userid+"*0*service*User"+userid+"selected luxury.");
+    var country = localStorage.getItem("country");
+
+    localStorage.setItem("logupdate", "" + userid + "*0*service*User" + userid + "selected AfriCar.");
     logupdate_v2();
-    
-    window.open('https://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'', '_blank', 'location=no');
+
+    window.open('https://250taxi.com/appcontent/luxury/vehicles_new.php?userid=' + userid + '&country=' + country + '', '_blank', 'location=no');
 }
+
 function luxury_web() {
-    
-     $("#loadingindicator").fadeIn();
-    
+
+    $("#loadingindicator").fadeIn();
+
     var userid = localStorage.getItem("userid");
-    
-    localStorage.setItem("logupdate","User <span class='log_userid'>"+userid+"</span> selected luxury");logupdate();
-    
-   location.href = 'https://250taxi.com/appcontent/luxury/vehicles.php?userid='+userid+'';
+    var country = localStorage.getItem("country");
+
+    localStorage.setItem("logupdate", "User <span class='log_userid'>" + userid + "</span> selected luxury");
+    logupdate();
+
+    location.href = 'https://250taxi.com/appcontent/luxury/vehicles_new.php?userid=' + userid + '&country=' + country + '';
 }
 
 function call_now_button() {
-        console.log("call button clicked");
-        document.getElementById("at_modal").style.display = "block";
+    console.log("call button clicked");
+    document.getElementById("at_modal").style.display = "block";
 
-        var at_content = '<nav onclick="call_customer_care();"></div><img src="css/payment/cellphone-android.svg">Call us</nav>' +
-            '<nav onclick="message_to_customer_care();"><img src="css/message-text-outline.svg">Send Message</nav>' +
-            '<nav onclick="close_at_modal();"><img src="css/close.svg">Cancel</nav>';
+    var at_content = '<nav onclick="call_customer_care();"></div><img src="css/payment/cellphone-android.svg">Call us</nav>' +
+        '<nav onclick="message_to_customer_care();"><img src="css/message-text-outline.svg">Send Message</nav>' +
+        '<nav onclick="close_at_modal();"><img src="css/close.svg">Cancel</nav>';
 
-        document.getElementById("at_modal_content").innerHTML = at_content;
+    document.getElementById("at_modal_content").innerHTML = at_content;
 }
 
 function message_to_customer_care() {
@@ -468,8 +471,8 @@ function pickdriver_request_start() {
     // Update new request system
 
     $.get("https://250taxi.com/db/requests/requests.php", {
-        task: "create_request"
-        , userid: userid
+        task: "create_request",
+        userid: userid
     }).done(function (requestid) {
 
         if (requestid == "request_existed") {
@@ -482,10 +485,10 @@ function pickdriver_request_start() {
         }
 
         $.get("https://250taxi.com/db/requests/requests.php", {
-            task: "add_driver"
-            , userid: userid
-            , requestid: requestid
-            , driverid: driverid
+            task: "add_driver",
+            userid: userid,
+            requestid: requestid,
+            driverid: driverid
         }).done(function (data) {
 
         });
@@ -642,8 +645,8 @@ function pickdriver_request_cancel_confirmed() {
 
 
 function startTimer(duration, display) {
-    var timer = duration
-        , minutes, seconds;
+    var timer = duration,
+        minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
@@ -670,8 +673,8 @@ function start5mintimer() {
     document.getElementById("instantscreen").style.display = "block";
 
     jQuery(function ($) {
-        var fiveMinutes = 60 * 0.1
-            , display = $('#time5min');
+        var fiveMinutes = 60 * 0.1,
+            display = $('#time5min');
         startTimer(fiveMinutes, display);
     });
 }
@@ -751,13 +754,13 @@ function confirm_booking() {
     var destination = localStorage.getItem("destination");
 
     $.get("https://250taxi.com/db/book_later/book_taxi.php", {
-        task: task
-        , userid: userid
-        , pickup_date_time: pickup_date_time
-        , street: street
-        , landmark: landmark
-        , detailed_location: detailed_location
-        , destination: destination
+        task: task,
+        userid: userid,
+        pickup_date_time: pickup_date_time,
+        street: street,
+        landmark: landmark,
+        detailed_location: detailed_location,
+        destination: destination
     }).done(function (data) {
 
         document.getElementById("searchdrivers").style.display = "none";
@@ -791,9 +794,9 @@ function accepted() {
     userid = localStorage.getItem("userid");
 
     $.get("https://250taxi.com/db/requests/requests.php", {
-        task: "get_assigned_driver"
-        , userid: userid
-    , }).done(function (driverid) {
+        task: "get_assigned_driver",
+        userid: userid,
+    }).done(function (driverid) {
 
         localStorage.setItem("pickdriver_id", driverid);
 
