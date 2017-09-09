@@ -41,17 +41,17 @@
 
     <script type="text/javascript">
         function app_restart() {
-            setTimeout(function () {
+            setTimeout(function() {
                 location.reload();
             }, 3000);
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             window.location.href = "index.html#start";
 
             if (window.cordova) {
-                loading_error_check = setTimeout(function () {
+                loading_error_check = setTimeout(function() {
                     localStorage.setItem('toast', 'Loading...');
                     toast();
                     app_restart();
@@ -81,7 +81,7 @@
                 document.location.href = 'tour/swipe.html';
             }
 
-            $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function (data) {
+            $.get("https://250taxi.com/db/partner/check_app_update.php?check=client", function(data) {
                 var currentversion = "44";
                 var serverversion = data;
                 if (currentversion < serverversion) {
@@ -110,14 +110,14 @@
 
         function hideindicator() {
             document.getElementById("loadingindicator").className = "animated fadeOut";
-            setTimeout(function () {
+            setTimeout(function() {
                 document.getElementById("loadingindicator").style.display = "none";
             }, 1000);
         }
 
         function letsgo() {
             showindicator();
-            setTimeout(function () {
+            setTimeout(function() {
                 document.location.href = 'locate.html';
             }, 3000);
         }
@@ -129,10 +129,7 @@
         }
 
         function dogpscheck() {
-            CheckGPS.check(function win() {}
-                , function fail() {
-                    opensettings();
-                });
+
         }
 
         function opensettings() {
@@ -153,12 +150,12 @@
         }
 
         function social_login_btn() {
-            $('#google_sign_in').on('click', function () {
+            $('#google_sign_in').on('click', function() {
                 localStorage.setItem("google_login_button_clicked", "Yes");
                 app.onLoginButtonClick();
             });
 
-            $('#facebook_sign_in').on('click', function () {
+            $('#facebook_sign_in').on('click', function() {
                 localStorage.setItem("facebook_login_button_clicked", "Yes");
                 facebook_login_start();
             });
@@ -166,9 +163,9 @@
 
         function start_reg() {
 
-            $("#reg_start").load("reg/mainmenu.html", function () {
+            $("#reg_start").load("reg/mainmenu.html", function() {
 
-                $.get('reg/social_login.html', function (data) {
+                $.get('reg/social_login.html', function(data) {
                     $('#reg_form').prepend(data);
 
                     social_login_btn();
@@ -192,9 +189,9 @@
 
         function start_login() {
 
-            $("#reg_start").load("reg/login.html", function () {
+            $("#reg_start").load("reg/login.html", function() {
 
-                $.get('reg/social_login.html', function (data) {
+                $.get('reg/social_login.html', function(data) {
                     $('#reg_form').prepend(data);
 
                     social_login_btn();
@@ -259,82 +256,82 @@
 
             // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-            var notificationOpenedCallback = function (jsonData) {
+            var notificationOpenedCallback = function(jsonData) {
                 console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
             };
             window.plugins.OneSignal.init("03b0ecf1-200e-470c-8c27-9010306734a3", {
-                    googleProjectNumber: "1006498509511"
-                }
-                , notificationOpenedCallback);
+                googleProjectNumber: "1006498509511"
+            }, notificationOpenedCallback);
 
             // Show an alert box if a notification comes in when the user is in your app.
             window.plugins.OneSignal.enableInAppAlertNotification(true);
 
-            window.plugins.OneSignal.getIds(function (ids) {
+            window.plugins.OneSignal.getIds(function(ids) {
                 console.log('getIds: ' + JSON.stringify(ids));
                 // alert("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
                 localStorage.setItem("os_id", "" + ids.userId + "");
             });
         }
+
     </script>
 
 </head>
 
 <body onload="cordova_start();">
-    
+
     <div id="loadingindicator">
 
-            <div class="preloader-wrapper medium active">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+        <div class="preloader-wrapper medium active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
                 </div>
-
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
                 </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
                 </div>
             </div>
 
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
         </div>
+
+    </div>
 
     <div id="reg_start"></div>
 
@@ -362,10 +359,11 @@
 
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var year = new Date().getFullYear();
                 document.getElementById("copyright_current_year").innerHTML = year;
             });
+
         </script>
 
         <div id="copyright" class="animated fadeIn" style="-webkit-animation-delay: 5s;">
