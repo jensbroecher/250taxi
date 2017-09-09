@@ -1,80 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="45" version="2.8">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.twofiftytaxi.app" versionCode="45" version="2.8">
 
-        <name>AfriTaxi</name>
+    <preference name='pgb-builder-version' value='1' />
 
-        <description>
-            Taxi Booking Service
-        </description>
+    <name>AfriTaxi</name>
 
-        <author href="https://afrionline.net" email="info@afrionline.net">
-            Jens Bröcher
-        </author>
+    <description>
+        Taxi Booking Service
+    </description>
 
-        <icon src="icon.png" />
+    <author href="https://afrionline.net" email="info@afrionline.net">
+        Jens Bröcher
+    </author>
 
-        <platform name="android"></platform>
-        
-        <preference name="phonegap-version" value="cli-6.3.0" />
+    <preference name="orientation" value="portrait" />
 
-        <preference name="android-minSdkVersion" value="15" />
-        <preference name="android-targetSdkVersion" value="20" />
-        
-        <preference name="android-build-tool" value="gradle" />
+    <icon src="icon.png" />
 
-        <!-- Plugins -->
+    <preference name="android-build-tool" value="gradle" />
 
-        <gap:plugin name="cordova-plugin-statusbar" source="npm" />
+    <preference name="android-minSdkVersion" value="15" />
+    <preference name="android-targetSdkVersion" value="20" />
 
-        <gap:plugin name="cordova-plugin-device" source="npm" />
+    <preference name="android-build-tool" value="gradle" />
 
-        <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
+    <!-- Plugins -->
 
-        <gap:plugin name="cordova-plugin-file" source="npm" />
+    <gap:plugin name="cordova-plugin-statusbar" source="npm" />
 
-        <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
+    <gap:plugin name="cordova-plugin-device" source="npm" />
 
-        <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+    <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
 
-        <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
+    <gap:plugin name="cordova-plugin-file" source="npm" />
 
-        <gap:plugin name="cordova-plugin-media" source="npm" />
+    <gap:plugin name="cordova-plugin-file-transfer" source="npm" />
 
-        <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <gap:plugin name="cordova-plugin-geolocation" source="npm" />
 
-        <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
 
-        <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
+    <gap:plugin name="cordova-plugin-media" source="npm" />
 
-        
-        
-        
-        
-        <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-patched" source="npm" />
-        
-        <preference name="xwalkCommandLine" value="lite" />
-        
-        <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />
-        
-        
-        
-        
-        <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
-        
-        
-        
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 
-        <gap:plugin name="onesignal-cordova-plugin" source="npm" />
+    <gap:plugin name="cordova-plugin-screen-orientation" source="npm" />
 
-        <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
-        
-        
-        
-        
+    <gap:plugin name="cordova-plugin-fastrde-checkgps" source="npm" />
 
-        <gap:plugin name="cordova-plugin-facebook4" source="npm">
-            <param name="APP_ID" value="287641408285720" />
-            <param name="APP_NAME" value="AFRITAXI" />
-        </gap:plugin>
 
-    </widget>
+
+
+
+    <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-patched" source="npm" />
+
+    <preference name="xwalkCommandLine" value="lite" />
+
+    <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />
+
+
+
+
+    <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
+
+
+
+
+    <gap:plugin name="onesignal-cordova-plugin" source="npm" />
+
+    <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+
+
+
+
+
+    <gap:plugin name="cordova-plugin-facebook4" source="npm">
+        <param name="APP_ID" value="287641408285720" />
+        <param name="APP_NAME" value="AFRITAXI" />
+    </gap:plugin>
+
+</widget>
