@@ -52,16 +52,7 @@
 
 
 
-    <gap:plugin name="cordova-plugin-crosswalk-webview-pgb-patched" source="npm" />
 
-    <preference name="xwalkCommandLine" value="lite" />
-
-    <preference name="xwalkCommandLine" value="--enable-gpu-rasterization" />
-
-
-
-
-    <plugin name="cordova-build-architecture" spec="https://github.com/MBuchalik/cordova-build-architecture.git#v1.0.1" source="git" />
 
 
 
