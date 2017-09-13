@@ -81,6 +81,9 @@ body {
 
 #search_animation {
     position: fixed;
+    background-image: url(afritaxi.png);
+    background-size: cover;
+    background-position: center center;
     background-color: white;
     top: 0px;
     left: 0px;
@@ -101,6 +104,7 @@ body {
 #search_animation .searcher_logo {
     margin-top: 10%;
     width: 250px;
+    display: none;
 }
 
 #loading_reset {
